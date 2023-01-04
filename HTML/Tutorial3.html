@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- setting the meta tags -->
+    <meta name="description" content="This is the Tutorial3 which contains list,tables and form and video">
+    <meta name="keywords" content="html,web dev">
+    <meta name="author" content="prathamesh">
+    
+    
+    <title>Tutorial 3</title>
+</head>
+
+<body>
+    <!-- list tag example -->
+    <!-- undordered list example -->
+    <ul type="square">
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact Us</li>
+        <li>Services</li>
+    </ul>
+    <hr>
+
+    <!-- ordered list example -->
+    <span>
+        <ol>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact us</li>
+            <li>Services</li>
+        </ol>
+    </span>
+    <span>
+        <ol type="I">
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact us</li>
+            <li>Services</li>
+        </ol>
+    </span>
+    <hr>
+
+
+    <!-- table example -->
+    <div>
+        <table border="1">
+            <caption>Student Details</caption>
+            <thead>
+                <tr>
+                    <th>Sr.no</th>
+                    <th>Name</th>
+                    <th>Roll No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Prathamesh</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Sushant</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <!-- table with colspan and rowspan -->
+    <div>
+        <table border="1">
+            <caption>Student Details</caption>
+            <thead>
+                <tr>
+                    <th rowspan="2">College</th>
+                    <th rowspan="2">Sr.no</th>
+                    <th rowspan="2">Name</th>
+                    <th colspan="2">Roll No And Class</th>
+                </tr>
+                <tr>
+                    <th>A Class and B Class</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Prathamesh</td>
+                    <td>1</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Sushant</td>
+                    <td>2</td>
+                    <td>B</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+
+    <!-- form elements and type -->
+    <form action="Tutorial.html">
+        <h1>Student From Details</h1>
+
+        <!-- input type text example -->
+        <label for="nameid">Enter Your Name :</label>
+        <input type="text" name="nameentered" id="nameid" placeholder="Enter Your Name"><br>
+
+        <!-- input type readio example -->
+        <input type="radio" name="class" id="classaid" value="classa">
+        <label for="classaid">Class A</label>
+        <input type="radio" name="class" id="classbid" value="classb">
+        <label for="classbid">Class B</label>
+        <input type="radio" name="class" id="classcid" value="classc" checked>
+        <label for="classcid">Class C</label><br>
+
+        <!-- input type checkbox example -->
+        Want Identity Card:
+        <input type="checkbox" name="yes" id="yid" value="yes" checked>
+        <label for="yid">Yes</label>
+        <input type="checkbox" name="yes" id="nid" value="yes">
+        <label for="nid">No</label><br>
+
+        <!-- textarea example -->
+        <textarea name="address" id="aid" cols="10" rows="10" placeholder="Enter Your Address here"></textarea>
+        <br>
+
+        <!-- drop down option -->
+        <select name="subject" id="sid">
+            <option value="subject">Select Subject</option>
+            <option value="math">Maths</option>
+            <option value="scien">Science</option>
+            <option value="eng">English
+            </option>
+        </select><br>
+
+        <!-- color selection -->
+        <input type="color" name="colorselect" id="colorid">
+
+        <!-- for more refer to online mdn docs -->
+    </form>
+    <hr>
+
+    <!-- embeding the youtube video -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/n32xoV24cCM" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    <hr>
+
+    <!-- using the iframe tag -->
+    <iframe src="https://wikipedia.org" frameborder="1" width="534px"></iframe>
+    <hr>
+
+
+    <!-- Adding the video in the html -->
+    <video src="video.mp4" controls width="400px">Error On parssing video</video>
+<hr>
+
+<!-- embedding the audio in the html -->
+<audio src="Cold Bones.mp3" controls>Error While playing audio</audio>
+<hr>
+
+<iframe src="video.mp4" frameborder="0">Playing Video</iframe>
+<hr>
+
+
+
+
+</body>
+
+</html>
