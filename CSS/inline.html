@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline CSS Tutorial</title>
+    <!-- defining the css using the style tag -->
+    <style>
+        #first {
+            background-color: aqua;
+        }
+
+        .kasection {
+            background-color: red;
+            color: white;
+        }
+
+        .red {
+            /* color: green; */
+            font-size: 20pt;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="first">
+        <h2>Prathamesh Dhande</h2>
+    </div>
+    <section class="red">
+        <p>This is section of red class</p>
+    </section>
+    <section class="red kasection">
+        <p>This is the section of red class but using the class kasection</p>
+    </section>
+    <!-- defining inline css using the style attribute it is the global attribute it can be used with any element or tag -->
+    <div class="green" style="color: blue;text-align: right;background-color: yellow;">
+        <p>Green div class</p>
+    </div>
+</body>
+
+</html>

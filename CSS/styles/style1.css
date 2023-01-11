@@ -1,0 +1,40 @@
+#first {
+    background-color: aqua;
+
+}
+
+/* class selector */
+/* grouping the selector */
+.kasection,h2 {
+    background-color: red;
+    color: white;
+}
+
+.red {
+    /* color: green; */
+    font-size: 20pt;
+}
+
+/* id selector  */
+/* can also be used as span#para */
+span#para {
+    text-align: justify;
+    background-color: coral;
+    text-decoration-line: underline;
+}
+
+/* css selector */
+body {
+    background-color: pink;
+}
+
+/* element selector */
+h1 {
+    color: red;
+}
+
+/* universal selector using * symbol */
+*{
+    margin: 0px;
+    padding: 0px;
+}
