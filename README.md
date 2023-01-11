@@ -5,8 +5,16 @@ This Repository Contains the Web Developmet Tutorial.
 My aim is to learn the Django Framework so to do this need to learn Web Development.
 
 Contains :
-1. <details>
+<details>
     <summary>HTML Tutorial</summary>
     <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/HTML/">Click Here</a> <br/>
-    To see the Hosted Tutorail
+    To see the Hosted Tutorial
+    </details> 
+
+---
+
+<details>
+    <summary>CSS Tutorial</summary>
+    <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/CSS/">Click Here</a> <br/>
+    To see the Hosted Tutorial
     </details>
