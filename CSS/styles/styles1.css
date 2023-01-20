@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0%;
+}
+
+.red {
+    height: 450px;
+    /* sets the background color of the tag using the rgb(0,9,9) value */
+    background-color: rgb(54, 23, 255);
+    /* sets the text color */
+    color: white;
+}
+
+#green {
+    /* setting the background colro using hex value of the color */
+    background-color: #ff34ff;
+    /* setting the text color using the hsl color value which means hue saturation and lightness  */
+    color: hsl(34, 45, 67);
+}
+
+/* setting the background image */
+.image {
+    background: red;
+    background-image: url("https://cdn.jolipage.co/main+page_1%403x.png?w=400&h=253&org_if_sml=1&vh=9fccd2");
+    height: 500px;
+    /* setting the width of the container */
+    width: 700px;
+    /* setting whether image should be repeated or not */
+    background-repeat: no-repeat;
+    /* setting the background size how the image should be kept  */
+    background-size: 200px 200px;
+    /* setting the background position or positioning the image */
+    background-position: 190px 200px;
+
+}
+
+/* setting the image to be scrollable */
+.scrollimage {
+    height: 1000px;
+    background-repeat: repeat-y;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsv7gl3AVmnvbr-8xgep2nn_7oKEaErX69ig&usqp=CAU");
+    background-attachment: scroll;
+    text-align: justify;
+}
