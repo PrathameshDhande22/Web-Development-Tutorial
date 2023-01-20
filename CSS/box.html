@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model</title>
+    <style>
+        .marginsetter {
+            /* setting the margin and padding  */
+            /* margin: 10px; */
+            /* margin syntax top left bottom right */
+            margin: 40px 20px 30px 50px;
+            background-color: greenyellow;
+            height: 200px;
+            /* padding-top: 49px; */
+            /* padding syntax top left bottom right*/
+            padding: 4px 2px 40px 30px;
+        }
+
+        .border {
+            /* seting the border width style color */
+            /* border: 5px solid black; */
+            /* you can also use this shorthand property */
+            border-width: 3px;
+            border-style: ridge;
+            border-color: black;
+            border-spacing: 5px;
+            border-radius: 5px;
+            padding: 4px 200px;
+        }
+
+        /* box sizing tutorial */
+        .box1 {
+            width: 200px;
+            border: 5px solid black;
+            height: 500px;
+            margin: 40px;
+            padding: 10px;
+
+        }
+
+        .box2 {
+            width: 200px;
+            border: 2px solid red;
+            margin: 10px;
+            height: 100px;
+            padding: 4px;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="marginsetter">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, suscipit ea ipsum officiis sed vero deleniti
+        distinctio qui nulla maiores odit numquam facere fuga eveniet rerum, atque quibusdam odio explicabo iste nemo
+        corporis tenetur.
+    </div>
+    <div class="border">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error ullam asperiores nostrum, modi omnis maxime
+        ipsum expedita illum ad dolore dolor unde tenetur dignissimos minus voluptates eligendi in illo vero libero et
+        voluptatum itaque perferendis aut! Iure expedita quia adipisci laudantium neque tenetur nam quas.
+    </div>
+    <div class="box1">
+        Parent Container
+        <div class="box2">
+            Child Container
+        </div>
+    </div>
+</body>
+
+</html>
