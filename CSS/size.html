@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Size, Position and Lists</title>
+    <style>
+        /* em unit of css em takes the parent element font size */
+        .box1 {
+            font-size: 30px;
+        }
+
+        .box2 {
+            font-size: 3em;
+        }
+
+        /* rem unit of css takess the html tag font size or default font size */
+        .box3 {
+            font-size: 3rem;
+        }
+
+        /* vw and vh unit of css */
+        .contain1 {
+            background-color: aquamarine;
+            height: 50vh;
+            width: 50vw;
+        }
+
+        /* % unit of css takes the parent element */
+        .box4 {
+            width: 50vw;
+            height: 20vh;
+            background-color: cornflowerblue;
+        }
+
+        .box5 {
+            width: 50%;
+            background-color: peru;
+            height: 50%;
+        }
+
+        /* min-height max-height property of css */
+        .boxtesting {
+            min-height: 10vh;
+            max-height: 50vh;
+            background-color: blueviolet;
+        }
+
+        /* position property */
+        .main {
+            width: 50vw;
+            height: 50vh;
+            text-align: center;
+            background-color: goldenrod;
+            position: relative;
+        }
+
+        /* top bottom left right property */
+        .mainb1 {
+            width: 100px;
+            height: 106px;
+            background-color: lightcoral;
+            border: 3px solid black;
+            position: relative;
+            /* bottom: 0px; */
+            /* top: 10px; */
+        }
+
+        .mainb2 {
+            background-color: saddlebrown;
+            color: white;
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            width: 100px;
+            height: 106px;
+        }
+
+        /* position property with fixed */
+        .sidebox {
+            position: fixed;
+            width: 6vw;
+            padding-left: 7px;
+            background-color: rgb(114, 231, 114);
+            border-radius: 50px;
+            border: 3px solid black;
+            right: 0px;
+            z-index: 4;
+        }
+
+        /* position property with sticky and z index property */
+        header {
+            background-color: rgb(148, 32, 220);
+            color: white;
+            margin: 0;
+            padding: 0;
+            position: sticky;
+            height: 6vh;
+            width: 100vw;
+            top: 0;
+        }
+
+        .menu li {
+            display: inline;
+        }
+
+        .menu {
+            display: inline;
+        }
+
+        /* list style property */
+        .listing ul {
+            background-color: azure;
+            list-style: armenian outside;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact Us</li>
+            </ul>
+        </nav>
+    </header>
+    <div class="sidebox">
+        Hello Chat Me
+    </div>
+    <div class="box1">
+        <p>This is the Paragraph of font size 30</p>
+        <div class="box2">
+            This is the paragraph of font size 3*30=90 using em unit of css
+
+        </div>
+        <div class="box3">
+            The paragraph is of font size 3*html default font size (3*16) = 48
+        </div>
+    </div>
+    <div class="contain1">
+        viewport hieght and viewport width means takes the device viewport size and using it.
+    </div>
+    <div class="box4">
+        % unit of css
+        This is the paragraph inside the parent element
+        <div class="box5">
+            thiss is the paragraph inside the child element
+        </div>
+    </div>
+    <div class="boxtesting">
+        Paragraph with min height and max height, width property
+    </div>
+    <div class="main">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga voluptatibus ex neque dignissimos velit
+        laudantium, perferendis sunt vero quae laborum minus. Voluptas explicabo quod minus quia porro. Possimus, magni
+        vel. Culpa accusamus natus aut!
+        <div class="mainb1">
+            This is main Box 1
+        </div>
+        <div class="mainb2">
+            This is main box 2
+        </div>
+    </div>
+    <div class="listing">
+        <ul>
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Mango</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
