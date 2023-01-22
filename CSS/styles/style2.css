@@ -1,0 +1,80 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul {
+    padding: 10px;
+    font-size: 1vw;
+}
+
+li {
+    float: right;
+    display: inline;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.log {
+    display: inline;
+}
+
+nav .log img {
+    display: inline;
+    width: 4vw;
+    float: left;
+    padding-left: 10px;
+}
+
+header {
+    background-color: rgb(217, 42, 42);
+    height: 10vh;
+    color: white;
+}
+
+.companyname {
+    float: left;
+    padding: 12px;
+    font-size: 2vw;
+    font-family: monospace;
+    color: cyan;
+    font-weight: 300;
+}
+
+footer .copyright {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    padding: 5px 0px;
+}
+
+.maincontainer {
+    display: flex;
+    /* justify-content: center; */
+    justify-content: space-between;
+    /* align-content: space-between; */
+    padding-top: 10px;
+
+}
+
+.reports {
+    background-color: chocolate;
+    color: antiquewhite;
+    width: 30vw;
+}
+
+.casestudy {
+    background-color: cadetblue;
+    width: 30vw;
+}
+
+.maincontainer span {
+    text-transform: uppercase;
+    padding: 10px 10px;
+}
+
+.maincontainer p {
+    text-align: justify;
+    padding: 10px 10px;
+}
