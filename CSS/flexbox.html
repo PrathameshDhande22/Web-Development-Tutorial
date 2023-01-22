@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexBox Tutorial</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /* float and clear property of css */
+        .box1 {
+            background-color: red;
+            height: 20vh;
+            width: 10vw;
+            float: left;
+            clear: right;
+        }
+
+        .box2 {
+            background-color: aqua;
+            height: 20vh;
+            width: 10vw;
+            float: left;
+            clear: right;
+            /* clear:left. */
+        }
+
+        /* flex box parent container */
+        .flexboxcontainer {
+            height: 50vh;
+            display: flex;
+            background-color: aquamarine;
+            /* this property sets the flex direction to column */
+            /* flex-direction: column; */
+            /* this property sets the flex direction to column but in reverse */
+            /* flex-direction: column-reverse; */
+            /* This property sets the flex items to center value can start end */
+            /* justify-content: center; */
+            /* align-items: flex-end; */
+            /* align-content: space-between; */
+            flex-wrap: wrap;
+        }
+
+        /* flexbox child container */
+        .fbox1 {
+            /* order property sets the flex items to the last greater the no */
+            order: 5;
+            /* flex grow property */
+            /* flex-grow: 2; */
+            background-color: red;
+            width: 100px;
+            /* flex-shrink: 2; */
+            height: 100px;
+            border: 3px solid black;
+
+        }
+
+        .fbox2 {
+            background-color: greenyellow;
+            width: 100px;
+            /* flex-grow: 2; */
+            height: 100px;
+            /* align self property of flex */
+            align-self: flex-end;
+            border: 3px solid black;
+        }
+
+        .fbox3 {
+            background-color: cyan;
+            width: 100px;
+            height: 100px;
+            flex-shrink: 4;
+            border: 3px solid black;
+        }
+
+        .fbox4 {
+            background-color: violet;
+            width: 100px;
+            height: 100px;
+            border: 3px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="flexboxcontainer">
+            <div class="fbox1">
+                Flex Box 1
+            </div>
+            <div class="fbox2">
+                Flex Box 2
+            </div>
+            <div class="fbox3">
+                Flex Box 3
+            </div>
+            <div class="fbox4">
+                Flex Box 4
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- float and clear property of css  -->
+        <div class="box1">Box 1</div>
+        <div class="box2">Box 2</div>
+        <!-- flex box css -->
+
+    </main>
+
+    <footer></footer>
+</body>
+
+</html>
