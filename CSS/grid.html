@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout Tutorial</title>
+    <style>
+        .container1 {
+            background-color: cornsilk;
+            height: 70vh;
+            /* sets the layout as the grid */
+            display: grid;
+            /* sets the space in the row and column shorthand property for row-gap and column-gap*/
+            /* gap: 12px 40px; */
+            /* sets the column gap in css grid */
+            column-gap: 100px;
+            /* sets the row gap in css grid */
+            row-gap: 10px;
+            /* this property sets the width of the grid itemss */
+            grid-template-columns: 400px 400px 50px;
+            /* this property sets the height of the grid items  */
+            grid-template-rows: 40px 40px;
+            /* aligns the content vertically  */
+            align-content: center;
+            /* aligns the content horizontally */
+            justify-content: center;
+        }
+
+        .item {
+            background-color: lightgreen;
+            border: 2px solid black;
+        }
+
+        .container2 {
+            background-color: coral;
+            height: 60vh;
+            display: grid;
+            gap: 10px;
+            grid-template-columns: auto auto auto auto;
+            grid-template-rows: 50px 50px 50px;
+            align-content: center;
+            /* align-items: center; */
+        }
+
+        .container2 div {
+            background-color: darkred;
+            color: whitesmoke;
+            border: 3px solid white;
+            border-radius: 10px;
+            padding: 5px;
+
+        }
+
+        .item1 {
+            /* makes the grid like table colspan */
+            /* grid-column: 1/3; */
+            /* makes the grid like table rowspan */
+            /* grid-row: 1/4; */
+            grid-row: 1/span 2;
+        }
+
+        .item2 {
+            grid-column: 2/4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Grid Layout Tutorial</h1>
+    <!-- grid layout tutorial for parent element only -->
+    <div class="container1">
+        <div class="item">Box1</div>
+        <div class="item">Box2</div>
+        <div class="item">Box3</div>
+        <div class="item">Box4</div>
+
+    </div>
+
+    <!-- grid layout tutorial for child element only -->
+    <div class="container2">
+        <div class="item1">Box1</div>
+        <div class="item2">Box2</div>
+        <div class="item3">Box3</div>
+        <div class="item">Box4</div>
+        <div class="item">Box5</div>
+        <div class="item">Box6</div>
+        <div class="item">Box7</div>
+        <div class="item">Box8</div>
+        <div class="item">Box9</div>
+    </div>
+</body>
+
+</html>
