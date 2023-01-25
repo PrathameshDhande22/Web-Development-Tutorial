@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Property Tutorial</title>
+    <style>
+        .container {
+            height: 80vh;
+            background-color: aqua;
+        }
+
+        .translateprop {
+            border: 3px solid black;
+            /* translate property moves the container in x axis if one values */
+            /* transform: translate(20px); */
+            /* moves the x and y axis if two values */
+            /* transform: translate(30px,30px); */
+            /* three values means x,y and z axis */
+
+            /* here you can specify as many method for transform */
+            /* value can be in degree or in turn 1 turn */
+            transform: translate(40px, 20px) rotate(40deg);
+
+            /* transform origin property will set the from where the transform should be applied default value is center */
+            transform-origin: 0;
+        }
+
+        /* scale property tutorial */
+        .box {
+            background-color: green;
+            border: 3px solid black;
+            border-radius: 4px;
+            height: 100px;
+            width: 100px;
+            /* made the size bigger than 3 and 3 x and y axis */
+            transform: translate(0px, 200px) scale(3, 3);
+            transform-origin: 0;
+        }
+
+        /* skew property tutorial */
+        .box1 {
+            background-color: yellow;
+            border: 3px solid black;
+            border-radius: 4px;
+            height: 100px;
+            width: 100px;
+            /* made the size bigger than 3 and 3 x and y axis */
+            transform: translate(0px, 600px) skew(10deg, 20deg);
+            transform-origin: 0;
+        }
+        /* rotatexyz property for css for 3d transformation */
+        .box2{
+            background-color: pink;
+            border: 4px solid black;
+            border-radius: 10px;
+            height: 100px;
+            width: 100px;
+            transform: translate(300px,300px) rotateX(40deg) rotateY(30deg) rotateZ(50deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- transform translate propery -->
+        <div class="translateprop">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi obcaecati, laboriosam vel velit odit, harum
+            voluptate praesentium laudantium labore consequuntur veniam dolorem cum! Voluptate, beatae. Rerum, voluptate
+            voluptates. Sint, assumenda?
+        </div>
+        <div class="box"></div>
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+</body>
+
+</html>
