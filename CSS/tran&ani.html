@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transitions and Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* without using transition shorthand property */
+        .animate .imgs,
+        .imgy {
+            width: 100px;
+        }
+
+        .animate:hover .imgs {
+            width: 180px;
+            cursor: help;
+            transition-property: width;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+        }
+
+        /* using transition shorthand property */
+        .animate:hover .imgy {
+            width: 180px;
+            height: 200px;
+            border: 3px solid black;
+            transition: width 3s ease-in-out, height 5s ease;
+        }
+
+        /* without using animation shorthand property */
+        .mation .progress {
+            width: 40px;
+            height: 40px;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            padding-top: 10px;
+            border: 4px solid red;
+            border-radius: 40px;
+            animation-name: progresschanger;
+            animation-duration: 3s;
+            animation-timing-function: ease-in;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        /* animation shorthand property */
+        .mation .progressbar {
+            width: 40px;
+            height: 40px;
+            background-color: greenyellow;
+            color: black;
+            text-align: center;
+            padding-top: 10px;
+            border: 4px solid red;
+            border-radius: 40px;
+            font-size: 0.2vw;
+            animation: progressbar 5s ease-in 0s infinite reverse backwards;
+        }
+
+        @keyframes progresschanger {
+            from {
+                width: 40px;
+            }
+
+            to {
+                width: 100vw;
+            }
+        }
+
+        @keyframes progressbar {
+            from {
+                width: 40px;
+                font-size: 0.2vw;
+            }
+
+            to {
+                width: 100vw;
+                font-size: 2vw;
+            }
+        }
+
+        .loading {
+            height: 100px;
+            width: 100px;
+            margin: 50px;
+            padding: 40px;
+            background-color: orange;
+            border: 20px solid;
+            border-radius: 100px;
+            animation: loader 7s ease 0s infinite normal forwards;
+        }
+
+        /* you can also use the % in keyframes */
+        @keyframes loader {
+            0% {
+                border-color: rgb(163, 156, 156);
+            }
+
+            25% {
+                border-top-color: black;
+            }
+
+            50% {
+                border-right-color: black;
+            }
+
+            75% {
+                border-bottom-color: black;
+            }
+
+            100% {
+                border-left-color: black;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Transitions Tutorial -->
+    <div class="animate">
+        <span style="display: inline;">Transitions is Applied in this image</span><br>
+        <img class="imgs"
+            src="https://images.pexels.com/photos/1883385/pexels-photo-1883385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="Image of Flower"><br>
+        <img class="imgy"
+            src="https://images.pexels.com/photos/1883385/pexels-photo-1883385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="Image of Flower">
+    </div>
+
+    <!-- Animation Tutorial -->
+    <div class="mation">
+        <div class="progress">This is Progress bar with Animation</div>
+        <div class="progressbar">This is Progress bar with Animation shorthand</div>
+        <div class="loading"></div>
+    </div>
+</body>
+
+</html>
