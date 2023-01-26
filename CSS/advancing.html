@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Advancing Topics</title>
+    <style>
+        /* child selector of css selects only p tag which is in .combinators class and not inside any div */
+        .combinators>p {
+            display: inline;
+            background-color: yellow;
+            border: 2px solid black;
+            border-radius: 2em;
+            padding: 8px;
+        }
+
+        /* descendant selector means space selector it will select all the p tag in the descendant class */
+        .descendant p {
+            background-color: green;
+            color: yellow;
+            border: 7px dotted red;
+            border-block: 5px solid black;
+        }
+
+        /* adjcacent sibling selector this selects the adjcacent class after the p tag */
+        .adjcacent+p {
+            background-color: violet;
+            color: white;
+        }
+
+        /* general sibling selector basically selects all the tag after that specified element or class */
+        .general~p {
+            background-color: crimson;
+            color: white;
+        }
+
+        .pusedo {
+            border: 3px solid black;
+            padding-left: 10px;
+        }
+
+        /* hover pseudo class tutorial */
+        .pusedo .btn {
+            background-color: red;
+            color: white;
+            border: 2px solid grey;
+            padding: 10px 20px;
+        }
+
+        .pusedo .btn:hover {
+            background-color: greenyellow;
+            color: black;
+        }
+
+        /* visited link tutorial */
+        .pusedo .googlelink:visited {
+            color: green;
+        }
+
+        /* changes the link color  */
+        .pusedo .googlelink:link {
+            color: crimson;
+        }
+
+        /* whenever mouse is pressed it activates */
+        .pusedo .googlelink:active {
+            background-color: green;
+            color: white;
+            padding: 20px;
+        }
+
+        /* tooltip tutorial */
+        .tooltip {
+            background-color: yellow;
+            border: 3px solid;
+            width: 300px;
+            height: 30px;
+        }
+
+        .tooltip .tiptext {
+            background-color: aqua;
+            padding: 5px;
+            display: none;
+        }
+
+        .tooltip:hover .tiptext {
+            display: block;
+        }
+
+        /* focus psuedo class */
+        .pusedo .name:focus {
+            background-color: rgb(167, 200, 228);
+            color: red;
+        }
+
+        /* first child pseudo class selects the first child of the p element  */
+        .pusedo .child p:first-child {
+            color: blue;
+            background-color: lightblue;
+        }
+
+        /* pseudo element first line applies the style to the first line of the text*/
+        .pseudoele .first::first-line {
+            background-color: red;
+            color: yellow;
+            padding: 10px;
+        }
+
+        /* applys the style to the first letter */
+        .pseudoele .first::first-letter {
+            font-size: 40px;
+            color: green;
+            background-color: white;
+        }
+
+        /* used to add the content before the element */
+        .pseudoele h1::before {
+            content: "hello ";
+        }
+
+        /* used to add the content after the element */
+        .pseudoele h1::after {
+            content: " end";
+        }
+
+        /* used to add the style the list */
+        ::marker {
+            font-size: 30px;
+            list-style-type: decimal-leading-zero;
+            color: red;
+        }
+
+        /* add the style whenever user selects the text */
+        .sle::selection {
+            background-color: yellow;
+            color: red;
+        }
+
+        /* gradient tutorial */
+        .grade{
+            display: grid;
+            width: 50vw;
+            height: 50vh;
+            border: 3px solid black;
+            grid-template-rows: 20vh 20vh;
+            grid-template-columns: 20vw 20vw 20vw;
+            gap: 0px;
+        }
+        .linear{
+            /* background-image:linear-gradient(red,yellow) ; */
+            /* background-image:linear-gradient(to right,red,rgb(255, 255, 255)) ; */
+            width: 50%;
+            background-image:linear-gradient(30deg,red,orange,yellow,green) ;
+        }
+        .radial{
+            width: 50%;
+            /* background-image: radial-gradient(blue 50%,violet,lightgreen); */
+            background-image: radial-gradient(circle,blue,violet,lightgreen);
+        }
+        .conic{
+            width: 50%;
+            /* background-image: conic-gradient(red,yellow,green); */
+            /* background-image: conic-gradient(from 180deg,red,yellow,green,blue); */
+            background-image: conic-gradient(from 180deg,red,yellow,green,blue);
+        }
+        .repeat{
+            width: 50%;
+            background-image: repeating-linear-gradient(red 10%,yellow 20%,green 30%);
+        }
+        .repradail{
+            width: 50%;
+            background-image: repeating-radial-gradient(red 10%,green 20%,yellow 30%);
+        }
+
+        /* text shadow property */
+        .shadows h1{
+            color: white;
+            /* single value */
+            text-shadow: 8px 8px 10px black;
+            /* mutliple value */
+            text-shadow: 3px 3px 5px black,2px 2px 4px red,1px 0px 3px green;
+        }
+
+        /* box shadow tutorial */
+        .shadows .box:hover{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            color: white;
+            box-shadow: 10px 10px 4px 4px black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="combinators">
+        Example of Child Selector <br>
+        <p>This is Paragraph 1</p>
+        <p>This is Paragraph 2</p>
+        <section class="para">
+            <p>This is Paragraph 3</p>
+            <p>This is Paragraph 4</p>
+        </section>
+        <p>This is paragraph 5</p>
+    </div>
+
+    <div class="descendant">
+        Example of descendant Selector of CSS:
+        <p>This is the Selector of descendant</p>
+        <span>
+            <p>This is also the element of descendant class</p>
+        </span>
+    </div>
+
+    <div class="adjcacent">
+        <p>This is Paragraph inside the adjcacent class</p>
+    </div>
+    <p>This is Paragraph1 outside the adjcacent class</p>
+    <p>This is Paragraph2 outside the adjcacent class</p>
+
+    <div class="general">
+        <p>This is the paragraph tag inside the general class</p>
+    </div>
+    <p>This is is the Paragraph1 tag outside the general class</p>
+    <code>import numpy as np</code>
+    <p>This is the paragraph2 tag outside the general class</p>
+
+    <div class="pusedo">
+        <p style="display: inline;">Example of Hover Element</p>
+        <button type="button" name="btn" class="btn" value="hover">Hover me</button><br>
+        <p style="display: inline;">Example of Visited Link</p>
+        <a href="http://www.google.com" target="_blank" class="googlelink">Click Here</a><br>
+        <label for="nameid">Enter Your Name</label>
+        <input type="text" class="name" id="nameid">
+        <div class="child">
+            <p>Para1</p>
+            <p>Para2</p>
+            <div class="child2">
+                <p>Para3</p>
+                <p>Para4</p>
+            </div>
+            <p>Para5</p>
+        </div>
+    </div>
+
+    <div class="tooltip">
+        <span>Hover on me</span>
+        <p class="tiptext">You Hovered on Me</p>
+    </div>
+
+    <div class="pseudoele">
+        <p class="first">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium numquam deleniti rem odio.
+            Minus, veniam. Recusandae adipisci vitae error minus vel? Tempore molestiae dolor esse commodi quam! Nulla
+            totam quidem harum, earum sunt, quis placeat voluptates similique dolor, aut repellat voluptate id libero et
+            adipisci!</p>
+        <h1>This is Prathamesh</h1>
+        <ol class="lis">
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact Us</li>
+        </ol>
+        <p class="sle">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, quis! Similique, commodi. Cum qui labore
+            culpa cumque, nulla perferendis nesciunt debitis reiciendis eos, reprehenderit doloremque quaerat! Cumque
+            illum sapiente optio saepe fugit in! Earum dolore sunt provident quidem nobis qui quaerat? Saepe eligendi,
+            sequi consectetur id reprehenderit minus facilis quam veritatis magnam. Consequuntur obcaecati esse enim?
+        </p>
+    </div>
+    <div class="grade">
+        <div class="linear"></div>
+        <div class="radial"></div>
+        <div class="conic"></div>
+        <div class="repeat"></div>
+        <div class="repradail"></div>
+    </div>
+    <div class="shadows">
+        <h1>Text is Glowing</h1>
+        <div class="box">
+            This is the box shadow
+        </div>
+    </div>
+</body>
+
+</html>
