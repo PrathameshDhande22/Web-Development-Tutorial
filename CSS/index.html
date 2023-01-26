@@ -6,10 +6,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Tutorial</title>
+    <style>
+        .info{
+            text-shadow: 3px 4px 4px grey;
+            font-size: larger;
+            animation: movetext 15s ease-in 0s infinite alternate forwards;
+        }
+        @keyframes movetext {
+           from{
+            transform: translateX(0vw);
+           }
+           to{
+            transform: translateX(75vw);
+           } 
+        }
+        .colorchanger{
+            animation: colorchan 6s ease-in 0s infinite normal forwards;
+            text-align: center;
+        }
+        @keyframes colorchan {
+            0%{
+                color:black;
+            }
+            10%{
+                color: red;
+            }
+            20%{
+                color: green;
+            }
+            30%{
+                color: yellow;
+            }
+            40%{
+                color: orange;
+            }
+            50%{
+                color: aqua;
+            }
+            60%{
+                color: pink;
+            }
+            70%{
+                color: violet;
+            }
+            80%{
+                color: blue;
+            }
+            90%{
+                color: greenyellow;
+            }
+            100%{
+                color: deepskyblue;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
-    <h1 style="text-align: center;">CSS Tutorial</h1>
+    <h1 class="colorchanger">CSS Tutorial</h1>
+    <div class="info">
+        Inspect Each Website to know more Information
+    </div><br>
 1. <a href="inline.html">Inline CSS Tutorial</a><br>
 2. <a href="external.html">External CSS Tutorial</a><br>
 3. <a href="colors.html">Colors and Backgrounds</a><br>
@@ -22,6 +80,7 @@
 10. <a href="media.html">Media Queries Tutorial</a><br>
 11. <a href="transform.html">transformation Tutorial</a><br>
 12. <a href="tran&ani.html">Transitions and Animation Tutorial</a><br>
+13. <a href="advancing.html">CSS Advance Tutorial</a><br>
 </body>
 
 </html>
