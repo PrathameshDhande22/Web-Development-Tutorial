@@ -6,8 +6,15 @@ My aim is to learn the Django Framework so to do this need to learn Web Developm
 
 Contains :
 <details>
+    <summary>WEB Development</summary>
+    <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial">Click Here</a> &nbsp;
+    To see the Hosted Tutorial
+    </details>
+
+---
+<details>
     <summary>HTML Tutorial</summary>
-    <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/HTML/">Click Here</a> <br/>
+    <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/HTML/">Click Here</a> &nbsp;
     To see the Hosted Tutorial
     </details> 
 
@@ -15,7 +22,7 @@ Contains :
 
 <details>
     <summary>CSS Tutorial</summary>
-    <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/CSS/">Click Here</a> <br/>
+    <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/CSS/">Click Here</a>  &nbsp;
     To see the Hosted Tutorial
     </details>
 
