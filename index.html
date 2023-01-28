@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathamesh Dhande Web Development Tutorial Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .mainheader {
+            height: 40px;
+            background-color: black;
+            width: 100%;
+            color: white;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            padding: 6px;
+        }
+
+        .mainheader span {
+            align-self: flex-end;
+            transform: translate(20px);
+        }
+
+
+        .goal {
+            width: 100vw;
+            height: 25%;
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+            background-color: red;
+            color: white;
+        }
+
+        .goal .bar {
+            padding: 4px 2px;
+        }
+
+        .tutavl {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 900;
+            margin: 30px;
+            width: 100vw;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+        .content {
+            display: flex;
+            margin: 10px 10px;
+            gap: 10px;
+            justify-content: space-evenly;
+        }
+
+        .btnhtml {
+            width: 290px;
+            height: 200px;
+            background-color: yellow;
+            border: 4px solid black;
+            color: black;
+        }
+
+        .btncss {
+            width: 290px;
+            height: 200px;
+            background-color: yellow;
+            border: 4px solid black;
+        }
+
+        .btnhtml:hover {
+            box-shadow: 10px 10px 4px black;
+        }
+
+        .btncss:hover {
+            box-shadow: 10px 10px 4px black;
+        }
+
+        .btnhtml a:link {
+            color: black;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .btncss a:link {
+            color: black;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="mainheader">
+            <h2>Web Development Tutorial's</h2>
+            <span>By Prathamesh Dhande</span>
+        </div>
+        <div class="goal">
+            <span>My Goal 🎯 :</span>
+            <div class="bar">
+                <marquee truespeed="10" scrollamount="1px">⭐⭐ To become a Python/Django Developer to apply Skills like
+                    Artifical Intelligence, Machine Learning & Data
+                    Science
+                </marquee>
+            </div>
+        </div>
+        <div class="tutavl">Tutorial Available</div>
+        <div class="content">
+            <div class="htmlbutton">
+                <button class="btnhtml"><a href="HTML/index.html">HTML</a></button>
+            </div>
+            <div class="cssbutton">
+                <button class="btncss"><a href="CSS/index.html">CSS</a></button>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
