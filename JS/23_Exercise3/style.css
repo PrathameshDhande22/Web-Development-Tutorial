@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Explora&family=Roboto+Slab:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("https://t4.ftcdn.net/jpg/02/58/12/43/360_F_258124385_UfYs1mIQ1VR7mmgPlGEVjHXXrvXoqqSA.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 60px;
+    text-align: center;
+    margin: 10px 0px;
+    letter-spacing: 10px;
+    animation: letterspacing 7s ease 0s infinite alternate forwards;
+}
+
+.made {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes letterspacing {
+    0% {
+        letter-spacing: 10px;
+        color: red;
+    }
+
+    10% {
+        color: green;
+    }
+
+    40% {
+        color: blue;
+    }
+
+    60% {
+        color: aqua;
+    }
+
+    80% {
+        color: yellow;
+    }
+
+    90% {
+        color: greenyellow;
+    }
+
+    100% {
+        letter-spacing: 60px;
+    }
+}
+
+.joke {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 40px 28vw;
+    border: 3px solid black;
+    width: 45%;
+    height: 60%;
+    padding: 10px;
+}
+
+.info {
+    text-align: center;
+    font-weight: 700;
+    font-style: oblique;
+    font-stretch: semi-condensed;
+}
