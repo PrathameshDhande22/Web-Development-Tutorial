@@ -6,6 +6,7 @@ setInterval(() => {
     hrs = hrs >= 13 ? hrs - 12 : hrs
     let min = date.getMinutes()
     let sec = date.getSeconds()
+    sec = sec < 10 ? `0` + sec : sec
     timer.innerText = `${hrs}:${min}:${sec} ${median}`
 }, 1000)
 
