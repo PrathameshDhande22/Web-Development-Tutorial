@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="loading()">
+    <div class="header">
+        <span class="title">TODO LIST</span>
+        <span class="made">
+            Made By Prathamesh Dhande
+        </span>
+    </div>
+    <div class="info">
+        Click On <button type="button" class="btn btn-primary">Add</button> Button to Add the TODO, <button
+            class="btn btn-danger">Delete</button> Button to Delete TODO and <button class="btn btn-success">✓</button>
+        Button To Assign that Task is
+        Done
+    </div>
+    <div class="buttons">
+        <input type="text" name="text" id="txt" placeholder="Todo 1" title="Enter the Todo here">
+        <button type="button" class="btn btn-primary" id="addbtn" name="todoadder">Add</button>
+        <button type="button" class="btn btn-warning" name="todoclear">Clear All Todo</button>
+    </div>
+    <div class="todos"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
