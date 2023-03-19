@@ -9,14 +9,12 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body onload="loading()">
+<body onload="loading()" alink="white">
     <div class="header">
         <span class="title">TODO LIST</span>
-        <span class="made">
-            Made By Prathamesh Dhande
-        </span>
     </div>
     <div class="info">
         Click On <button type="button" class="btn btn-primary">Add</button> Button to Add the TODO, <button
@@ -29,7 +27,28 @@
         <button type="button" class="btn btn-primary" id="addbtn" name="todoadder">Add</button>
         <button type="button" class="btn btn-warning" name="todoclear">Clear All Todo</button>
     </div>
-    <div class="todos"></div>
+    <div class="todos">
+        <span class="listtodotitle">TODOS 👇</span>
+    </div>
+    <footer>
+        <div class="footer">
+            <span class="made">
+                Made by Prathamesh Dhande
+            </span>
+            <span class="links">
+                <span class="github">
+                    <a href="https://github.com/PrathameshDhande22">
+                        <i class="fa fa-github" style="font-size:30px"></i>
+                    </a>
+                </span>
+                <span class="linkedin">
+                    <a href="https://www.linkedin.com/in/prathamesh-dhande-3a039721a/">
+                        <i class="fa fa-linkedin-square" style="font-size:30px"></i>
+                    </a>
+                </span>
+            </span>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

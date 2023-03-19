@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: lightsteelblue;
+    background-color: #b0c4de;
 }
 
 .title {
@@ -15,7 +15,6 @@ body {
 }
 
 .header {
-    height: calc(100vh-99vh);
     background-image: linear-gradient(to left, rgb(104, 203, 223) 20%, rgb(115, 240, 126)50%, rgb(73, 196, 240));
     border-bottom: 4px solid orange;
     text-align: center;
@@ -76,7 +75,27 @@ input[type=text] {
     text-decoration-thickness: 2px;
 }
 
-@media screen and (max-width: 480px) and (max-width:600px) {
+.footer {
+    background-color: black;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 20px 10px;
+    position: fixed;
+    display: flex;
+    bottom: 0px;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+}
+
+@media screen and (min-width: 100px) and (max-width:600px) {
     .title {
         font-family: 'Signika Negative', sans-serif;
         font-size: 2.5em;
@@ -112,21 +131,32 @@ input[type=text] {
 
     .todoname {
         font-size: 1em;
+        text-align: center;
     }
 
     .tod {
         display: grid;
-        grid-template-columns: 40vw auto auto auto;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto;
         column-gap: 5px;
+        row-gap: 5px;
     }
 
     .todos {
         margin: 20px 0px;
         display: flex;
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        justify-content: center;
         gap: 15px;
         flex-wrap: wrap;
     }
 
+}
+
+.listtodotitle {
+    font-size: 22px;
+    font-family: 'Crimson Text', serif;
+    text-align: center;
+    text-shadow: 4px 4px 12px blue;
 }

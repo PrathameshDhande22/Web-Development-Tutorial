@@ -62,6 +62,7 @@ todoclear.addEventListener("click", (e) => {
     let todos = document.getElementsByClassName("todos")[0]
     todos.innerHTML = ""
     localStorage.clear()
+    location.reload()
 })
 
 var previous = ""
