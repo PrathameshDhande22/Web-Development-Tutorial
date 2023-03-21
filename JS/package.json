@@ -1,5 +1,27 @@
 {
   "dependencies": {
     "prompt-sync": "^4.2.0"
-  }
+  },
+  "name": "prathamesh-js-tutorial",
+  "version": "1.0.0",
+  "description": "This is the JS Tutorial for learning js with frontend also with backend using the framworks like React and express ",
+  "main": "01_Helloworld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm install prompt-sync"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrathameshDhande22/Web-Development-Tutorial.git"
+  },
+  "keywords": [
+    "tutorial",
+    "node"
+  ],
+  "author": "prathamesh dhande",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PrathameshDhande22/Web-Development-Tutorial/issues"
+  },
+  "homepage": "https://github.com/PrathameshDhande22/Web-Development-Tutorial#readme"
 }
