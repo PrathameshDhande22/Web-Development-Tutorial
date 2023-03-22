@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Prathamesh Dhande Web Development Tutorial Notes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
             margin: 0;
@@ -20,7 +23,8 @@
             align-content: center;
             justify-content: center;
             align-items: center;
-            padding: 6px;
+            padding: 13px;
+            flex-wrap: wrap;
         }
 
         .mainheader span {
@@ -38,6 +42,10 @@
             color: white;
         }
 
+        .goal>span {
+            padding: 10px;
+        }
+
         .goal .bar {
             padding: 4px 2px;
         }
@@ -47,7 +55,7 @@
             font-size: 40px;
             font-weight: 900;
             margin: 30px;
-            width: 100vw;
+            width: auto;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
         }
@@ -57,43 +65,48 @@
             margin: 10px 10px;
             gap: 10px;
             justify-content: space-evenly;
+            flex-wrap: wrap;
         }
 
-        .btnhtml {
+        .btnmade {
             width: 290px;
             height: 200px;
             background-color: yellow;
             border: 4px solid black;
             color: black;
-        }
-
-        .btncss {
-            width: 290px;
-            height: 200px;
-            background-color: yellow;
-            border: 4px solid black;
-        }
-
-        .btnhtml:hover {
-            box-shadow: 10px 10px 4px black;
-        }
-
-        .btncss:hover {
-            box-shadow: 10px 10px 4px black;
-        }
-
-        .btnhtml a:link {
-            color: black;
-            text-decoration: none;
             font-size: 30px;
             font-weight: 600;
         }
 
-        .btncss a:link {
-            color: black;
-            text-decoration: none;
-            font-size: 30px;
-            font-weight: 600;
+        .mainbtn {
+            cursor: pointer;
+        }
+
+        .btnmade:hover {
+            box-shadow: 10px 10px 4px black;
+        }
+
+        .coverd {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        @media screen and (max-width:510px) {
+            .mainheader {
+                font-size: 13px;
+                height: 80px;
+            }
+
+            .tutavl {
+                font-size: 40px;
+            }
+
+            .coverd {
+                font-size: 20px;
+                padding: 10px 0px 10px 10px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -107,7 +120,7 @@
         <div class="goal">
             <span>My Goal 🎯 :</span>
             <div class="bar">
-                <marquee truespeed="10" scrollamount="1px">⭐⭐ To become a Python/Django Developer to apply Skills like
+                <marquee truespeed="14" scrollamount="1px">⭐⭐ To become a Python/Django Developer to apply Skills like
                     Artifical Intelligence, Machine Learning & Data
                     Science
                 </marquee>
@@ -115,15 +128,64 @@
         </div>
         <div class="tutavl">Tutorial Available</div>
         <div class="content">
-            <div class="htmlbutton">
-                <button class="btnhtml"><a href="HTML/index.html">HTML</a></button>
+            <div class="htmlbutton mainbtn">
+                <button class="btnhtml btnmade">HTML</button>
             </div>
-            <div class="cssbutton">
-                <button class="btncss"><a href="CSS/index.html">CSS</a></button>
+            <div class="cssbutton mainbtn">
+                <button class="btncss btnmade">CSS</button>
+            </div>
+            <div class="jsbutton mainbtn">
+                <button class="btnjs btnmade">JS</button>
+            </div>
+        </div>
+        <div class="project">
+            <span class="coverd">Projects Covered In this Tutorials</span>
+            <div class="cardsholder d-flex flex-wrap gap-4 row-gap-2 column-gap-3">
+                <div class="cardscontainer">
+                    <div class="card" style="width: 13rem;">
+                        <img src="https://github.com/PrathameshDhande22/Simple-Calculator-JS/raw/main/screenshots/img1.png"
+                            class="card-img-top" alt="Calculator Image">
+                        <div class="card-body">
+                            <h5 class="card-title">Simple Calculator</h5>
+                            <a href="https://prathameshdhande22.github.io/Simple-Calculator-JS/"
+                                class="btn btn-primary">Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="https://github.com/PrathameshDhande22/Neflix-Clone/raw/main/README%20Images/img1.png"
+                        class="card-img-top" alt="netflix clone landing page image">
+                    <div class="card-body">
+                        <h5 class="card-title">Netflix Clone</h5>
+                        <a href="https://prathameshdhande22.github.io/Neflix-Clone/" class="btn btn-primary">Visit</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="Images/img1.png" class="card-img-top" alt="flag image">
+                    <div class="card-body">
+                        <h5 class="card-title">India Flag</h5>
+                        <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/CSS/IndiaFlag/"
+                            class="btn btn-primary">Visit</a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
-    <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script>
+
+        function call(classname, href) {
+            document.getElementsByClassName(classname)[0].addEventListener("click", (e) => {
+                location.href = href
+            })
+        }
+
+        call("htmlbutton", "HTML/index.html")
+        call("cssbutton", "CSS/index.html")
+        call("jsbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/JS")
+    </script>
 </body>
 
 </html>
