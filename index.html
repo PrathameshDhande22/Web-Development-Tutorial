@@ -15,7 +15,7 @@
         }
 
         .mainheader {
-            height: 40px;
+            height: 50px;
             background-color: black;
             width: 100%;
             color: white;
@@ -89,6 +89,7 @@
         .coverd {
             font-size: 25px;
             text-align: center;
+            padding-left: 25px;
         }
 
         @media screen and (max-width:510px) {
@@ -136,6 +137,9 @@
             </div>
             <div class="jsbutton mainbtn">
                 <button class="btnjs btnmade">JS</button>
+            </div>
+            <div class="bsbutton mainbtn">
+                <button class="btnbs btnmade">Bootstrap</button>
             </div>
         </div>
         <div class="project">
@@ -187,9 +191,10 @@
             })
         }
 
-        call("htmlbutton", "HTML/index.html")
-        call("cssbutton", "CSS/index.html")
+        call("htmlbutton", "./HTML/index.html")
+        call("cssbutton", "/CSS/index.html")
         call("jsbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/JS")
+        call("bsbutton","/Bootstrap/index.html")
     </script>
 </body>
 
