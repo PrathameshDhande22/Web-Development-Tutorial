@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons in Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- default button look like this -->
+        <button>Default Button</button>
+        <!-- button using the class -->
+        <!-- btn class simply creates the button and applies some style -->
+        <button class="btn">Button</button>
+        <!-- applying the blue color on the button -->
+        <button class="btn btn-primary">INFO Button</button>
+        <button class="btn btn-secondary">Secondary Button</button>
+        <!-- we can also apply breakpoint to the button -->
+        <!-- creating the large button using lg breakpoint -->
+        <button class="btn btn-danger btn-lg">Big Button</button>
+        <!-- using a tag we can also create the button -->
+        <a href="http://www.google.com" class="btn btn-success">Click Here</a>
+        <!-- using button we can convert it into link -->
+        <button class="btn btn-link btn-warning">Click Here</button>
+
+        <!-- creating a button with outline  -->
+        <button class="btn btn-outline-dark">Outline Button</button>
+        <!-- button in a disabled state -->
+        <button class="btn btn-dark disabled">Disabled Button</button>
+        <!-- toggling button using the data-bs-toggle atributte -->
+        <button class="btn btn-outline-success" data-bs-toggle="button">Button</button>
+    </div>
+    Grouping the button
+    <div class="container">
+        creating the button group using the btn-group class
+        groups the button in the horizontal by defualt
+        <div class="btn-group">
+            <button class="btn btn-outline-danger">Button 1</button>
+            <button class="btn btn-outline-danger">Button 2</button>
+            <button class="btn btn-outline-danger">Button 3</button>
+            <button class="btn btn-outline-danger">Button 4</button>
+            <button class="btn btn-outline-danger">Button 5</button>
+        </div>
+        <br>
+        button groups having the breakpoint like btn-group-breakpoint class
+        <div class="btn-group btn-group-lg">
+            <button class="btn btn-outline-danger">Button 1</button>
+            <button class="btn btn-outline-danger">Button 2</button>
+            <button class="btn btn-outline-danger">Button 3</button>
+            <button class="btn btn-outline-danger">Button 4</button>
+            <button class="btn btn-outline-danger">Button 5</button>
+        </div>
+        <br>
+        Button grouping in a vertical position using btn-group-vertical class
+        <div class="btn-group-vertical">
+            <button class="btn btn-outline-danger">Button 1</button>
+            <button class="btn btn-outline-danger">Button 2</button>
+            <button class="btn btn-outline-danger">Button 3</button>
+            <button class="btn btn-outline-danger">Button 4</button>
+            <button class="btn btn-outline-danger">Button 5</button>
+        </div>
+    </div>
+</body>
+
+</html>

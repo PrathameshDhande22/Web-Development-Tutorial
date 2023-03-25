@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    Modal means which appear like a Simple Dialog Box when You click on a button or something.
+    <div class="container">
+        creating the simple Modal
+        <!-- this will not appear until you add the button -->
+        <!-- this is button to call the modal you need to add these 2 attribute -> data-bs-toggle="modal" and data-bs-target="id of the modal" -->
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modl">OPEN Modal</button>
+        <!-- modal class creates the modal -->
+        <!-- but you can see it look very ugly -->
+        <div class="modal" id="modl">
+            <!-- modal-dialog class creates the dialog for the modal -->
+            <div class="modal-dialog">
+                <!-- modal-content class defines the content for the modal -->
+                <div class="model-content">
+                    This is the Modal
+                </div>
+            </div>
+        </div>
+        <br>
+        Modal with fade animation
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modl">OPEN Modal</button>
+        <!-- fade class add the fade animation to the modal -->
+        <div class="modal fade" id="modl">
+            <div class="modal-dialog">
+                <div class="model-content">
+                    This is the Modal
+                </div>
+            </div>
+        </div>
+        <br>
+        Deffining the Modal with Header and Footer
+        <button class="btn btn-success" data-bs-target="#mod2" data-bs-toggle="modal">Launch the modal</button>
+        <div class="modal fade" id="mod2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- in the modal-content class you should define the modal header,body,footer -->
+                    <!-- modal-header class creates the header for the modal -->
+                    <div class="modal-header">Header of the Modal
+                        <!-- close button for the modal -->
+                        <button class="btn-close" data-bs-target="#mod2" data-bs-dismiss="modal"></button>
+                    </div>
+                    <!-- modal-body class creates the body for the modal -->
+                    <div class="modal-body">Body of the Modal</div>
+                    <!-- modal-footer class creates the footer for the modal -->
+                    <div class="modal-footer">Footer of the MOdal</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        displaying Modal in the center
+        <button class="btn btn-success" data-bs-target="#mod3" data-bs-toggle="modal">Launch the modal With
+            Center</button>
+        <div class="modal fade " id="mod3">
+            <!-- modal-dialog-centered class do this work of centering the modal -->
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">Header of the Modal
+                        <button class="btn-close" data-bs-target="#mod3" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Body of the Modal</div>
+                    <div class="modal-footer">Footer of the MOdal</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        displaying Modal as Scrollable
+        <button class="btn btn-dark" data-bs-target="#mod4" data-bs-toggle="modal">Launch the modal as
+            Scrollable</button>
+        <div class="modal" id="mod4">
+            <!-- modal-dialog-scrollable class is used to make the modal Scrollable it invoke when the modal content is huge if not used then it will scroll whole page -->
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Header of the Modal</h1>
+                        <button class="btn-close" data-bs-target="#mod4" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Body of the Modal
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis atque architecto similique,
+                        porro asperiores dolores itaque quasi laborum eaque laudantium ullam assumenda rem reprehenderit
+                        repudiandae est ea a pariatur, at recusandae illum eligendi, ex dolore ab! Dolores, natus, iste
+                        obcaecati, voluptatum culpa laboriosam vel inventore suscipit distinctio eveniet doloremque. Nam
+                        officia id deleniti porro magni quos inventore deserunt labore iste veritatis aliquid, earum
+                        suscipit eum quibusdam voluptates pariatur sint architecto, ipsum omnis iure numquam? Autem, nam
+                        voluptas! Quas, omnis pariatur. Quis impedit, perspiciatis saepe facilis cupiditate minima
+                        libero asperiores fugiat commodi! Et nulla itaque nam corporis modi reprehenderit illo ipsum.
+                        Molestiae excepturi repudiandae eveniet possimus repellendus tempora fugiat commodi libero, eos,
+                        impedit soluta enim ea asperiores nesciunt autem facere assumenda. Consequatur quos, quisquam
+                        autem perferendis cupiditate deleniti officia, ad sapiente, ab reiciendis voluptatibus. Sit,
+                        rem. Necessitatibus praesentium delectus optio ullam suscipit consequuntur hic nesciunt velit
+                        odit? Molestias ut aperiam odio consectetur commodi deleniti placeat recusandae sunt ipsa labore
+                        perferendis asperiores ad vel atque, dicta, fuga nulla praesentium dolor illo, reprehenderit
+                        veniam repellendus aliquid maiores quod. Culpa enim, ullam adipisci doloremque voluptate
+                        explicabo eos illum quia necessitatibus, reprehenderit sint vel optio, perspiciatis laboriosam
+                        aspernatur aliquid quibusdam eligendi? Ipsum suscipit dolorem vitae atque distinctio iste quia
+                        ad eos eius natus explicabo doloribus cum porro nemo illum similique cupiditate accusantium,
+                        aspernatur voluptate? Nobis et incidunt, nulla ab magni quam voluptatem nisi dignissimos
+                        pariatur magnam, veniam soluta aut? Praesentium hic ad sit quos temporibus, doloremque minus
+                        placeat iusto rem blanditiis architecto dolores et tempora distinctio ducimus, asperiores
+                        voluptatem quam, voluptatum nisi? Voluptatum, aperiam necessitatibus. Quos amet obcaecati nisi
+                        magni praesentium aliquam deleniti neque expedita aspernatur modi dignissimos adipisci vero,
+                        earum, id minus accusantium ipsam tempore fuga hic est possimus ipsa! Earum dolores deserunt
+                        nulla, perspiciatis tenetur labore obcaecati expedita, fuga qui eligendi explicabo aut debitis
+                        praesentium facilis sunt corrupti necessitatibus unde ratione laborum voluptatibus. Recusandae
+                        tempore iure consectetur. Ea eos ipsum minima nostrum vero. Accusantium laboriosam nam illo
+                        veritatis! Sed sit dolor aliquid et nisi tempora officiis autem ea, id corporis, ducimus eius
+                        cum voluptate fugit, laudantium quam.
+                    </div>
+                    <div class="modal-footer">Footer of the MOdal</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        Using breakpoint in the modal
+        <button class="btn btn-light border-dark border-4" data-bs-target="#mod5" data-bs-toggle="modal">Modal with
+            Breakpoint</button>
+        <div class="modal fade" id="mod5">
+            <!-- using the breakpoint in the modal syntax modal-breakpoint -->
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">Header of the Modal
+                        <button class="btn-close" data-bs-target="#mod5" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Body of the Modal</div>
+                    <div class="modal-footer">Footer of the MOdal</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        Displaying the modal as fullscreen
+        <button class="btn btn-success" data-bs-target="#mod6" data-bs-toggle="modal">Launch Modal in
+            fullscreen</button>
+        <div class="modal fade " id="mod6">
+            <!-- using the class modal-fullscreen with the modal-dialog class -->
+            <!-- You can also apply the modal-fullscreen-breakpoint-down/up -->
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">Header of the Modal
+                        <button class="btn-close" data-bs-target="#mod6" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">Body of the Modal</div>
+                    <div class="modal-footer">Footer of the MOdal</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

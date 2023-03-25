@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card in Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        card class creates the card with some border and also with some padding
+        <div class="card">
+            <!-- card-body class denotes the body for the card which can contain may items -->
+            <div class="card-body">
+                <!-- for titling the card must used the card-title class and it must be used with h1 to h6 tag only -->
+                <h3 class="card-title">Title</h3>
+                <!-- same goes with subtitle -->
+                <h6 class="card-subtitle">Subtitle</h6>
+                <!-- contains text for the card -->
+                <div class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                    laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam dolores
+                    laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                </div>
+            </div>
+        </div>
+        <br>
+        Card with image on the top
+        <!-- displaying the image on the card using the card-img -->
+        <div class="card" style="width: 300px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/100px-Bootstrap_logo.svg.png"
+                alt="bootstrap logo" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Title</h3>
+                <h6 class="card-subtitle">Subtitle</h6>
+                <div class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                    laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam dolores
+                    laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                </div>
+            </div>
+        </div>
+        <br>
+        You can also defined the image position
+        <!-- defining the image position on the bottom -->
+        <div class="card" style="width: 300px;">
+            <div class="card-body">
+                <h3 class="card-title">Title</h3>
+                <h6 class="card-subtitle">Subtitle</h6>
+                <div class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                    laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam dolores
+                    laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                </div>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/100px-Bootstrap_logo.svg.png"
+                alt="bootstrap logo" class="card-img-bottom">
+        </div>
+        <br>
+        displaying Image as an overlay
+        <div class="card" style="width: 300px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/100px-Bootstrap_logo.svg.png"
+                alt="bootstrap logo" class="card-img">
+            <!-- displaying the text over the image using the class card-img-overlay -->
+            <div class="card-body card-img-overlay">
+                <h3 class="card-title">Title</h3>
+                <h6 class="card-subtitle">Subtitle</h6>
+                <div class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                    laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam dolores
+                    laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                </div>
+            </div>
+        </div>
+        <br>
+        Adding the header and footer to the Card
+        <div class="card" style="width: 300px;">
+            <!-- card-header class works with only h1 to h6 tag -->
+            <h2 class="card-header">Header</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/100px-Bootstrap_logo.svg.png"
+                alt="bootstrap logo" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Title</h3>
+                <h6 class="card-subtitle">Subtitle</h6>
+                <div class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                    laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam dolores
+                    laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                </div>
+            </div>
+            <!-- you can add the card-footer class  -->
+            <div class="card-footer">Footer of the Card</div>
+        </div>
+        <br>
+        Grouping the card
+        <!-- card-group class groups all the card under that tag -->
+        <div class="card-group">
+            <div class="card" style="width: 300px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/100px-Bootstrap_logo.svg.png"
+                    alt="bootstrap logo" class="card-img">
+                <div class="card-body">
+                    <h3 class="card-title">Title</h3>
+                    <h6 class="card-subtitle">Subtitle</h6>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                        laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam
+                        dolores
+                        laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 300px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/100px-Bootstrap_logo.svg.png"
+                    alt="bootstrap logo" class="card-img">
+                <div class="card-body">
+                    <h3 class="card-title">Title</h3>
+                    <h6 class="card-subtitle">Subtitle</h6>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                        laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam
+                        dolores
+                        laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 300px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/100px-Bootstrap_logo.svg.png"
+                    alt="bootstrap logo" class="card-img">
+                <div class="card-body">
+                    <h3 class="card-title">Title</h3>
+                    <h6 class="card-subtitle">Subtitle</h6>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis deserunt alias recusandae
+                        laboriosam sequi voluptatum quis, nemo cupiditate officiis ut unde facere quisquam quibusdam
+                        dolores
+                        laborum! Eveniet, repellendus vel. Ut ad aliquid voluptatem nobis.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

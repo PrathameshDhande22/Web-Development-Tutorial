@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggling in Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <style>
+        .boxmaker {
+            width: auto;
+            height: 40px;
+            background-color: lightblue;
+            border: 2px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- for creating the toggler you need to define the following attribute in the button or any element -->
+        <!-- data-bs-toggle="collapse" -->
+        <!-- data-bs-target="id or class with . or #" -->
+        <!-- aria-expanded=false  -->
+        <!-- aria-controls="id or class" which you want to control -->
+        <button class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#row1" aria-expanded="false"
+            aria-controls="row1">Toggle</button>
+        <!-- collpase class collapse or doesnot show the given element -->
+        <div class="row collapse" id="row1">
+            <div class="col">
+                <div class="boxmaker">Hey you Toggled me ?</div>
+            </div>
+        </div>
+
+        <br>
+        Toggling multiple elements
+        <!-- here the id is same so we given the same id to button for controlling so it can toggle both rows -->
+        <button class="btn btn-info" data-bs-toggle="collapse" data-bs-target="#row2" aria-expanded="false"
+            aria-controls="row2">Toggle</button>
+        <div class="row collapse" id="row2">
+            <div class="col">
+                <div class="boxmaker">Hey you Toggled me on row 1 ?</div>
+            </div>
+        </div>
+        <div class="row collapse" id="row2">
+            <div class="col">
+                <div class="boxmaker">Hey you Toggled me on row 2 ?</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

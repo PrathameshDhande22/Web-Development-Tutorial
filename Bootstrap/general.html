@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some Remaining Concepts in Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <style>
+        .boxmaker {
+            width: 100vw;
+            height: 40px;
+            background-color: lightblue;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="card">
+            changing the color of the text using text-colorname class
+            <div class="card-body text-primary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis laudantium dolorum velit, atque iste
+                asperiores praesentium sint numquam excepturi laboriosam vitae sit ea voluptate minima saepe illum iure
+                molestias ratione quas officia dolor tempora.
+            </div>
+        </div>
+        <div class="card">
+            changing the color of the background using bg-colorname class
+            <div class="card-body bg-success">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis laudantium dolorum velit, atque iste
+                asperiores praesentium sint numquam excepturi laboriosam vitae sit ea voluptate minima saepe illum iure
+                molestias ratione quas officia dolor tempora.
+            </div>
+        </div>
+        <div class="card">
+            changing the color of the text + background using single class text-bg-colorname
+            <div class="card-body text-bg-primary">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis laudantium dolorum velit, atque iste
+                asperiores praesentium sint numquam excepturi laboriosam vitae sit ea voluptate minima saepe illum iure
+                molestias ratione quas officia dolor tempora.
+            </div>
+        </div>
+        <div class="card">
+            setting the opacity of the element using opacity-no class
+            <div class="card-body text-bg-dark opacity-50">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis laudantium dolorum velit, atque iste
+                asperiores praesentium sint numquam excepturi laboriosam vitae sit ea voluptate minima saepe illum iure
+                molestias ratione quas officia dolor tempora.
+            </div>
+        </div>
+        <br>
+        changing the color of the link using the link-colorname class
+        <a href="#" class="link-warning">Hii</a>
+        <br>
+        stacking the element in vertical state using the vstack also giving some gap using gap-0to 5 class
+        <div class="othercontainer vstack gap-3">
+            <div class="boxmaker"></div>
+            <div class="boxmaker"></div>
+            <div class="boxmaker"></div>
+            <div class="boxmaker"></div>
+        </div>
+        <br>
+        stacking the elements in horizontal state using hstack class
+        <div class="othercontainer hstack gap-3">
+            <div class="boxmaker"></div>
+            <div class="boxmaker"></div>
+            <div class="boxmaker"></div>
+            <div class="boxmaker"></div>
+        </div>
+        <br>
+        Adding the border to an element using the border class,border-oto5 for border size and border-colorname for
+        border color
+        <div class="border border-2 border-success">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore placeat doloremque minus perspiciatis,
+            debitis facilis, architecto quidem sed, possimus mollitia fugit illo? Laudantium esse facilis voluptate
+            nulla itaque voluptatibus dolorem voluptas vero expedita quo.
+        </div>
+        <br>
+        defining the border as the rounded usning the rounded-0to5 class
+        <div class="border border-2 border-danger rounded-5">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint eveniet dicta repudiandae ex praesentium ea
+            rem adipisci, iste similique maxime ratione suscipit exercitationem. Expedita fuga incidunt voluptas
+            accusamus ea repellendus, nesciunt pariatur illum nobis.
+        </div>
+        <br>
+        defining the border as the pill using class rounded-pill
+        <div class="border border-2 border-info rounded-pill">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui, tempore. Nulla ut corporis veritatis
+            accusantium eos soluta ipsa, ad pariatur ipsam qui beatae?
+        </div>
+        <br>
+        definint border as the circle
+        <div class="border border-2 border-success rounded-circle">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam similique quos incidunt dolore? Doloremque
+            nostrum sit beatae corrupti atque veritatis sapiente odit neque!
+        </div>
+        <br>
+        You can also give border to the bottom /top or left and right using border-start,end,top,bottom class
+        <div class="border-top border-2 border-dark">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro omnis libero eaque.
+        </div>
+        <br>
+        setting the border opacity using border-opacity-100,50,25,75 class
+        <div class="border-start border-3 border-secondary border-opacity-25">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, natus doloremque. Eius molestiae earum neque?
+            Exercitationem, molestiae fugiat tempore possimus perspiciatis esse excepturi aliquid! Ut in consequuntur
+            exercitationem quae. Dignissimos sequi doloremque accusamus tempore!
+        </div>
+        <br>
+        display class of the bootstrap using d-andtypeof display supports the breakpoint too
+        <div class="d-inline-block">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita illum adipisci ratione iusto
+            perferendis enim. Fugiat expedita, odit tempore, harum porro sit minima praesentium, corporis ex consequatur
+            facere adipisci nulla in iusto culpa.
+        </div>
+        <br>
+        giving the margin and padding to element using the class you can give padding uisng p-0to5 ,padding top pt-0to5,
+        padding bottom pb-0to6, padding end pe-0to5, p-0to5 gives padding in all direction
+        same goes with margin replace m with p
+        <div class="border border-4 border-dark p-3 m-2">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae doloribus nisi vero ullam molestiae
+            delectus veritatis soluta ab debitis, voluptates, blanditiis quidem! Fuga maxime, deserunt culpa illum magni
+            nemo quod.
+        </div>
+        <br>
+        margin and padding with breakpoint using class p-breakpoint-0to5 same goes with margin
+        <div class="border border-2 border-success p-lg-2 m-lg-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nihil asperiores accusamus suscipit eum!
+            Aliquid recusandae modi soluta, possimus officiis commodi quos id illo? Explicabo exercitationem deleniti
+            officia nisi sed?
+        </div>
+    </div>
+</body>
+
+</html>

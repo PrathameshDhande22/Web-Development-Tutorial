@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreakPoint IN Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- deter attribute is using to make sure that this script should be load after the document is parsed -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <style>
+        .boxmaker {
+            width: auto;
+            height: 40px;
+            background-color: lightblue;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- loading the container class -->
+    <!-- This class gives the default padding and acting according to screen px -->
+    <div class="container">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam cum ab velit! Repudiandae, quo totam blanditiis
+        dolorem itaque at id commodi ratione! Deserunt officia sed nam magni vero, quidem repellendus inventore
+        doloremque, ipsum error doloribus illo dolor saepe itaque nobis modi aliquam totam soluta alias iusto!
+        Blanditiis id quidem accusantium quos, unde consequatur rem illum fugiat aspernatur atque magnam sed ullam vero
+        delectus eaque eligendi, assumenda hic in quis aliquam. Quibusdam rem repellendus adipisci accusamus quisquam
+        voluptates itaque odio blanditiis necessitatibus aliquid quasi animi, deleniti, fugit facere dignissimos! A
+        ratione natus aut minima repudiandae repellat in illo ab cupiditate fuga.
+    </div>
+    <hr>
+    <!-- container class with breakpoints such as lg,sm -->
+    <div class="container-lg"> <!--large breakpoint-->
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil quibusdam molestias iusto quasi, consequuntur
+        illum dolores itaque delectus ut deleniti iste veritatis, cupiditate eaque quia harum doloribus commodi et at,
+        dignissimos autem ea. Deserunt recusandae nisi voluptates voluptatum quaerat fuga. Quos laborum et recusandae,
+        deleniti nesciunt pariatur doloribus accusantium, cupiditate consectetur sed aperiam vero cum mollitia
+        perspiciatis est rerum atque voluptate facilis tenetur distinctio! A nemo maxime voluptatum molestiae odio, illo
+        iure, labore beatae magni doloremque nulla esse reiciendis veritatis atque dolorum dolore non sit repellat
+        tenetur voluptatibus.
+    </div>
+    <hr>
+    <div class="container-sm"> <!--small breakpoint-->
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil quibusdam molestias iusto quasi, consequuntur
+        illum dolores itaque delectus ut deleniti iste veritatis, cupiditate eaque quia harum doloribus commodi et at,
+        dignissimos autem ea. Deserunt recusandae nisi voluptates voluptatum quaerat fuga. Quos laborum et recusandae,
+        deleniti nesciunt pariatur doloribus accusantium, cupiditate consectetur sed aperiam vero cum mollitia
+        perspiciatis est rerum atque voluptate facilis tenetur distinctio! A nemo maxime voluptatum molestiae odio, illo
+        iure, labore beatae magni doloremque nulla esse reiciendis veritatis atque dolorum dolore non sit repellat
+        tenetur voluptatibus.
+    </div>
+    <hr>
+    <!-- container class with full 100 width -->
+    <div class="container-fluid">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil quibusdam molestias iusto quasi, consequuntur
+        illum dolores itaque delectus ut deleniti iste veritatis, cupiditate eaque quia harum doloribus commodi et at,
+        dignissimos autem ea. Deserunt recusandae nisi voluptates voluptatum quaerat fuga. Quos laborum et recusandae,
+        deleniti nesciunt pariatur doloribus accusantium, cupiditate consectetur sed aperiam vero cum mollitia
+        perspiciatis est rerum atque voluptate facilis tenetur distinctio! A nemo maxime voluptatum molestiae odio, illo
+        iure, labore beatae magni doloremque nulla esse reiciendis veritatis atque dolorum dolore non sit repellat
+        tenetur voluptatibus.
+    </div>
+    <hr>
+
+    <!-- grid system -->
+    <!-- row is used to create the row it uses the flex -->
+    <div class="gridsystem">
+        <div class="row">
+            <!-- in this row it contains the 4 columns -->
+            <!-- col class is used to create the column -->
+            <!-- creating multiple column in a row -->
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="gridsystem">
+        <div class="row">
+            <!-- giving the space of 1 column -->
+            <div class="col-1">
+                <div class="boxmaker"></div>
+            </div>
+            <!-- giving the space of 6 columns -->
+            <div class="col-6">
+                <div class="boxmaker"></div>
+            </div>
+            <!-- auto fit the size of the column according to the text using the col-auto class -->
+            <div class="col-auto">
+                <div class="boxmaker">This is the Textdfdfdfddf</div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- gridsystem using the breakpoint of the container class -->
+    <div class="gridsystem">
+        <div class="row">
+            <!-- lg breakpoint in the col class -->
+            <div class="col-lg-2">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col-5">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="gridsystem">
+        <div class="row">
+            <!-- suppose we can to push the 2nd column little we can use the offset-{1to 8} to push by that no -->
+            <div class="col-5">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col-5 offset-2">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- specifing the row should contains that much no of columns -->
+    <!-- in these suppose we want to contain that each row should contains the 2 columns -->
+    <div class="gridsystem">
+        <div class="row row-cols-2 row-cols-lg-3">
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- specifing the gaps between the rows and columns -->
+    for specifying gap between rows and columns for gap in y -> gy-{0 to 5} for gap in x -> gx-{0 to 5} for gap in both
+    direction -> g-{0 to 5}
+    also supports the breakpoint g-{breakpoint}-{size 0 to 5}
+    <div class="gridsystem">
+        <div class="row row-cols-2 g-lg-5">
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+        Example of gap in y direction
+        <div class="row gy-4 row-cols-2">
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    nesting the row or column
+    <div class="container">
+        <div class="row row-cols-2 g-3">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="boxmaker"></div>
+                    </div>
+                    <div class="col">
+                        <div class="boxmaker"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+            <div class="col">
+                <div class="boxmaker"></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    this is the default table which is very ugly to see
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Sr.no</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Prathamesh</td>
+                    <td>Dhande</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Nidhi</td>
+                    <td>Dhande</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>Wick</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    Table using the table class of the bootstrap which adds the default padding and spacing we can also change the color
+    of the table
+    <div class="container">
+        Changing the color of the bootstrap there are 8 color primary,secondary,danger,warning and many more on
+        documentation.
+        <table class="table table-danger">
+            <thead>
+                changing the color of the row <br>
+                you can set the color of the table using table-{color}
+                <tr class="table-primary">
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Sr.no</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <br>
+                    chaniging the color of the cell
+                    <td class="table-info">Prathamesh</td>
+                    <td>Dhande</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Nidhi</td>
+                    <td>Dhande</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>Wick</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="container">
+        <!-- table-hover class when you hover on row it gets highlighted -->
+        <!-- table-striped class highlight the odd rows -->
+        <!-- for highlighting only column we can use table-striped-columns -->
+        <!-- table-bordered class indicates that table should contain the border -->
+        <!-- you can also apply the breakpoint into it using table-breakpoint -->
+        <table class="table table-hover table-striped-columns table-borderless table-sm">
+            <tr>
+                <th>First_Name</th>
+                <th>Last_Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Sonoo</td>
+                <td>Jaiswal</td>
+                <td>60</td>
+            </tr>
+            <!-- table active class shows that this tr should be selected -->
+            <tr class="table-active">
+                <td>James</td>
+                <td>William</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>Swati</td>
+                <td>Sironi</td>
+                <td>82</td>
+            </tr>
+            <tr>
+                <td>Chetna</td>
+                <td>Singh</td>
+                <td>72</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    creating the table responsive using table-responsive class
+    <div class="container">
+        you can also add the breakpoints on table-responsive-breakpoint
+        <div class="table-responsive-lg">
+            <table class="table table-md">
+                applying classes on thead table-group-divider adds the border to the table upper part
+                <thead class="table-group-divider">
+                    <tr>
+                        <th>First_Name</th>
+                        <th>Last_Name</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                can be applied in tbody
+                <tbody class="table-group-divider">
+                    <tr>
+                        <td>Sonoo</td>
+                        <td>Jaiswal</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>James</td>
+                        <td>William</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>Swati</td>
+                        <td>Sironi</td>
+                        <td>82</td>
+                    </tr>
+                    <tr>
+                        <td>Chetna</td>
+                        <td>Singh</td>
+                        <td>72</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
