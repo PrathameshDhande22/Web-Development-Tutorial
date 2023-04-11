@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+#applica {
+  background-color: aqua;
+}
+
+.btns {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: center;
+  gap: 10px;
+}
+
+.formwindow {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.detailwindow {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 0px 20px 0px 20px;
+  margin-top: 10px;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.navbar li {
+  display: inline;
+  margin: 10px;
+}
+
+.navbar {
+  font-size: 30px;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  height: 1.6em;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+}
+
+.navbar>ul {
+  list-style: none;
+}
+
+.navbar li{
+  margin: 10px 40px;
+  
+}
+
+.link{
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover{
+  color: rgb(223, 223, 223);
+  text-decoration: solid underline white 2px;
+}
+
+.link:active{
+  text-decoration: solid underline red 3px;
+}
+
+.table{
+  margin-top: 10px;
+}
+
+.btnadd{
+  height: 3em;
+  font-size: 30px;
+}
+
+.tableheader{
+  font-size: 30px;
+  background-color: lightcoral;
+}
+
+.data{
+  font-size: 20px;
+  border: 3px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.loaderscr{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
