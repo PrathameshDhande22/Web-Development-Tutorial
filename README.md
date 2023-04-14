@@ -14,6 +14,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 3. Simple Calculator 👉 [Click Here To View](https://prathameshdhande22.github.io/Simple-Calculator-JS/)
 4. Todo List App 👉 [Click Here To View](https://prathameshdhande22.github.io/Web-Development-Tutorial/JS/41_TodoList/)
 5. Tic Tac Toe Game 👉 [Click Here To View](https://prathameshdhande22.github.io/Tic-Tac-Toe-In-Js/)
+6. Quiz App 👉 [Click Here To View](https://quiz-app-in-react.vercel.app/)
 
 
 ## Tutorials I Followed :
