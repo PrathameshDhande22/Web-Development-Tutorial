@@ -15,6 +15,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 4. Todo List App 👉 [Click Here To View](https://prathameshdhande22.github.io/Web-Development-Tutorial/JS/41_TodoList/)
 5. Tic Tac Toe Game 👉 [Click Here To View](https://prathameshdhande22.github.io/Tic-Tac-Toe-In-Js/)
 6. Quiz App 👉 [Click Here To View](https://quiz-app-in-react.vercel.app/)
+7. Virtual Keyboard 👉 [Click Here To View](https://prathameshdhande22.github.io/Virtual-KeyBoard-HTML/)
 
 
 ## Tutorials I Followed :
