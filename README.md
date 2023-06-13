@@ -8,6 +8,13 @@ My aim is to learn the Django Framework so to do this need to learn Web Developm
 
 SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-Tutorial)
 
+## Contents:
+1. HTML
+2. CSS
+3. Bootstrap
+4. Javascript
+5. ReactJS
+
 ## Projects :
 
 1. Netflix Clone 👉 [Click Here](https://prathameshdhande22.github.io/Neflix-Clone/)
