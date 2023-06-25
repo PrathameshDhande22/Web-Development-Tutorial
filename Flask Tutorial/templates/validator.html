@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validator</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post">
+            {{ form.csrf_token }}
+            <label for="namedata">Enter Your Name</label><br>
+            <input type="text" name="name" id="namedata"><br>
+            <label for="passwordtext">Enter Your Password</label><br>
+            <input type="password" name="passwor" id="passwordtext">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

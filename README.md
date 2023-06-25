@@ -25,6 +25,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 6. Quiz App 👉 [Click Here To View](https://quiz-app-in-react.vercel.app/)
 7. Virtual Keyboard 👉 [Click Here To View](https://prathameshdhande22.github.io/Virtual-KeyBoard-HTML/)
 8. Admin DashBoard 👉 [Click Here To View](https://admindashboard-zfhw.onrender.com/)
+9. Flask TODO APP 👉 [Click Here To View](https://flaskapptodo.onrender.com/)
 
 ## Tutorials I Followed :
 
@@ -33,3 +34,5 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 3. Javascript 👉 https://youtube.com/playlist?list=PLu0W_9lII9ahR1blWXxgSlL4y9iQBnLpR
 4. Bootstrap 👉 https://youtu.be/Jyvffr3aCp0
 5. React JS 👉 https://youtu.be/lLeZ8Cr2YVM
+6. Flask 👉 https://youtu.be/oA8brF3w5XQ
+

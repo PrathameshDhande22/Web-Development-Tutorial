@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+Todo
+{% endblock title %}
+{% block body %}
+{% include 'addtodo.html' %}
+<div class="container mt-4">
+    <h2>MY TODOS : </h2>
+    {% if todo|length ==0 %}
+    <div class="alert alert-dark text-center text-black" role="alert">
+        There Are No TODO. Please Add Some Todo To show Here
+    </div>
+    {% else %}
+    <table class="table table-hover table-responsive-sm">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Sr.No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+                <th scope="col">Completed</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+
+            {% for tod in todo %}
+            <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{ tod.title }}</td>
+                <td>{{ tod.desc }}</td>
+                <td><span class="d-flex gap-2">
+                        <a href="/update/{{tod.id}}" type="button" class="btn btn-outline-dark"><i
+                                class="fa-solid fa-pen-to-square fa-sm fa-fade"></i></a>
+                        <a href="/delete/{{tod.id}}" type="button" class="btn btn-outline-dark"><i
+                                class="fa-solid fa-trash fa-fade fa-sm"></i></a>
+                    </span></td>
+                <td class="text-center">
+                    <a href="/complete/{{tod.id}}?comp={{tod.completed}}" type="button" class="btn btn-lg">
+                        {% if tod.completed %}
+                        <i class="fa-solid fa-circle-check fa-lg" style="color: #07ed4c;"></i>
+                        {% else %}
+                        <i class="fa-solid fa-square-xmark fa-lg" style="color: #ff0000;"></i>
+                        {% endif %}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {%endif%}
+</div>
+{% endblock body %}

@@ -1,0 +1,21 @@
+<div class="container mt-2">
+    <h2>{{title.main}} : </h2>
+    <form class="needs-validation" novalidate method="post">
+        <div class="mb-3">
+            <label for="titletext" class="form-label">Todo Title</label>
+            <input type="text" class="form-control" id="titletext" value="{{place.title}}" aria-describedby="emailHelp"
+                name="ttitle" required>
+            <div class="invalid-feedback">
+                Please Enter The Todo Title
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="todotext" class="form-label">Todo Text</label>
+            <input type="text" class="form-control" id="todotext" value="{{place.desc}}" name="ttext" required>
+            <div class="invalid-feedback">
+                Please Enter The Todo Description
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">{{ title.btn }}</button>
+    </form>
+</div>

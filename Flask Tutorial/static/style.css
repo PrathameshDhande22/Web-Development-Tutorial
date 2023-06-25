@@ -1,0 +1,29 @@
+.logo {
+    width: 28px
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-bottom: 5em;
+}
+
+.errorpg {
+    background-image: url("https://i.ibb.co/nLnr73Z/error-Medium.jpg");
+    background-size: cover;
+    width: 100vw;
+    position: absolute;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.goback {
+    position: absolute;
+    top: 80%;
+    left: 40%;
+}
