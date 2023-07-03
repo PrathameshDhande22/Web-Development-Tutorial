@@ -4,6 +4,8 @@ This Repository Contains the Web Developmet Tutorial.
 
 My aim is to learn the Django Framework so to do this need to learn Web Development.
 
+**More Tutorials Are coming soon** => Tailwind CSS, FASTAPI, FARM Stack, Django.
+
 ## Hosted Tutorial :
 
 SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-Tutorial)
@@ -15,7 +17,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 3. Bootstrap
 4. Javascript
 5. ReactJS
-6. Flask (Python)
+6. Flask (Python) with API
 
 ## Projects :
 
@@ -29,6 +31,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 8. Admin DashBoard 👉 [Click Here To View](https://admindashboard-zfhw.onrender.com/)
 9. Flask TODO APP 👉 [Click Here To View](https://flaskapptodo.onrender.com/)
 10. FeedbackForm Flask App 👉 [Click Here To View](https://feedbackform-flask-app.onrender.com/)
+11. DumpAPI Flask 👉 [Click Here To View](https://dumpapi-flask-api.onrender.com/)
 
 ## Tutorials I Followed :
 
@@ -38,3 +41,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 4. Bootstrap 👉 https://youtu.be/Jyvffr3aCp0
 5. React JS 👉 https://youtu.be/lLeZ8Cr2YVM
 6. Flask 👉 https://youtu.be/oA8brF3w5XQ
+7. Flask_RESTFul 👉 https://youtu.be/GMppyAPbLYk
