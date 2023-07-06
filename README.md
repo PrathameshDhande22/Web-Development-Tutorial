@@ -18,6 +18,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 4. Javascript
 5. ReactJS
 6. Flask (Python) with API
+7. FastAPI (Python)
 
 ## Projects :
 
@@ -42,3 +43,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 5. React JS 👉 https://youtu.be/lLeZ8Cr2YVM
 6. Flask 👉 https://youtu.be/oA8brF3w5XQ
 7. Flask_RESTFul 👉 https://youtu.be/GMppyAPbLYk
+8. FastAPI 👉 https://fastapi.tiangolo.com/
