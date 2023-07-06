@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+
+/* applying these css class in between of components and utitilies */
+.btn {
+  @apply bg-green-500 p-3 outline-2 outline-black outline-double rounded-full w-24 hover:bg-green-300 select-none;
+}
+
+@tailwind utilities;
+
+/* this css will be after the components all css */
+@layer components {
+  .textnew {
+    @apply text-justify p-2 bg-yellow-600 opacity-70 leading-9;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Tailwind CSS Course</title>
+     <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+     <!-- lets create navbar using tailwind css -->
+     <h1>Navbar in Tailwind CSS </h1>
+     <div>
+          <nav class="bg-purple-400 text-white py-4 flex justify-between cursor-pointer">
+               <span class="ml-3 hover:scale-110 cursor-pointer">Tailwind CSS Course</span>
+               <ul class="flex space-x-5 justify-end mr-5 ">
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                    <li>Register</li>
+               </ul>
+          </nav>
+          <h1 class="font-bold text-2xl text-center my-5">This is the Ultimate Tailwind CSS Course</h1>
+     </div>
+     <h1>Responsive Design IN Tailwind CSS</h1>
+     <div>
+          <div
+               class="bg-green-600 text-white text-justify p-4 sm:bg-yellow-500 sm:text-black md:bg-red-500 md:text-white lg:bg-violet-500 lg:text-lg">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, cum minima. Minima at enim sequi
+               delectus, unde provident quo fugiat, asperiores eligendi temporibus voluptate quibusdam et vitae quam
+               tempore aliquid eius, pariatur sunt! Nam, quos. Officiis reiciendis fuga ullam fugit eaque sunt dolorum!
+          </div>
+          <span class="sm:hidden text-center font-bold font-serif block">Mobile Design</span>
+          <div class="sm:block text-center font-bold font-serif hidden md:hidden">Tab Design</div>
+          <div class="md:block text-center font-bold font-serif hidden lg:hidden">Laptop Design</div>
+          <div class="lg:block text-center font-bold font-serif hidden">TV Design</div>
+     </div>
+     <h1>States</h1>
+     <div class="text-center">
+          <button type="button"
+               class="w-56 h-10 bg-purple-500 text-white rounded-full border-black border-2 hover:bg-purple-950 hover:border-red-500 active:bg-purple-300 focus:bg-purple-100 focus:text-black select-none">Click
+               Me</button>
+     </div>
+     <h1>Apply Directive</h1>
+     <div class="flex gap-5 justify-center content-center">
+          <button type="button" class="btn">Click 1</button>
+          <button type="button" class="btn">Click 2</button>
+     </div>
+     <h1>Layer Directive</h1>
+     <div class="textnew">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio necessitatibus dolorum nemo deleniti et rerum
+          explicabo repellat, accusamus omnis sint impedit minus voluptatem fuga cupiditate tempore provident
+          accusantium. Optio corrupti suscipit rerum vitae, tempore nisi! Ea mollitia nihil reiciendis possimus error,
+          totam aspernatur dolores unde at accusamus quisquam dolorem pariatur minus laudantium voluptatem! Odit quam
+          beatae, quibusdam nobis possimus atque expedita quas error explicabo dignissimos eveniet perferendis. Ea
+          maiores ab cupiditate alias nulla officiis magni illum nesciunt. Sit animi totam error autem recusandae facere
+          delectus? Officiis exercitationem culpa accusantium esse, consequatur tempora odit quos at quae similique nam
+          tenetur debitis, rerum vel quas repellat cumque placeat dicta corporis earum fugiat eligendi voluptatem
+          consectetur dolorum? Similique ad, officia odio porro nobis quibusdam assumenda?
+     </div>
+     <h1>Creating Our New Breakpoint.</h1>
+     <div>
+          <!-- in config file we created our own breakpoint with xsm -->
+          <div class="xsm:bg-red-600 sm:bg-green-500 md:bg-blue-500 text-white">This is the custom Breakpoint. with
+               breakpoint xsm</div>
+     </div>
+</body>
+
+</html>
