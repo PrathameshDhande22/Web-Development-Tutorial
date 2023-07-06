@@ -1,3 +1,6 @@
 Project/
 ReactJs/reactjs_course/node_modules/
 /Flask Tutorial/flasktut
+/FastAPI Tutorial/__pycache__
+/FastAPI Tutorial/.vscode
+/FastAPI Tutorial/venv
