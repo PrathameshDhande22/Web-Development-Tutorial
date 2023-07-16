@@ -1,10 +1,12 @@
 # WEB DEVELOPMENT
 
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
+
 This Repository Contains the Web Developmet Tutorial.
 
 My aim is to learn the Django Framework so to do this need to learn Web Development.
 
-**More Tutorials Are coming soon** => Tailwind CSS, FASTAPI, FARM Stack, Django.
+**More Tutorials Are coming soon** => FARM Stack, Django.
 
 ## Hosted Tutorial :
 
@@ -34,6 +36,8 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 9. Flask TODO APP 👉 [Click Here To View](https://flaskapptodo.onrender.com/)
 10. FeedbackForm Flask App 👉 [Click Here To View](https://feedbackform-flask-app.onrender.com/)
 11. DumpAPI Flask 👉 [Click Here To View](https://dumpapi-flask-api.onrender.com/)
+12. 2nd Product API FastAPI 👉 [Click Here To View](https://twondproductapi.onrender.com/)
+
 
 ## Tutorials I Followed :
 

@@ -95,11 +95,13 @@
             text-align: center;
             padding: 19px;
             border: 2px dotted black;
+            background-image: linear-gradient(to left, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
             cursor: pointer;
         }
 
         .soon:hover {
-            background-image: linear-gradient(to left, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
+            background-image: linear-gradient(to right, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
+            transition: background-image 6s ease-in;
             color: white;
         }
 
@@ -165,14 +167,14 @@
                 <button class="btnfa btnmade">FastAPI Tutorial</button>
             </div>
             <div class="tcbutton mainbtn">
-                <button class="btntc btnmade">TailwindCss Tutorial</button>
+                <button class="btntc btnmade">TailwindCSS Tutorial</button>
             </div>
         </div>
         <h2 class="soon">More Tutorial Will be Comming Soon</h2>
         <div class="project">
             <span class="coverd pb-3">Projects Covered In this Tutorials</span>
             <div class="gap-3 ms-4 d-flex flex-row flex-wrap justify-content-evenly align-items-center">
-                <div class="card border-2 border-primary" style="width: 18rem;">
+                <div class="card border-2 border-primary hovercard" style="width: 18rem;">
                     <img src="https://github.com/PrathameshDhande22/Simple-Calculator-JS/raw/main/screenshots/img1.png"
                         class="card-img-top" alt="Calculator Image">
                     <div class="card-body">
@@ -291,6 +293,16 @@
                             department and employee data in a free cloud PostgreSQL database with password hashing for
                             security.</p>
                         <a href="https://dumpapi-flask-api.onrender.com/" class="btn btn-primary"
+                            target="_blank">Visit</a>
+                    </div>
+                </div>
+                <div class="card border-2 border-primary" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">2nd Product API</h5>
+                        <p class="card-text">A 2nd Product API made with FastAPI is similar to OLX, allowing users to
+                            register, login for access token. Sell, buy, and explore products, search by query or tag.
+                        </p>
+                        <a href="https://twondproductapi.onrender.com/" class="btn btn-primary"
                             target="_blank">Visit</a>
                     </div>
                 </div>
