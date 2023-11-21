@@ -1,0 +1,15 @@
+{
+  "name": "nodejstutorial",
+  "version": "1.0.0",
+  "description": "These Folder contains all the basics thing require you to master the node js",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prathamesh Dhande",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
