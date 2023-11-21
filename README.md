@@ -39,6 +39,9 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 12. 2nd Product API FastAPI 👉 [Click Here To View](https://twondproductapi.onrender.com/)
 13. React Login Page 👉 [Click Here To View](https://react-login-page-nu.vercel.app/)
 
+## Flowchart Includes :
+![Flowchart](./Images/flow.png)
+
 ## Tutorials I Followed :
 
 1. HTML 👉 https://youtu.be/BsDoLVMnmZs
@@ -51,3 +54,5 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 8. FastAPI 👉 https://fastapi.tiangolo.com/
 9. TailwindCSS 👉 https://youtube.com/playlist?list=PLu0W_9lII9ahwFDuExCpPFHAK829Wto2O
 10. Vite 👉 https://vitejs.dev/guide/
+11 Typescript 👉 https://youtube.com/playlist?list=PLwGdqUZWnOp0xfHQFmlL52b_6-QZ0mnk_&si=xyLPNqOlWzqnM8j9
+12 NodeJS 👉 https://youtu.be/BLl32FvcdVM?si=kdGE2TYNYFZp19ZZ
