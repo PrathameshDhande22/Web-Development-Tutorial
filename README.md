@@ -6,7 +6,7 @@ This Repository Contains the Web Developmet Tutorial.
 
 My aim is to learn the Django Framework so to do this need to learn Web Development.
 
-**More Tutorials Are coming soon** => FARM Stack, Django.
+**More Tutorials Are coming soon** => Django.
 
 ## Hosted Tutorial :
 
@@ -22,6 +22,8 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 6. Flask (Python) with API
 7. FastAPI (Python)
 8. TailwindCSS
+9. Typescript
+10. NodeJS
 
 ## Projects :
 
@@ -38,8 +40,10 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 11. DumpAPI Flask 👉 [Click Here To View](https://dumpapi-flask-api.onrender.com/)
 12. 2nd Product API FastAPI 👉 [Click Here To View](https://twondproductapi.onrender.com/)
 13. React Login Page 👉 [Click Here To View](https://react-login-page-nu.vercel.app/)
+14. Film Fiesta using React + Typescript 👉 [Click Here To View](https://film-fiesta-beta.vercel.app/)
 
 ## Flowchart Includes :
+
 ![Flowchart](./Images/flow.png)
 
 ## Tutorials I Followed :
@@ -54,5 +58,5 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 8. FastAPI 👉 https://fastapi.tiangolo.com/
 9. TailwindCSS 👉 https://youtube.com/playlist?list=PLu0W_9lII9ahwFDuExCpPFHAK829Wto2O
 10. Vite 👉 https://vitejs.dev/guide/
-11 Typescript 👉 https://youtube.com/playlist?list=PLwGdqUZWnOp0xfHQFmlL52b_6-QZ0mnk_&si=xyLPNqOlWzqnM8j9
-12 NodeJS 👉 https://youtu.be/BLl32FvcdVM?si=kdGE2TYNYFZp19ZZ
+11. Typescript 👉 https://youtube.com/playlist?list=PLwGdqUZWnOp0xfHQFmlL52b_6-QZ0mnk_&si=xyLPNqOlWzqnM8j9
+12. NodeJS 👉 https://youtu.be/BLl32FvcdVM?si=kdGE2TYNYFZp19ZZ
