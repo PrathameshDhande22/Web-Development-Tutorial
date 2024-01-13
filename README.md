@@ -24,6 +24,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 8. TailwindCSS
 9. Typescript
 10. NodeJS
+11. React Recoil Tutorial
 
 ## Projects :
 
@@ -60,3 +61,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 10. Vite 👉 https://vitejs.dev/guide/
 11. Typescript 👉 https://youtube.com/playlist?list=PLwGdqUZWnOp0xfHQFmlL52b_6-QZ0mnk_&si=xyLPNqOlWzqnM8j9
 12. NodeJS 👉 https://youtu.be/BLl32FvcdVM?si=kdGE2TYNYFZp19ZZ
+13. React Recoil Tutorial 👉 https://recoiljs.org/
