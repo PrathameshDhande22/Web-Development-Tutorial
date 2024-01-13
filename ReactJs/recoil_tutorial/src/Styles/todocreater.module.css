@@ -1,0 +1,28 @@
+.todocontainer {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs {
+  display: flex;
+  gap: 4px;
+}
+
+.addbtn {
+  padding: 10px 15px;
+  background-color: transparent;
+  border: blue 2px solid;
+  color: blue;
+  border-radius: 10px;
+}
+
+.addbtn:hover {
+  color: white;
+  background-color: red;
+  border: black 2px solid;
+  font-size: 19px;
+  transition: color 0.2s ease-in, background-color 0.2s ease-in,
+    font-size 0.2s ease-in-out;
+}

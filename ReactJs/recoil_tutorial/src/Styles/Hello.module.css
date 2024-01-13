@@ -1,0 +1,21 @@
+.hello {
+  text-align: center;
+  font-size: large;
+  margin: 10px 10px;
+  color: green;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
+.container {
+  padding: 10px 10px;
+}
+
+.show {
+  padding: 10px 10px;
+}
+
+.horizontal {
+  border-bottom: 2px solid black;
+  margin-top: 10px;
+}

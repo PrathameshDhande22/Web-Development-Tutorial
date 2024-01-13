@@ -1,0 +1,13 @@
+.help {
+  color: red;
+  font-size: large;
+  text-align: center;
+  text-rendering: optimizeSpeed;
+  display: block;
+  padding-bottom: 10px;
+}
+
+.horizontal {
+  border-bottom: 2px solid black;
+  margin-top: 10px;
+}
