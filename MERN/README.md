@@ -1,10 +1,13 @@
-# MERN Stack Tutorial
+# MERN Tutorial
 
-These is Project Based Tutorial
+Learn MongoDB from here [MongoDB](https://github.com/PrathameshDhande22/My-tutorial-References/tree/main/MongoDB)
 
-Prequisite : Javascript, ReactJS, MongoDB, NodeJS.
+Learn ExpressJS from the `Express Tutorial`
 
-View the Server Folder for the backend and Client for the frontend part.
+Learn React from here [ReactJS](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs)
 
-Server Folder Contains the ExpressJS tutorial.
-Client Folder contains the React with ExpressJS API Tutorial.
+Learn NodeJS from Here [NodeJS](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/NodeJS)
+
+Refer the `Client` Folder for the Frontend interaction with the backend API.
+
+Refer the `Server` Folder for the Backend code.
