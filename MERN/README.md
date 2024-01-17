@@ -2,7 +2,7 @@
 
 Learn MongoDB from here [MongoDB](https://github.com/PrathameshDhande22/My-tutorial-References/tree/main/MongoDB)
 
-Learn ExpressJS from the `Express Tutorial`
+Learn ExpressJS from the [Express Tutorial](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/MERN/Express%20Tutorial)
 
 Learn React from here [ReactJS](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs)
 

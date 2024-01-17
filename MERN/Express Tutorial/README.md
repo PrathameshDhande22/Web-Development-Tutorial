@@ -14,6 +14,6 @@ These Tutorial Contains the following Lessons :
 10. Generating JWT token using `jsonwebtoken` package.
 11. Form Validation using `zod` package.
 
-**Note:** These codes are written in javascript if you want to use the power of typescript with express see the code reference from the `Server` Folder.
+**Note:** These codes are written in javascript if you want to use the power of typescript with express see the code reference from the [Server](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/MERN/Server) Folder.
 
-For complete Server code refer to `Server` Folder.
+For complete Server code refer to [Server](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/MERN/Server) Folder.
