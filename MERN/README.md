@@ -10,4 +10,4 @@ Learn NodeJS from Here [NodeJS](https://github.com/PrathameshDhande22/Web-Develo
 
 Refer the `Client` Folder for the Frontend interaction with the backend API.
 
-Refer the `Server` Folder for the Backend code.
+Refer the `Server` Folder for the Backend code with the help of Typescript.
