@@ -1,8 +1,9 @@
 // configuring the dotenv file to be used in the server
-require("dotenv").config()
+require("dotenv").config();
 
 const express = require("express");
 const router = require("./Router/2_Example.route");
+const router6 = require("./Router/6_Example.route");
 const app = express();
 
 // using connecting the database.
@@ -13,6 +14,7 @@ app.use(express.json());
 
 // mounting the route created in the Router Folder.
 app.use("/example1", router);
+app.use("/example6", router6);
 
 // when the connection with database is successful then only the server will start.
 connectDB().then(() => {

@@ -12,5 +12,8 @@ These Tutorial Contains the following Lessons :
 8. Securing Password using `bcryptjs` package.
 9. Instance and Virtual Methods in `mongoose` package.
 10. Generating JWT token using `jsonwebtoken` package.
+11. Form Validation using `zod` package.
+
+**Note:** These codes are written in javascript if you want to use the power of typescript with express see the code reference from the `Server` Folder.
 
 For complete Server code refer to `Server` Folder.
