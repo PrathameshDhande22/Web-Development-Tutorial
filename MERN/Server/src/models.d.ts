@@ -1,4 +1,6 @@
 import { Model } from "mongoose";
+import { loginSchema, registerSchema } from "./Validator/auth-validator";
+import contactZodValidator from "./Validator/contact-validator";
 
 export declare interface Message {
     msg: string,
@@ -23,7 +25,14 @@ export declare interface Success extends User {
 export declare interface AuthMethods {
     generateToken(): string;
     comparePassword(password: string): Promise<boolean>;
-
 }
 
 export declare type AuthModels = Model<UserInterface, unknown, AuthMethods>
+
+export declare type ZodAuthModels = typeof registerSchema | typeof loginSchema | typeof contactZodValidator
+
+export declare interface ContactInterface {
+    username: string,
+    email: string,
+    message: string;
+}

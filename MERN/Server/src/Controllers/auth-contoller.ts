@@ -6,10 +6,6 @@ import User from "../Models/auth-model";
 export const register = async (req: Request, res: Response<ErrorMsg | Success>) => {
     const { username, password, email }: UserInterface = req.body;
 
-    if (!username || !password || !email) {
-        return res.status(StatusCodes.FORBIDDEN).json({ msg: "You forgotted to enter either username,password or email", help: "Check the Request Body again" })
-    }
-
     const emailExists = await User.findOne({ email: email })
 
     if (emailExists) {
@@ -27,25 +23,26 @@ export const register = async (req: Request, res: Response<ErrorMsg | Success>) 
 }
 
 export const login = async (req: Request, res: Response<Success | ErrorMsg>) => {
+
     const { email, password } = req.body;
+    try {
+        const emailFound = await User.findOne({ email })
 
-    if (!email || !password) {
-        return res.status(StatusCodes.FORBIDDEN).json({ msg: "You forgotted to enter either password or email", help: "Check the Request Body again" })
+        if (!emailFound) {
+            return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Email does'nt Found", help: "Register Your self first" })
+        }
+
+        const isValidPassword: boolean = await emailFound.comparePassword(password)
+
+        if (!isValidPassword) {
+            return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Wrong Password", help: "Reset Your Password" })
+        }
+
+        const access_token: string = emailFound.generateToken();
+
+        return res.status(StatusCodes.OK).json({ msg: "Login Successful", access_token: access_token })
     }
-
-    const emailFound = await User.findOne({ email })
-
-    if (!emailFound) {
-        return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Email does'nt Found", help: "Register Your self first" })
+    catch (err) {
+        return res.status(StatusCodes.NOT_FOUND).json({ msg: "Internal Server Error" })
     }
-
-    const isValidPassword: boolean = await emailFound.comparePassword(password)
-
-    if (!isValidPassword) {
-        return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Wrong Password", help: "Reset Your Password" })
-    }
-
-    const access_token: string = emailFound.generateToken();
-
-    return res.status(StatusCodes.OK).json({ msg: "Login Successful", access_token: access_token })
 }
