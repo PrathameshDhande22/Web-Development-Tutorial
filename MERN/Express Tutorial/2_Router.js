@@ -8,6 +8,7 @@ const app = express();
 
 // using connecting the database.
 const connectDB = require("./Utils/4_Database");
+const errorMiddleware = require("./Middleware/7_Error-Middleware");
 
 // Before accessing any body data it is essential to add the json middleware for accepting all the data in json format.
 app.use(express.json());
@@ -15,6 +16,9 @@ app.use(express.json());
 // mounting the route created in the Router Folder.
 app.use("/example1", router);
 app.use("/example6", router6);
+
+// using the error Middleware
+app.use(errorMiddleware);
 
 // when the connection with database is successful then only the server will start.
 connectDB().then(() => {

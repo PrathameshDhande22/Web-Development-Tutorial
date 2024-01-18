@@ -9,10 +9,16 @@ const validate = (schema) => async (req, res, next) => {
 
     next();
   } catch (error) {
-    
     // handling the error when ever the user gives the wrong input
-    console.log(error);
-    return res.status(403).json({ error: error?.issues[0]?.message });
+    // console.log(error);
+    const err = {
+      status: 404,
+      message: error?.issues[0]?.message,
+      extradetails: "Fill the details correctly",
+    };
+
+    // calling the error middleware
+    next(err);
   }
 };
 
