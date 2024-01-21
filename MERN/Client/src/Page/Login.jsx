@@ -1,11 +1,19 @@
 import { useState } from "react";
 import loginImage from "../assets/login.png";
+import api from "../Api";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+
+  const navi = useNavigate();
+
+  const { storeTokeninLS } = useAuth();
 
   const onChangeInputs = (e) => {
     const key = e.target.name;
@@ -17,16 +25,31 @@ export const Login = () => {
     });
   };
 
-  const onSubmitHandle = (e) => {
+  const onSubmitHandle = async (e) => {
     e.preventDefault();
 
-    setLoginData({
-      email: "",
-      message: "",
-      password: "",
-    });
+    try {
+      const loginResponse = await api.post("/auth/login", loginData);
 
-    return false;
+      if (loginResponse.status == 200) {
+        storeTokeninLS(loginResponse.data?.access_token);
+
+        toast.success(loginResponse.data?.msg);
+        
+        setLoginData({
+          email: "",
+          password: "",
+        });
+        navi("/");
+      }
+    } catch (error) {
+      if (error?.response?.status == 502 || error.response?.status == 401) {
+        toast.error(error?.response?.data?.msg);
+      } else {
+        toast.error("Error in our Backend Servers");
+      }
+      console.log(error);
+    }
   };
 
   return (
@@ -46,6 +69,7 @@ export const Login = () => {
               name="email"
               id="emailbox"
               onChange={onChangeInputs}
+              placeholder="Enter your email address"
             />
           </div>
           <div>
@@ -57,11 +81,12 @@ export const Login = () => {
               required
               value={loginData.password}
               onChange={onChangeInputs}
+              placeholder="Enter your password"
             />
           </div>
           <button
-            onSubmit={onSubmitHandle}
-            type="submit"
+            onClick={onSubmitHandle}
+            type="button"
             className="btn btn-blue"
           >
             Login
