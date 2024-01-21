@@ -43,10 +43,6 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 13. React Login Page 👉 [Click Here To View](https://react-login-page-nu.vercel.app/)
 14. Film Fiesta using React + Typescript 👉 [Click Here To View](https://film-fiesta-beta.vercel.app/)
 
-## Flowchart Includes :
-
-![Flowchart](./Images/flow.png)
-
 ## Tutorials I Followed :
 
 1. HTML 👉 https://youtu.be/BsDoLVMnmZs
