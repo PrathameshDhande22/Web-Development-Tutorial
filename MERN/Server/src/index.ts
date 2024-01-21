@@ -6,10 +6,12 @@ import connectDB from "./Utils/db"
 import authRouter from "./Routers/auth-route"
 import errorMiddleware from "./Middleware/error-middleware"
 import contactRouter from "./Routers/contact-route"
+import cors from "cors"
 configDotenv()
 
 const app: Express = express()
 
+app.use(cors({ origin: process.env.URL, methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }))
 app.use(express.json())
 
 app.use("/api/auth", authRouter)
