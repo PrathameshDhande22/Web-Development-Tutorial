@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 export const Header = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
     <header className="header">
       <Link to={"/"} className="logo">
@@ -39,18 +42,29 @@ export const Header = () => {
         >
           <div>Contact</div>
         </NavLink>
-        <NavLink
-          to={"/register"}
-          className={({ isActive }) => (isActive ? "activelink" : null)}
-        >
-          <div>Register</div>
-        </NavLink>
-        <NavLink
-          to={"/login"}
-          className={({ isActive }) => (isActive ? "activelink" : null)}
-        >
-          <div>Login</div>
-        </NavLink>
+        {isLoggedIn ? (
+          <NavLink
+            to={"/logout"}
+            className={({ isActive }) => (isActive ? "activelink" : null)}
+          >
+            <div>Logout</div>
+          </NavLink>
+        ) : (
+          <>
+            <NavLink
+              to={"/register"}
+              className={({ isActive }) => (isActive ? "activelink" : null)}
+            >
+              <div>Register</div>
+            </NavLink>
+            <NavLink
+              to={"/login"}
+              className={({ isActive }) => (isActive ? "activelink" : null)}
+            >
+              <div>Login</div>
+            </NavLink>
+          </>
+        )}
       </nav>
     </header>
   );

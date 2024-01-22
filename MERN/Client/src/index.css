@@ -369,6 +369,51 @@ footer {
   width: 100%;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(160, 160, 160);
+  border-radius: 5px;
+  padding: 20px;
+  width: 300px;
+  height: auto;
+  gap: 19px;
+}
+
+.card-img {
+  width: 300px;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 14px;
+  color: #9d9b9b;
+  font-weight: 600;
+}
+
+.card-title {
+  font-size: 28px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bolder;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.card-img-box {
+  display: flex;
+  justify-content: center;
+}
+
 /* Media Queries */
 
 /* 705px screen */
@@ -429,5 +474,17 @@ footer {
 @media screen and (max-width: 402px) {
   .header {
     justify-content: center;
+  }
+
+  .card {
+    width: 70%;
+  }
+
+  .card-img {
+    width: 70%;
+  }
+
+  .card-title {
+    font-size: 22px;
   }
 }

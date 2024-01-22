@@ -1,9 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { About, Contact, Home, Login, Register, Services, Error } from "./Page";
+import {
+  About,
+  Contact,
+  Home,
+  Login,
+  Register,
+  Services,
+  Error,
+  Logout,
+} from "./Page";
 import { Header } from "./Components/Header";
 import { Footer } from "./Components/Footer";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { ProtectedAccess } from "./Components/ProtectedAccess";
 
 const App = () => {
   return (
@@ -26,9 +36,12 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route element={<ProtectedAccess />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
           <Route path="/services" element={<Services />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />

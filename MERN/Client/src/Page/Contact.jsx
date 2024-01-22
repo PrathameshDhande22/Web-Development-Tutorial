@@ -1,5 +1,8 @@
 import { useState } from "react";
 import supportimages from "../assets/support.png";
+import useAuth from "../Hooks/useAuth";
+import api from "../Api";
+import { toast } from "react-toastify";
 
 export const Contact = () => {
   const [contactData, setcontactData] = useState({
@@ -7,6 +10,21 @@ export const Contact = () => {
     email: "",
     message: "",
   });
+
+  const [userData, setUserData] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+
+  const { userdata, isLoggedIn } = useAuth();
+
+  if (userData && userdata) {
+    setcontactData({
+      email: userdata?.email,
+      username: userdata?.username,
+      message: "",
+    });
+    setDisabled(true);
+    setUserData(false);
+  }
 
   const onChangeInputs = (e) => {
     const key = e.target.name;
@@ -18,14 +36,45 @@ export const Contact = () => {
     });
   };
 
-  const onSubmitHandle = (e) => {
+  const onSubmitHandle = async (e) => {
     e.preventDefault();
 
-    setcontactData({
-      email: "",
-      message: "",
-      username: "",
-    });
+    if (contactData.message.length <= 0) {
+      toast.info("Please enter a message");
+    } else {
+      try {
+        const contactResponse = await api.post(
+          "/contact",
+          JSON.stringify(contactData)
+        );
+        console.log(contactResponse.data);
+
+        if (contactResponse.status === 200) {
+          toast.success(contactResponse.data?.msg);
+        }
+
+        if (isLoggedIn) {
+          setcontactData({
+            email: contactData.email,
+            username: contactData.username,
+            message: "",
+          });
+        } else {
+          setcontactData({
+            email: "",
+            username: "",
+            message: "",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        if (error?.response?.status === 502) {
+          toast.error(error?.response?.data?.msg);
+        } else {
+          toast.error("Problem with our Backend Servers.");
+        }
+      }
+    }
   };
 
   return (
@@ -45,6 +94,7 @@ export const Contact = () => {
               name="username"
               id="usernamebox"
               onChange={onChangeInputs}
+              disabled={disabled}
             />
           </div>
           <div>
@@ -56,6 +106,7 @@ export const Contact = () => {
               name="email"
               id="emailbox"
               onChange={onChangeInputs}
+              disabled={disabled}
             />
           </div>
           <div>
@@ -70,8 +121,8 @@ export const Contact = () => {
             ></textarea>
           </div>
           <button
-            onSubmit={onSubmitHandle}
-            type="submit"
+            onClick={onSubmitHandle}
+            type="button"
             className="btn btn-blue"
           >
             Submit

@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import aboutimage from "../assets/about.png";
 import { Analytics } from "../Components/Analytics";
+import useAuth from "../Hooks/useAuth";
 
 export const About = () => {
   const navigate = useNavigate();
+
+  const { userdata } = useAuth();
 
   const handleConnectClick = () => {
     navigate("/contact");
@@ -17,7 +20,9 @@ export const About = () => {
     <div className="margin-btm">
       <div className="home">
         <div className="content-home">
-          <div>Welcome, to our Website</div>
+          <div>
+            Welcome, {userdata ? `${userdata?.username} to our Website` : "To our Website."}
+          </div>
           <h2>Why Choose Us?</h2>
           <div className="line-height paragraph">
             <p>
@@ -65,7 +70,7 @@ export const About = () => {
           <img src={aboutimage} alt="Image of the Home page" />
         </div>
       </div>
-      <Analytics/>
+      <Analytics />
     </div>
   );
 };
