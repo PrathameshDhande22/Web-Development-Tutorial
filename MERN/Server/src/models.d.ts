@@ -1,6 +1,7 @@
 import { Model } from "mongoose";
 import { loginSchema, registerSchema } from "./Validator/auth-validator";
 import contactZodValidator from "./Validator/contact-validator";
+import { Request } from "express";
 
 export declare interface Message {
     msg: string,
@@ -35,4 +36,26 @@ export declare interface ContactInterface {
     username: string,
     email: string,
     message: string;
+}
+
+export declare interface JSONWebTokenData {
+    id: string;
+    email: string;
+    iat: number;
+    exp: number;
+}
+
+export declare interface VerifyRequest extends Request {
+    user: UserInterface
+}
+
+export declare interface ServiceInterface {
+    service: string;
+    description: string;
+    price: string;
+    provider: string;
+}
+
+export declare interface ServiceResponse {
+    services: ServiceInterface[];
 }

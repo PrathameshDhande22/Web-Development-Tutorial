@@ -7,15 +7,17 @@ import authRouter from "./Routers/auth-route"
 import errorMiddleware from "./Middleware/error-middleware"
 import contactRouter from "./Routers/contact-route"
 import cors from "cors"
+import ServiceRouter from "./Routers/services-route"
 configDotenv()
 
 const app: Express = express()
 
-app.use(cors({ origin: process.env.URL, methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }))
+app.use(cors({ origin: ["http://localhost:4173",String(process.env.URL)], methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }))
 app.use(express.json())
 
 app.use("/api/auth", authRouter)
 app.use("/api", contactRouter)
+app.use("/api", ServiceRouter)
 
 app.get("/", (req: Request, res: Response<Message>) => {
     return res.status(StatusCodes.OK).json({ msg: "The API is Working" })

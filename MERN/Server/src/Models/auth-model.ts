@@ -20,7 +20,7 @@ userSchema.pre("save", async function () {
 userSchema.methods.generateToken = function (): string {
     try {
         const key: string = String(process.env.SECRET_KEY)
-        return jwt.sign({ email: this.email, username: this.username }, key, { algorithm: "HS256", expiresIn: "20d" })
+        return jwt.sign({ email: this.email, id: this._id.toString() }, key, { algorithm: "HS256", expiresIn: "20d" })
     } catch (error) {
         console.log(error)
     }

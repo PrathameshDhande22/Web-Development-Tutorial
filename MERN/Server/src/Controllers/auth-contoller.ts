@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ErrorMsg, Success, UserInterface } from "../models";
+import { ErrorMsg, Success, UserInterface, VerifyRequest } from "../models";
 import { StatusCodes } from "http-status-codes";
 import User from "../Models/auth-model";
 
@@ -45,4 +45,9 @@ export const login = async (req: Request, res: Response<Success | ErrorMsg>) => 
     catch (err) {
         return res.status(StatusCodes.NOT_FOUND).json({ msg: "Internal Server Error" })
     }
+}
+
+export const users = async (req: Request, res: Response<ErrorMsg | UserInterface>) => {
+    const userData: UserInterface = (req as VerifyRequest).user;
+    return res.status(StatusCodes.OK).json(userData)
 }
