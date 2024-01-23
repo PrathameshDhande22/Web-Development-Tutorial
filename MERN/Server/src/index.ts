@@ -8,16 +8,19 @@ import errorMiddleware from "./Middleware/error-middleware"
 import contactRouter from "./Routers/contact-route"
 import cors from "cors"
 import ServiceRouter from "./Routers/services-route"
+import adminRouter from "./Routers/admin-route"
 configDotenv()
 
 const app: Express = express()
 
-app.use(cors({ origin: ["http://localhost:4173",String(process.env.URL)], methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }))
+app.use(cors({ origin: ["http://localhost:4173", String(process.env.URL)], methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }))
 app.use(express.json())
 
 app.use("/api/auth", authRouter)
 app.use("/api", contactRouter)
 app.use("/api", ServiceRouter)
+app.use("/api/admin", adminRouter)
+
 
 app.get("/", (req: Request, res: Response<Message>) => {
     return res.status(StatusCodes.OK).json({ msg: "The API is Working" })

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { ErrorMsg, JSONWebTokenData, UserInterface, VerifyRequest } from "../models";
-import { verify } from "jsonwebtoken"
+import { JsonWebTokenError, verify } from "jsonwebtoken"
 import User from "../Models/auth-model";
 
 const authMiddleware = async (req: Request, res: Response<ErrorMsg>, next: NextFunction) => {
@@ -24,6 +24,9 @@ const authMiddleware = async (req: Request, res: Response<ErrorMsg>, next: NextF
 
     } catch (error) {
         console.log(error)
+        if (error instanceof JsonWebTokenError) {
+            return res.status(StatusCodes.FORBIDDEN).json({ msg: "Invalid JSON Web Token" })
+        }
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ msg: "Error in our Backend Servers" })
     }
 }
