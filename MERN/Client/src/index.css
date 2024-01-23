@@ -23,7 +23,8 @@ body {
   gap: 10px;
 }
 
-.header > nav {
+.header > nav,
+.admin-panel > nav {
   display: flex;
   justify-content: space-around;
   width: 50%;
@@ -414,6 +415,94 @@ footer {
   justify-content: center;
 }
 
+.admin-panel {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 30px 40px;
+  gap: 30px;
+}
+
+.navigation a > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.active-admin-link div {
+  color: white;
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+  width: auto;
+}
+
+.admin-table {
+  background-color: white;
+  color: black;
+  padding: 4px;
+  width: 100%;
+  border: 2px solid blue;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+    user-select: none;
+
+  & thead {
+    background-color: var(--btn-color);
+    color: white;
+    text-align: left;
+    font-weight: bolder;
+
+    & tr th {
+      padding: 10px;
+    }
+  }
+
+  & tbody {
+    & tr td {
+      padding: 10px;
+
+      &:first-child {
+        font-weight: bold;
+      }
+    }
+
+    & tr {
+      background-color: rgb(223, 218, 218);
+    }
+
+    & td:nth-child(5) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0px;
+    }
+  }
+}
+
+.admin-btn {
+  padding: 5px 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-red{
+  background-color: rgb(255, 0, 0);
+}
+
+.btn-green{
+  background-color: rgb(100, 232, 24);
+}
 /* Media Queries */
 
 /* 705px screen */
@@ -460,6 +549,18 @@ footer {
 
   .main-header {
     margin: 0px 0px 40px 20px;
+  }
+
+  .admin-panel {
+    margin: 30px 8px;
+  }
+
+  .admin-table-wrapper {
+    width: 100%;
+  }
+
+  .admin-table {
+    font-size: 15px;
   }
 }
 

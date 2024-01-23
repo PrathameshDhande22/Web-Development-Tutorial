@@ -8,6 +8,10 @@ import {
   Services,
   Error,
   Logout,
+  Admin,
+  AdminContact,
+  AdminUsers,
+  AdminServices,
 } from "./Page";
 import { Header } from "./Components/Header";
 import { Footer } from "./Components/Footer";
@@ -42,6 +46,11 @@ const App = () => {
           </Route>
           <Route path="/services" element={<Services />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/admin" element={<Admin />}>
+            <Route index path="users" element={<AdminUsers />} />
+            <Route path="contacts" element={<AdminContact />} />
+            <Route path="services" element={<AdminServices />} />
+          </Route>
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />

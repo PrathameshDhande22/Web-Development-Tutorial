@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
 
   const isLoggedIn = !!token;
 
+  const Authorization = `Bearer ${token}`;
+
   useEffect(() => {
     const userAuthenticate = async () => {
       try {
@@ -42,7 +44,13 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ storeTokeninLS, logoutUser, isLoggedIn, userdata }}
+      value={{
+        storeTokeninLS,
+        logoutUser,
+        isLoggedIn,
+        userdata,
+        Authorization,
+      }}
     >
       {children}
     </AuthContext.Provider>
