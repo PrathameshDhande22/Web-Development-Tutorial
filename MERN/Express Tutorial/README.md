@@ -14,6 +14,7 @@ These Tutorial Contains the following Lessons :
 10. Generating JWT token using `jsonwebtoken` package.
 11. Form Validation using `zod` package.
 12. Custom Error Middleware.
+13. Query, Path and Header Values.
 
 **Note:** These codes are written in javascript if you want to use the power of typescript with express see the code reference from the [Server](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/MERN/Server) Folder.
 
