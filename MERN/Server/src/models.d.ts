@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, ObjectId } from "mongoose";
 import { loginSchema, registerSchema } from "./Validator/auth-validator";
 import contactZodValidator from "./Validator/contact-validator";
 import { Request } from "express";
@@ -17,6 +17,7 @@ export declare interface UserInterface {
     password: string,
     email: string,
     isAdmin?: boolean
+    _id?: ObjectId
 }
 
 export declare interface Success extends User {

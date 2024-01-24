@@ -11,3 +11,7 @@ Learn NodeJS from Here [NodeJS](https://github.com/PrathameshDhande22/Web-Develo
 Refer the `Client` Folder for the Frontend interaction with the backend API.
 
 Refer the `Server` Folder for the Backend code with the help of Typescript.
+
+### Project => Simple Website
+
+the project created with MERN stack is a simple website where user can register, login and view the service although it also contains the admin panel to monitor the users to edit,delete same with services and contacts.
