@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_middleware_1 = __importDefault(require("../Middleware/auth-middleware"));
+const admin_controller_1 = require("../Controllers/admin-controller");
+const admin_middleware_1 = __importDefault(require("../Middleware/admin-middleware"));
+const adminRouter = (0, express_1.Router)();
+adminRouter.use(auth_middleware_1.default, admin_middleware_1.default);
+adminRouter.get("/contacts", admin_controller_1.getContacts);
+adminRouter.get("/users", admin_controller_1.getUsers);
+adminRouter.delete("/user/:id/delete", admin_controller_1.deleteUser);
+adminRouter.get("/user/:id", admin_controller_1.getUserByID);
+adminRouter.delete("/contact/:id/delete", admin_controller_1.deleteContactByID);
+adminRouter.patch("/user/:id/update", admin_controller_1.updateUserById);
+adminRouter.get("/services", admin_controller_1.getServices);
+adminRouter.delete("/service/:id/delete", admin_controller_1.deleteServiceById);
+exports.default = adminRouter;
