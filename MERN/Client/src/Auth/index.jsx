@@ -7,6 +7,7 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [userdata, setUserData] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const storeTokeninLS = (token) => {
     setToken(token);
@@ -25,15 +26,19 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const userAuthenticate = async () => {
+      setLoading(true);
       try {
         const udata = await api.get("/auth/users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-
-        setUserData(udata.data);
+        if (udata.status === 200) {
+          setUserData(udata.data);
+          setLoading(false);
+        }
       } catch (error) {
+        setLoading(false);
         console.log("Error occured in user authentication");
         console.log(error);
         logoutUser();
@@ -50,6 +55,7 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn,
         userdata,
         Authorization,
+        loading,
       }}
     >
       {children}

@@ -47,7 +47,6 @@ export const Contact = () => {
           "/contact",
           JSON.stringify(contactData)
         );
-        console.log(contactResponse.data);
 
         if (contactResponse.status === 200) {
           toast.success(contactResponse.data?.msg);

@@ -12,6 +12,7 @@ import {
   AdminContact,
   AdminUsers,
   AdminServices,
+  AdminUserEdit,
 } from "./Page";
 import { Header } from "./Components/Header";
 import { Footer } from "./Components/Footer";
@@ -50,6 +51,7 @@ const App = () => {
             <Route index path="users" element={<AdminUsers />} />
             <Route path="contacts" element={<AdminContact />} />
             <Route path="services" element={<AdminServices />} />
+            <Route path="user/:id/edit" element={<AdminUserEdit />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>

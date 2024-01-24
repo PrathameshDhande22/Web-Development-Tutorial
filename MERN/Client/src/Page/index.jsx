@@ -10,6 +10,7 @@ import { Admin } from "./Layouts/Admin";
 import { AdminContact } from "./Layouts/Admin-Contact";
 import { AdminServices } from "./Layouts/Admin-Services";
 import { AdminUsers } from "./Layouts/Admin-Users";
+import { AdminUserEdit } from "./Layouts/Admin-User-Edit";
 
 export {
   About,
@@ -24,4 +25,5 @@ export {
   AdminContact,
   AdminServices,
   AdminUsers,
+  AdminUserEdit,
 };

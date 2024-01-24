@@ -61,7 +61,7 @@ export const Register = () => {
         <div className="homeimage">
           <img src={registerImage} alt="Contact Us image of Website" />
         </div>
-        <form action="" className="main-form">
+        <form action="" className="main-form" onSubmit={onSubmitHandle}>
           <div className="main-header">Registration Form</div>
           <div>
             <label htmlFor="usernamebox">Username</label>
@@ -99,11 +99,7 @@ export const Register = () => {
               placeholder="Enter your Password"
             />
           </div>
-          <button
-            onClick={onSubmitHandle}
-            type="button"
-            className="btn btn-blue"
-          >
+          <button type="submit" className="btn btn-blue">
             Register Now
           </button>
         </form>

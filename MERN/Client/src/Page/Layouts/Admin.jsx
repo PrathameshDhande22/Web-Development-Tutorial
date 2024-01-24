@@ -2,10 +2,23 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
 import { GrServices } from "react-icons/gr";
+import useAuth from "../../Hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 export const Admin = () => {
+  const { loading, userdata } = useAuth();
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!userdata.isAdmin) {
+    return <Navigate to={"/"} />;
+  }
+
   return (
     <div className="admin-panel">
+      <div className="main-header admin-header">ADMIN PANEL</div>
       <nav className="navigation admin-nav">
         <NavLink
           to={"/admin/users"}
@@ -35,6 +48,7 @@ export const Admin = () => {
           </div>
         </NavLink>
       </nav>
+      
       <Outlet />
     </div>
   );

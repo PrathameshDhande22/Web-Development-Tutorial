@@ -3,6 +3,8 @@ import useAuth from "../../Hooks/useAuth";
 import api from "../../Api";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -28,23 +30,28 @@ export const AdminUsers = () => {
   }, [Authorization, getUsers]);
 
   const deleteUser = async (id) => {
-    try {
-      const deleteUser = await api.delete(`/admin/user/${id}/delete`, {
-        headers: { Authorization: Authorization },
-      });
+    const confirmation = confirm("Are you sure you want to delete");
+    if (confirmation) {
+      try {
+        const deleteUser = await api.delete(`/admin/user/${id}/delete`, {
+          headers: { Authorization: Authorization },
+        });
 
-      if (deleteUser.status === 200) {
-        getUsers();
+        if (deleteUser.status === 200) {
+          toast.success(deleteUser.data.msg);
+          getUsers();
+        }
+      } catch (error) {
+        console.log(error);
+        toast.warn(error?.response?.data?.msg);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
   return (
     <div className="admin-table-wrapper">
+      <div className="admin-title">Users</div>
       <table className="admin-table">
-        <caption>Users</caption>
         <thead>
           <tr>
             <th>Sr.no</th>
@@ -62,9 +69,12 @@ export const AdminUsers = () => {
                 <td>{curr?.username}</td>
                 <td>{curr?.email}</td>
                 <td>
-                  <button type="button" className="admin-btn btn-green">
+                  <Link
+                    to={`/admin/user/${curr?._id}/edit`}
+                    className="admin-btn btn-green"
+                  >
                     <FaEdit size={24} color="white" />
-                  </button>
+                  </Link>
                 </td>
                 <td>
                   <button
