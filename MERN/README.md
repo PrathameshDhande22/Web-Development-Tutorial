@@ -15,3 +15,9 @@ Refer the `Server` Folder for the Backend code with the help of Typescript.
 ### Project => Simple Website
 
 the project created with MERN stack is a simple website where user can register, login and view the service although it also contains the admin panel to monitor the users to edit,delete same with services and contacts.
+
+### Demo
+
+See the live Website Here of Frontend [Frontend](https://web-development-tutorial.vercel.app/)
+
+See the live Backend [Backend](https://mern-admin-3ebv.onrender.com)
