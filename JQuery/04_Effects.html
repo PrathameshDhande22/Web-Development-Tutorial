@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effects</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+    <h3>Effects in Jquery</h3>
+    <div id="anim" style="background-color: red; width: 200px; height: 100px;"></div>
+    <button type="button" id="hide">To Hide</button>
+    <button type="button" id="show">To Show</button>
+    <button type="button" id="toggle">To toggle</button>
+    <button type="button" id="fadein">To Fade IN</button>
+    <button type="button" id="fadeout">To Fade Out</button>
+    <button type="button" id="toggle-fade">To toggle Fade</button>
+    <button type="button" id="slide-up">To Slide Up</button>
+    <button type="button" id="slide-down">To Slide Down</button>
+    <button type="button" id="toggle-slide">To Slide Toggle</button>
+    <button type="button" id="animate">To Animate</button>
+
+    <script>
+        var divElement = $("#anim")
+
+        // * To apply hide effect
+        $("#hide").click(function () {
+            divElement.hide(1000, function () {
+                alert("Completed Hiding")
+            })
+        })
+
+        // * To apply show effect
+        $("#show").click(function () {
+            divElement.show(1000, function () {
+                alert("Completed showing")
+            })
+        })
+
+        // * To apply toggle effect
+        $("#toggle").click(function () {
+            divElement.toggle(1000)
+        })
+
+        // * To apply fade in effect
+        $("#fadein").click(function () {
+            divElement.fadeIn(100)
+        })
+
+        // * to apply fade out effect
+        $("#fadeout").click(function () {
+            divElement.fadeOut(100)
+        })
+
+        // * To apply fade toggle
+        $("#toggle-fade").click(function () {
+            divElement.fadeToggle()
+        })
+
+        // * To apply slide up effect
+        $("#slide-up").click(function () {
+            divElement.slideUp(1000)
+        })
+
+        // * to apply slide down effect
+        $("#slide-down").click(function () {
+            divElement.slideDown(1000)
+        })
+
+        // * To apply slide toggle effect
+        $("#toggle-slide").click(function () {
+            divElement.slideToggle(1000)
+        })
+
+        // *  to apply custom animation
+        $("#animate").click(function () {
+            divElement.animate({
+                height: "300px",
+                opacity: "0.1"
+            })
+        })
+    </script>
+</body>
+
+</html>

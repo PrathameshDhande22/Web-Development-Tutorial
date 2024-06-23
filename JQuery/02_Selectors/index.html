@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Selectors</title>
+   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+   <!-- Class Selectors -->
+   <p class="first-ele">These is the First Element</p>
+   <div id="second-ee">
+      <p>These is Another Element</p>
+   </div>
+   <p>Selecting all p tag</p>
+   <span>
+      These is Span Tag you were Selected
+   </span>
+   <script>
+
+      // * Selects the class name using .className
+      $(".first-ele").hide();
+
+      // * id Selector selects the id of the particular element
+      $("#second-ee").click(function () {
+         alert("You Clicked on these button")
+      })
+
+      // * Tag Selector -> Selecting only the tag
+      $("span").css("background-color", "yellow")
+
+      // * All Selectors -> Selecting all tags in the html
+      $("*").css("border", "1px solid red")
+
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- Events like onclick, onmouseenter, onmouseleave are all html events -->
+    <p id="para">These is paragraph tag</p>
+    <div style="background-color: red; height: 100px; width: 100px;" id="div-ele"></div>
+
+    <br>
+    <div style="background-color: green; height: 100px; width: 100px;" id="div-ele-1"></div>
+    <script>
+        // On Click Event
+        $("#para").click(function () {
+            // * This is used to access the current selected element via selector.
+            $(this).hide(100)
+        })
+
+        // * MouseEnter Event
+        $("#div-ele").mouseenter(function () {
+            // * to change the css use css() method it accepts the key and value also the object of key and value of css.
+            $(this).css("background-color", "yellow")
+        })
+
+        // * MouseLeave Event
+        $("#div-ele").mouseleave(function () {
+            $(this).css('background-color', "green")
+        })
+
+        // * These can be acheived similar by hover event -> Hover accept two parameter one for mouseenter and other for mouseleave but you can also give one parameter no problem
+        $("#div-ele-1").hover(function () {
+            $(this).css('background-color', "yellow")
+        }, function () {
+            $(this).css('background-color', "red")
+        })
+
+        // * Document ready event -> These event will be triggered when document is ready means its dom element are ready.
+        $(document).ready(function () {
+            alert("Document is ready using first method")
+        })
+
+        // * Although there is a shortcut to do these 
+        $(function () {
+            confirm("These is loaded second time via shortcut")
+        })
+
+    </script>
+</body>
+
+</html>
