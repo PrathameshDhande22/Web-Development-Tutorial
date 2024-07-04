@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Return Type of Find - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="parent">
+      Parent
+      <div class="child">Child</div>
+      <div class="child2">Child2</div>
+      <div class="child2">Child2</div>
+    </div>
+    <div class="parent">
+        Parent
+        <div class="child">Child</div>
+        <div class="child2">Child2</div>
+        <div class="child2">Child2</div>
+      </div>
+      <div class="parent">
+        Parent
+        <div class="child">Child</div>
+        <div class="child2">Child2</div>
+        <div class="child2">Child2</div>
+      </div>
+    <script>
+// * Return type of find method of jquery
+console.log(typeof $(".parent").find(".child"))
+console.log($(".parent").children())
+
+    </script>
+  </body>
+</html>

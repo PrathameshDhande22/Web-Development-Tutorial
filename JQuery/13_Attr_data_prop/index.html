@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Difference Btw Attr, Data, Prop - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- Difference between attr,data, prop -->
+    <div data-value="Prathamesh" id="div-ele" aria-details="these is element">
+      Some Element with data-value=Prathamesh
+    </div>
+    <input type="text" class="input-tag" disabled />
+    <script>
+      $(function () {
+        console.log($("#div-ele").prop("id"));
+        console.log($(".input-tag").attr("disabled", false));
+        console.log($(".input-tag").data("disabled", true));
+      });
+    </script>
+  </body>
+</html>

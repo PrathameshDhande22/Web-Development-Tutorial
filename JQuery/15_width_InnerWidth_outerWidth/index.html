@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Width, InnerWidth & OuterWidth - jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <style>
+    .element {
+      margin: 40px;
+      border: 10px solid brown;
+      padding: 30px;
+      background-color: yellow;
+      height: 200px;
+      width: 500px;
+    }
+  </style>
+  <body>
+    <div style="background-color: green">
+      <!-- Difference between width,innerwidth and outerwidth -->
+      <div class="element">content</div>
+    </div>
+    <script>
+      // * Width
+      let element = $(".element");
+      console.log("Width :", element.width());
+      console.log("InnerWidth :", element.innerWidth());
+      console.log("Width :", element.outerWidth());
+    </script>
+  </body>
+</html>

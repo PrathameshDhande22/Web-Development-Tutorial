@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add class and CSS To HTML Elements</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <div id="box1">
+        Hello these is the Sample div Box
+    </div>
+    <div id="box2" class="important">
+        hello these is the Sample Div 2 Box
+    </div>
+    <div id="box3">
+        Hello these is the Sample Div 3 Box
+    </div>
+    <div id="box4">
+        Hello these is the sample div 4 box
+    </div>
+    <button id="box1-btn">Click to Add Class to div1 id</button>
+    <button id="box2-btn">Click to remove Class to div2 id</button>
+    <button id="box3-btn">Click to Toggle Class to div1 id</button>
+    <button id="box4-btn">Click to Set CSS to div1 id</button>
+
+    <script>
+        // * add Class Method
+        $("#box1-btn").click(function () {
+            $("#box1").addClass("important");
+        });
+
+        // * Remove class method
+        $("#box2-btn").click(function () {
+            $("#box2").removeClass("important");
+        });
+
+        // * Toggle Class Method
+        $("#box3-btn").click(function () {
+            $("#box3").toggleClass("toggler");
+        });
+
+        // * CSS Method to set the css
+        $("#box4-btn").click(function () {
+            $("#box4").css({ "background-color": "yellow", "font-size": "19px" });
+
+            // * Returns the css 
+            console.log($("#box4").css());
+        })
+    </script>
+</body>
+
+</html>

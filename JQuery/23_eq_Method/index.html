@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eq() Method - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <p>Paragraph 4</p>
+    <p>Paragraph 5</p>
+    <p>Paragraph 6</p>
+    <script>
+      // eq method
+      $("p").eq(1).css("background-color", "yellow");
+
+      // another method
+      $("p:eq(0)").css("background-color", "red");
+
+      //   alternate method
+      $($("p").get(2)).css("background-color", "lightgreen");
+
+      $("p").slice(4).css("background-color", "orange");
+    </script>
+  </body>
+</html>

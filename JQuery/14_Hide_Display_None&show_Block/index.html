@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hide & display None vs Show & display Block - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      .div-box {
+        width: 200px;
+        height: 200px;
+        background-color: greenyellow;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="div-box" style="border: 2px solid black">Element</p>
+    <button type="button" id="hide-box">Hide</button>
+    <button type="button" id="show-box">Show</button>
+    <script>
+      $("#hide-box").click(function () {
+        $(".div-box").hide();
+      });
+
+      $("#show-box").click(function () {
+        $(".div-box").show();
+      });
+    </script>
+  </body>
+</html>

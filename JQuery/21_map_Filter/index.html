@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map & Filter Method - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="newid">
+      These is the New Div element
+      <div>The Second Element inside New Div Element</div>
+      <div>The Third Element inside new div Element</div>
+    </div>
+    <div class="newid element">
+      These is the New Div element <b>These is the Element Class</b>
+      <div>The Second Element inside New Div Element</div>
+      <div>The Third Element inside new div Element</div>
+    </div>
+    <div class="newid">
+      These is the New Div element
+      <div>The Second Element inside New Div Element</div>
+      <div>The Third Element inside new div Element</div>
+    </div>
+    <div class="newid element">
+      <b>These is the element class</b>
+      These is the New Div element
+      <div>The Second Element inside New Div Element</div>
+      <div>The Third Element inside new div Element</div>
+    </div>
+    <script>
+      // * Map method
+      var color = ["green", "red", "yellow", "violet"];
+      $(".newid").map((index, ele) => {
+        $(ele).css("background-color", color[index]);
+      });
+
+      //   another way
+      var nos = [1, 2, 3, 4, 5, 6];
+      var no1 = [1, 2, 3, 4, 5, 6];
+      nos = $.map(nos, (ele, index) => {
+        return ele * 2;
+      });
+      console.log(nos);
+
+      var newarr = $.map(no1, (ele, idx) => {
+        return ele % 2 == 0 ? ele : null;
+      });
+      console.log(newarr);
+
+      // * Filter method
+      console.log($(".newid").filter(".element").css("color", "white"));
+
+      console.log(
+        $(".newid").filter(function (index, ele) {
+          return $(ele).is(".element");
+        })
+      );
+    </script>
+  </body>
+</html>

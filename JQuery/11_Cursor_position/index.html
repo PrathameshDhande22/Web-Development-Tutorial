@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor Position - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      .follow {
+        height: 50px;
+        width: 50px;
+        background-color: yellow;
+        border: 2px solid black;
+        border-radius: 100%;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Current position of Curson -->
+    <div class="follow"></div>
+    <div>
+      <h3>Cursor Position</h3>
+      <p>Your Current Cursor is at position : <span class="pos"></span></p>
+    </div>
+    <script>
+      // * Current Position of cursor
+      $(document).mousemove(function (e) {
+        $(".pos").text(`X:${e.pageX} , Y:${e.pageY}`);
+        $(".follow").css({ left: e.pageX-23, top: e.pageY-20 });
+      });
+    </script>
+  </body>
+</html>

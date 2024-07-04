@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traversing, Ancestors, Descendant, Siblings - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div class="grandparent">
+      grandparent
+      <div class="parent-div">
+        Parent
+        <span class="child1"
+          >Child 1 Div
+          <p class="young">these is youngest child</p>
+        </span>
+        <span class="child2">Child 2 Div</span>
+      </div>
+    </div>
+    <script>
+      // * Ancestors
+      // Return just one element above it
+      console.log($(".parent-div").parent());
+      // Returns all parents element of the selected Selector
+      console.log($(".young").parents());
+
+      // * Returns the parent till the given selector
+      console.log($(".young").parents(".grandparent"));
+
+      // * Returns all the parents till the given selector
+      console.log($(".young").parentsUntil(".grandparent"));
+
+      // * Descendant
+      // children method - Returns all the children of the given selector
+      console.log($(".parent-div").children());
+      console.log($(".parent-div").children(".child1"));
+
+      // find method - Returns the child element of the given selector.
+      console.log($(".grandparent").find(".young"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>contains() method - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="div-ele">
+      These is the div element block
+      <span>These is the span tag</span>
+      <input type="text" id="input-tag" />
+    </div>
+    <script>
+      // * Contains method
+      console.log(
+        $.contains(
+          document.getElementsByClassName("div-ele")[0],
+          document.getElementById("input-tag")
+        )
+      );
+
+      console.log(
+        $.contains(
+          document.getElementsByTagName("div")[0],
+          document.getElementsByTagName("input")[0]
+        )
+      );
+    </script>
+  </body>
+</html>

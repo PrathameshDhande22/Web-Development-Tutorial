@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trigger Method - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- * Trigger Method -->
+    <button type="button" id="click-btn">Button with Click-btn ID</button>
+    <button id="click-btn2">Click To trigger Click-btn ID</button>
+    <script>
+      $("#click-btn").click(function () {
+        alert("Trigger using click");
+      });
+      // Triggering the other button click Event
+      $("#click-btn2").click(function () {
+        $("#click-btn").trigger("click");
+      });
+    </script>
+  </body>
+</html>

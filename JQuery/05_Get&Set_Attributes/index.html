@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get & Set Attributes - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- Jquery Callback Function -->
+    <div>
+        <span class="toggler">Toggle This</span>
+        <button type="button" class="btn-callback">
+            Click Me
+        </button>
+    </div>
+
+
+    <!-- Get and Set Attributes -->
+    <div class="getClass">
+        <span>hello these the span tag inside the getClass block</span>
+        <p>These the paragraph tag inside the getClass block</p>
+
+    </div>
+    <button id="text-get">Click Here to Get Text</button>
+    <button id="html-get">Click Here to Get HTML</button>
+    <button id="text-set">Click Here to Set Text</button>
+    <button id="html-set">Click Here to Set HTML</button>
+
+    <input type="text" id="get-value">
+    <button type="button" id="get-input-value">Click Here</button>
+
+    <a href="www.google.com">These is Link</a>
+    <button type="button" id="set-attr">Click To set Attribute</button>
+    <button type="button" id="set-multi-attr">Click To Set Multiple Attr</button>
+    <script>
+        // * JQuery callback Function
+        var toggleSpan = $(".toggler");
+        $(".btn-callback").click(function () {
+            toggleSpan.fadeToggle(1200, function () {
+                alert("Called after Toggling");
+            });
+        });
+
+        // * Get  Attributes or Content
+        var getClassBlock = $(".getClass");
+        $("#text-get").click(function () {
+            console.log(getClassBlock.text());
+        });
+
+        $("#html-get").click(function () {
+            console.log(getClassBlock.html());
+        });
+
+        // * Set Attributes or Content
+        $("#text-set").click(function () {
+            getClassBlock.text("The Content has been changed by set text");
+        });
+
+        $("#html-set").click(function () {
+            getClassBlock.html("<b>The Content has been changed by set Html</b>");
+        });
+
+        // * Val method
+        $("#get-input-value").click(function () {
+            const value = $("#get-value").val();
+            alert("You have written - " + value);
+        });
+
+        // * Get Attribute using attr() method
+        console.log($("a").attr("href"));
+
+        // * Set Attribute
+        $("#set-attr").click(function () {
+            $("a").attr("href", "www.github.com");
+        });
+
+        // * Setting multiple Attributes using attr
+        $("#set-multi-attr").click(function () {
+            $("a").attr({
+                "href": "https://www.youtube.com",
+                "data-visited": true
+            });
+        })
+    </script>
+</body>
+
+</html>

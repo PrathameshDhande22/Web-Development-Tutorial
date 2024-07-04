@@ -1,0 +1,14 @@
+.important{
+    background-color:yellow;
+    border: 2px solid black;
+}
+
+.blue-back{
+    background-color: blue;
+}
+
+.toggler{
+    background-color: lightsalmon;
+    border: 2px solid black;
+    width: 400px;
+}

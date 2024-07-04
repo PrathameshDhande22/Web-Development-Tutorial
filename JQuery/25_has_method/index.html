@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>has() Method - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .highlight{
+            background-color: yellow;
+        }
+
+        .border{
+            background-color: orangered;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="element">
+        <p class="para">These is paragraph 1</p>
+    </div>
+    <div class="element">
+        <span>These is paragraph 2</span>
+    </div>
+    <div class="element">
+        <div class="para">These is paragraph 3</div>
+    </div>
+    <div class="element">
+        <p>These is paragraph 4</p>
+    </div>
+    <script>
+        console.log($(".element").has(".para"))
+
+        // has method
+        $(".element").has(".para").addClass("highlight")
+
+        $(".element").has("span").addClass("border")
+    </script>
+  </body>
+</html>

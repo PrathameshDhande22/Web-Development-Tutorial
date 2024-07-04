@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add & Remove Elements - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- Add Elements -->
+    <div>
+        <h3>Add Elements</h3>
+        <button type="button" id="add-first">Append</button>
+        <button type="button" id="add-last">Prepend</button>
+        <button type="button" id="add-after">After</button>
+        <button type="button" id="add-before">Before</button>
+        <br>
+        <input type="text" name="type" id="element-add">
+        <div id="element-div">
+
+        </div>
+    </div>
+
+    <!-- Remove Method -->
+    <h3>Remove element</h3>
+    <div class="remove-ele">
+        These is the new element
+    </div>
+    <div class="remove-ele-all">
+        <span>
+            these is the span tag inside the new div element
+        </span>
+    </div>
+    <div class="remove-ele-select">
+        <span class="select-class">
+            another tag with class as select
+        </span>
+        <span>Another span tag with empty clas</span>
+    </div>
+    <div class="remove-child">
+        <span>hello1</span>
+        <span>hello3</span>
+        <span>hello4</span>
+        <span>hello2</span>
+    </div>
+    <button class="remove-btn">Remove Element</button>
+    <button class="remove-btn-wchild">Remove Element with its Child</button>
+    <button class="remove-btn-select">Remove Element with Select Class Only</button>
+    <button class="empty-btn">Empty Method</button>
+    <script>
+        var elementDiv = $("#element-div");
+        var inputTag = $("#element-add");
+
+        // * Append method
+        $("#add-first").click(function () {
+            elementDiv.append(`<div><b>${inputTag.val()}</b></div>`);
+        });
+
+        // * Prepend Method
+        $("#add-last").click(function () {
+            elementDiv.prepend(`<div><b>${inputTag.val()}</b></div>`);
+        });
+
+        // * After Method
+        $("#add-after").click(function () {
+            elementDiv.after(`<div><b>${inputTag.val()}</b></div>`);
+        });
+
+        // * Before Method
+        $("#add-before").click(function () {
+            elementDiv.before(`<div><b>${inputTag.val()}</b></div>`);
+        });
+
+        // * Remove Method
+        $(".remove-btn").click(function () {
+            $(".remove-ele").remove();
+        });
+
+        // * Remove method to delete its all child
+        $(".remove-btn-wchild").click(function () {
+            $(".remove-ele-all").remove();
+        });
+
+        // * Remove method to delete its only select class
+        $(".remove-btn-select").click(function () {
+            $("span").remove(".select-class");
+        });
+
+        // * Empty Method to deletes its child
+        $(".empty-btn").click(function () {
+            $(".remove-child").empty();
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using other Symbol rather than $ - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- Applying Styles Dynamically -->
+
+    <div id="dyna-ele">These Element</div>
+    <input
+      type="text"
+      name="property"
+      id="css-property"
+      placeholder="Enter a CSS Property"
+    />
+    <input
+      type="text"
+      name="value"
+      id="css-value"
+      placeholder="Enter a css Property Value"
+    />
+    <button type="button" class="add-css">Click To Add</button>
+
+    <script>
+      var divElement = $("#dyna-ele");
+      $(".add-css").click(function () {
+        var property = $("#css-property").val();
+        var value = $("#css-value").val();
+        divElement.css(property, value);
+        $("input").val("");
+      });
+    </script>
+  </body>
+</html>

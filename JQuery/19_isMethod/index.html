@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>is() method - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <span>These is Span TAG</span>
+      <button type="button" id="btn">these is button</button>
+    </div>
+    <script>
+      // * is method in jQuery
+
+      $("#btn").click(function () {
+        if ($("#btn").parent().is("div")) {
+          $("#btn")
+            .parent()
+            .css({
+              "background-color": "lightyellow",
+              height: "200px",
+              border: "2px solid black",
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

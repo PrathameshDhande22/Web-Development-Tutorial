@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Siblings - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- Siblings -->
+    <div class="grandparent">
+      grandparent
+      <div class="parent-div">
+        Parent
+        <span class="child1"
+          >Child 1 Div
+          <p class="young">these is youngest child</p>
+        </span>
+        <span class="child2">Child 2 Div</span>
+      </div>
+      <div class="its-sister">Parents Sisters</div>
+      <div class="parent-div">These is another parent 2</div>
+      <div class="parent-div">These is another parent 3</div>
+      <div class="main-parent">These is big Parent</div>
+    </div>
+
+    <script>
+      // * Siblings methods
+      console.log("siblings of parent-div", $(".parent-div").siblings());
+
+      // * Siblings optional parameters
+      console.log(
+        "Siblings of parent-div only main-parent",
+        $(".parent-div").siblings(".main-parent")
+      );
+
+      //   * Next Method
+      console.log("Next method", $(".parent-div").next());
+
+      // * Next method with parameter
+      console.log(
+        "Next method with main-parent parameter",
+        $(".parent-div").next(".main-parent")
+      );
+
+      // * next all method
+      console.log("Next all Method", $(".parent-div").nextAll());
+      console.log("Next all Method", $(".parent-div").nextAll(".its-sister"));
+
+      // * next until method
+      console.log(
+        "next Until method",
+        $(".parent-div").nextUntil(".its-sister")
+      );
+
+      //   * prev method
+      console.log("Prev method", $(".its-sister").prev());
+
+      // * prevall
+      console.log("Prevall method", $(".main-parent").prevAll());
+
+      // * prevUntil
+      console.log(
+        "prevUntil method",
+        $(".main-parent").prevUntil(".its-sister")
+      );
+
+
+    </script>
+  </body>
+</html>

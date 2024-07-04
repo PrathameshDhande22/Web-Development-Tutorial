@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using other Symbol rather than $ - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <button type="button" id="btn">Click</button>
+    <script>
+      // * Using other symbol rather than $ in jquery
+      $(function () {
+        alert("Called using Dollar Sign");
+      });
+
+      var j = jQuery.noConflict(true);
+      j("#btn").click(function () {
+        alert("Called using j variable");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax - Jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <button type="button" id="btn-get">Click to get Data</button>
+    <div id="result"></div>
+    <script>
+      function createBoxes(data) {
+        var resultbox = $("#result");
+        let newElement = $("<div>");
+        let idEle = $("<b>");
+        idEle.text(data.id);
+        let titleEle = $("<p>");
+        titleEle.text(data.title);
+
+        let desEle = $("<p>");
+        desEle.text(data.description);
+
+        newElement.append(idEle, titleEle, desEle);
+        resultbox.append(newElement);
+      }
+
+      $("#btn-get").click(function () {
+        console.log("Getting Clicked");
+        $.ajax({
+          url: "https://dummyjson.com/products",
+          complete: function (ans, status) {
+            if (status === 200) {
+              console.log("Working Correctly");
+            }
+          },
+          method: "GET",
+          success: function (res) {
+            Array.from(res?.products).forEach((value) => {
+              createBoxes(value);
+            });
+          },
+        });
+      });
+
+      console.log(
+        $.getJSON("https://dummyjson.com/products", function (d) {
+          console.log(d);
+        })
+      );
+
+      //   * Reading json file
+      console.log(
+        $.getJSON("./data.json", function (d) {
+          console.log(d);
+        })
+      );
+
+      $.get("./data.json");
+    </script>
+  </body>
+</html>

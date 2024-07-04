@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Elements - jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="div-element">
+      <button type="button" id="create-btn">Click To Make</button>
+    </div>
+    <script>
+      // Creating the Dynamic Elements
+      var count = 0;
+      var divElement = $(".div-element");
+      $("#create-btn").on("click", function () {
+        count++;
+        let newEle = $("<div>")
+          .html(`<b>These is newly created elements with count = ${count}`)
+          .data("value", count);
+
+        let btnEle = $("<button>")
+          .html("Click Me")
+          .click(function () {
+            var value = btnEle.parent().data("value");
+            alert("Click on Element Count " + value);
+          });
+        newEle.append(btnEle);
+        divElement.append(newEle);
+      });
+    </script>
+  </body>
+</html>
