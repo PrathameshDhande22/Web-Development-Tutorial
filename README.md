@@ -26,6 +26,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 10. NodeJS
 11. React Recoil Tutorial
 12. ExpressJS or MERN Stack
+14. jQuery
 
 ## Projects :
 
@@ -61,3 +62,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 12. NodeJS 👉 https://youtu.be/BLl32FvcdVM?si=kdGE2TYNYFZp19ZZ
 13. React Recoil Tutorial 👉 https://recoiljs.org/
 14. MERN 👉 https://youtube.com/playlist?list=PLwGdqUZWnOp2Z3eFOgtOGvOWIk4e8Bsr_&si=T5qqLXUDTFxBdA3W
+15. jQuery 👉 https://www.w3schools.com/jquery/default.asp

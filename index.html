@@ -181,6 +181,9 @@
             <div class="expbutton mainbtn">
                 <button class="btntc btnmade">ExpressJS or MERN Stack Tutorial</button>
             </div>
+            <div class="jqbutton mainbtn">
+                <button class="btntc btnmade">jQuery Tutorial</button>
+            </div>
         </div>
         <h2 class="soon">More Tutorial Will be Comming Soon</h2>
         <div class="project">
@@ -365,7 +368,7 @@
     <script>
         function call(classname, href) {
             document.getElementsByClassName(classname)[0].addEventListener("click", (e) => {
-                location.href = href
+                window.open(href, "_blank")
             })
         }
 
@@ -382,6 +385,7 @@
         call("njbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/NodeJS")
         call("rrbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs/recoil_tutorial")
         call("expbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/MERN")
+        call("jqbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/JQuery")
     </script>
 </body>
 
