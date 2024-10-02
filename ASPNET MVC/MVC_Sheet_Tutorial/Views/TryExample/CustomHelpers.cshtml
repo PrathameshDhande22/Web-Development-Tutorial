@@ -1,0 +1,14 @@
+﻿@using MVC_Sheet_Tutorial.CustomHelper
+
+@{
+    ViewBag.Title = "CustomHelpers";
+}
+
+<h2>CustomHelpers</h2>
+
+<h6>Unordered List</h6>
+@Html.CreateList(ListHtml.UL, new List<string> { "Prathamesh", "John", "Livon", "Acer" })
+
+
+<h6>Ordered List</h6>
+@Html.CreateList(ListHtml.OL, new List<string> { "Prathamesh", "John", "Livon", "Acer" })

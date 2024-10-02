@@ -1,0 +1,129 @@
+﻿@model StudentExtend
+@using MVC_Sheet_Tutorial.Models
+@{
+
+    ViewBag.Title = "ShowPage";
+}
+
+<h2>ShowPage</h2>
+
+@{
+    string username = "MVC Sharp Tutorial";
+}
+
+<h5 class="text-decoration-underline text-bg-dark p-3">Create Student</h5>
+
+@using (Html.BeginForm("ShowPage", "TryExampleController", FormMethod.Post, htmlAttributes: new { id = "student-form", @class = "d-flex gap-3" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model=>model.Name)
+        @Html.TextBoxFor(model => model.Name, new { id = "namebox", @class = "box", name = "name" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.City)
+        @Html.TextBoxFor(model => model.City, new { id = "citybox", @class = "box", name = "city" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address)
+        @Html.TextBoxFor(model => model.Address, new { id = "addrbox", @class = "box", name = "address" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Standard)
+        @Html.TextBoxFor(model => model.Standard, new { id = "stdbox", @class = "box", @type = "number", name = "standard" })
+    </div>
+    <button value="submit" type="submit" class="btn btn-success" id="create-student">Create</button>
+
+}
+
+<h5 class="text-decoration-underline text-bg-dark p-3 mt-5">List Student</h5>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Standard)
+        </th>
+
+    </tr>
+    <tbody class="table-body">
+
+
+        @foreach (var item in Model.students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Standard)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $("#student-form").on("submit", function (e) {
+            e.preventDefault();
+
+        })
+
+        // ajax with json data
+        $("#create-student").click(function () {
+            let postData = { name: $("#namebox").val(), standard: $("#stdbox").val(), city: $("#citybox").val(), address: $("#addrbox").val() }
+
+            // get the data using single without writing the object
+            console.log($("#student-form").serialize()) // returns the data in key=value&key=value
+            $.ajax({
+                url: "/TryExample/CreateStudent",
+                method: "POST",
+                data: $("#student-form").serialize(),
+                success: function (data) {
+                    if (data?.message == "Error") {
+                        alert("Fill the Fields Properly")
+                    }
+                    else {
+                        createTableRow(data)
+                    }
+                },
+
+            })
+        })
+
+
+
+
+        function createTableRow(student) {
+            if (student) {
+                student = student?.student
+                var tableRow = $("<tr>")
+                var tableBody = $(".table-body")
+                tableRow.append($("<td>").html(student.name))
+                tableRow.append($("<td>").html(student.city))
+                tableRow.append($("<td>").html(student.address))
+                tableRow.append($("<td>").html(student.standard))
+                tableBody.append(tableRow)
+                $(".box").val("")
+            }
+        }
+
+        var value ="@username" // using the C# variable in js
+        console.log(value)
+
+
+    </script>
+}

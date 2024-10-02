@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "PostFormData";
+}
+
+<h2>PostFormData</h2>
+
+<h4>using Request.Form</h4>
+@foreach (var keys in Request.Form.AllKeys)
+{
+    <p>@keys -> @Request.Form[keys]</p>
+}

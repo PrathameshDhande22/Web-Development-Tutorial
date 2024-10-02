@@ -1,0 +1,36 @@
+﻿@model Getting_Started.Models.ListStudent
+
+@{
+    ViewBag.Title = "Student List";
+}
+
+<h2>StudentList</h2>
+
+
+@foreach (Getting_Started.Models.Student stud in Model.Students)
+{
+
+    <table>
+        <tr>
+            <th>Name:</th>
+            <td>@stud.Name</td>
+        </tr>
+        <tr>
+            <th>ID:</th>
+            <td>@stud.Id</td>
+        </tr>
+        <tr>
+            <th>Address:</th>
+            <td>@stud.Address</td>
+        </tr>
+        <tr>
+            <th>City:</th>
+            <td>@stud.City</td>
+        </tr>
+        <tr>
+            <th>Standard:</th>
+            <td>@stud.Standard</td>
+        </tr>
+    </table>
+    <hr />
+}

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "User1";
+}
+
+<h2>User1</h2>
+
+Value of New User = @ViewBag.Newuser
+<br />
+Value of NewUser using TempData = @TempData["User1"].ToString()
+
+<br />
+@Html.ActionLink("to User 2", "User2")
+

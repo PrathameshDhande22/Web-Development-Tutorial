@@ -1,0 +1,30 @@
+﻿@model MVC_Sheet_Tutorial.Models.LoginDetail
+
+@{
+    ViewBag.Title = "UDetail";
+}
+
+<h2>UDetail</h2>
+@User.
+<div>
+    <h4>LoginDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+    </dl>
+</div>

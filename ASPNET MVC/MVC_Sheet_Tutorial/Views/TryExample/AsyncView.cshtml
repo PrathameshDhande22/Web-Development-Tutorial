@@ -1,0 +1,14 @@
+﻿@model Tuple<TimeSpan, IEnumerable<Product>>
+@{
+    ViewBag.Title = "AsyncView";
+}
+
+<h2>AsyncView</h2>
+
+<p>Time Taken - > @Model.Item1</p>
+
+@foreach (var prod in Model.Item2)
+{
+    <p>@prod.ProductSellerName</p>
+}
+

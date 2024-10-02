@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<hr />
+
+@*accessing the view data in the view*@
+<h4> @ViewData["Page_Header"]</h4>
+<ul>
+
+    @foreach (string country in ViewBag.Countries)
+    {
+
+        <li>@country</li> // @ can  be used to access the C# variables
+    }
+</ul>
+

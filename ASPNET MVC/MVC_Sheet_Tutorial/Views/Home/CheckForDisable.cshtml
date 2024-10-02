@@ -1,0 +1,77 @@
+﻿@model MVC_Sheet_Tutorial.Models.ProductExtend
+
+@{
+    ViewBag.Title = "CheckForDisable";
+}
+
+<h2>CheckForDisable</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductSellerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSellerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductAddedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductAddedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductWarrantyYears)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductWarrantyYears)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserType)
+        </dd>
+
+    </dl>
+</div>

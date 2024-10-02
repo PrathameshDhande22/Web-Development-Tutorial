@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Index Page";
+}
+
+@{ 
+    string name = TempData.Peek("Name") as string;
+}
+
+<p>Temp Data -> @name</p>
+<p> Temp Data Name 2 -> @TempData["Name2"]</p>
+@Html.ActionLink("Invoke Method 1","Method1")

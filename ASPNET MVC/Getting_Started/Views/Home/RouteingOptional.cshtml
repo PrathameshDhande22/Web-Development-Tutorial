@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "RouteingOptional";
+}
+
+<h2>RouteingOptional</h2>
+
+<h5>Routed using Optional but passed the value as :-></h5>
+@{
+    string name = "";
+    if (ViewData.ContainsKey("Name"))
+    {
+    <b>@ViewData["Name"]</b>
+    }
+}

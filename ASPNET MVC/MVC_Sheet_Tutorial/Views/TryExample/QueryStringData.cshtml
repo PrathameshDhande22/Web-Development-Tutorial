@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "QueryStringData";
+}
+
+<h2>QueryStringData</h2>
+
+
+<h4>Using QueryString</h4>
+@foreach (var key in Request.QueryString.AllKeys)
+{
+    <p>@key -> @Request.QueryString[key] </p>
+}

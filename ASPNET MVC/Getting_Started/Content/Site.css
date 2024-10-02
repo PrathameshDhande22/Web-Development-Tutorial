@@ -1,0 +1,37 @@
+﻿body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.textbox-username {
+    padding: 6px;
+    color: gray;
+    width: 300px;
+}
+
+.border-box {
+    border: 2px solid black;
+    padding: 10px;
+    color: black;
+    width: 350px;
+}
+
+.list-wrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.navigation-links > ul > li {
+    list-style: none;
+    display: inline-block;
+}
+
+.navigation-links > ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-around;
+}

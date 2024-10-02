@@ -1,0 +1,14 @@
+﻿@model Getting_Started.Models.Departments
+@{
+    ViewBag.Title = "DropDown";
+}
+
+<h2>DropDown</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.LabelFor(model => model.Selected, "Select DEPT")
+    @Html.DropDownListFor(model => Model.Selected, new SelectList(Model.Department, "Id", "Name", "2"), "Select Department", new { value = "2" })
+    <button type="submit">Submit</button>
+}

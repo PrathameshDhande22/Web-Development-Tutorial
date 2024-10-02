@@ -1,0 +1,26 @@
+﻿@model Getting_Started.Models.Product
+
+@{
+    ViewBag.Title = "Product";
+}
+
+<h2>Product Page</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    @{
+        if (ViewData.ContainsKey("Message"))
+        {
+
+
+            <h3>No Product Found</h3>
+        }
+        else
+        {
+            @Html.DisplayForModel()
+        }
+    }
+
+</div>
+

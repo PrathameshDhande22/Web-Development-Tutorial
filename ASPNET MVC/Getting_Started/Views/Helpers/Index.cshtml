@@ -1,0 +1,58 @@
+﻿@model Tuple<Getting_Started.Models.Company, Getting_Started.Models.Departments>
+@using Getting_Started.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>HTML Helpers Tutorial</h2>
+
+<p>HTML Tag Generated using Simple HTML</p>
+<input type="text" name="user" />
+
+<p> html tag generted using HTML Helpers Method</p>
+@*Applying the html attributes to the textbox*@
+@Html.Label("Username", "Enter Your User name: ") <!-- creating the label using HTML helpers method -->
+@Html.TextBox("Username", "PrathameshDhande", new { style = "border:2px solid black;", @class = "textbox-username", data_value = "Prathamesh" })
+<br />
+
+<!--Displaying the password box-->
+@Html.Password("password", null, new { @class = "textbox-username" })
+
+<!-- Displaying the hidden type but we want while posting the data -->
+@Html.Hidden("Id", "U12300")
+
+<!--Generating Text area-->
+@Html.TextArea("Address", null, 5, 30, null)
+<br />
+
+<!-- Drop down list -->
+@Html.Label("Gender", "Select Gender")
+@Html.DropDownList("Gender", "Select Gender")
+<br />
+
+<!-- Text Box for -->
+@Html.LabelFor(name => Model.Item1.Name)
+@Html.TextBoxFor(name => Model.Item1.Name)
+<br />
+
+<!-- Drop Down List for -->
+@using (Html.BeginForm())
+{
+
+    @Html.DropDownListFor(depts => depts.Item2.Selected, new SelectList(Model.Item2.Department, "Id", "Name"), "Select Department")
+    <button type="submit">Submit</button>
+}
+<br />
+
+<!-- Radio button List -->
+@using (Html.BeginForm())
+{
+    foreach (Department dept in Model.Item2.Department)
+    {
+        @Html.RadioButtonFor(de => dept.Selected, dept.Name,new {id="radiobtn"+dept.Id.ToString()}) @dept.Name
+        <br />
+    }
+    <button type="submit">Submit</button>
+
+
+} 

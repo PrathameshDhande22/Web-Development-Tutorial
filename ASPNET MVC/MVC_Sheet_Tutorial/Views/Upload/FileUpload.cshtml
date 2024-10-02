@@ -1,0 +1,42 @@
+﻿@model MVC_Sheet_Tutorial.Models.FileUploadViewModel
+@{
+    ViewBag.Title = "FileUpload";
+}
+
+<h2>FileUpload</h2>
+
+<div>
+    @{Html.BeginForm("FileUpload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" });
+        @Html.LabelFor(model => model.FullName, new { @class = "fw-bold" }) <text>-></text>
+        @Html.TextBoxFor(model => model.FullName)<br />
+        @Html.ValidationMessageFor(model => model.FullName, "", new
+{
+    @class = "text-danger"
+        })
+
+        <div class="py-3">
+            <h6>Upload Your File</h6>
+            <input type="file" name="image" />
+            @{
+                if (ViewData.ContainsKey("Message"))
+                {
+                    <span class="text-danger">@ViewData["Message"]</span>
+                }
+
+
+            }
+            @if (Model.TempFile != null)
+            {
+                <p>Previously Uploaded File -> @Model.TempFile</p>
+                <img src="@Url.Content(Model.TempFile)" />
+                @Html.HiddenFor(model => model.TempFile)
+            }
+        </div>
+
+        <button type="submit" class="btn btn-outline-success">Submit</button>
+        { Html.EndForm(); }
+    }
+
+
+
+</div>

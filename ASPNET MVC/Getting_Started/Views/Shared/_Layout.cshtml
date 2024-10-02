@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MVC Tutorial</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Home", "Index")</li>
+                <li>@Html.ActionLink("Product", "Lists", "Product")</li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <footer style="padding:20px;border:2px solid red;">
+        <h4 style="text-align:center;">@@ CopyRight 2024</h4>
+    </footer>
+</body>
+</html>

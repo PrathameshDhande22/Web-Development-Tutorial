@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MVC_Sheet_Tutorial.Models.Product>
+
+
+<table class="table">
+    <tr class="table-dark">
+        <th>@Html.DisplayNameFor(model => model.ProductSellerName)</th>
+        <th>@Html.DisplayNameFor(model => model.ProductPrice)</th>
+        <th>@Html.DisplayNameFor(model => model.ProductQuantity)</th>
+        <th>@Html.DisplayNameFor(model => model.ProductDescription)</th>
+        <th>@Html.DisplayNameFor(model => model.ProductAddedDate)</th>
+        <th>@Html.DisplayNameFor(model => model.ProductWarrantyYears)</th>
+    </tr>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr class="table-warning">
+                <td colspan="6" class="text-center">
+                    No Rows Found
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var prod in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProductSellerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProductPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProductQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProductDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProductAddedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => prod.ProductWarrantyYears)
+                    </td>
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>
+

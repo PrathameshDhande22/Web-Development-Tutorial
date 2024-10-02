@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "FileSuccess";
+}
+
+<h2>FileUpload</h2>
+
+@{
+    if (ViewData.ContainsKey("Success"))
+    {
+        <span class="text-success fs-4">@ViewData["Success"].ToString()</span>
+    }
+}
+
+<h4>Uploaded File and Data</h4>
+<img src="@Url.Content(ViewData["FileName"].ToString())" alt="Uploaded Image"/>
+<p>FullName - > @ViewData["FullName"].ToString()</p>

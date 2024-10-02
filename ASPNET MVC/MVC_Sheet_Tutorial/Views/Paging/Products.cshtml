@@ -1,0 +1,27 @@
+﻿@model MVC_Sheet_Tutorial.Models.PagingViewModel
+
+@{
+    ViewBag.Title = "Products Table";
+}
+
+<h2>Product Tables</h2>
+
+@{ Html.RenderPartial("_ProductList", Model.Products);}
+@if (Model.Products.Count() != 0)
+{
+    <div class="d-flex justify-content-center align-content-center gap-3">
+
+        @Html.ActionLink("Prev", "Products", "Paging", new { pageno = (Model.PageNumber > 1) ? Model.PageNumber - 1 : 1 }, new { @class = "btn btn-success btn-page" })
+
+        <div class="d-flex justify-content-center align-content-center gap-1">
+
+            @for (int i = 0; i < Model.PageCount; i++)
+            {
+                @Html.ActionLink((i + 1).ToString(), "Products", "Paging", new { pageno = (i + 1) }, new { @class = Model.PageNumber == (i + 1) ? "btn btn-dark" : "btn btn-outline-dark" })
+            }
+        </div>
+
+        @Html.ActionLink("Next", "Products", "Paging", new { pageno = Model.PageNumber == Model.PageCount ? Model.PageNumber : Model.PageNumber + 1 }, new { @class = "btn btn-success btn-page" })
+
+    </div>
+}

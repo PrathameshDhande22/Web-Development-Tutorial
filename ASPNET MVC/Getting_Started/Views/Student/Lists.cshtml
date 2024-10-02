@@ -1,0 +1,18 @@
+﻿@model Getting_Started.Models.ListStudent
+@using Getting_Started.Models
+
+@{
+    ViewBag.Title = "Lists";
+}
+
+<h2 style="text-align:center;">Lists</h2>
+
+<ul>
+    @foreach (Student st in Model.Students)
+    {
+        <li>@Html.ActionLink(st.Name, "Details", new { id = st.Id })</li>
+    }
+
+</ul>
+
+

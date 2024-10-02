@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "GetViewNameController";
+}
+
+<h2>GetViewNameController</h2>
+
+<h6>Controller Name using Model -> @ViewBag.ControllerName</h6>
+
+<p> to Get the Current Action method name and Controller Name</p>
+
+<h6>Action Method Name : -> @ViewContext.RouteData.Values["action"].ToString()</h6>
+<h6>Controller Class Name : -> @ViewContext.RouteData.Values["controller"].ToString()</h6>
+
+<p>Keys present in RouteData Property</p>
+@foreach (var values in ViewContext.RouteData.Values)
+{
+    <span>@values.Key -> @values.Value</span>
+    <br />
+}

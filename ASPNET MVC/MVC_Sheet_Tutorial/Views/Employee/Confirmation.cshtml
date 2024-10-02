@@ -1,0 +1,96 @@
+﻿@model IEnumerable<MVC_Sheet_Tutorial.Models.Employee>
+
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<h2>Confirmation Popup on Delete</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <button class="btn btn-danger btn-sm fw-bolder btn-delete" type="button" id="deletebtn" data-id=@item.Id data-name=@item.Name>Delete</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Deletion</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete Employee <span id="modal-name"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary yes-btn">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(".btn-delete").click(function () {
+            let name = $(this).data("name")
+            let id = $(this).data("id")
+            console.log(name)
+            $("#modal-name").html(name)
+            const modal = new bootstrap.Modal('#exampleModal', { keyboard: false })
+            modal.show();
+            $(".yes-btn").click(function () {
+
+                $.ajax({
+                    url: `/Employee/Confirmation/${id}`,
+                    method: "Post",
+                    success: function (data) {
+                        location.reload()
+                    }
+                })
+            })
+
+        })
+
+
+    </script>
+}

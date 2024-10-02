@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "GetLoader";
+}
+
+<h2>GetLoader</h2>
+<table class="table">
+
+    <tr class="table-dark">
+        <th>ProductId</th>
+        <th>ProductSellerName</th>
+        <th>Product Price</th>
+        <th>Product Warranty Year</th>
+        <th>ProductAdded Date</th>
+    </tr>
+    <tbody class="table-body">
+        <tr class="text-center spinner-row">
+            <td colspan="5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+@section scripts{
+    <script>
+
+        function createTableRow(products) {
+            console.log(products)
+            products = Array.from(products.products)
+            for (let i = 0; i < products.length; i++) {
+                var tablerow = $("<tr>")
+                tablerow.append($("<td>").html(`${products[i].ProductId}`))
+                tablerow.append($("<td>").html(`${products[i].ProductSellerName}`))
+                tablerow.append($("<td>").html(`${products[i].ProductPrice}`))
+                tablerow.append($("<td>").html(`${products[i].ProductWarrantyYears}`))
+                tablerow.append($("<td>").html(`${products[i].ProductAddedDate}`))
+                $(".table-body").append(tablerow)
+            }
+        }
+
+        $.ajax({
+            url: "/Home/FetchProductss", method: "GET", complete: function (d) {
+                console.log(d)
+                $(".spinner-row").hide();
+            },
+            success: function (d) {
+                console.log("Success", d)
+
+                createTableRow(d)
+            },
+            error: function (d) {
+                console.log("Error", d)
+                $(".table-body").append($("<tr>").append($("<td>").html("Error Occured").addClass("text-danger text-center fs-3 fw-bold").attr({ "colspan": 5 })).addClass("text-center"))
+            }
+        })
+    </script>
+
+}

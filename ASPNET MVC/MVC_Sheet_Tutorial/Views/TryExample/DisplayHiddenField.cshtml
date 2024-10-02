@@ -1,0 +1,11 @@
+﻿@model (string, string)
+@{
+    ViewBag.Title = "DisplayHiddenField";
+}
+
+<h2>DisplayHiddenField</h2>
+
+<p> Displaying the Hidden Field</p>
+
+@Html.DisplayFor(e => e.Item1)
+@Html.DisplayFor(e => e.Item2)

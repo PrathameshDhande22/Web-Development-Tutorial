@@ -1,0 +1,6 @@
+﻿@model DateTime?
+
+@*Applying the Metadata of the Model to these templates*@
+@Html.TextBox("", Model.HasValue ? ViewData.TemplateInfo.FormattedModelValue : String.Empty, new { type = "datetime-local" })
+@ViewData.ModelMetadata.DataTypeName
+@ViewData.ModelMetadata.DisplayName

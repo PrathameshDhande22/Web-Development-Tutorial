@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "VerbsRequest";
+}
+
+<h2>VerbsRequest</h2>
+
+@ViewData["message"].ToString()
+
+@using (Html.BeginForm("VerbsRequest", "Home", FormMethod.Get))
+{
+    <button type="submit">GET Request</button>
+}
+
+@using (Html.BeginForm("VerbsRequest", "Home", FormMethod.Post))
+{
+    <button type="submit">POST Request</button>
+} 

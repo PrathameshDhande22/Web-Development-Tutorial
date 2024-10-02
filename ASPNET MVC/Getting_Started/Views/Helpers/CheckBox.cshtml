@@ -1,0 +1,18 @@
+﻿@model List<Getting_Started.Models.City>
+@{
+    ViewBag.Title = "Radiobtn";
+}
+
+<h2>Radiobtn</h2>
+
+@using (Html.BeginForm())
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(city => city[i].Id)
+        @Html.HiddenFor(city => city[i].Name)
+        @Html.CheckBoxFor(city => city[i].isSelected) @Model[i].Name
+    }
+
+    <button type="submit">Submit</button>
+}

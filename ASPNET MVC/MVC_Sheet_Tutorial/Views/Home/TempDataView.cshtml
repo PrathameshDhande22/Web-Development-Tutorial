@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "TempDataView ";
+    string methodname = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<h2>TempDataView</h2>
+@methodname
+
+@TempData["Name"]
+@TempData["Name2"]

@@ -1,0 +1,29 @@
+﻿
+@model string
+@{
+    ViewBag.Title = "Index";
+    string comment = "<script>alert('site is hacked')</script>";
+    Page.Title = "Setted using Page Property";
+}
+
+<h2>Index</h2>
+
+<p>Value from .Config file</p>
+<div class="p-3 text-bg-success">@System.Configuration.ConfigurationManager.AppSettings["databaseName"].ToString()</div>
+
+@*Rendering the action method directly in the Razor view*@
+@{Html.RenderAction("SetHiddenField");}
+
+<h2>Trying the Example and seeing what are their result</h2>
+
+@*Encoding and decoding examples*@
+@Html.Encode("<b>Prathamesh </b>")
+@Html.Raw("<b>Prathamesh</b>")
+
+<!--Handling the comment automatically-->
+<p>HTML Encoding - > @comment</p>
+@Html.Raw(comment)
+
+<img src="~/Content/Images/download.jpg" />
+
+@RenderPage("~/Views/Home/About.cshtml")

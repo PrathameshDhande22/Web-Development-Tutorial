@@ -1,0 +1,33 @@
+﻿@model Getting_Started.Models.Student
+
+@{
+    ViewBag.Title = "Student Details";
+}
+
+<h2>Student Details</h2>
+
+<table>
+    <tr>
+        <th>Name:</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>ID:</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Address:</th>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <th>City:</th>
+        <td>@Model.City</td>
+    </tr>
+    <tr>
+        <th>Standard:</th>
+        <td>@Model.Standard</td>
+    </tr>
+</table>
+
+@Html.ActionLink("Back to List","Lists")
+

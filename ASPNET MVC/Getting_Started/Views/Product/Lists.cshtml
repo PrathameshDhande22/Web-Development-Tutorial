@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Lists";
+}
+
+<h2>Listing Products</h2>
+
+<div class="list-wrapper">
+    @foreach (Product prod in Model)
+    {
+        <!--Rendering the partial view-->
+        @Html.Partial("_ProductList", prod)
+
+        <!-- PartialRender Method-->
+
+        Html.RenderPartial("_ProductList", prod);
+    }
+</div>
+

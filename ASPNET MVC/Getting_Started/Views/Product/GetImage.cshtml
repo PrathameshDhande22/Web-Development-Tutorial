@@ -1,0 +1,22 @@
+﻿@using Getting_Started.CustomHelpers
+@{
+    ViewBag.Title = "GetImage";
+}
+
+<h2>Image Viewer</h2>
+
+These is the one approach directly
+<img src="~/Content/Images/download.jpg" alt="Download Image" />
+<br />
+
+Using URL Helper Method
+<img src=@Url.Content(ViewData["ImageURL"].ToString()) alt=@ViewData["Alt"].ToString() />
+<br />
+
+Routing to other url of the same project
+<a href=@Url.Action("Index", "Product", new { id = 1 })>Click Here</a>
+
+
+<!--Using Custom HTML Helper method to show image-->
+@ViewBag.Customers
+@Html.Image(ViewData["ImageURL"].ToString(), ViewData["Alt"].ToString())

@@ -1,0 +1,22 @@
+﻿@model Getting_Started.Models.Product
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Product</h2>
+
+@{
+    if (ViewData.ContainsKey("Message"))
+    {
+        <h3>@ViewData["Message"]</h3>
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.ProductId)
+            @Html.EditorForModel()
+            <button type="submit" value="submit">Submit</button>
+        }
+    }
+}

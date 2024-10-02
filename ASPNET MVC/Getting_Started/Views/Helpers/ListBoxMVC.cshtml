@@ -1,0 +1,13 @@
+﻿@model Getting_Started.Models.CityViewModel
+@{
+    ViewBag.Title = "ListBoxMVC";
+}
+
+<h2>ListBoxMVC</h2>
+
+@using (Html.BeginForm())
+{
+
+    @Html.ListBoxFor(model => model.SelectedCites, Model.Cities,new {size=6})
+    <button type="submit">Submit</button>
+}
