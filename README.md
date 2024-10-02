@@ -23,10 +23,11 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 7. FastAPI (Python)
 8. TailwindCSS
 9. Typescript
-10. NodeJS
+10. NodeJS (JavaScript)
 11. React Recoil Tutorial
 12. ExpressJS or MERN Stack
-14. jQuery
+13. jQuery
+14. ASP.NET MVC Framework (C#)
 
 ## Projects :
 
@@ -63,3 +64,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 13. React Recoil Tutorial 👉 https://recoiljs.org/
 14. MERN 👉 https://youtube.com/playlist?list=PLwGdqUZWnOp2Z3eFOgtOGvOWIk4e8Bsr_&si=T5qqLXUDTFxBdA3W
 15. jQuery 👉 https://www.w3schools.com/jquery/default.asp
+16. ASP.NET MVC Framework 👉 https://www.youtube.com/playlist?list=PL6n9fhu94yhVm6S8I2xd6nYz2ZORd7X2v

@@ -1,392 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Prathamesh Dhande Web Development Tutorial Notes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
+      .mainheader {
+        height: 50px;
+        background-color: black;
+        width: 100%;
+        color: white;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        padding: 13px;
+        flex-wrap: wrap;
+      }
+
+      .mainheader span {
+        align-self: flex-end;
+        transform: translate(20px);
+      }
+
+      .goal {
+        width: 100vw;
+        height: 25%;
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+        background-color: red;
+        color: white;
+      }
+
+      .goal > span {
+        padding: 10px;
+      }
+
+      .goal .bar {
+        padding: 4px 2px;
+      }
+
+      .tutavl {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 900;
+        margin: 30px;
+        width: auto;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .content {
+        display: flex;
+        margin: 10px 10px;
+        gap: 10px;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+      }
+
+      .btnmade {
+        width: 290px;
+        height: 200px;
+        background-color: yellow;
+        border: 4px solid black;
+        color: black;
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      .mainbtn {
+        cursor: pointer;
+      }
+
+      .btnmade:hover {
+        box-shadow: 10px 10px 4px black;
+      }
+
+      .coverd {
+        font-size: 25px;
+        text-align: center;
+        padding-left: 25px;
+      }
+
+      .soon {
+        text-align: center;
+        padding: 19px;
+        border: 2px dotted black;
+        background-image: linear-gradient(
+          to left,
+          #3b41c5 0%,
+          #a981bb 49%,
+          #ffc8a9 100%
+        );
+        cursor: pointer;
+      }
+
+      .soon:hover {
+        background-image: linear-gradient(
+          to right,
+          #3b41c5 0%,
+          #a981bb 49%,
+          #ffc8a9 100%
+        );
+        transition: background-image 6s ease-in;
+        color: white;
+      }
+
+      @media screen and (max-width: 510px) {
         .mainheader {
-            height: 50px;
-            background-color: black;
-            width: 100%;
-            color: white;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            align-items: center;
-            padding: 13px;
-            flex-wrap: wrap;
-        }
-
-        .mainheader span {
-            align-self: flex-end;
-            transform: translate(20px);
-        }
-
-        .goal {
-            width: 100vw;
-            height: 25%;
-            border-top: 3px solid black;
-            border-bottom: 3px solid black;
-            background-color: red;
-            color: white;
-        }
-
-        .goal>span {
-            padding: 10px;
-        }
-
-        .goal .bar {
-            padding: 4px 2px;
+          font-size: 13px;
+          height: 80px;
         }
 
         .tutavl {
-            text-align: center;
-            font-size: 40px;
-            font-weight: 900;
-            margin: 30px;
-            width: auto;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-        }
-
-        .content {
-            display: flex;
-            margin: 10px 10px;
-            gap: 10px;
-            justify-content: space-evenly;
-            flex-wrap: wrap;
-        }
-
-        .btnmade {
-            width: 290px;
-            height: 200px;
-            background-color: yellow;
-            border: 4px solid black;
-            color: black;
-            font-size: 30px;
-            font-weight: 600;
-        }
-
-        .mainbtn {
-            cursor: pointer;
-        }
-
-        .btnmade:hover {
-            box-shadow: 10px 10px 4px black;
+          font-size: 40px;
         }
 
         .coverd {
-            font-size: 25px;
-            text-align: center;
-            padding-left: 25px;
+          font-size: 20px;
+          padding: 10px 0px 10px 10px;
+          margin-top: 20px;
+          margin-bottom: 20px;
         }
-
-        .soon {
-            text-align: center;
-            padding: 19px;
-            border: 2px dotted black;
-            background-image: linear-gradient(to left, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
-            cursor: pointer;
-        }
-
-        .soon:hover {
-            background-image: linear-gradient(to right, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%);
-            transition: background-image 6s ease-in;
-            color: white;
-        }
-
-        @media screen and (max-width:510px) {
-            .mainheader {
-                font-size: 13px;
-                height: 80px;
-            }
-
-            .tutavl {
-                font-size: 40px;
-            }
-
-            .coverd {
-                font-size: 20px;
-                padding: 10px 0px 10px 10px;
-                margin-top: 20px;
-                margin-bottom: 20px;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <div class="mainheader">
-            <h2>Web Development Tutorial's</h2>
-            <span>By Prathamesh Dhande</span>
+      <div class="mainheader">
+        <h2>Web Development Tutorial's</h2>
+        <span>By Prathamesh Dhande</span>
+      </div>
+      <div class="goal">
+        <span>My Goal 🎯 :</span>
+        <div class="bar">
+          <marquee truespeed="14" scrollamount="1px"
+            >⭐⭐ To become a Python/Django Developer to apply Skills like
+            Artifical Intelligence, Machine Learning & Data Science
+          </marquee>
         </div>
-        <div class="goal">
-            <span>My Goal 🎯 :</span>
-            <div class="bar">
-                <marquee truespeed="14" scrollamount="1px">⭐⭐ To become a Python/Django Developer to apply Skills like
-                    Artifical Intelligence, Machine Learning & Data
-                    Science
-                </marquee>
-            </div>
+      </div>
+      <div class="tutavl">Tutorial Available</div>
+      <div class="content">
+        <div class="htmlbutton mainbtn">
+          <button class="btnhtml btnmade">HTML</button>
         </div>
-        <div class="tutavl">Tutorial Available</div>
-        <div class="content">
-            <div class="htmlbutton mainbtn">
-                <button class="btnhtml btnmade">HTML</button>
-            </div>
-            <div class="cssbutton mainbtn">
-                <button class="btncss btnmade">CSS</button>
-            </div>
-            <div class="jsbutton mainbtn">
-                <button class="btnjs btnmade">JS</button>
-            </div>
-            <div class="bsbutton mainbtn">
-                <button class="btnbs btnmade">Bootstrap</button>
-            </div>
-            <div class="rjbutton mainbtn">
-                <button class="btnrj btnmade">React JS</button>
-            </div>
-            <div class="fkbutton mainbtn">
-                <button class="btnfk btnmade">Flask Tutorial</button>
-            </div>
-            <div class="fpbutton mainbtn">
-                <button class="btnfp btnmade">Flask API Tutorial</button>
-            </div>
-            <div class="fabutton mainbtn">
-                <button class="btnfa btnmade">FastAPI Tutorial</button>
-            </div>
-            <div class="tcbutton mainbtn">
-                <button class="btntc btnmade">TailwindCSS Tutorial</button>
-            </div>
-            <div class="tsbutton mainbtn">
-                <button class="btntc btnmade">Typescript Tutorial</button>
-            </div>
-            <div class="njbutton mainbtn">
-                <button class="btntc btnmade">NodeJS Tutorial</button>
-            </div>
-            <div class="rrbutton mainbtn">
-                <button class="btntc btnmade">React Recoil Tutorial</button>
-            </div>
-            <div class="expbutton mainbtn">
-                <button class="btntc btnmade">ExpressJS or MERN Stack Tutorial</button>
-            </div>
-            <div class="jqbutton mainbtn">
-                <button class="btntc btnmade">jQuery Tutorial</button>
-            </div>
+        <div class="cssbutton mainbtn">
+          <button class="btncss btnmade">CSS</button>
         </div>
-        <h2 class="soon">More Tutorial Will be Comming Soon</h2>
-        <div class="project">
-            <span class="coverd pb-3">Projects Covered In this Tutorials</span>
-            <div class="gap-3 ms-4 d-flex flex-row flex-wrap justify-content-evenly align-items-center">
-                <div class="card border-2 border-primary hovercard" style="width: 18rem;">
-                    <img src="https://github.com/PrathameshDhande22/Simple-Calculator-JS/raw/main/screenshots/img1.png"
-                        class="card-img-top" alt="Calculator Image">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Simple Calculator</h5>
-                        <p class="card-text ">Simple Functionality Calculator Made with Pure CSS, Javascript and HTML as
-                            a beginner Project in Javascript.</p>
-                        <a href="https://prathameshdhande22.github.io/Simple-Calculator-JS/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card  border-2 border-primary" style="width: 18rem;">
-                    <img src="https://github.com/PrathameshDhande22/Neflix-Clone/raw/main/README%20Images/img1.png"
-                        class="card-img-top" alt="netflix clone landing page image">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Netflix Clone</h5>
-                        <p class="card-text ">Netflix Landing Page Clone made with pure HTML and CSS as the beginner
-                            project in CSS.</p>
-                        <a href="https://prathameshdhande22.github.io/Neflix-Clone/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="Images/img1.png" class="card-img-top" alt="flag image">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">India Flag</h5>
-                        <p class="card-text ">India Flag with Rotating Ashok Chakra made with Pure CSS on Independence
-                            day.</p>
-                        <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/CSS/IndiaFlag/"
-                            class="btn btn-primary" target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="Images/img2.png" class="card-img-top" alt="Todo output image">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Todo App</h5>
-                        <p class="card-text ">Todo App made with the Javascript and LocalStorage in the way of learning
-                            Javascript with CSS framework Bootstrap.</p>
-                        <a href="https://prathameshdhande22.github.io/Web-Development-Tutorial/JS/41_TodoList/"
-                            class="btn btn-primary" target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="https://github.com/PrathameshDhande22/Tic-Tac-Toe-In-Js/raw/main/Screenshots/img2.png"
-                        class="card-img-top" alt="Tic Tac Toe Game Image">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Tic Tac Toe Game</h5>
-                        <p class="card-text ">Tic Tac Toe Game Made using Javascript, HTML, CSS and Bootstrap as the
-                            beginner Project of the Bootstrap + Javascript.</p>
-                        <a href="https://prathameshdhande22.github.io/Tic-Tac-Toe-In-Js/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="https://github.com/PrathameshDhande22/Quiz-App-in-React/raw/main/Screenshots/Img1.png"
-                        class="card-img-top" alt="Quiz Home Page Image">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Quiz App</h5>
-                        <p class="card-text ">Quiz App made with React, Material UI, Material Design Bootstrap, Lazy
-                            Loading, React-Bootstrap and Quiz Api as the beginner Project for React. First React
-                            Project.</p>
-                        <a href="https://quiz-app-in-react.vercel.app/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="https://user-images.githubusercontent.com/87264935/243428245-e90195f2-0a47-44a0-ab8d-d2ce7ec6473a.png"
-                        class="card-img-top" alt="Board Home Page">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Virtual Keyboard</h5>
-                        <p class="card-text ">Virtual Keyboard made using HTML, CSS, JS and Bootstrap. Supports only for
-                            desktop mode with caps, shift, spacebar and tab Functionality. Project Created to refresh my
-                            html,css and js concepts.</p>
-                        <a href="https://prathameshdhande22.github.io/Virtual-KeyBoard-HTML/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="https://user-images.githubusercontent.com/87264935/244675731-e28f06ac-aaad-4e4c-af71-5da104e22ac1.png"
-                        class="card-img-top" alt="DashBoard Home Page">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Admin DashBoard</h5>
-                        <p class="card-text">Admin Dashboard made using React JS and ant design the data is provided by
-                            Dummy JSON. </p>
-                        <a href="https://admindashboard-zfhw.onrender.com/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="https://user-images.githubusercontent.com/87264935/248559686-17038d8d-20c1-499c-89a0-b8f2c303e7e7.png"
-                        class="card-img-top" alt="Flask Todo app">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Flask Todo App</h5>
-                        <p class="card-text">Flask Todo App is a simple yet powerful task management application built
-                            using Flask and Python. With this app, you can easily add and organize your todos by
-                            providing a title and description for each task. The app includes robust error handling to
-                            ensure a seamless user experience.</p>
-                        <a href="https://flaskapptodo.onrender.com/" class="btn btn-primary" target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="https://github.com/PrathameshDhande22/FeedbackForm-Flask-App/raw/main/images/img1.png"
-                        class="card-img-top" alt="FeedbackForm Flask App">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Feedback Form Flask App</h5>
-                        <p class="card-text">A Flask-based feedback form that collects user feedback on products. It
-                            stores data in MongoDB and offers CSV download functionality. Built with Python, Flask,
-                            Pandas, and Bootstrap.</p>
-                        <a href="https://feedbackform-flask-app.onrender.com/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">DumpAPI</h5>
-                        <p class="card-text">DumpAPI is a Flask RESTful API with JWT token authentication, storing
-                            department and employee data in a free cloud PostgreSQL database with password hashing for
-                            security.</p>
-                        <a href="https://dumpapi-flask-api.onrender.com/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">2nd Product API</h5>
-                        <p class="card-text">A 2nd Product API made with FastAPI is similar to OLX, allowing users to
-                            register, login for access token. Sell, buy, and explore products, search by query or tag.
-                        </p>
-                        <a href="https://twondproductapi.onrender.com/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="./Images/img3.png" class="card-img-top" alt="React Login Page">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">React Login Page</h5>
-                        <p class="card-text">
-                            Project based on React, vite and TailwindCSS to apply it in the react application.This is
-                            simple login page.
-                        </p>
-                        <a href="https://react-login-page-nu.vercel.app/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="https://raw.githubusercontent.com/PrathameshDhande22/Film-Fiesta-Web-App/main/Images/img1.png"
-                        class="card-img-top" alt="Film Fiesta">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Film Fiesta</h5>
-                        <p class="card-text">
-                            Film Fiesta Project created as the project for typescript. The project is created using
-                            Vite, React and Typescript also though used Framer Motion for animation and TailwindCSS for
-                            minimalist of Writing the CSS.
-                        </p>
-                        <a href="https://film-fiesta-beta.vercel.app/" class="btn btn-primary" target="_blank">Visit</a>
-                    </div>
-                </div>
-                <div class="card border-2 border-primary" style="width: 18rem;">
-                    <img src="./Images/img4.png" class="card-img-top" alt="Simple Website">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">MERN Website</h5>
-                        <p class="card-text">
-                            Its a Simple MERN website created with help of ExpressJS with TypeScript and Frontend with
-                            help of React. The website Features the login, Register and admin Panel Functionality.
-                        </p>
-                        <a href="https://web-development-tutorial.vercel.app/" class="btn btn-primary"
-                            target="_blank">Visit</a>
-                    </div>
-                </div>
+        <div class="jsbutton mainbtn">
+          <button class="btnjs btnmade">JS</button>
+        </div>
+        <div class="bsbutton mainbtn">
+          <button class="btnbs btnmade">Bootstrap</button>
+        </div>
+        <div class="rjbutton mainbtn">
+          <button class="btnrj btnmade">React JS</button>
+        </div>
+        <div class="fkbutton mainbtn">
+          <button class="btnfk btnmade">Flask Tutorial</button>
+        </div>
+        <div class="fpbutton mainbtn">
+          <button class="btnfp btnmade">Flask API Tutorial</button>
+        </div>
+        <div class="fabutton mainbtn">
+          <button class="btnfa btnmade">FastAPI Tutorial</button>
+        </div>
+        <div class="tcbutton mainbtn">
+          <button class="btntc btnmade">TailwindCSS Tutorial</button>
+        </div>
+        <div class="tsbutton mainbtn">
+          <button class="btntc btnmade">Typescript Tutorial</button>
+        </div>
+        <div class="njbutton mainbtn">
+          <button class="btntc btnmade">NodeJS Tutorial</button>
+        </div>
+        <div class="rrbutton mainbtn">
+          <button class="btntc btnmade">React Recoil Tutorial</button>
+        </div>
+        <div class="expbutton mainbtn">
+          <button class="btntc btnmade">
+            ExpressJS or MERN Stack Tutorial
+          </button>
+        </div>
+        <div class="jqbutton mainbtn">
+          <button class="btntc btnmade">jQuery Tutorial</button>
+        </div>
+        <div class="mvcbutton mainbtn">
+          <button class="btntc btnmade">ASP.NET MVC Tutorial</button>
+        </div>
+      </div>
+      <h2 class="soon">More Tutorial Will be Comming Soon</h2>
+      <div class="project">
+        <span class="coverd pb-3">Projects Covered In this Tutorials</span>
+        <div
+          class="gap-3 ms-4 d-flex flex-row flex-wrap justify-content-evenly align-items-center"
+        >
+          <div
+            class="card border-2 border-primary hovercard"
+            style="width: 18rem"
+          >
+            <img
+              src="https://github.com/PrathameshDhande22/Simple-Calculator-JS/raw/main/screenshots/img1.png"
+              class="card-img-top"
+              alt="Calculator Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Simple Calculator</h5>
+              <p class="card-text">
+                Simple Functionality Calculator Made with Pure CSS, Javascript
+                and HTML as a beginner Project in Javascript.
+              </p>
+              <a
+                href="https://prathameshdhande22.github.io/Simple-Calculator-JS/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
             </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://github.com/PrathameshDhande22/Neflix-Clone/raw/main/README%20Images/img1.png"
+              class="card-img-top"
+              alt="netflix clone landing page image"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Netflix Clone</h5>
+              <p class="card-text">
+                Netflix Landing Page Clone made with pure HTML and CSS as the
+                beginner project in CSS.
+              </p>
+              <a
+                href="https://prathameshdhande22.github.io/Neflix-Clone/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img src="Images/img1.png" class="card-img-top" alt="flag image" />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">India Flag</h5>
+              <p class="card-text">
+                India Flag with Rotating Ashok Chakra made with Pure CSS on
+                Independence day.
+              </p>
+              <a
+                href="https://prathameshdhande22.github.io/Web-Development-Tutorial/CSS/IndiaFlag/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="Images/img2.png"
+              class="card-img-top"
+              alt="Todo output image"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Todo App</h5>
+              <p class="card-text">
+                Todo App made with the Javascript and LocalStorage in the way of
+                learning Javascript with CSS framework Bootstrap.
+              </p>
+              <a
+                href="https://prathameshdhande22.github.io/Web-Development-Tutorial/JS/41_TodoList/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://github.com/PrathameshDhande22/Tic-Tac-Toe-In-Js/raw/main/Screenshots/img2.png"
+              class="card-img-top"
+              alt="Tic Tac Toe Game Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Tic Tac Toe Game</h5>
+              <p class="card-text">
+                Tic Tac Toe Game Made using Javascript, HTML, CSS and Bootstrap
+                as the beginner Project of the Bootstrap + Javascript.
+              </p>
+              <a
+                href="https://prathameshdhande22.github.io/Tic-Tac-Toe-In-Js/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://github.com/PrathameshDhande22/Quiz-App-in-React/raw/main/Screenshots/Img1.png"
+              class="card-img-top"
+              alt="Quiz Home Page Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Quiz App</h5>
+              <p class="card-text">
+                Quiz App made with React, Material UI, Material Design
+                Bootstrap, Lazy Loading, React-Bootstrap and Quiz Api as the
+                beginner Project for React. First React Project.
+              </p>
+              <a
+                href="https://quiz-app-in-react.vercel.app/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://user-images.githubusercontent.com/87264935/243428245-e90195f2-0a47-44a0-ab8d-d2ce7ec6473a.png"
+              class="card-img-top"
+              alt="Board Home Page"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Virtual Keyboard</h5>
+              <p class="card-text">
+                Virtual Keyboard made using HTML, CSS, JS and Bootstrap.
+                Supports only for desktop mode with caps, shift, spacebar and
+                tab Functionality. Project Created to refresh my html,css and js
+                concepts.
+              </p>
+              <a
+                href="https://prathameshdhande22.github.io/Virtual-KeyBoard-HTML/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://user-images.githubusercontent.com/87264935/244675731-e28f06ac-aaad-4e4c-af71-5da104e22ac1.png"
+              class="card-img-top"
+              alt="DashBoard Home Page"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Admin DashBoard</h5>
+              <p class="card-text">
+                Admin Dashboard made using React JS and ant design the data is
+                provided by Dummy JSON.
+              </p>
+              <a
+                href="https://admindashboard-zfhw.onrender.com/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://user-images.githubusercontent.com/87264935/248559686-17038d8d-20c1-499c-89a0-b8f2c303e7e7.png"
+              class="card-img-top"
+              alt="Flask Todo app"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Flask Todo App</h5>
+              <p class="card-text">
+                Flask Todo App is a simple yet powerful task management
+                application built using Flask and Python. With this app, you can
+                easily add and organize your todos by providing a title and
+                description for each task. The app includes robust error
+                handling to ensure a seamless user experience.
+              </p>
+              <a
+                href="https://flaskapptodo.onrender.com/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://github.com/PrathameshDhande22/FeedbackForm-Flask-App/raw/main/images/img1.png"
+              class="card-img-top"
+              alt="FeedbackForm Flask App"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Feedback Form Flask App</h5>
+              <p class="card-text">
+                A Flask-based feedback form that collects user feedback on
+                products. It stores data in MongoDB and offers CSV download
+                functionality. Built with Python, Flask, Pandas, and Bootstrap.
+              </p>
+              <a
+                href="https://feedbackform-flask-app.onrender.com/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">DumpAPI</h5>
+              <p class="card-text">
+                DumpAPI is a Flask RESTful API with JWT token authentication,
+                storing department and employee data in a free cloud PostgreSQL
+                database with password hashing for security.
+              </p>
+              <a
+                href="https://dumpapi-flask-api.onrender.com/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">2nd Product API</h5>
+              <p class="card-text">
+                A 2nd Product API made with FastAPI is similar to OLX, allowing
+                users to register, login for access token. Sell, buy, and
+                explore products, search by query or tag.
+              </p>
+              <a
+                href="https://twondproductapi.onrender.com/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="./Images/img3.png"
+              class="card-img-top"
+              alt="React Login Page"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">React Login Page</h5>
+              <p class="card-text">
+                Project based on React, vite and TailwindCSS to apply it in the
+                react application.This is simple login page.
+              </p>
+              <a
+                href="https://react-login-page-nu.vercel.app/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://raw.githubusercontent.com/PrathameshDhande22/Film-Fiesta-Web-App/main/Images/img1.png"
+              class="card-img-top"
+              alt="Film Fiesta"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Film Fiesta</h5>
+              <p class="card-text">
+                Film Fiesta Project created as the project for typescript. The
+                project is created using Vite, React and Typescript also though
+                used Framer Motion for animation and TailwindCSS for minimalist
+                of Writing the CSS.
+              </p>
+              <a
+                href="https://film-fiesta-beta.vercel.app/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="./Images/img4.png"
+              class="card-img-top"
+              alt="Simple Website"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">MERN Website</h5>
+              <p class="card-text">
+                Its a Simple MERN website created with help of ExpressJS with
+                TypeScript and Frontend with help of React. The website Features
+                the login, Register and admin Panel Functionality.
+              </p>
+              <a
+                href="https://web-development-tutorial.vercel.app/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
+          <div class="card border-2 border-primary" style="width: 18rem">
+            <img
+              src="https://github.com/PrathameshDhande22/Flip-Card-Memory-Game/raw/main/Images/image1.png"
+              class="card-img-top"
+              alt="Game using Jquery"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Flip Card Memory Game</h5>
+              <p class="card-text">
+                Flip Card Memory Game purely created using HTML, CSS, Javascript
+                & jQuery. Icons Used in these projects are taken from Bootstrap
+                Icons. Image are also obtained and downloaded which were
+                publicly available.
+              </p>
+              <a
+                href="https://prathameshdhande22.github.io/Flip-Card-Memory-Game/"
+                class="btn btn-primary"
+                target="_blank"
+                >Visit</a
+              >
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
     <script>
-        function call(classname, href) {
-            document.getElementsByClassName(classname)[0].addEventListener("click", (e) => {
-                window.open(href, "_blank")
-            })
-        }
+      function call(classname, href) {
+        document
+          .getElementsByClassName(classname)[0]
+          .addEventListener("click", (e) => {
+            window.open(href, "_blank");
+          });
+      }
 
-        call("htmlbutton", "./HTML/index.html")
-        call("cssbutton", "./CSS/index.html")
-        call("jsbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/JS")
-        call("bsbutton", "./Bootstrap/index.html")
-        call("rjbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs/reactjs_course")
-        call("fkbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/Flask%20Tutorial")
-        call("fpbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/Flask%20API")
-        call("fabutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/FastAPI%20Tutorial")
-        call("tcbutton", "./TailwindCSS/dist/index.html")
-        call("tsbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/Typescript")
-        call("njbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/NodeJS")
-        call("rrbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs/recoil_tutorial")
-        call("expbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/MERN")
-        call("jqbutton", "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/JQuery")
+      call("htmlbutton", "./HTML/index.html");
+      call("cssbutton", "./CSS/index.html");
+      call(
+        "jsbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/JS"
+      );
+      call("bsbutton", "./Bootstrap/index.html");
+      call(
+        "rjbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs/reactjs_course"
+      );
+      call(
+        "fkbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/Flask%20Tutorial"
+      );
+      call(
+        "fpbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/Flask%20API"
+      );
+      call(
+        "fabutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/FastAPI%20Tutorial"
+      );
+      call("tcbutton", "./TailwindCSS/dist/index.html");
+      call(
+        "tsbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/Typescript"
+      );
+      call(
+        "njbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/NodeJS"
+      );
+      call(
+        "rrbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs/recoil_tutorial"
+      );
+      call(
+        "expbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/MERN"
+      );
+      call(
+        "jqbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/JQuery"
+      );
+      call(
+        "mvcbutton",
+        "https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ASPNET%20MVC"
+      );
     </script>
-</body>
-
+  </body>
 </html>
