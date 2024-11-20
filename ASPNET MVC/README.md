@@ -2,7 +2,7 @@
 
 These Repository contains the tutorial Files for the MVC Tutorial Framework later tutorial will be based on MVC Core supporting .NET 8 SDK Currently the Project supports or Tutorial File Supports the .NET 4.8 Framework which is older.
 
-**Note:** Before Starting reading the Tutorial You must be familiar with **Entity Framework** The whole tutorial is based on Entity Framework which is a ORM for the Database.
+**Note:** Before Starting reading the Tutorial You must be familiar with **[Entity Framework](https://github.com/PrathameshDhande22/My-tutorial-References/tree/main/Entity%20Framework)** The whole tutorial is based on Entity Framework which is a ORM for the Database.
 
 ## Contents:
 
