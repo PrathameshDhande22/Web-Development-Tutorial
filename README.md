@@ -28,6 +28,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 12. ExpressJS or MERN Stack
 13. jQuery
 14. ASP.NET MVC Framework (C#)
+15. Angular 
 
 ## Projects :
 
@@ -66,3 +67,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 14. MERN 👉 https://youtube.com/playlist?list=PLwGdqUZWnOp2Z3eFOgtOGvOWIk4e8Bsr_&si=T5qqLXUDTFxBdA3W
 15. jQuery 👉 https://www.w3schools.com/jquery/default.asp
 16. ASP.NET MVC Framework 👉 https://www.youtube.com/playlist?list=PL6n9fhu94yhVm6S8I2xd6nYz2ZORd7X2v
+17. Angular 👉 https://www.youtube.com/playlist?list=PL1BztTYDF-QNlGo5-g65Xj1mINHYk_FM9
