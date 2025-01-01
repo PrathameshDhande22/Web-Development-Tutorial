@@ -1,0 +1,31 @@
+<div class="p-2 border-1 border d-inline-block border-black rounded-2">
+
+  <!--Displaying the data from component to view -->
+  <p>Name : {{name}}</p>
+  <p>Color : {{color}}</p>
+  <p>Price : {{price}}</p>
+</div>
+<div class="p-2 border-1 border d-inline-block border-black rounded-2 ms-1">
+
+  <!--Property Binding-->
+  <img [src]="product.pImage" alt="GTA 6 Image" class="w-25" />
+
+  <!--Displaying the data from component to view -->
+  <p>Name : {{product.name}}</p>
+  <p>Color : {{product.color}}</p>
+  <p>Price : {{product.price}}</p>
+  <p>Stock : {{product.stock}}</p>
+
+  <!--Calling the Function which is created inside the component-->
+  <p>Discounted Price : {{getdiscountPrice().valueOf()}}</p>
+  <p>Date : {{getDate().getFullYear()}}</p>
+
+  <!--Property Binding when the stock decreases the button gets disabled -->
+  <button class="btn btn-success" [disabled]="product.stock<=0">Add to Cart</button>
+
+  <!--Property Binding using bind keyword-->
+  <input type="text" bind-value="username" class="form-control">
+
+  <!--Attribute Binding-->
+  <input type="text" [attr.data-name]="product.name">
+</div>

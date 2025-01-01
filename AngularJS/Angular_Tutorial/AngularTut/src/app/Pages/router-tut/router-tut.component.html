@@ -1,0 +1,34 @@
+<div class="container">
+
+  <h3 class="mt-3">
+    1. Routing by Navigate Method & NavigateByUrl using Programatically
+  </h3>
+  <button class="btn btn-danger me-3" (click)="onBtnNavigate()">
+    Navigate to Binding by Navigate Method
+  </button>
+  <button class="btn btn-info" (click)="onBtnNavigateByUrl()">
+    Navigate to Directive by NavigateByUrl Method
+  </button>
+  <div>
+    the Currently Active Route => {{activatedRoute.snapshot.url}}
+  </div>
+  <hr />
+
+
+  <h3 class="mt-3">2. Route Parameter</h3>
+  <label for="selectlaptop" class="form-label">Select the Laptop Want to View : </label>
+  <select name="laptopindex" id="selectlaptop" #laptopselect class="form-control"
+    (change)="onSelectChange(laptopselect)">
+    <option value="">Select Index</option>
+    <option [value]="laptop" *ngFor="let laptop of laptopIndex">{{laptop+1}}</option>
+  </select>
+  <hr>
+
+  <h3 class="mt-3">3. Query String</h3>
+  <a routerLink="/routes/querystring" class="btn btn-success">Click Here to Navigate</a>
+  <hr>
+
+  <h3 class="mt-3">4. Fragments</h3>
+  <a routerLink="/routes/fragments" class="btn btn-success">Click Here to Navigate</a>
+  <hr>
+</div>

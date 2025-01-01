@@ -1,0 +1,16 @@
+<p>
+  &commat;ViewChild Decorators binds the reference to the DOM just like the useRef Hooks in react.
+</p>
+
+<div>
+
+  <div class="input-group">
+
+    <!-- Assigning the Template Reference Variable -->
+    <input type="text" class="form-control" #username placeholder="Enter Username">
+
+    <button class="btn btn-success" (click)="showData()">
+      Submit
+    </button>
+  </div>
+</div>

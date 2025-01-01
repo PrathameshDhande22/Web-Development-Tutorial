@@ -1,0 +1,35 @@
+<div class="container mb-4">
+
+  <h3 class="mt-3">1. Login & Logout</h3>
+  <login />
+  <p>
+    Can be Viewed by Authenticated User only
+  </p>
+  <button class="btn btn-outline-info" routerLink="/canactivate">
+    Click Here to See Canactivated Routes
+  </button>
+  <p>
+    Parent Component is able to view but not able to view the child routes
+  </p>
+  <button class="btn btn-outline-info" routerLink="/canactivatechild">
+    Click Here to See CanactivatedChild Routes
+  </button>
+  <hr>
+
+  <h3 class="mt-3">2. CanDeactivate</h3>
+  <p>
+    CanDeactivate Route Guard is helpful when you want alert the user that his entered form or data will be lost if he routes to other url.
+  </p>
+  <button class="btn btn-outline-warning" routerLink="/deactivate">
+    Navigate to Candeactivate Route Guard route
+  </button>
+
+  <h3 class="mt-3">3. Resolve Route Guard</h3>
+  <p>
+    When you want to load the data before the component is rendered in such scenario These guard is helpful.
+  </p>
+  <button class="btn btn-outline-success" routerLink="/resolve">
+    Navigate to Resolve Route Guard route
+  </button>
+</div>
+

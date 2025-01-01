@@ -1,0 +1,11 @@
+<p>
+  Just like how we given the reference to the element and accessing its value and other dom related function. Similary
+  we can access the component data by giving the reference variable to the component.
+</p>
+
+<div>
+  <!-- accessing the reference componnent variable -->
+  <childdetail *ngIf="childcomps.selectedPeople" [selectedComp]="selectedPeople" />
+  <!-- giving the reference to the component -->
+  <childcomponent #childcomps />
+</div>

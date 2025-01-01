@@ -1,0 +1,9 @@
+<div class="input-group my-4 w-50">
+  <input type="text" class="form-control" (input)="onInputChange()" [(ngModel)]="searchText">
+  <button class="btn btn-dark">Search</button>
+</div>
+<p>
+  Search Results : <span class="fw-bold">
+    {{searchText}}
+  </span>
+</p>

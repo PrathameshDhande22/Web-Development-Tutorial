@@ -1,0 +1,18 @@
+<p>
+  &commat;ViewChildren is similar to ViewChild but it returns only the single Matching Elements Reference. On the Other
+  hand &commat;ViewChildren returns list of all Matching Elements reference.
+</p>
+
+<div class="">
+  <!-- Giving the same template reference variable to all the inputs -->
+
+  <input type="text" class="form-control mt-2" placeholder="Enter First Name" #InputEle>
+
+  <input type="text" class="form-control mt-2" placeholder="Enter Middle Name" #InputEle>
+
+  <input type="text" class="form-control mt-2" placeholder="Enter Last Name" #InputEle>
+
+  <button class="btn btn-success mt-2 w-100" (click)="showFullName()">
+    Show Full Name
+  </button>
+</div>

@@ -1,0 +1,27 @@
+<p>
+  Ng-template defines the templates only, it does not display, to display you can use ngTemplateOutlet and use the
+  reference variable.
+</p>
+
+<div>
+  These is Simple Div Element
+
+  <!-- defining the templates -->
+  <ng-template #showtemplate>
+    <p>
+      These is NG Template
+    </p>
+    <div>
+      These is the contains of the NG Templates
+    </div>
+  </ng-template>
+</div>
+
+<!-- Displaying the template -->
+<div id="parentdiv">
+  <div id="samplediv" *ngTemplateOutlet="showtemplate">
+    <div>
+      Hello
+    </div>
+  </div>
+</div>

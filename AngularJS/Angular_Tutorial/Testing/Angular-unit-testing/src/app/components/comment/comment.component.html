@@ -1,0 +1,15 @@
+<div>
+    <h1>welcome to comments section</h1>
+    <input 
+     type="text"
+     placeholder="write a comment" 
+     (input)="handleChange($event)"
+     [value]="text"
+     />
+    <button (click)="handleSubmit()">Post</button>
+    <ul>
+        <li *ngFor="let comment of allComments">
+          {{ comment.text }}
+        </li>
+    </ul>
+</div>

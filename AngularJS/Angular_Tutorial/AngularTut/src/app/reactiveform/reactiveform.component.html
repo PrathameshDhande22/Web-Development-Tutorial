@@ -1,0 +1,334 @@
+<div class="container mt-3">
+  <!-- assigining the variable to the directive of formGroup which contains the formcontrols  -->
+  <form
+    class="border border-1 border-warning p-3 rounded-2"
+    [formGroup]="this.reactiveform"
+    (ngSubmit)="OnSubmit()"
+  >
+    <!-- First Name -->
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <!-- Assigning the name exact as used in the reactive forms while assigning to the directive formcontrolname -->
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder="Enter First Name"
+        formControlName="firstname"
+      />
+      <!-- showing the validation message only when the input is touched and value is invalid -->
+      <span
+        class="invalid-error"
+        *ngIf="
+          reactiveform.get('firstname')?.invalid &&
+          reactiveform.get('firstname')?.touched
+        "
+      >
+        First Name is Required
+      </span>
+    </div>
+
+    <!-- Last Name -->
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        placeholder="Enter Last Name"
+        formControlName="lastname"
+      />
+      <span
+        class="invalid-error"
+        *ngIf="
+          reactiveform.get('lastname')?.invalid &&
+          reactiveform.get('lastname')?.touched
+        "
+      >
+        Last Name is Required
+      </span>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Enter Email"
+        formControlName="email"
+      />
+      <span
+        class="invalid-error"
+        *ngIf="
+          reactiveform.get('email')?.invalid &&
+          reactiveform.get('email')?.touched
+        "
+      >
+        Entered Email is not Valid
+      </span>
+    </div>
+
+    <!-- Gender -->
+    <div class="mb-3">
+      <label class="form-label me-3">Gender</label>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          id="male"
+          value="Male"
+          formControlName="gender"
+          class="form-check-input"
+        />
+        <label for="male" class="form-check-label">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          id="female"
+          value="Female"
+          formControlName="gender"
+          class="form-check-input"
+        />
+        <label for="female" class="form-check-label">Female</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          id="other"
+          value="Other"
+          class="form-check-input"
+          formControlName="gender"
+        />
+        <label for="other" class="form-check-label">Other</label>
+      </div>
+    </div>
+
+    <!-- State -->
+    <div formGroupName="address">
+      <div class="mb-3">
+        <label for="state" class="form-label">State</label>
+        <select class="form-select" id="state" formControlName="state">
+          <option value="">Select State</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Goa">Goa</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Haryana">Haryana</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Punjab">Punjab</option>
+          <option value="Rajasthan">Rajasthan</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="West Bengal">West Bengal</option>
+          <!-- Add other states as needed -->
+        </select>
+        <span
+          class="invalid-error"
+          *ngIf="
+            reactiveform.get('address.state')?.invalid &&
+            reactiveform.get('address.state')?.touched
+          "
+        >
+          State Field is required
+        </span>
+      </div>
+
+      <!-- City -->
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          placeholder="Enter City"
+          formControlName="city"
+        />
+        <span
+          class="invalid-error"
+          *ngIf="
+            reactiveform.get('address.city')?.invalid &&
+            reactiveform.get('address.city')?.touched
+          "
+        >
+          City Field is required
+        </span>
+      </div>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="mb-3">
+      <label for="dob" class="form-label">Date of Birth</label>
+      <input type="date" class="form-control" id="dob" formControlName="dob" />
+    </div>
+
+    <!-- assigning the form array name -->
+    <div class="mb-3" formArrayName="formarray">
+      <label for="formarray" class="form-label">Form Array</label>
+      <!-- giving the form control name of the array as their index -->
+      <input type="text" [formControlName]="1" class="form-control" />
+      <input type="text" [formControlName]="0" class="form-control" />
+      <input type="text" [formControlName]="2" class="form-control" />
+    </div>
+
+    <div class="mb-3" formArrayName="hobbies">
+      <label for="skills">Hobbies</label>
+      <div
+        class="flex flex-row justify-content-center align-items-center align-content-center mt-1"
+        *ngFor="
+          let contorl of reactiveform.get('hobbies')['controls'];
+          let i = index
+        "
+      >
+        <input
+          type="text"
+          class="p-1 border me-2"
+          [formControlName]="i"
+          [placeholder]="'Hobbies ' + (i + 1)"
+        />
+        <button
+          class="btn btn-success"
+          type="button"
+          (click)="DeleteHobbies(i)"
+        >
+          Delete
+        </button>
+      </div>
+      <button
+        class="btn btn-danger mt-2 w-100"
+        type="button"
+        (click)="AddSkill()"
+      >
+        Add Hobbies
+      </button>
+    </div>
+
+    <!-- adding the form group dynamically  -->
+    <div>
+      <div formArrayName="studies">
+        <div>Learing Path</div>
+        <div
+          *ngFor="
+            let groups of reactiveform.get('studies')['controls'];
+            let i = index
+          "
+          [formGroupName]="i"
+          class="p-2 border border-1 border-info mt-2"
+        >
+          <label for="">Studies {{ i + 1 }}</label>
+          <input
+            type="text"
+            class="form-control mt-2"
+            formControlName="college"
+            placeholder="College"
+          />
+          <input
+            type="number"
+            class="form-control mt-2"
+            formControlName="year"
+            placeholder="Year"
+          />
+          <input
+            type="text"
+            class="form-control mt-2"
+            formControlName="degree"
+            placeholder="Degree"
+          />
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="DeleteSchool(i)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      <button
+        class="btn btn-danger mt-2 w-100"
+        (click)="AddSchool()"
+        type="button"
+      >
+        Add School
+      </button>
+    </div>
+
+    <!-- Input with Custom Validators -->
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input
+        type="text"
+        name="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+      />
+      <!-- printing the custom validation error message -->
+      <div
+        *ngIf="
+          reactiveform.get('password').hasError('required') &&
+          reactiveform.get('password')?.invalid &&
+          reactiveform.get('password')?.touched
+        "
+        class="text-danger"
+      >
+        Password Field is required
+      </div>
+      <div
+        *ngIf="
+          reactiveform.get('password').hasError('CheckPasswordStrength') &&
+          reactiveform.get('password')?.invalid &&
+          reactiveform.get('password')?.touched &&
+          !reactiveform.get('password').hasError('required')
+        "
+        class="text-danger"
+      >
+        Password must have One UpperCase, One Lowercase, One Number and One
+        Symbol.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input
+        type="number"
+        class="form-control"
+        formControlName="age"
+        placeholder="Enter Age"
+      />
+      <div
+        *ngIf="
+          reactiveform.get('age').hasError('Range') &&
+          reactiveform.get('age')?.touched
+        "
+        class="text-danger"
+      >
+        Age must be between 18 - 50
+      </div>
+    </div>
+
+    <!-- Rendering the formRecord forms -->
+    <div class="mb-3" formGroupName="records">
+      <input
+        type="number"
+        formControlName="year"
+        class="form-control"
+        placeholder="Enter Year"
+      />
+      <input
+        type="number"
+        formControlName="month"
+        class="form-control"
+        placeholder="Enter Month"
+      />
+    </div>
+    <button
+      class="btn btn-primary mt-2"
+      type="submit"
+      [disabled]="reactiveform.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

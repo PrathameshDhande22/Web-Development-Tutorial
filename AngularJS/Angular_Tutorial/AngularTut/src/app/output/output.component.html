@@ -1,0 +1,13 @@
+<p>
+  Passing the data from the child to parent component using &commat;Output and Custom Event Binding here using the
+  Filters.
+</p>
+
+<!--selectedfilter type is the variable accessible thorough output as they are the event emitter and accessing the emitted value using $event as in these case it is the string-->
+<app-filter [listoffilter]="filterlist" (selectedFiltertype)="onFilterChange($event)" />
+
+<div class="rows row-cols-3 row-cols-sm-2 row-cols-md-3 ">
+  <div *ngFor="let lapts of listoflaptops" class="col d-inline-block p-2">
+    <app-child [laptop]="lapts" />
+  </div>
+</div>

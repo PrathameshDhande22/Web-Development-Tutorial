@@ -1,0 +1,50 @@
+<p>
+  ng-content is used to pass the data from the component
+   &lt;component&gt; data &lt;/component&gt; to render something
+</p>
+
+<div>
+  <app-childcontent>
+    <!-- Passing the elements from the parent component to child component -->
+    <h2>
+      These is ngcontent 1
+    </h2>
+    <p>
+      These is second ngcontent 1
+    </p>
+  </app-childcontent>
+  <app-childcontent>
+    <h2>
+      These is ngcontent 2
+    </h2>
+    <p>
+      These is second ngcontent 2
+    </p>
+  </app-childcontent>
+  <app-childcontent>
+    <h2>
+      These is ngcontent 3
+    </h2>
+    <p>
+      These is second ngcontent 3
+    </p>
+  </app-childcontent>
+
+  <!-- Passing the content by the selector -->
+  <app-childcontent>
+    <h2 class="h2tag">
+      These is ngcontent 4
+    </h2>
+    <p class="ptag">
+      These is second ngcontent 4
+    </p>
+  </app-childcontent>
+  <app-childcontent>
+    <h2 class="h2tag">
+      These is ngcontent 5
+    </h2>
+    <p class="ptag">
+      These is second ngcontent 5
+    </p>
+  </app-childcontent>
+</div>

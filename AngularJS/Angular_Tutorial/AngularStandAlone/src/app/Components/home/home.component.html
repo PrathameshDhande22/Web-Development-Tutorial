@@ -1,0 +1,27 @@
+<div class="my-10">
+  <div class="lg:px-10">
+    <h3 class="text-2xl text-black mb-3">Lorem12 Ipsum</h3>
+    <div class="text-justify">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo deserunt
+      beatae reiciendis excepturi tempore cum exercitationem, odit quas enim
+      incidunt fuga optio placeat quisquam omnis consequatur voluptate ipsum rem
+      quidem dignissimos, quo nobis consectetur? Aperiam distinctio explicabo
+      non hic tempore consequatur, alias inventore aut doloribus corrupti soluta
+      quae animi eos, blanditiis provident laborum praesentium nam, eaque
+      reprehenderit eum dolorum iusto voluptatum quod? Quam commodi temporibus,
+      sint neque deserunt aliquam corrupti odio saepe architecto suscipit quas
+      animi ducimus nam excepturi officia nesciunt reiciendis enim facilis.
+      Laborum qui, modi cumque, officiis, rerum amet tempore id libero tempora
+      quasi neque nemo. Quos, beatae.
+    </div>
+    <div>
+      <span *ngFor="let name of listofname" class="me-3">{{ name }}</span>
+    </div>
+    <div class="">
+      <h3 class="text-center text-xl font-bold py-6">Services</h3>
+      <div class="flex justify-between gap-5 flex-wrap">
+        <card [service]="service" *ngFor="let service of services"></card>
+      </div>
+    </div>
+  </div>
+</div>

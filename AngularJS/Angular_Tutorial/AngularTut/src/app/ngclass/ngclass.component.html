@@ -1,0 +1,19 @@
+<div>
+  <p>
+    Search and Clear btn will be enabled whenever you type some text inside the box. Will also change color based on
+    condition applied in ngClass directive
+  </p>
+  <div class="input-group my-4 w-50">
+    <input type="text" class="form-control" [(ngModel)]="searchText">
+
+    <!--applying condition based class show-->
+    <button class="btn" [ngClass]="{'btn-dark':toDisplay(),'btn-danger disabled':!toDisplay()}"
+      (click)="showAlert(this.searchText)">Search</button>
+
+    <button class="btn btn-info" [disabled]="!toDisplay()" (click)="this.searchText=''">Clear</button>
+  </div>
+
+  <span class="d-block" *ngIf="toDisplay()">Search Results : <span class="fw-bold">{{searchText}}</span></span>
+
+
+</div>

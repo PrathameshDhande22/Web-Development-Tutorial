@@ -1,0 +1,25 @@
+div {
+    margin: 10px;
+}
+nav {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+li:hover{
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}

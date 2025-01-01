@@ -1,0 +1,81 @@
+<div class="container mt-3">
+  <p>Observables and receiving asynchronous data stream.</p>
+
+  <h3 class="mt-3">1. Creating and Using the Observables</h3>
+  <p>
+    Simply creating the observable using Observable Class and Subscribing to it.
+  </p>
+  <button class="btn btn-success" (click)="Subscribe()">
+    Click me to start the dummy Observable to Subscribe
+  </button>
+  <button class="btn btn-success mt-4" (click)="SubscribeError()">
+    Click me to start the dummy Observable to Subscribe and See the Error
+  </button>
+  <div>
+    <span *ngFor="let no of listofnumber">{{ no }} </span>
+  </div>
+  <hr />
+
+  <h3 class="mt-3">
+    2. Creating the Observable using create, of, from operators in Angular.
+  </h3>
+  <p>Creating the Observable using the methods or operators of RxJS.</p>
+  <button class="btn btn-success" (click)="BtnOf()">Of Operator</button>
+  <button class="btn btn-success ms-3" (click)="BtnFrom()">
+    From Operator
+  </button>
+  <hr />
+
+  <h3 class="mt-3">3. FromEvent</h3>
+  <p>Creating the Observable ot the DOM Event.</p>
+  <button class="btn btn-outline-danger" #btnclick (click)="btnFromEvent()">
+    Click Me and Watch the Console
+  </button>
+  <hr />
+
+  <h3 class="mt-3">4. Observable Pipes</h3>
+  <p>
+    Using the Pipes with the Observable <code>See the Console for Output</code>
+  </p>
+  <div class="d-flex align-content-center flex-wrap gap-3">
+    <button class="btn btn-outline-info" (click)="BtnPipes()">
+      Subscribe Map, Filter & Tap
+    </button>
+    <button class="btn btn-outline-info" (click)="BtnSwitch()">
+      Subscribe SwitchMap
+    </button>
+    <button class="btn btn-outline-info" (click)="BtnMerge()">
+      Subscribe MergeMap
+    </button>
+    <button class="btn btn-outline-info" (click)="BtnConcat()">
+      Subscribe ConcatMap
+    </button>
+    <button class="btn btn-outline-info" (click)="BtnDebounce()">
+      Subscribe DebounceTime
+    </button>
+    <button class="btn btn-outline-info" (click)="BtnTryCatch()">
+      Subscribe Try & Catch Error
+    </button>
+    <button class="btn btn-outline-secondary" (click)="BtnSubject()">
+      Subject
+    </button>
+  </div>
+  <hr />
+
+  <h3 class="mt-3">5. Observable Extras</h3>
+  <p>
+    Using the Extras Observable Methods <code>See the Console for Output</code>
+  </p>
+  <div class="d-flex align-content-center flex-wrap gap-3"></div>
+  <hr />
+
+  <h3 class="mt-3">6. Subject Trial</h3>
+  <div class="row row-cols-3">
+    <button (click)="BtnSubjectTrial(1)">Increment</button>
+    <div class="fs-2 fw-bold text-center">
+      {{ count }}
+    </div>
+    <button (click)="BtnSubjectTrial(-1)">Decrement</button>
+  </div>
+  <hr />
+</div>

@@ -1,0 +1,14 @@
+<p>
+  A signal is a wrapper around a value that notifies interested consumers when
+  that value changes. Signals can contain any value, from primitives to complex
+  data structures.
+</p>
+
+<div>
+  <button (click)="btnCounter(1)">+</button>
+  <!-- getting the value using count() as the function -->
+  {{ count() }}
+
+  <button (click)="btnCounter(-1)">-</button>
+  <app-signal-child [counts]="count"></app-signal-child>
+</div>

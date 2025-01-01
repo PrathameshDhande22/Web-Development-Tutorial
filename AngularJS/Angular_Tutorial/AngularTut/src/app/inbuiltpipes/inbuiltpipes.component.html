@@ -1,0 +1,50 @@
+<p>
+  Pipes are used to format the data or transform it before displaying it into the component.
+</p>
+
+<div>
+  <strong>
+    1. UpperCasePipe
+  </strong><br>
+
+  <!-- Using the Pipes -->
+  original => {{username}} <br>
+  After Applying Pipe =>
+  {{username | uppercase}}
+</div>
+
+<div>
+  <strong>
+    2. DataPipe
+  </strong><br>
+
+  <!-- using the date pipe applying the formating to it -->
+  original => {{dateofbirth}} <br>
+  After Applying Pipe =>
+  <!-- passing the parameter to pipe -->
+  {{dateofbirth | date: "dd / LLLL / yyyy"}}
+</div>
+
+<div>
+  <strong>
+    3. PercentPipe
+  </strong><br>
+
+  <!-- using the percent pipe applying the formating to it -->
+  original => {{percentage}} <br>
+  After Applying Pipe =>
+  <!-- passing the parameter to pipe -->
+  {{percentage | percent:"2.2" }}
+</div>
+
+<div>
+  <strong>
+    4. Currency Pipe
+  </strong><br>
+
+  <!--using the currency pipe and passing multiple arguments -->
+  original => {{money}} <br>
+  After Applying Pipe =>
+  <!-- passing the parameter to pipe -->
+  {{money | currency:"INR":true }}
+</div>

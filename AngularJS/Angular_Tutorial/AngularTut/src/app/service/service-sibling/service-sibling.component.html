@@ -1,0 +1,11 @@
+<p>
+  These is Service Sibling Component
+</p>
+
+<div *ngIf="!usernname else logtemplate" class="border border-1 border-black text-center p-2">
+  User Not Logged In
+</div>
+
+<ng-template #logtemplate>
+  User : {{usernname}}
+</ng-template>

@@ -1,0 +1,8 @@
+<div *ngFor="let lapname of listofLaptopname">
+  <div *ngIf="checkIfMatches(lapname)">
+    <span>
+      Name => {{lapname}}
+    </span>
+  </div>
+</div>
+{{searchedText}}

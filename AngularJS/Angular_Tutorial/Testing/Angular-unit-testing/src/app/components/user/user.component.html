@@ -1,0 +1,5 @@
+<p>user works!</p>
+<h1>Name - {{username || "UserName is hidden"}}</h1>
+<h2>Phone - {{phone | formatMob}}</h2>
+<h3 appHighlight>Status - {{status}}</h3>
+<button (click)="showUserName()">Click to show User</button>

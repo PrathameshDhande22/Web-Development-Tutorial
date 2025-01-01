@@ -1,0 +1,157 @@
+<div class="container mt-3">
+  <form
+    class="border border-1 border-warning p-3 rounded-2"
+    #registerform="ngForm"
+  >
+    <!-- First Name -->
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder="Enter First Name"
+        required
+        name="firstname"
+        ngModel
+      />
+    </div>
+
+    <!-- Last Name -->
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        placeholder="Enter Last Name"
+        required
+        name="lastname"
+        ngModel
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Enter Email"
+        required
+        name="email"
+        ngModel
+      />
+    </div>
+
+    <!-- Gender -->
+    <div class="mb-3">
+      <label class="form-label me-3">Gender</label>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          id="male"
+          name="gender"
+          value="Male"
+          required
+          class="form-check-input"
+          ngModel
+        />
+        <label for="male" class="form-check-label">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          id="female"
+          name="gender"
+          value="Female"
+          class="form-check-input"
+          ngModel
+        />
+        <label for="female" class="form-check-label">Female</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          type="radio"
+          id="other"
+          name="gender"
+          value="Other"
+          class="form-check-input"
+          ngModel
+        />
+        <label for="other" class="form-check-label">Other</label>
+      </div>
+    </div>
+
+    <!-- State -->
+    <div class="mb-3" ngModelGroup="address">
+      <label for="state" class="form-label">State</label>
+      <select class="form-select" id="state" required name="state" ngModel>
+        <option value="" selected>Select State</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="West Bengal">West Bengal</option>
+        <!-- Add other states as needed -->
+      </select>
+    </div>
+
+    <!-- City -->
+    <div class="mb-3" ngModelGroup="address">
+      <label for="city" class="form-label">City</label>
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        placeholder="Enter City"
+        required
+        name="city"
+        ngModel
+      />
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="mb-3">
+      <label for="dob" class="form-label">Date of Birth</label>
+      <input
+        type="date"
+        class="form-control"
+        id="dob"
+        required
+        name="dob"
+        ngModel
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+
+    <!-- Set the Value -->
+     <button class="btn btn-success ms-1" (click)="onSetBtn()">
+      Set the Value using SetValue method
+     </button>
+
+     <!-- Patch only the selected value -->
+      <button class="btn btn-warning ms-1" (click)="onPatchBtn()">
+        PatchValue of Address
+      </button>
+
+      <!-- Resetting the form -->
+       <button class="btn btn-danger ms-1" (click)="resetForm()" >
+        Reset Form
+       </button>
+
+       <!-- checkbox return the true or false in the angular -->
+  </form>
+</div>

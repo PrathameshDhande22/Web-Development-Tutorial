@@ -1,0 +1,29 @@
+<p>
+  ng-container is similar to ng-template it render it just the react fragment but it replaces itself.
+</p>
+
+<div>
+  <span>
+    these is the outer container
+  </span>
+  <!-- Using the Container  -->
+  <ng-container>
+    <div>
+      these is other container wrapped with ng-container
+    </div>
+  </ng-container>
+  <ng-container *ngIf="toggle else ontemplate">
+    <div class="bg-danger" style="height: 100px;width: 100px;">
+      OFF
+    </div>
+
+  </ng-container>
+  <button (click)="ToggleTheBtn()" class="btn">
+    ON/OFF
+  </button>
+  <ng-template #ontemplate>
+    <div class="bg-success" style="height: 100px;width: 100px;">
+      ON
+    </div>
+  </ng-template>
+</div>

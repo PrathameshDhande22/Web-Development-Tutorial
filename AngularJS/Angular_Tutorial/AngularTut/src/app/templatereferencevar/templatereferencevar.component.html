@@ -1,0 +1,20 @@
+<p>
+  Template reference variable are just the name given to the element starting with Pound Sign #varname to any
+  element / component.
+</p>
+
+
+<div>
+  <div class="input-group my-4 w-50">
+    <!-- Giving the Template Reference Variable -->
+    <input type="text" class="form-control" #searchinput>
+
+    <!-- Passing the template reference Variable through click event of button -->
+    <button class="btn btn-dark" (click)="onClickButton(searchinput)">Search</button>
+  </div>
+  <p>Click on Search Button to see the output</p>
+
+  <p *ngIf="searchText!==''">
+    You Searched For : {{searchText}}
+  </p>
+</div>

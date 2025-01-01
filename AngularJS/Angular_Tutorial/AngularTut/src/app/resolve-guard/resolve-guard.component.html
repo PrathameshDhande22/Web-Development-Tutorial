@@ -1,0 +1,28 @@
+<div class="container mt-3">
+  <h5>
+    Total Products: {{totalProducts}}
+  </h5>
+
+  <div class="d-flex flex-wrap gap-2 my-3 justify-content-center align-content-center">
+    <div *ngFor="let product of productItems;let i=index"
+      class="d-inline-block p-3 border border-1 border-dark rounded-4 col">
+      <div class="image-wrapper text-center p-2">
+        <img [src]="product.image" alt="" style="max-width: 200px;max-height: 200px;">
+      </div>
+      <div class="gy-2 gx-2">
+        <span class="d-block">Product {{i}}</span>
+        <span class="d-block fs-5 fw-bold">
+          {{product.title}}
+        </span>
+        <span class="d-block">
+          {{product.description}}
+        </span>
+        <span class=" d-inline-block bg-primary text-white p-1 rounded-1 my-2"> {{product.category}}</span>
+        <span class="d-block">Price :
+          {{product.price}}
+        </span>
+        <span>Stock : {{product.stock}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="container mt-3">
+
+
+
+  <form class="border border-1 border-danger p-3 mb-3 rounded-2">
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Username</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="username" name="username">
+    <div class="form-text">
+      Username : johndoe
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="text" class="form-control"     id="exampleInputPassword1" name="password" [(ngModel)]="password">
+    <div class="form-text">
+      Password : password123
+    </div>
+  </div>
+</form>
+<p>
+  After filling the data click on these link to see the alert box.
+</p>
+<a routerLink="/binding">Navigate to Other Route</a>
+</div>

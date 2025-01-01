@@ -1,0 +1,30 @@
+<p>ngSwitch is also a Structural directive used just like the switch case in javascript to render something based on
+  condition</p>
+
+<div class="d-flex justify-content-between align-content-center gap-2 flex-wrap">
+  <button class="btn btn-info" (click)="page='user'">User</button>
+  <button class="btn btn-info" (click)="page='admin'">Admin</button>
+  <button class="btn btn-info" (click)="page='librarian'">Librarian</button>
+  <button class="btn btn-info" (click)="page='guest'">Guest</button>
+</div>
+
+<!-- using the ngswitch -->
+<div class="border border-1 border-black p-5" [ngSwitch]="page">
+  <!-- Applying ngswitch case -->
+  <div *ngSwitchCase="'user'">
+    These is user page
+  </div>
+  <div *ngSwitchCase="'admin'">
+    These is Admin Page
+  </div>
+  <div *ngSwitchCase="'librarian'">
+    These is Librarian Page
+  </div>
+  <div *ngSwitchCase="'guest'">
+    These is Guest Page
+  </div>
+  <!-- Applying default ngSwitchdefault -->
+  <div *ngSwitchDefault>
+    Welcome to Page
+  </div>
+</div>

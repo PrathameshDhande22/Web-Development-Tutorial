@@ -1,0 +1,15 @@
+<p>
+  In Previous were we sending the data form the component through output and input but it can reduce by services.
+</p>
+<div class="row row-cols-sm-2 row-cols-md-3 mb-3">
+  <div *ngFor="let laptop of laptops"
+    class="border border-1 border-black p-2 d-flex justify-content-between align-content-center">
+    <span>
+      {{laptop.name}}
+    </span>
+    <button class="d-inline-block btn btn-danger" (click)="OnShowLaptop(laptop)">
+      +
+    </button>
+  </div>
+</div>
+<product-detail />

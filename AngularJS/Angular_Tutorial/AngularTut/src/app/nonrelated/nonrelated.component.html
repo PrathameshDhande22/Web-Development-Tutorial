@@ -1,0 +1,12 @@
+<p>
+  Passing the data from the sibling component to next sibling component. Can be acheived by passing the data from Output
+  to parent and thorugh parent to child.
+</p>
+
+<div>
+  <!--Getting the data searched through event eimmiter-->
+  <app-search (SearchedText)="onSearchText($event)" />
+
+  <!--Passing the search name we got through next sibling component-->
+  <app-childnames [searched]="searchedText" />
+</div>

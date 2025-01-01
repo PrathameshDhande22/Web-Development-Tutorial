@@ -1,0 +1,13 @@
+<p>
+  Serivce is a Typescript class which ables to communicate between the two non-related components. Or to share the same
+  bussiness logic accross the UI.
+</p>
+<div>
+  <input type="text" class="form-control" placeholder="Enter Username" #usernamebox>
+  <button class="btn btn-success" (click)="onBtnClick(usernamebox)">
+    Login
+  </button>
+</div>
+<app-service-child>
+
+</app-service-child>

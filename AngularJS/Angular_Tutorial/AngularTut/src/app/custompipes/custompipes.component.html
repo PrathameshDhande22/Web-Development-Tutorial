@@ -1,0 +1,32 @@
+<p>
+  We have used the pipes which are inbuilt but we can also create the custom pipes in angular
+</p>
+
+<div>
+  <strong>
+    Custom Pipe with Email
+  </strong><br>
+
+  <!-- Using custom pipes and passing the paramter to it. -->
+  original => {{email}} <br>
+  After Applying Pipe =>
+
+  {{email | masksensitive:"email" }}
+</div>
+
+<div>
+  <strong>
+    Custom Pipe with PhoneNumber
+  </strong><br>
+  original => {{phoneno}} <br>
+  After Applying Pipe =>
+  {{phoneno.toString()| masksensitive:"phonenumber" }}
+</div>
+
+<div>
+  <strong>
+    Using the Pipe in the TS File
+  </strong>
+  <br>
+  {{altemail}}
+</div>

@@ -1,0 +1,9 @@
+<p>
+  Passing the data from the parent component to the child component using &commat;Input decorator and binding the
+  Property of an custom.
+</p>
+
+<!--passing the data from the parent to child-->
+<div class="row row-cols-3">
+  <child *ngFor="let stud of listofStudents" [StudentDetails]="stud" class="p-2 gap-4 col" />
+</div>

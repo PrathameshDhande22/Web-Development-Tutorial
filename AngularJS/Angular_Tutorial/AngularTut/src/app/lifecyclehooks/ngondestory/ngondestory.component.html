@@ -1,0 +1,18 @@
+<p>
+  These hook is fired whenever the DOM is removed.
+</p>
+<div>
+
+  These is the component of ngOnDestroy
+
+  <!-- these button will be shown based on toDestroy variable -->
+  <childdestroy *ngIf="!toDestroy">
+    <p>
+      These is the Parent Component from the Child Destroy
+    </p>
+  </childdestroy>
+
+  <button class="btn btn-secondary mt-3" (click)="DestroyComponent()">
+    Hide / Show
+  </button>
+</div>

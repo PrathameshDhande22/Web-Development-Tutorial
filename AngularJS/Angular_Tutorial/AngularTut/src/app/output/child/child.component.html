@@ -1,0 +1,66 @@
+<div class="border border-1 border-success p-3 rounded-2">
+  <div class="text-center">
+    <span *ngIf="laptopdetails.stock<=0" class="bg-danger text-white py-1 px-3">
+      Out of Stock
+    </span>
+  </div>
+  <span class="d-block">
+    <strong>
+      Laptop Name :
+    </strong>
+    {{laptopdetails.name}}
+  </span>
+  <span class="d-block">
+    <strong>
+      Brand :
+    </strong>
+    {{laptopdetails.brandName}}
+  </span>
+  <span class="d-block">
+    <strong>
+      Price :
+    </strong>
+    ${{laptopdetails.price}}
+  </span>
+  <span class="d-block">
+    <strong>
+      Processor :
+    </strong>
+    {{laptopdetails.processor}}
+  </span>
+  <span class="d-block">
+    <strong>
+      Processor Company :
+    </strong>
+    <span class="bg-primary text-white px-2 py-1 rounded-3 fs-6"
+      [ngClass]="{'bg-success':laptopdetails.processorCompany==='Intel','bg-warning text-dark':laptopdetails.processorCompany==='Ryzen'}">
+      {{laptopdetails.processorCompany}}
+    </span>
+  </span>
+  <span class="d-block">
+    <strong>
+      Ram :
+    </strong>
+    {{laptopdetails.ram}}
+  </span>
+  <span class="d-block">
+    <strong>
+      ROM :
+    </strong>
+    {{laptopdetails.rom}}
+  </span>
+  <span class="d-block">
+    <strong>
+      Stock :
+    </strong>
+    {{laptopdetails.stock}}
+  </span>
+  <span class="d-block">
+    <strong>
+      Storage Type :
+    </strong>
+    <span class="bg-success text-white p-1 rounded-3" [ngClass]="{'bg-danger':laptopdetails.storageType==='HDD'}">
+      {{laptopdetails.storageType}}
+    </span>
+  </span>
+</div>

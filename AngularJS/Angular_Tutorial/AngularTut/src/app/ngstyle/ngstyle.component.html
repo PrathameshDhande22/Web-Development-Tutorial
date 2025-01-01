@@ -1,0 +1,14 @@
+<p>
+  Male will be shown as red color and female as green based on ngStyle expression
+</p>
+
+
+<div class="d-flex align-content-center gap-3 flex-wrap">
+  <div *ngFor="let people of listofPeoples" class="border border-1 p-2 rounded-1 border-primary d-inline-block">
+    <span class="d-block">Name: <span>{{people.name}}</span></span>
+
+    <!--Ngstyle giveing the style based on some condition or expression-->
+    <span class="d-block">Gender: <span [ngStyle]="{color:people.gender==='male'?'red':'green'}"
+        class="fw-bold">{{people.gender}}</span></span>
+  </div>
+</div>

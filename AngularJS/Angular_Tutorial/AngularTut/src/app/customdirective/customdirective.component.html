@@ -1,0 +1,50 @@
+<p>
+  We can easily create the our own custom Directive here we are going to create
+  the custom Directive and apply some styles to it.
+</p>
+
+<!-- On these element we have applied the custom directive now it will change the styles written on it. -->
+<div customdir>Element 1</div>
+<div customdir>Element 2</div>
+<div>Element 3</div>
+
+<p>
+  HostListener decorator to apply some business logic or application logic based
+  on some events like on mouse over some event should be occured, etc.
+</p>
+<div hostlistener>Host Listener Event</div>
+
+<p>
+  HostBinding decorator is used to bind the property to a dom. HostListener and
+  HostBinding can be used in Component as well as on component.
+</p>
+
+<div hostbinding>Host Binding Decorator</div>
+
+<p>
+  Property Binding in Directive just like how we passed the data from the
+  component to child component using &commat;Input decorator similarly can be
+  achieved in Directive.
+</p>
+<!-- passing the value from the directive here we assigned the value to the properties rather than directly to directive -->
+<div [Propertybinding]="{ bgColor: 'yellow', textcolor: 'red' }">Element 1</div>
+<div [Propertybinding]="{ bgColor: 'pink' }">Element 2</div>
+
+<p>
+  Conditional attribute directive to render something based on condition or
+  expression.
+</p>
+<div [conditionalattr]="toRender" class="mt-2">These is going to Render</div>
+<div [conditionalattr]="!toRender" class="mt-2">
+  These is Going to render with True Condition
+</div>
+
+<p>
+  Creating Custom Show after delay structural directive
+</p>
+<div *structural="toRender">
+  these is the structural directive content
+</div>
+<button class="btn btn-light" (click)="toRender=!toRender">
+  Click Here to see the Hidden Content
+</button>

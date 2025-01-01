@@ -1,0 +1,8 @@
+<div class="row row-cols-4">
+  <div *ngFor="let people of listofPeople" class="p-2">
+    <span class="px-6 d-block">Name : {{people.name}}</span>
+    <button class="btn btn-warning ms-6 btn-sm" (click)="selectedPeople=people">
+      Click Here to View
+    </button>
+  </div>
+</div>

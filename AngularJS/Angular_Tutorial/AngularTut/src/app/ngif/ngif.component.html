@@ -1,0 +1,18 @@
+<div>
+  <!--Rendering the component based on condition it removes the element based on some condition -->
+  <div class="input-group my-4">
+    <input type="text" class="form-control" [(ngModel)]="searchText">
+    <button class="btn btn-dark">Search</button>
+  </div>
+
+  <!--These block weill be displayed when the condition matches-->
+  <p>These will be rendered based on some condition</p>
+  <span class="d-block" *ngIf="toDisplay()">Search Results : <span class="fw-bold">{{searchText}}</span></span>
+
+  <div>
+    List of Names
+    <div *ngFor="let name of names;">
+      <span>Name for => {{name}}</span>
+    </div>
+  </div>
+</div>

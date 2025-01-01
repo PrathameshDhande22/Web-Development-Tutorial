@@ -1,0 +1,43 @@
+<div class="container mt-3">
+
+
+  <p>
+    Accessing Query parameter from the route.
+  </p>
+
+  <div class="d-flex gap-1">
+    <div class="input-group">
+      <div class="input-group-text bg-warning">
+        Brand :
+      </div>
+      <select name="brand" id="brandselection" class="form-control" #brandEle
+        (change)="OnChangeSelect(storageEle,brandEle)">
+        <option value="">All</option>
+        <option [value]="brand" *ngFor="let brand of brandNames">{{brand}}</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <div class="input-group-text bg-warning">
+        Storage Type:
+      </div>
+      <select name="brand" id="brandselection" class="form-control" #storageEle
+        (change)="OnChangeSelect(storageEle,brandEle)">
+        <option value="">All</option>
+        <option [value]="storage" *ngFor="let storage of storageType">{{storage}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button class="btn btn-success" (click)="OnClearFilters()">
+      Clear Filters
+    </button>
+  </div>
+
+  <div class="rows row-cols-3 row-cols-sm-2 row-cols-md-3 ">
+    <div *ngFor="let lapts of listoflaptops" class="col d-inline-block p-2">
+      <app-child [laptop]="lapts" />
+    </div>
+  </div>
+
+</div>

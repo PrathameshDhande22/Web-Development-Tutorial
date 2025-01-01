@@ -1,0 +1,20 @@
+<p>
+  ngAfterContentInit Hook is called when the Parent Projected Content is Loaded and Intialized.
+</p>
+
+<div>
+  These is Parent div
+  <ng-childcontent>
+    <!-- These are called as projected content where we includes the elements inside the calling of child component from the parent component. -->
+    <div #divcontainer>
+      these is container inside the Child component passed form parent calling.
+    </div>
+    <div>
+      The Content of the Projected Component {{message}}
+    </div>
+  </ng-childcontent>
+
+  <button class="btn btn-danger" (click)="onBtnClick()">
+    Click Me to see magic
+  </button>
+</div>

@@ -1,0 +1,16 @@
+<div class="input-group w-25">
+  <span class="input-group-text bg-success text-white fw-bold">
+    Filter by:
+  </span>
+  <select name="filter" id="" class="form-control" (change)="onChangeDropDown()"
+    [(ngModel)]="selecteFilterTypeForFiltering">
+    <option [value]="filteropt.filterType" *ngFor="let filteropt of listoffilter" class="clearfix">
+      <span class="float-start d-block">
+        {{filteropt.filterType}}
+      </span>
+      <span class="float-end d-block">
+        ({{filteropt.filtertotal}})
+      </span>
+    </option>
+  </select>
+</div>
