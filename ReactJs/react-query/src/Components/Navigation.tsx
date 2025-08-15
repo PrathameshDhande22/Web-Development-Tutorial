@@ -17,9 +17,12 @@ export function Navigation() {
           <li>
             <details>
               <summary>Tutorials</summary>
-              <ul className="bg-gray-500 rounded-t-none p-2">
+              <ul className="bg-gray-500 rounded-t-none p-2 z-50">
                 <li>
                   <Link to={"/basics"}>Basics</Link>
+                </li>
+                <li>
+                  <Link to={"/usequeryproperties"}>Query Properties</Link>
                 </li>
                 <li>
                   <a>Link 2</a>

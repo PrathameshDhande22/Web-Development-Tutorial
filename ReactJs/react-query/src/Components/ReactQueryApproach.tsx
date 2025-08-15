@@ -7,6 +7,7 @@ export const ReactQueryApproach = () => {
     queryKey: ["posts"],
     queryFn: postapi,
     retry: true,
+    staleTime: 1000 * 60, // 1 minute
   });
 
   return (
