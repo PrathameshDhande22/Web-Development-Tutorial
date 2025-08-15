@@ -1,0 +1,34 @@
+import { Link } from "react-router";
+
+export function Navigation() {
+  return (
+    <header className="navbar bg-gray-700 text-white shadow-sm ">
+      <div className="flex-1 hover:bg-none">
+        <Link to={"/"} className="btn btn-ghost md:text-xl text-sm hover:bg-none">
+          <img src="/favicon.svg" alt="React Query Logo" width={40} />
+          <span className="">React Query Tutorial</span>
+        </Link>
+      </div>
+      <nav className="flex-none">
+        <ul className="menu font-bold menu-horizontal px-1">
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <details>
+              <summary>Tutorials</summary>
+              <ul className="bg-gray-500 rounded-t-none p-2">
+                <li>
+                  <Link to={"/basics"}>Basics</Link>
+                </li>
+                <li>
+                  <a>Link 2</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
