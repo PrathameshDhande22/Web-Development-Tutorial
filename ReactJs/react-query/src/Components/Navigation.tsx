@@ -27,6 +27,9 @@ export function Navigation() {
                 <li>
                   <Link to={"/usequeryproperties"}>Query Properties</Link>
                 </li>
+                <li>
+                  <Link to={"/pagination"}>Pagination</Link>
+                </li>
               </ul>
             </details>
           </li>

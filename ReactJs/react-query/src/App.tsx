@@ -4,6 +4,7 @@ import { Navigation } from "./Components/Navigation";
 import { Basics } from "./Pages/Basics";
 import { useQueryProperties } from "./Pages/useQueryProperties";
 import { PostDetails } from "./Pages/PostDetails";
+import { Pagination } from "./Pages/Pagination";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/basics" Component={Basics} />
             <Route path="/useQueryProperties" Component={useQueryProperties} />
             <Route path="/postDetails/:id" Component={PostDetails} />
+            <Route path="/pagination" Component={Pagination} />
           </Routes>
         </div>
       </BrowserRouter>

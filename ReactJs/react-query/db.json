@@ -47,5 +47,187 @@
       "task": "Clean the house",
       "completed": true
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "price": 999.99,
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Smartphone",
+      "price": 499.99,
+      "inStock": false
+    },
+    {
+      "id": 3,
+      "name": "Tablet",
+      "price": 299.99,
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Smartwatch",
+      "price": 199.99,
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "Headphones",
+      "price": 89.99,
+      "inStock": false
+    },
+    {
+      "id": 6,
+      "name": "Bluetooth Speaker",
+      "price": 59.99,
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "name": "Camera",
+      "price": 499.99,
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Monitor",
+      "price": 199.99,
+      "inStock": false
+    },
+    {
+      "id": 9,
+      "name": "Keyboard",
+      "price": 49.99,
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "name": "Mouse",
+      "price": 29.99,
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "name": "External Hard Drive",
+      "price": 89.99,
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "name": "Webcam",
+      "price": 79.99,
+      "inStock": false
+    },
+    {
+      "id": 13,
+      "name": "Gaming Console",
+      "price": 299.99,
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "VR Headset",
+      "price": 399.99,
+      "inStock": false
+    },
+    {
+      "id": 15,
+      "name": "Smart Home Hub",
+      "price": 129.99,
+      "inStock": true
+    },
+    {
+      "id": 16,
+      "name": "Portable Charger",
+      "price": 39.99,
+      "inStock": true
+    },
+    {
+      "id": 17,
+      "name": "Wireless Router",
+      "price": 89.99,
+      "inStock": true
+    },
+    {
+      "id": 18,
+      "name": "Gaming Mouse",
+      "price": 59.99,
+      "inStock": false
+    },
+    {
+      "id": 19,
+      "name": "Mechanical Keyboard",
+      "price": 129.99,
+      "inStock": true
+    },
+    {
+      "id": 20,
+      "name": "Smart Light Bulb",
+      "price": 19.99,
+      "inStock": true
+    },
+    {
+      "id": 21,
+      "name": "Fitness Tracker",
+      "price": 99.99,
+      "inStock": true
+    },
+    {
+      "id": 22,
+      "name": "Digital Camera",
+      "price": 599.99,
+      "inStock": false
+    },
+    {
+      "id": 23,
+      "name": "Action Camera",
+      "price": 249.99,
+      "inStock": true
+    },
+    {
+      "id": 24,
+      "name": "Smart Thermostat",
+      "price": 149.99,
+      "inStock": true
+    },
+    {
+      "id": 25,
+      "name": "Smart Lock",
+      "price": 199.99,
+      "inStock": false
+    },
+    {
+      "id": 26,
+      "name": "E-Reader",
+      "price": 129.99,
+      "inStock": true
+    },
+    {
+      "id": 27,
+      "name": "Streaming Device",
+      "price": 49.99,
+      "inStock": true
+    },
+    {
+      "id": 28,
+      "name": "Wireless Earbuds",
+      "price": 79.99,
+      "inStock": false
+    },
+    {
+      "id": 29,
+      "name": "Smart Display",
+      "price": 199.99,
+      "inStock": true
+    },
+    {
+      "id": 30,
+      "name": "Portable SSD",
+      "price": 109.99,
+      "inStock": true
+    }
   ]
 }
