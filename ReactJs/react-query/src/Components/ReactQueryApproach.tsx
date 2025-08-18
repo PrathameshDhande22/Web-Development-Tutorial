@@ -23,6 +23,7 @@ export const ReactQueryApproach = () => {
             description={value.content}
             title={value.title}
             key={value.id}
+            id={value.id}
           />
         ))}
     </div>

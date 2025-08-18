@@ -1,9 +1,12 @@
 import { RefetchInterval } from "../Components/RefetchInterval";
+import { TodoList } from "../Components/TodoList";
 
 export const useQueryProperties = () => {
   return (
-    <div className="container mx-auto mt-3">
+    <div className="">
       <RefetchInterval />
+      <hr className="mt-4" />
+      <TodoList />
     </div>
   );
 };

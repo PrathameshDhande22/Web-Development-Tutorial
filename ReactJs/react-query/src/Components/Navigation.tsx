@@ -4,7 +4,10 @@ export function Navigation() {
   return (
     <header className="navbar bg-gray-700 text-white shadow-sm ">
       <div className="flex-1 hover:bg-none">
-        <Link to={"/"} className="btn btn-ghost md:text-xl text-sm hover:bg-none">
+        <Link
+          to={"/"}
+          className="btn btn-ghost md:text-xl text-sm hover:bg-none"
+        >
           <img src="/favicon.svg" alt="React Query Logo" width={40} />
           <span className="">React Query Tutorial</span>
         </Link>
@@ -23,9 +26,6 @@ export function Navigation() {
                 </li>
                 <li>
                   <Link to={"/usequeryproperties"}>Query Properties</Link>
-                </li>
-                <li>
-                  <a>Link 2</a>
                 </li>
               </ul>
             </details>

@@ -5,7 +5,7 @@ import { ReactQueryApproach } from "../Components/ReactQueryApproach";
 export const Basics = () => {
   // fetching the data using react query is more efficient and easier to manage
   return (
-    <div className="container mx-auto mt-3">
+    <div className=" mt-3">
       {/* Traditional Approach */}
       <HeaderTag
         header="Traditional Approach Using UseEffect and State"

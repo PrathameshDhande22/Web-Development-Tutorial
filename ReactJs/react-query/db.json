@@ -15,5 +15,37 @@
       "title": "Third Post",
       "content": "This is the content of the third post."
     }
+  ],
+  "todo": [
+    {
+      "id": 1,
+      "task": "Buy groceries",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "task": "Walk the dog",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "task": "Read a book",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "task": "Write code",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "task": "Exercise",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "task": "Clean the house",
+      "completed": true
+    }
   ]
 }

@@ -31,6 +31,7 @@ export const Traditional = () => {
         !error &&
         posts.map((value) => (
           <Post
+            id={value.id}
             description={value.content}
             title={value.title}
             key={value.id}
