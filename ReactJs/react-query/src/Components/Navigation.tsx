@@ -30,6 +30,9 @@ export function Navigation() {
                 <li>
                   <Link to={"/pagination"}>Pagination</Link>
                 </li>
+                <li>
+                  <Link to={"/infiniteQuery"}>Infinite Query</Link>
+                </li>
               </ul>
             </details>
           </li>

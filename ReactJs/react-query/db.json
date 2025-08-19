@@ -228,6 +228,306 @@
       "name": "Portable SSD",
       "price": 109.99,
       "inStock": true
+    },
+    {
+      "id": 31,
+      "name": "USB-C Hub",
+      "price": 45.99,
+      "inStock": true
+    },
+    {
+      "id": 32,
+      "name": "Wireless Charger",
+      "price": 35.99,
+      "inStock": false
+    },
+    {
+      "id": 33,
+      "name": "Ergonomic Chair",
+      "price": 249.99,
+      "inStock": true
+    },
+    {
+      "id": 34,
+      "name": "Standing Desk",
+      "price": 399.99,
+      "inStock": true
+    },
+    {
+      "id": 35,
+      "name": "Air Purifier",
+      "price": 159.99,
+      "inStock": false
+    },
+    {
+      "id": 36,
+      "name": "Robot Vacuum",
+      "price": 299.99,
+      "inStock": true
+    },
+    {
+      "id": 37,
+      "name": "Coffee Maker",
+      "price": 79.99,
+      "inStock": true
+    },
+    {
+      "id": 38,
+      "name": "Blender",
+      "price": 59.99,
+      "inStock": false
+    },
+    {
+      "id": 39,
+      "name": "Toaster",
+      "price": 29.99,
+      "inStock": true
+    },
+    {
+      "id": 40,
+      "name": "Microwave",
+      "price": 89.99,
+      "inStock": true
+    },
+    {
+      "id": 41,
+      "name": "Rice Cooker",
+      "price": 49.99,
+      "inStock": false
+    },
+    {
+      "id": 42,
+      "name": "Air Fryer",
+      "price": 89.99,
+      "inStock": true
+    },
+    {
+      "id": 43,
+      "name": "Electric Kettle",
+      "price": 39.99,
+      "inStock": true
+    },
+    {
+      "id": 44,
+      "name": "Slow Cooker",
+      "price": 69.99,
+      "inStock": false
+    },
+    {
+      "id": 45,
+      "name": "Waffle Maker",
+      "price": 34.99,
+      "inStock": true
+    },
+    {
+      "id": 46,
+      "name": "Espresso Machine",
+      "price": 199.99,
+      "inStock": true
+    },
+    {
+      "id": 47,
+      "name": "Food Processor",
+      "price": 79.99,
+      "inStock": false
+    },
+    {
+      "id": 48,
+      "name": "Hand Mixer",
+      "price": 24.99,
+      "inStock": true
+    },
+    {
+      "id": 49,
+      "name": "Juicer",
+      "price": 59.99,
+      "inStock": true
+    },
+    {
+      "id": 50,
+      "name": "Bread Machine",
+      "price": 109.99,
+      "inStock": false
+    },
+    {
+      "id": 51,
+      "name": "Dehumidifier",
+      "price": 149.99,
+      "inStock": true
+    },
+    {
+      "id": 52,
+      "name": "Humidifier",
+      "price": 59.99,
+      "inStock": true
+    },
+    {
+      "id": 53,
+      "name": "Space Heater",
+      "price": 45.99,
+      "inStock": false
+    },
+    {
+      "id": 54,
+      "name": "Window Fan",
+      "price": 39.99,
+      "inStock": true
+    },
+    {
+      "id": 55,
+      "name": "Air Conditioner",
+      "price": 299.99,
+      "inStock": true
+    },
+    {
+      "id": 56,
+      "name": "Portable Fan",
+      "price": 29.99,
+      "inStock": false
+    },
+    {
+      "id": 57,
+      "name": "Desk Lamp",
+      "price": 39.99,
+      "inStock": true
+    },
+    {
+      "id": 58,
+      "name": "Floor Lamp",
+      "price": 79.99,
+      "inStock": true
+    },
+    {
+      "id": 59,
+      "name": "Smart Plug",
+      "price": 24.99,
+      "inStock": false
+    },
+    {
+      "id": 60,
+      "name": "Security Camera",
+      "price": 129.99,
+      "inStock": true
+    },
+    {
+      "id": 61,
+      "name": "Video Doorbell",
+      "price": 199.99,
+      "inStock": true
+    },
+    {
+      "id": 62,
+      "name": "Smart Scale",
+      "price": 49.99,
+      "inStock": false
+    },
+    {
+      "id": 63,
+      "name": "Blood Pressure Monitor",
+      "price": 69.99,
+      "inStock": true
+    },
+    {
+      "id": 64,
+      "name": "Pulse Oximeter",
+      "price": 39.99,
+      "inStock": true
+    },
+    {
+      "id": 65,
+      "name": "Digital Thermometer",
+      "price": 19.99,
+      "inStock": false
+    },
+    {
+      "id": 66,
+      "name": "Electric Toothbrush",
+      "price": 49.99,
+      "inStock": true
+    },
+    {
+      "id": 67,
+      "name": "Water Flosser",
+      "price": 69.99,
+      "inStock": true
+    },
+    {
+      "id": 68,
+      "name": "Electric Shaver",
+      "price": 79.99,
+      "inStock": false
+    },
+    {
+      "id": 69,
+      "name": "Hair Dryer",
+      "price": 45.99,
+      "inStock": true
+    },
+    {
+      "id": 70,
+      "name": "Hair Straightener",
+      "price": 55.99,
+      "inStock": true
+    },
+    {
+      "id": 71,
+      "name": "Curling Iron",
+      "price": 49.99,
+      "inStock": false
+    },
+    {
+      "id": 72,
+      "name": "Massage Gun",
+      "price": 149.99,
+      "inStock": true
+    },
+    {
+      "id": 73,
+      "name": "Exercise Bike",
+      "price": 299.99,
+      "inStock": true
+    },
+    {
+      "id": 74,
+      "name": "Treadmill",
+      "price": 499.99,
+      "inStock": false
+    },
+    {
+      "id": 75,
+      "name": "Yoga Mat",
+      "price": 29.99,
+      "inStock": true
+    },
+    {
+      "id": 76,
+      "name": "Dumbbell Set",
+      "price": 89.99,
+      "inStock": true
+    },
+    {
+      "id": 77,
+      "name": "Resistance Bands",
+      "price": 19.99,
+      "inStock": false
+    },
+    {
+      "id": 78,
+      "name": "Jump Rope",
+      "price": 12.99,
+      "inStock": true
+    },
+    {
+      "id": 79,
+      "name": "Foam Roller",
+      "price": 24.99,
+      "inStock": true
+    },
+    {
+      "id": 80,
+      "name": "Kettlebell",
+      "price": 39.99,
+      "inStock": false
     }
   ]
 }

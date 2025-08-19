@@ -5,6 +5,7 @@ import { Basics } from "./Pages/Basics";
 import { useQueryProperties } from "./Pages/useQueryProperties";
 import { PostDetails } from "./Pages/PostDetails";
 import { Pagination } from "./Pages/Pagination";
+import { InfiniteQuery } from "./Pages/InfiniteQuery";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/useQueryProperties" Component={useQueryProperties} />
             <Route path="/postDetails/:id" Component={PostDetails} />
             <Route path="/pagination" Component={Pagination} />
+            <Route path="/infiniteQuery" Component={InfiniteQuery} />
           </Routes>
         </div>
       </BrowserRouter>
