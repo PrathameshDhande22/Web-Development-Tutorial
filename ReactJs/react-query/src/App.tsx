@@ -6,6 +6,7 @@ import { useQueryProperties } from "./Pages/useQueryProperties";
 import { PostDetails } from "./Pages/PostDetails";
 import { Pagination } from "./Pages/Pagination";
 import { InfiniteQuery } from "./Pages/InfiniteQuery";
+import { Mutation } from "./Pages/Mutation";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/postDetails/:id" Component={PostDetails} />
             <Route path="/pagination" Component={Pagination} />
             <Route path="/infiniteQuery" Component={InfiniteQuery} />
+            <Route path="/mutation" Component={Mutation} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -16,3 +16,7 @@ export const postapi = async () => {
 export const getPostById = async (id: string): Promise<AxiosResponse<PostResponse>> => {
     return (await baseApi.get<PostResponse>(`/posts/${id}`));
 }
+
+export const createPost = async (post: PostResponse): Promise<AxiosResponse<PostResponse>> => {
+    return (await baseApi.post<PostResponse>("/posts", post));
+}

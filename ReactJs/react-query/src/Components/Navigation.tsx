@@ -33,6 +33,9 @@ export function Navigation() {
                 <li>
                   <Link to={"/infiniteQuery"}>Infinite Query</Link>
                 </li>
+                <li>
+                  <Link to={"/mutation"}>Mutation</Link>
+                </li>
               </ul>
             </details>
           </li>
