@@ -17,20 +17,23 @@ export const AddPost = () => {
 
   //   useMutation is used to handle the creation of a new post
   //   It takes a mutation function that will be called when the form is submitted
-  const { mutate } = useMutation({
+  const { mutateAsync } = useMutation({
     mutationFn: createPost,
     onSuccess: (data) => {
-      console.log("Post created successfully:", data.data);
+      console.log("Post created successfully:", data);
     },
   });
 
   const onSubmit: SubmitHandler<Post> = async (data: Post) => {
     console.log("Form submitted:", data);
-    mutate({
+
+    const postdata = {
       id: Number(Math.floor(Math.random() * 1000)),
       title: data.title,
       content: data.content,
-    });
+    };
+
+    await mutateAsync(postdata);
   };
 
   return (
@@ -38,7 +41,6 @@ export const AddPost = () => {
       <form
         className="flex flex-col justify-center gap-2"
         onSubmit={handleSubmit(onSubmit)}
-        action={""}
       >
         <label className="floating-label">
           <span>Title</span>

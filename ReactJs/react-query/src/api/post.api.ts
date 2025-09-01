@@ -17,6 +17,8 @@ export const getPostById = async (id: string): Promise<AxiosResponse<PostRespons
     return (await baseApi.get<PostResponse>(`/posts/${id}`));
 }
 
-export const createPost = async (post: PostResponse): Promise<AxiosResponse<PostResponse>> => {
-    return (await baseApi.post<PostResponse>("/posts", post));
+export const createPost = async (post: PostResponse): Promise<PostResponse> => {
+    const response = await baseApi.post<PostResponse>("/posts", post);
+    return response.data;
+
 }
