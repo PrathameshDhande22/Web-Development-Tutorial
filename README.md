@@ -29,6 +29,7 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 13. jQuery
 14. ASP.NET MVC Framework (C#)
 15. Angular 
+16. React Query Tutorial
 
 ## Projects :
 
@@ -68,3 +69,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 15. jQuery 👉 https://www.w3schools.com/jquery/default.asp
 16. ASP.NET MVC Framework 👉 https://www.youtube.com/playlist?list=PL6n9fhu94yhVm6S8I2xd6nYz2ZORd7X2v
 17. Angular 👉 https://www.youtube.com/playlist?list=PL1BztTYDF-QNlGo5-g65Xj1mINHYk_FM9
+18. React Query Tutorial 👉 https://youtu.be/GEeBG7AoQdM?si=mtA3tLebm2ffK-Ur
