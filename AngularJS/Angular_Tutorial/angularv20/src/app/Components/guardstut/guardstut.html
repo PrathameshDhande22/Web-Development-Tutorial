@@ -1,0 +1,53 @@
+<div class="pt-4 container">
+  <h3 class="text-xl font-bold">Route Guards Tutorial</h3>
+
+  @if (!this.userdata) {
+  <div
+    class="ml-2 flex flex-col gap-2 w-2xs border-4 p-4 border-red-500 rounded-4xl justify-center items-center mt-6"
+  >
+    <h3 class="underline text-xl">Login</h3>
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="border-2 border-black p-1"
+        [(ngModel)]="usernameform"
+      />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="username"
+        id="password"
+        class="border-2 border-black p-1"
+        [(ngModel)]="passwordform"
+      />
+    </div>
+    <button class="bg-blue-300 py-2 px-5 rounded-2xl" (click)="doLogin()">Login</button>
+  </div>
+  } @else {
+  <div>
+    UserName: {{ this.userdata.username }}<br />
+    Password: {{ this.userdata.password }}<br />
+  </div>
+  }
+
+  <ul class="ml-4 mt-5">
+    <li class="bg-yellow-300 w-fit p-2">
+      <a routerLink="admin" routerLinkActive="bg-orange-300">CanActivate - Admin </a>
+    </li>
+    <li class="bg-yellow-300 w-fit p-2">
+      <a routerLink="/manager" routerLinkActive="bg-orange-300">CanActivateChild - Manager </a>
+    </li>
+    <li class="bg-yellow-300 w-fit p-2">
+      <a routerLink="deactivate" routerLinkActive="bg-orange-300">CanDeactivate </a>
+    </li>
+    <li class="bg-yellow-300 w-fit p-2">
+      <a routerLink="match" routerLinkActive="bg-orange-300">CanMatch - Manager</a>
+    </li>
+  </ul>
+  <router-outlet />
+</div>

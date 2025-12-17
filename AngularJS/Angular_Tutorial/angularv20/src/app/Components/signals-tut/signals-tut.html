@@ -1,0 +1,21 @@
+<p>signals-tut works!</p>
+<div class="border-2 border-black p-4">
+  <h4 class="text-2xl font-bold">Writeable Signals</h4>
+  <!-- Template Interpolation -->
+  <p>Current Count: {{ count() }}</p>
+  <div class="flex gap-1">
+    <!-- Click Event passing the method -->
+    <button class="border-2 border-blue-500 p-1" (click)="btnIncrementBy(count() + 1)">
+      Set +2
+    </button>
+    <button class="border-2 border-green-500 p-1" (click)="btnUpdate()">Increment</button>
+  </div>
+</div>
+<div class="border-2 border-black p-4 mt-3">
+  <h4 class="text-2xl font-bold">Computed Signals</h4>
+  <p>{{ doubleCount() }}</p>
+  <button class="border-2 bg-amber-500 text-black" (click)="destroyEffectSignal()">
+    Destroy Effect
+  </button>
+</div>
+<app-linked-signal-tut />

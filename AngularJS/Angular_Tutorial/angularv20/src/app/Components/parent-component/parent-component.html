@@ -1,0 +1,22 @@
+<div class="border-2 border-black rounded-xl mt-3 p-2">
+  <h3 class="font-bold text-2xl">Input To Child Component</h3>
+  <!-- Passing the value to the child component using the input -->
+  <div>
+    <label for="Username">Username : </label>
+    <input
+      type="text"
+      name="username"
+      id="Username"
+      class="border-2 border-black p-1"
+      (keyup)="setUsername($event.target.value)"
+    />
+  </div>
+  <p>Parent Value: {{ userName() }}</p>
+  <app-childcomponent
+    [value]="value"
+    [name]="`Prathamesh`"
+    [valueTransform]="120"
+    [(modelvalue)]="userName"
+    sampleValue="Helllo"
+  />
+</div>

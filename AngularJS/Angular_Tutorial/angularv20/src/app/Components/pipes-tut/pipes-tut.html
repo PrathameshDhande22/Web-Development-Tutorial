@@ -1,0 +1,11 @@
+<div class="border-2 border-black rounded-xl mt-3 p-2">
+  <h3 class="font-bold text-2xl">Pipes Tutorial</h3>
+
+  <!-- using the some angular inbuilt pipes -->
+  <p>Using titleCase Pipe {{ compnayName | titlecase }}</p>
+  <p>Using Date Pipe {{ datepurchased | date }}</p>
+  <!-- pipe with parameter -->
+  <p>Using date Pipe with Parameter {{ datepurchased | date : 'dd/MMM/yy' }}</p>
+  <!-- using the custom pipe -->
+   <p>Using the Custom Truncate Pipe {{longstring | truncatePipe : 5 }}</p>
+</div>

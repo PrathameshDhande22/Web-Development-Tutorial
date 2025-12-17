@@ -1,0 +1,116 @@
+<div class="border-2 border-black p-4 mt-4">
+  <h4 class="text-2xl font-bold">Templates</h4>
+  <!-- rendering the text using interpolation -->
+  <p [attr.aria-label]="customername" [class.bg-red-500]="customername===`prathamesh`">
+    Rendered Customer Name : {{ customername }}
+  </p>
+  <!-- Binding the style properties -->
+  <div [style.display]="customername===`prahamesh`?`flex`:'none'">
+    <div>These is the style div box 1</div>
+    <div>These is the style div box 2</div>
+  </div>
+  <!-- binding the event listeners -->
+  <div>
+    <!-- passing the event object reference -->
+    <input
+      type="text"
+      name="username"
+      id="username"
+      class="p-1 border-2 border-black"
+      (keyup)="onKeyUp($event)"
+    />
+    <div>Entered Keys in the Above Text Box : {{ keyPressed }}</div>
+    <input type="text" class="p-1 border-2 border-black" (keyup.control.enter)="onControl()" />
+  </div>
+
+  <!-- two way binding -->
+  <input type="text" name="subject" class="border-2 border-black p-1" [(ngModel)]="subjectName" />
+  <div>Entered Text : {{ subjectName }}</div>
+
+  <!-- control flow -->
+  <div>
+    <div>Control Flow</div>
+    @if (a>b) {
+    <span>{{ a }} is greater than {{ b }}</span>
+    } @else if(b>a){
+    <span>{{ b }} is greater than {{ a }}</span>
+    } @else {
+    <span>Both are equal</span>
+    }
+  </div>
+
+  <!-- for loop rendering -->
+  <div>
+    <ul>
+      @for (fruit of listoffruits; track $index;let ix=$index) {
+      <li>Index Of : {{ ix }} Fruit= {{ fruit }}</li>
+      }@empty {
+      <li>No Fruit</li>
+      }
+    </ul>
+  </div>
+
+  <!-- switch block -->
+  @switch (a) { @case(10){
+  <span>{{ a }}</span>
+  } @case (20) {
+  <span>{{ 20 }}</span>
+  } @default {
+  <span>No Case For {{ a }}</span>
+  } }
+
+  <!-- template fragements -->
+  <!-- Template fragment by the template reference variable -->
+  <ng-template #templatefrag>
+    <div>These Template is never going to render</div>
+  </ng-template>
+
+  <!-- rendering the template using viewcontainer ref -->
+  <ng-template #templatecontainer class="bg-red-500">
+    <div class="bg-amber-300 text-black text-xl">Template Rendered using ViewContainer Ref</div>
+  </ng-template>
+
+  <!-- button to render the template using the ViewContainerREf -->
+  <button class="block bg-blue-500 border-2 border-black p-2" (click)="renderTemplate()">
+    Render template
+  </button>
+  <!-- rendering the template using ngTemplateOutlet -->
+  <ng-container *ngTemplateOutlet="templatefrag"></ng-container>
+
+  <!-- template fragment with parameters -->
+  <ng-template #parameterTemplate let-username="userobject">
+    <div>You are rendering the Template with Parameter => {{ username }}</div>
+  </ng-template>
+
+  <!-- passing the value to the ngTemplateOutlet -->
+  <ng-container
+    [ngTemplateOutlet]="parameterTemplate"
+    [ngTemplateOutletContext]="{ userobject: 'prathamesh' }"
+  ></ng-container>
+
+  <!-- using the ng container to render the content of the child -->
+  <ng-container>
+    <p>These are the container present in the <code>html</code></p>
+  </ng-container>
+
+  <!-- template variables -->
+  @let username=subjectName; @let stringname='stringname';
+
+  <!-- rendering the variable -->
+  <ng-container>
+    <p>First Value = {{ username }}</p>
+    <p>Second Value = {{ stringname }}</p>
+  </ng-container>
+
+  <!-- defer loading -->
+  <div class="p-4 bg-gray-300" #divelement>button</div>
+  @defer (on hover(divelement)) {
+  <app-custom-child />
+  }@placeholder {
+  <p>Some thing will happen</p>
+  }@loading {
+  <span>Loading...</span>
+  }@error {
+  <span>Error Occured</span>
+  }
+</div>

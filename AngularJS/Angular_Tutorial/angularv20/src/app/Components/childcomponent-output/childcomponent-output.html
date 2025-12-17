@@ -1,0 +1,16 @@
+<div>
+  <button (click)="btnClick()" class="bg-pink-500 text-white p-1">Click To Emit</button>
+</div>
+<div class="border-2 border-green-600">
+  <!-- Rendering the multiple child compnents using selectors -->
+  <!-- Rendering the content from teh children passed in the parent component -->
+  <ng-content select=".child-1"></ng-content>
+</div>
+<div class="border-2 border-green-600">
+  <!-- Rendering the content from teh children passed in the parent component -->
+  <ng-content select=".child-2"></ng-content>
+</div>
+<div class="border-2 border-green-600">
+  <!-- example of the fallback component -->
+  <ng-content select=".child-3">FallBack Component</ng-content>
+</div>

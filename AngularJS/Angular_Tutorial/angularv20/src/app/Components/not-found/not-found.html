@@ -1,0 +1,41 @@
+<div class="flex items-center justify-center min-h-screen bg-slate-900 text-white p-4">
+      <div class="max-w-xl w-full text-center space-y-8">
+        <!-- Large, Stylized Error Code -->
+        <div class="relative">
+          <h1 class="text-[12rem] md:text-[18rem] font-black leading-none text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-indigo-600 opacity-20 select-none">
+            404
+          </h1>
+          <div class="absolute inset-0 flex flex-col items-center justify-center -mt-8">
+            <!-- Disconnect Icon (Inline SVG) -->
+            <svg class="w-20 h-20 text-red-500 mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+            <p class="text-4xl font-bold text-gray-100">
+              LOST IN SPACE
+            </p>
+          </div>
+        </div>
+
+        <!-- Main Message -->
+        <h2 class="text-xl md:text-2xl font-semibold text-gray-300">
+          The requested galaxy could not be located.
+        </h2>
+
+        <p class="text-base text-gray-400">
+          We searched through all the known routes and dimensions, but the URL you entered did not lead to a valid destination on our server.
+        </p>
+
+        <!-- Call to Action Button -->
+        <a routerLink="/"
+           class="inline-flex items-center px-8 py-3 text-sm font-medium text-white 
+                  bg-indigo-600 rounded-full shadow-lg transition duration-300 ease-in-out 
+                  hover:bg-indigo-700 hover:shadow-indigo-500/50 transform hover:scale-[1.02]">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+            </svg>
+            Return to Basecamp (Home)
+        </a>
+      </div>
+    </div>

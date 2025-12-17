@@ -1,0 +1,15 @@
+<div class="">
+  <p>Input for Value : {{ value() }}</p>
+  <p>Required Input Value : {{ name() }}</p>
+  <div class="rounded-3xl p-3 bg-fuchsia-400 border-black" [style]="`width:${valueTransform()}`">
+    Input Signal with Transform
+  </div>
+  <p>child Value: {{ modelvalue() }}</p>
+  <input
+    type="text"
+    name="username"
+    id="username"
+    class="border-2 border-black"
+    (keyup)="this.modelvalue.set($event.target.value)"
+  />
+</div>

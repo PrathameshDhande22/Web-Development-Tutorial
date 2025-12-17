@@ -1,0 +1,39 @@
+<div class="border-2 border-black p-4 mt-3">
+  <h4 class="text-2xl font-bold">Referencing Content using Queries - View Queries</h4>
+  <!-- Here we have the one child now want the refrence an reference -->
+  <app-custom-child />
+  <p>Value from the custom child Component {{ customchild1()?.childName }}</p>
+
+  <!-- Now we will reference the child from the multiple -->
+  <app-custom-child-ref appname="app-1">Child 1</app-custom-child-ref>
+  <app-custom-child-ref appname="app-2">Child 2</app-custom-child-ref>
+  <p>Value from the custom childrens {{ childrensAppName() }}</p>
+</div>
+<div class="border-2 border-black p-4 mt-3">
+  <h4 class="text-2xl font-bold">Referencing Content using Queries - Content Queries</h4>
+  <!-- Rendering the Custom Content Query -->
+  <app-custom-content-query>
+    <!-- Single Content -->
+    <app-custom-child></app-custom-child>
+
+    <!-- Multiple Content Children -->
+    <app-custom-child-ref appname="content-1">Content Child 1</app-custom-child-ref>
+    <app-custom-child-ref appname="content-2">Content Child 2</app-custom-child-ref>
+  </app-custom-content-query>
+</div>
+<div class="border-2 border-black p-4 mt-3">
+  <h4 class="text-2xl font-bold">
+    Referencing Content using Queries - Template Reference Variable
+  </h4>
+  <!-- Accessing the View child using Template Reference Variable -->
+  <label for="name">Enter Name: </label>
+  <!-- Giving the Template Reference variable using # -->
+  <input
+    type="text"
+    id="name"
+    placeholder="Enter you name"
+    class="p-1 border-2 border-gray-400 hover:border-gray-600"
+    #inputname
+  />
+  <button class="p-1 bg-purple-500" (click)="showAlertInputName()">Click to show text</button>
+</div>

@@ -1,0 +1,19 @@
+<div class="border-2 border-black rounded-xl mt-3 p-2">
+  <h3 class="font-bold text-2xl">Directives Tutorial</h3>
+  <!-- Attributes Directives -->
+  <!-- Adding/removing the CSS using ngclass -->
+  <div class="bg-green-200 p-4" [ngClass]="isSpecial ? 'bg-orange-300' : ''">
+    These is the Div element
+  </div>
+
+  <!-- applying the CSS classes by the object of string and boolean -->
+  <div [ngClass]="cssClasses">These is the CSS Class of Object by NgClass</div>
+
+  <!-- Using the Custom text color directive -->
+  <div class="mt-3 p-2 border-2 border-black rounded-4xl" appTextcolor="red" hoverColor="green">
+    These is Style is being changed using Custom Attribute Directive
+  </div>
+
+  <!-- using the custom structural directive -->
+  <div class="bg-violet-200 p-3 font-extrabold text-xl" *appIfNot="isAdmin">Admin Panel</div>
+</div>

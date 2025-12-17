@@ -1,0 +1,26 @@
+<div class="pt-6">
+  Dynamic routes
+
+  <div class="border-2 border-black p-3">
+    <span class="text-xl font-bold">Route Path Parameters</span>
+    <ul>
+      <li>ID: {{ id() }}</li>
+      <li>App: {{ app() }}</li>
+    </ul>
+  </div>
+
+  <div class="border-2 border-black p-3">
+    <span class="text-xl font-bold">Query Parameters</span>
+    <ul>
+      <li>Page : {{ page() }}</li>
+    </ul>
+  </div>
+
+  <button class="border-2 border-black p-1 bg-gray-200" (click)="changetheIdandApp()">
+    Change the ID And APP
+  </button>
+
+  <div>
+    {{ userdata() | json }}
+  </div>
+</div>
