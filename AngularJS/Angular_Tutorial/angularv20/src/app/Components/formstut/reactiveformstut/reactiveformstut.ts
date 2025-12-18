@@ -51,7 +51,7 @@ export class Reactiveformstut {
 
   // form record
   record = new FormRecord({
-    shipping: new FormControl(""),
+    shipping: new FormControl("", [Validators.required]),
     delivery: new FormControl("")
   })
 

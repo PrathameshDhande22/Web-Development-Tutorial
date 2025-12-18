@@ -11,7 +11,7 @@ interface UserFeedback {
 
 @Component({
   selector: 'app-templateform',
-  imports: [FormsModule, JsonPipe, TitleCasePipe],
+  imports: [FormsModule, TitleCasePipe],
   templateUrl: './templateform.html',
 })
 export class Templateform {

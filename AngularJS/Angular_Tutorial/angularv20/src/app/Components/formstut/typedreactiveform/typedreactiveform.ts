@@ -2,6 +2,7 @@ import { KeyValuePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormRecord, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { generate } from 'random-words'
+import { rangeValidator } from '../../../Validators/rangeValidator';
 
 interface LoginForm {
   username: FormControl<string | null>
@@ -58,4 +59,9 @@ export class Typedreactiveform {
     firstname: this.formbuilder.control(''),
     lastname: this.formbuilder.control('')
   })
+
+  // using the custom validator
+  usernameselect = new FormControl<string>("", [
+    rangeValidator(3, 10)
+  ])
 }
