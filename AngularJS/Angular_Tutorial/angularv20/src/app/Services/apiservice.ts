@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 export interface MockData {
   Id: number,
@@ -21,6 +22,11 @@ const MOCK_DATA: MockData[] = [
   }
 ]
 
+const Promo_Codes = [
+  "ABCDE",
+  "FGHI"
+]
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +34,14 @@ const MOCK_DATA: MockData[] = [
 export class Apiservice {
   get getMockData(): MockData[] {
     return MOCK_DATA
+  }
+
+  checkPromoCodeAvailability(promocode: string): Observable<boolean> {
+    let found = false;
+
+    if (Promo_Codes.find((value) => value === promocode)) {
+      found = true;
+    }
+    return of(found)
   }
 }

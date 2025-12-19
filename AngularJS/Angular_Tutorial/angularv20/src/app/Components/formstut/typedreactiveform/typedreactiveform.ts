@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormRecord, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { generate } from 'random-words'
 import { rangeValidator } from '../../../Validators/rangeValidator';
+import { PromoCodeValidator } from '../../../Validators/promoCodeValidator';
 
 interface LoginForm {
   username: FormControl<string | null>
@@ -19,6 +20,7 @@ interface UserDetails {
   selector: 'app-typedreactiveform',
   imports: [ReactiveFormsModule, KeyValuePipe],
   templateUrl: './typedreactiveform.html',
+  styleUrl:'./typedreactiveform.css'
 })
 export class Typedreactiveform {
   // defining the type explicitly to the formcontrol
@@ -64,4 +66,10 @@ export class Typedreactiveform {
   usernameselect = new FormControl<string>("", [
     rangeValidator(3, 10)
   ])
+
+  // using the async custom validator
+  promocode = new FormControl<string>("", {
+    asyncValidators: [PromoCodeValidator()],
+    updateOn: "change"
+  })
 }

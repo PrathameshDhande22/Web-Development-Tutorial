@@ -1,4 +1,4 @@
-<div>
+<div class="form-typed">
   <!-- displaying the form record -->
   <form [formGroup]="address">
     @for (forminput of address.controls | keyvalue; track $index) {
@@ -18,6 +18,7 @@
 
   <button (click)="addNewform()">Add New Record</button>
 
+  <!-- Custom Validator -->
   <div>
     <label for="user-select">Enter your Username Selection</label>
     <input
@@ -30,6 +31,23 @@
     @if (usernameselect.hasError("rangevalid")) {
     <span class="text-red-500">
       {{ usernameselect.getError('rangevalid') }}
+    </span>
+    }
+  </div>
+
+  <!-- Async Validator -->
+  <div>
+    <label for="promo-code">Enter the Promo Code</label>
+    <input
+      type="text"
+      [formControl]="promocode"
+      name="promocode"
+      class="border-2 border-black p-2"
+      id="promo-code"
+    />
+    @if (promocode.hasError("promocode")) {
+    <span class="text-red-500">
+      {{ promocode.getError('promocode') }}
     </span>
     }
   </div>
