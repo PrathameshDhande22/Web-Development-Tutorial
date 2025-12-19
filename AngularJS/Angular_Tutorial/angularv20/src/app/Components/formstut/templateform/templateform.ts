@@ -1,4 +1,4 @@
-import { JsonPipe, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
