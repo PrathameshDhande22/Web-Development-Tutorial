@@ -3,6 +3,10 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { Trial } from './Services/trial';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { loggingInterceptor } from './Interceptors/logging-interceptor';
+import { authInterceptor } from './Interceptors/auth-interceptor';
+import { cacheInterceptor } from './Interceptors/cache-interceptor';
 
 
 // Providing the static value through the injection token
@@ -27,6 +31,10 @@ export const appConfig: ApplicationConfig = {
     { provide: APP_CONFIG_VAR, useValue: configvalues },
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes)
+    provideRouter(routes),
+    // providing the HTTP Client
+    provideHttpClient(withInterceptors(
+      [loggingInterceptor, authInterceptor, cacheInterceptor]
+    ))
   ]
 };

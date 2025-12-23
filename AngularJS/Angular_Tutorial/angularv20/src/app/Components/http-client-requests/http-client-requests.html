@@ -1,0 +1,28 @@
+<div class="pt-9 px-5">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    @for (user of users(); track user.id) {
+      <div class="p-4 bg-white rounded-lg shadow border">
+        <div class="grid grid-cols-12 gap-y-2 text-sm">
+
+          <div class="col-span-4 font-medium text-gray-600">ID</div>
+          <div class="col-span-8 text-gray-900">
+            {{ user.id }}
+          </div>
+
+          <div class="col-span-4 font-medium text-gray-600">First Name</div>
+          <div class="col-span-8 text-gray-900">
+            {{ user.firstName }}
+          </div>
+
+          <div class="col-span-4 font-medium text-gray-600">Last Name</div>
+          <div class="col-span-8 text-gray-900">
+            {{ user.lastName }}
+          </div>
+
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

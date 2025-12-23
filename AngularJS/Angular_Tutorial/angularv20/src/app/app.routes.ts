@@ -22,6 +22,8 @@ import { Formstut } from './Components/formstut/formstut';
 import { Reactiveformstut } from './Components/formstut/reactiveformstut/reactiveformstut';
 import { Typedreactiveform } from './Components/formstut/typedreactiveform/typedreactiveform';
 import { Templateform } from './Components/formstut/templateform/templateform';
+import { HttpClientRequests } from './Components/http-client-requests/http-client-requests';
+import { Rxjs } from './Components/rxjs/rxjs';
 
 // defining the routes
 // the first two routes are static url meaning they are never gonna change
@@ -144,6 +146,16 @@ export const routes: Routes = [
                 component: Templateform
             }
         ]
+    },
+    {
+        // component regarding the http client requests. 
+        path: "httpclient",
+        component: HttpClientRequests
+    },
+    {
+        path: "rxjs",
+        component: Rxjs,
+        pathMatch: "full"
     },
     {
         // Wild card route
