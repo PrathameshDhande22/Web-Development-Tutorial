@@ -42,6 +42,7 @@ export class Rxjs implements OnInit {
       }
     })
 
+    // subscribe to the subject
     this.emit_events$.subscribe((value) => {
       const newspan = this.renderer2.createElement("span")
       this.renderer2.setProperty(newspan, "innerHTML", value)
@@ -53,11 +54,13 @@ export class Rxjs implements OnInit {
     if (this.emit_events$.closed) {
       this.renderer2.setProperty(this.logsdivbox()?.nativeElement, "innerHTML", "Subscription Cancelled")
     } else {
+      // send the values
       this.emit_events$.next("clicked")
     }
   }
 
   cancelSubscription() {
+    // unsubscribe the subject same for the observables.
     this.emit_events$.unsubscribe()
   }
 }
