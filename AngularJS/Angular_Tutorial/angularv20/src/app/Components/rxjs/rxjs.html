@@ -1,3 +1,24 @@
 <div class="pt-14">
-ad
+  <div class="border-2 border-black rounded-xl mt-3 p-2">
+    <h3 class="font-bold text-2xl">Observable</h3>
+    @for (num of data_emitted(); track $index) {
+    <span id="{{ $index }}">
+      {{ num }}
+    </span>
+    }
+
+    <div #messagediv></div>
+  </div>
+
+  <div class="border-2 border-black rounded-xl mt-3 p-2">
+    <h3 class="font-bold text-2xl">Subjects</h3>
+    <!-- Subjects values -->
+    <button class="p-2 bg-pink-400 border-2 border-red-500" (click)="emitEvent()">
+      Click to Emit
+    </button>
+    <div #logsdiv class="flex gap-2"></div>
+    <button class="p-2 bg-green-600 border-2 border-blue-500" (click)="cancelSubscription()">
+      Cancel Emit
+    </button>
+  </div>
 </div>
