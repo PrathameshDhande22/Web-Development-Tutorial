@@ -11,8 +11,7 @@ export class ProductService {
 
   public getAllProducts() {
     const apiurl = environment.DUMMY_JSON_API + "/products"
-    const httpparams = new HttpParams()
-    httpparams.append("limit", 40)
+    const httpparams = new HttpParams().append("limit", 40)
     return this.httpclient.get<ProductResponse>(apiurl, {
       params: httpparams
     })
