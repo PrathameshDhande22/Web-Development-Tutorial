@@ -21,4 +21,28 @@
       Cancel Emit
     </button>
   </div>
+
+  <div class="border-2 border-black rounded-xl mt-3 p-2">
+    <h3 class="font-bold text-2xl">Behavior Subject</h3>
+    <!-- Behavior Subject Creation -->
+    <span>Values Changes : {{ b_snumber() }}</span>
+  </div>
+
+  <!-- Example of Operators -->
+  <div class="border-2 border-black rounded-xl mt-3 p-2">
+    <h3 class="font-bold text-2xl">Operators</h3>
+    <button
+      class="p-2 bg-violet-400 border-2 border-black cursor-pointer hover:bg-violet-800 hover:text-white transition-colors"
+      (click)="fetchProducts()"
+    >
+      Fetch all Products
+    </button>
+    <div class="flex gap-2 flex-wrap">
+      @for (product of products(); track product.id) {
+        <div class="border-2 border-red-400 p-1">
+          <span>{{product.title}}</span>
+        </div>
+      }
+    </div>
+  </div>
 </div>
