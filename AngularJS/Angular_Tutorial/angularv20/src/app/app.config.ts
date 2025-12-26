@@ -7,6 +7,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loggingInterceptor } from './Interceptors/logging-interceptor';
 import { authInterceptor } from './Interceptors/auth-interceptor';
 import { cacheInterceptor } from './Interceptors/cache-interceptor';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 
 // Providing the static value through the injection token
@@ -35,6 +36,6 @@ export const appConfig: ApplicationConfig = {
     // providing the HTTP Client
     provideHttpClient(withInterceptors(
       [loggingInterceptor, authInterceptor, cacheInterceptor]
-    ))
+    )), provideClientHydration(withEventReplay())
   ]
 };

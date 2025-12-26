@@ -24,6 +24,8 @@ import { Typedreactiveform } from './Components/formstut/typedreactiveform/typed
 import { Templateform } from './Components/formstut/templateform/templateform';
 import { HttpClientRequests } from './Components/http-client-requests/http-client-requests';
 import { Rxjs } from './Components/rxjs/rxjs';
+import { RouterRendering } from './Components/router-rendering/router-rendering';
+import { ServerSide } from './Components/server-side/server-side';
 
 // defining the routes
 // the first two routes are static url meaning they are never gonna change
@@ -156,6 +158,16 @@ export const routes: Routes = [
         path: "rxjs",
         component: Rxjs,
         pathMatch: "full"
+    },
+    {
+        path: "routerendering",
+        component: RouterRendering,
+        children: [
+            {
+                path: "server-rendering",
+                component: ServerSide
+            }
+        ]
     },
     {
         // Wild card route
