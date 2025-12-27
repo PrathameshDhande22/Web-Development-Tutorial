@@ -26,6 +26,7 @@ import { HttpClientRequests } from './Components/http-client-requests/http-clien
 import { Rxjs } from './Components/rxjs/rxjs';
 import { RouterRendering } from './Components/router-rendering/router-rendering';
 import { ServerSide } from './Components/server-side/server-side';
+import { DragComponent } from './Components/drag-component/drag-component';
 
 // defining the routes
 // the first two routes are static url meaning they are never gonna change
@@ -168,6 +169,10 @@ export const routes: Routes = [
                 component: ServerSide
             }
         ]
+    },
+    {
+        path: "drag",
+        component: DragComponent
     },
     {
         // Wild card route

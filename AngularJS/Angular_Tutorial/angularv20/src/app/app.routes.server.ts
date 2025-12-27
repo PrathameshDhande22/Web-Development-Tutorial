@@ -106,6 +106,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server
   },
   {
+    path: "drag",
+    renderMode: RenderMode.Client
+  },
+  {
     path: "**",
     // SSG client rendering 
     renderMode: RenderMode.Prerender

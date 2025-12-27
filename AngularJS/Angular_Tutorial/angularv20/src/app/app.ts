@@ -15,4 +15,17 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('angularv20');
+
+/*   constructor() {
+    // create the new webworker
+    const worker = new Worker(new URL(
+      "./app.worker.ts", import.meta.url
+    ))
+
+    worker.onmessage = ({ data }) => {
+      console.log("got Message from worker", data)
+    }
+
+    worker.postMessage("Helo from App Component")
+  } */
 }
