@@ -1,26 +1,27 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
-import prisma from './database';
-import usersRouter from './routes/users';
+import { prisma } from './database';
 import booksRouter from './routes/books';
+import morgan from 'morgan';
+
+
 
 const app: Express = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(morgan("dev"))
 app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
   res.json({
     message: 'Books and Users API',
     endpoints: {
-      users: '/api/users',
       books: '/api/books'
     }
   });
 });
 
-app.use('/api/users', usersRouter);
 app.use('/api/books', booksRouter);
 
 const server = app.listen(PORT, () => {

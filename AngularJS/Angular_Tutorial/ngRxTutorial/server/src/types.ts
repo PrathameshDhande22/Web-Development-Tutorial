@@ -1,25 +1,20 @@
-export interface CreateUserInput {
-  name: string;
-  email: string;
+export interface CreateBookInput extends BookInput {
+
 }
 
-export interface UpdateUserInput {
-  name?: string;
-  email?: string;
-}
-
-export interface CreateBookInput {
+export interface BookInput {
   title: string;
   author: string;
-  isbn?: string;
-  publishedYear?: number;
-  userId?: number;
+  isbn?: string | null;
+  publishedYear?: number | null;
+  imgurl?: string | null
 }
 
-export interface UpdateBookInput {
-  title?: string;
-  author?: string;
-  isbn?: string;
-  publishedYear?: number;
-  userId?: number;
+export interface UpdateBookInput extends BookInput {
+
+}
+
+export interface Book extends BookInput {
+  id: number
+  createdAt: Date
 }

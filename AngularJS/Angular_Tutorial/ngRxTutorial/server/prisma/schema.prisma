@@ -1,31 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
-
-model User {
-  id    Int     @id @default(autoincrement())
-  name  String
-  email String  @unique
-  books Book[]
-  createdAt DateTime @default(now())
-
-  @@map("users")
 }
 
 model Book {
-  id            Int     @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   title         String
   author        String
   isbn          String?
+  imgurl        String?  @default("https://images.template.net/453953/6x9-Book-Cover-Template-edit-online.png")
   publishedYear Int?
-  userId        Int?
-  user          User?   @relation(fields: [userId], references: [id])
   createdAt     DateTime @default(now())
 
+  @@index([id, title])
   @@map("books")
 }

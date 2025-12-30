@@ -1,14 +1,12 @@
 import { Router, Request, Response } from 'express';
-import prisma from '../database';
-import { CreateBookInput, UpdateBookInput } from '../types';
+import { prisma } from '../database';
+import { CreateBookInput, UpdateBookInput, Book } from '../types';
 
 const router = Router();
 
 router.get('/', async (req: Request, res: Response) => {
   try {
-    const books = await prisma.book.findMany({
-      include: { user: true }
-    });
+    const books: Book[] = await prisma.book.findMany();
     res.json(books);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch books' });
@@ -17,9 +15,8 @@ router.get('/', async (req: Request, res: Response) => {
 
 router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const book = await prisma.book.findUnique({
-      where: { id: parseInt(req.params.id) },
-      include: { user: true }
+    const book: Book | null = await prisma.book.findUnique({
+      where: { id: parseInt(req.params.id) }
     });
     if (!book) {
       return res.status(404).json({ error: 'Book not found' });
@@ -32,7 +29,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { title, author, isbn, publishedYear, userId }: CreateBookInput = req.body;
+    const { title, author, isbn, publishedYear, imgurl }: CreateBookInput = req.body;
 
     if (!title || !author) {
       return res.status(400).json({ error: 'Title and author are required' });
@@ -44,9 +41,8 @@ router.post('/', async (req: Request, res: Response) => {
         author,
         isbn: isbn || null,
         publishedYear: publishedYear || null,
-        userId: userId || null
-      },
-      include: { user: true }
+        ...(imgurl && { imgurl })
+      }
     });
 
     res.status(201).json(book);
@@ -63,18 +59,17 @@ router.post('/', async (req: Request, res: Response) => {
 
 router.put('/:id', async (req: Request, res: Response) => {
   try {
-    const { title, author, isbn, publishedYear, userId }: UpdateBookInput = req.body;
+    const { title, author, isbn, publishedYear, imgurl }: UpdateBookInput = req.body;
 
     const book = await prisma.book.update({
       where: { id: parseInt(req.params.id) },
       data: {
         ...(title && { title }),
         ...(author && { author }),
+        ...(imgurl && { imgurl }),
         ...(isbn !== undefined && { isbn: isbn || null }),
-        ...(publishedYear !== undefined && { publishedYear: publishedYear || null }),
-        ...(userId !== undefined && { userId: userId || null })
-      },
-      include: { user: true }
+        ...(publishedYear !== undefined && { publishedYear: publishedYear || null })
+      }
     });
 
     res.json(book);
