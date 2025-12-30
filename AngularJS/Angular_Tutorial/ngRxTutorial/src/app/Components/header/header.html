@@ -1,0 +1,49 @@
+<header class="navbar bg-violet-400 shadow-sm">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <div
+        tabindex="0"
+        role="button"
+        class="btn btn-ghost btn-block hover:bg-violet-700 hover:text-white"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h7"
+          />
+        </svg>
+      </div>
+      <ul
+        tabindex="-1"
+        class="menu menu-sm dropdown-content bg-violet-300 rounded-box z-1 mt-3 w-52 p-2 shadow"
+      >
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="bg-violet-200"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Counter - Global Store</a
+          >
+        </li>
+        <li>
+          <a routerLink="/signal-store" routerLinkActive="bg-violet-200">Counter - Signal Store</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="navbar-center">
+    <a class="btn btn-ghost text-xl flex flex-row gap-3">
+      <img src="https://ngrx.io/ngrx-logo-pink.svg" alt="NgRx logo" class="w-10" />
+      <span>NgRx Tutorial</span>
+    </a>
+  </div>
+  <div class="navbar-end"></div>
+</header>
