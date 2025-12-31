@@ -1,0 +1,21 @@
+<div class="card image-full w-96 shadow-sm bg-base-200" [class.bg-gray-600]="!book().imgurl">
+  <figure class="absolute inset-0">
+    <img
+      [src]="book().imgurl"
+      [alt]="book().title.toLowerCase()"
+      class="w-full h-full object-cover"
+    />
+  </figure>
+
+  <div class="card-body relative z-10">
+    <h2 class="card-title">{{ book().title }}</h2>
+    <p>
+      Author: {{ book().author }} <br />
+      ISBN: {{ book().isbn }} <br />
+      CreatedAt: {{ book().createdAt | date }}
+    </p>
+    <div class="card-actions justify-end">
+      <div class="badge badge-outline">{{ book().publishedYear }}</div>
+    </div>
+  </div>
+</div>

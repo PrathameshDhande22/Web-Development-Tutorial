@@ -1,0 +1,23 @@
+<div class="mt-4">
+  <h4 class="text-xl font-bold">List of Books</h4>
+
+  <div class="mt-4">
+    <!-- loading state -->
+    @if (loading()) {
+    <div class="flex w-52 flex-col gap-4">
+      <div class="skeleton h-32 w-full"></div>
+      <div class="skeleton h-4 w-28"></div>
+      <div class="skeleton h-4 w-full"></div>
+      <div class="skeleton h-4 w-full"></div>
+    </div>
+    } @else if (errorMessage() && !loading()) {
+    <div class="text-red-500">Failed to Load the Books</div>
+    } @else {
+    <div class="flex flex-wrap gap-2">
+      @for (book of books(); track book.id) {
+      <app-book-card [book]="book" />
+      }
+    </div>
+    }
+  </div>
+</div>
