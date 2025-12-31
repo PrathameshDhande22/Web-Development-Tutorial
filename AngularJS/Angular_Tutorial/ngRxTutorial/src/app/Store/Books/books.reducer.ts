@@ -26,5 +26,9 @@ export const booksReducer = createReducer(
     ...state,
     loading: false,
     errormessage: errormessage,
+  })),
+  on(BookActions.RemoveBookAction.removeBookSuccess, (state, { id }) => ({
+    ...state,
+    books: state.books.filter((value) => value.id !== id),
   }))
 );

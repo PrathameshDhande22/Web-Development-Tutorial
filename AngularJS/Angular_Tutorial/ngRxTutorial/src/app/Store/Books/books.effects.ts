@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { BookService } from '../../Services/book-service';
-import { BookActions, LoadBooksFailure, LoadBooksSuccess } from './books.action';
+import { BookActions, LoadBooksFailure, LoadBooksSuccess, RemoveBookAction } from './books.action';
 import { catchError, delay, exhaustMap, filter, map, of, tap, withLatestFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectBooksLoaded } from './books.selectors';
@@ -30,4 +30,16 @@ export class BookEffects {
     );
   });
 
+  removebook$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(BookActions.removeBook),
+      exhaustMap((action) =>
+        // using the props in the effects
+        this.bookService.removeBook(action.id).pipe(
+          map(() => RemoveBookAction.removeBookSuccess({ id: action.id })),
+          catchError(() => of(RemoveBookAction.removeBookFailure()))
+        )
+      )
+    );
+  });
 }

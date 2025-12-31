@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Book } from '../../types';
 import { DatePipe } from '@angular/common';
 
@@ -10,4 +10,9 @@ import { DatePipe } from '@angular/common';
 })
 export class BookCard {
   book = input.required<Book>();
+  bookidremove = output<number>();
+
+  removeclick(id: number): void {
+    this.bookidremove.emit(id);
+  }
 }

@@ -12,4 +12,8 @@ export class BookService {
   getAllBooks(): Observable<Book[]> {
     return this.httpclient.get<Book[]>('/books');
   }
+
+  removeBook(id: number): Observable<void> {
+    return this.httpclient.delete<void>(`/books/${id}`);
+  }
 }

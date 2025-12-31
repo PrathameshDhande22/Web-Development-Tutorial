@@ -14,8 +14,11 @@
       ISBN: {{ book().isbn }} <br />
       CreatedAt: {{ book().createdAt | date }}
     </p>
-    <div class="card-actions justify-end">
+    <div class="card-actions justify-end items-center">
       <div class="badge badge-outline">{{ book().publishedYear }}</div>
+      <button class="btn btn-sm btn-outline btn-error" (click)="removeclick(book().id)">
+        Remove
+      </button>
     </div>
   </div>
 </div>

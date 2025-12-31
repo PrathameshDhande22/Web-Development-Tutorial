@@ -24,4 +24,8 @@ export class BooksPage implements OnInit {
     // dispatching the actions
     this.store.dispatch(BookActions.loadBooks());
   }
+
+  removeBook(id: number): void {
+    this.store.dispatch(BookActions.removeBook({ id }));
+  }
 }

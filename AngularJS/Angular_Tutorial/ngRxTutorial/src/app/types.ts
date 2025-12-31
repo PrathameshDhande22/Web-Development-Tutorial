@@ -15,3 +15,7 @@ export interface BookList {
 export interface BookListFailure {
   errormessage: string | null;
 }
+
+export interface RemoveBookProps {
+  id: number;
+}
