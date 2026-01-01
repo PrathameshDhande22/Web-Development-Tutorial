@@ -1,0 +1,13 @@
+<div class="mt-4">
+  <div class="flex flex-row flex-wrap justify-between items-center gap-3">
+    <h4 class="text-xl font-bold">User Collection of Books</h4>
+  </div>
+
+  <div class="mt-4">
+    <div class="flex flex-wrap gap-2">
+      @for (book of userCollectionselector(); track book.id) {
+      <app-book-card [book]="book" />
+      }
+    </div>
+  </div>
+</div>

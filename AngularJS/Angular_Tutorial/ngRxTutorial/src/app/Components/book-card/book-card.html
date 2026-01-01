@@ -16,10 +16,18 @@
     </p>
     <div class="card-actions justify-end items-center">
       <div class="badge badge-outline">{{ book().publishedYear }}</div>
+      @if (routeshown==="list") {
       <button class="btn btn-sm btn-outline btn-error" (click)="removeclick(book().id)">
         Remove
       </button>
+      <button class="btn btn-sm btn-outline btn-warning" (click)="addtoCollectionBtnClick()">
+        Add To Collection
+      </button>
+      } @else if (routeshown==="collection") {
+      <button class="btn btn-sm btn-outline btn-error" (click)="removeFromCollectionBtnClick()">
+        Remove
+      </button>
+      }
     </div>
   </div>
 </div>
-

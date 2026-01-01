@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as BookActions from './books.action';
 import { InitialBookState } from './books.state';
-import { Book } from '../../types';
 
 export const BookStoreKey: string = 'books';
 
@@ -18,6 +17,7 @@ export const booksReducer = createReducer(
         }
   ),
   on(BookActions.LoadBooksSuccess, (state, { books }) => ({
+    ...state,
     books: books,
     errormessage: null,
     loading: false,
@@ -35,5 +35,38 @@ export const booksReducer = createReducer(
   on(BookActions.BookActions.addBook, (state, book) => ({
     ...state,
     books: [...state.books, book],
-  }))
+  })),
+  on(BookActions.UserBookCollection.addBook, (state, { id }) => {
+    // find the books
+    const book = state.books.find((value) => value.id === id);
+
+    if (!book) {
+      return state;
+    }
+
+    // Prevent duplicates in user collection
+    const alreadyExists = state.usercollection.some((b) => b.id === id);
+
+    if (alreadyExists) {
+      return state;
+    }
+
+    return {
+      ...state,
+      books: state.books.filter((value) => value.id !== id),
+      usercollection: [...state.usercollection, book],
+    };
+  }),
+  on(BookActions.UserBookCollection.removeBook, (state, { id }) => {
+    // find the book in the usercollection
+    const book = state.usercollection.find((value) => value.id === id);
+    if (!book) {
+      return state;
+    }
+    return {
+      ...state,
+      books: [...state.books, book],
+      usercollection: state.usercollection.filter((value) => value.id !== id),
+    };
+  })
 );

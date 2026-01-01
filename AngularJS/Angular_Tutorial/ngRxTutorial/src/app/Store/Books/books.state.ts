@@ -1,7 +1,7 @@
-import { BookList, BookListFailure } from '../../types';
+import { BookList, BookListFailure, UserCollection } from '../../types';
 
 // creating the type for the state
-export interface BookState extends BookList, BookListFailure {
+export interface BookState extends BookList, BookListFailure, UserCollection {
   loading: boolean;
   loaded: boolean;
 }
@@ -11,4 +11,5 @@ export const InitialBookState: BookState = {
   errormessage: null,
   loading: false,
   loaded: false,
+  usercollection: [],
 };

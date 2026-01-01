@@ -15,6 +15,10 @@ export interface BookList {
   books: Book[];
 }
 
+export interface UserCollection {
+  usercollection: Book[];
+}
+
 export interface BookListFailure {
   errormessage: string | null;
 }

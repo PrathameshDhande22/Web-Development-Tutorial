@@ -22,3 +22,11 @@ export const RemoveBookAction = createActionGroup({
     RemoveBookFailure: emptyProps(),
   },
 });
+
+export const UserBookCollection = createActionGroup({
+  source: 'User Collection',
+  events: {
+    AddBook: props<{ id: number }>(),
+    RemoveBook: props<{ id: number }>(),
+  },
+});

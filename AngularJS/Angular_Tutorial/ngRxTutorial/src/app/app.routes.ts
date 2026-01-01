@@ -18,4 +18,9 @@ export const routes: Routes = [
     path: 'books',
     loadComponent: () => import('./Components/books-page/books-page').then((mod) => mod.BooksPage),
   },
+  {
+    path: 'usercollection',
+    loadComponent: () =>
+      import('./Components/user-collection/user-collection').then((mod) => mod.UserCollection),
+  },
 ];

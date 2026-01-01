@@ -14,3 +14,8 @@ export const LoadingBookSelector = createSelector(
 export const selectBooksLoaded = createSelector(BookSelectorFeature, (state) => state.loaded);
 
 export const errorBooksMessage = createSelector(BookSelectorFeature, (state) => state.errormessage);
+
+export const usercollectionSelector = createSelector(
+  BookSelectorFeature,
+  (state) => state.usercollection
+);
