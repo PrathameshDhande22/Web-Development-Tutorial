@@ -6,9 +6,10 @@ For complete tutorial of react JS refer to [React JS Tutorial](https://github.co
 
 For Complete Tutorial of Recoil refer to [Recoil Tutorial](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs/recoil_tutorial)
 
+For Complete Tutorial of React Query or Tanstack query refer to [React Query](https://github.com/PrathameshDhande22/Web-Development-Tutorial/tree/main/ReactJs/react-query)
 
 These the First part of the Frontend Development.
 
-After Mastering React Learn NextJS Framework which is Similar to ReactJS.
+**Note**: After Mastering React Learn NextJS Framework which is Similar to ReactJS.
 
 

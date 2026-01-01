@@ -46,12 +46,13 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 8. TailwindCSS
 9. Typescript
 10. NodeJS (JavaScript)
-11. React Recoil Tutorial
+11. React Recoil
 12. ExpressJS or MERN Stack
 13. jQuery
 14. ASP.NET MVC Framework (C#)
 15. Angular 
-16. React Query Tutorial
+16. React Query (Tanstack Query)
+17. NgRX
 
 ## Projects :
 
@@ -92,3 +93,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 16. ASP.NET MVC Framework 👉 https://www.youtube.com/playlist?list=PL6n9fhu94yhVm6S8I2xd6nYz2ZORd7X2v
 17. Angular 👉 https://www.youtube.com/playlist?list=PL1BztTYDF-QNlGo5-g65Xj1mINHYk_FM9
 18. React Query Tutorial 👉 https://youtu.be/GEeBG7AoQdM?si=mtA3tLebm2ffK-Ur
+19. NgRX Tutorial 👉 https://ngrx.io/docs
