@@ -1,11 +1,14 @@
-export interface Book {
-  id: number;
-  createdAt: Date;
+export interface BookFormInput {
   title: string;
   author: string;
   isbn?: string | null;
   publishedYear?: number | null;
   imgurl?: string | null;
+}
+
+export interface Book extends BookFormInput {
+  id: number;
+  createdAt: Date;
 }
 
 export interface BookList {

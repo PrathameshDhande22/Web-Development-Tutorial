@@ -1,0 +1,99 @@
+<dialog id="addModal" #addBookModal class="modal">
+  <div class="modal-box">
+    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" (click)="close()">
+      ✕
+    </button>
+    <h3 class="text-lg font-bold">Add Book</h3>
+    <!-- Form -->
+    @if (!bookaddedconfirmation()) {
+
+    <form
+      [formGroup]="addbook"
+      class="flex justify-center items-center flex-col gap-4 mt-3 p-5"
+      (ngSubmit)="submitAddBookForm()"
+    >
+      <div class="flex items-center gap-0.5 flex-col w-full">
+        <label class="input w-full" [class.input-error]="markInvalid(addbook.controls.title)">
+          <span class="label">Title</span>
+          <input type="text" formControlName="title" class="" />
+        </label>
+        <div class="self-start">
+          @for (error of getErrors('title'); track error) {
+          <span class="text-red-500 text-sm block">
+            {{ error }}
+          </span>
+          }
+        </div>
+      </div>
+      <div class="flex items-center gap-0.5 flex-col w-full">
+        <label class="input w-full" [class.input-error]="markInvalid(addbook.controls.author)">
+          <span class="label">Author</span>
+          <input type="text" formControlName="author" class="" />
+        </label>
+        <div class="self-start">
+          @for (error of getErrors('author'); track error) {
+          <span class="text-red-500 text-sm block">
+            {{ error }}
+          </span>
+          }
+        </div>
+      </div>
+      <div class="flex items-center gap-0.5 flex-col w-full">
+        <label class="input w-full" [class.input-error]="markInvalid(addbook.controls.imgurl)">
+          <span class="label">Book Cover Image</span>
+          <input
+            type="text"
+            formControlName="imgurl"
+            class=""
+            placeholder="https://example.com/image.png"
+          />
+        </label>
+        <div class="self-start">
+          @for (error of getErrors('imgurl'); track error) {
+          <span class="text-red-500 text-sm block">
+            {{ error }}
+          </span>
+          }
+        </div>
+      </div>
+      <div class="flex items-center gap-0.5 flex-col w-full">
+        <label class="input w-full" [class.input-error]="markInvalid(addbook.controls.isbn)">
+          <span class="label">ISBN</span>
+          <input type="text" formControlName="isbn" class="" />
+        </label>
+        <div class="self-start">
+          @for (error of getErrors('isbn'); track error) {
+          <span class="text-red-500 text-sm block">
+            {{ error }}
+          </span>
+          }
+        </div>
+      </div>
+      <div class="flex items-center gap-0.5 flex-col w-full">
+        <label
+          class="input w-full"
+          [class.input-error]="markInvalid(addbook.controls.publishedYear)"
+        >
+          <span class="label">Published Year</span>
+          <input type="number" formControlName="publishedYear" class="" />
+        </label>
+        <div class="self-start">
+          @for (error of getErrors('publishedYear'); track error) {
+          <span class="text-red-500 text-sm block">
+            {{ error }}
+          </span>
+          }
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 items-center justify-evenly">
+        <button class="btn btn-md btn-success" type="submit" [disabled]="!addbook.valid">
+          Submit
+        </button>
+        <button class="btn btn-md btn-warning" type="reset">Reset</button>
+      </div>
+    </form>
+    } @else{
+    <div>Book Added Successfully</div>
+    }
+  </div>
+</dialog>

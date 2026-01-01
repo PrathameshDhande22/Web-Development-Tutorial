@@ -1,5 +1,8 @@
 <div class="mt-4">
-  <h4 class="text-xl font-bold">List of Books</h4>
+  <div class="flex flex-row flex-wrap justify-between items-center gap-3">
+    <h4 class="text-xl font-bold">List of Books</h4>
+    <button class="btn btn-md btn-soft btn-warning" (click)="openModal()">Add Book</button>
+  </div>
 
   <div class="mt-4">
     <!-- loading state -->
@@ -21,3 +24,4 @@
     }
   </div>
 </div>
+<app-add-book-modal></app-add-book-modal>

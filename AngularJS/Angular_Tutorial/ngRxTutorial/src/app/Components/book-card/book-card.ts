@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, viewChild } from '@angular/core';
 import { Book } from '../../types';
 import { DatePipe } from '@angular/common';
+import { AddBookModal } from "../add-book-modal/add-book-modal";
 
 @Component({
   selector: 'app-book-card',

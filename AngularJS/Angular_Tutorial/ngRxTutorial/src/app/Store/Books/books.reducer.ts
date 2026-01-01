@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as BookActions from './books.action';
 import { InitialBookState } from './books.state';
+import { Book } from '../../types';
 
 export const BookStoreKey: string = 'books';
 
@@ -30,5 +31,9 @@ export const booksReducer = createReducer(
   on(BookActions.RemoveBookAction.removeBookSuccess, (state, { id }) => ({
     ...state,
     books: state.books.filter((value) => value.id !== id),
+  })),
+  on(BookActions.BookActions.addBook, (state, book) => ({
+    ...state,
+    books: [...state.books, book],
   }))
 );

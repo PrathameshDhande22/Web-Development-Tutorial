@@ -7,6 +7,7 @@ export const BookActions = createActionGroup({
   events: {
     LoadBooks: emptyProps(),
     RemoveBook: props<RemoveBookProps>(),
+    AddBook: props<Book>(),
   },
 });
 

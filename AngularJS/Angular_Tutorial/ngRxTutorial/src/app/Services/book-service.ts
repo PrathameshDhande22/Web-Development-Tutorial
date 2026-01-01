@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Book, BookList } from '../types';
+import { Book, BookFormInput, BookList } from '../types';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
@@ -15,5 +15,11 @@ export class BookService {
 
   removeBook(id: number): Observable<void> {
     return this.httpclient.delete<void>(`/books/${id}`);
+  }
+
+  addBook(inputs: BookFormInput): Observable<HttpResponse<Book>> {
+    return this.httpclient.post<Book>('/books', inputs, {
+      observe: 'response',
+    });
   }
 }
