@@ -5,6 +5,10 @@ type ProductPageProps = {
   params: Promise<{ id: string }>;
 };
 
+import { notFound } from "next/navigation";
+
+// IMport the not found function from the 'next/navigation" to call the not found page programmatically
+
 // creating the async function for getting the id as the parameter from the router
 export default async function ProductDetail({ params }: ProductPageProps) {
   // await the parameters
@@ -12,6 +16,11 @@ export default async function ProductDetail({ params }: ProductPageProps) {
   const productdetail = products.find(
     (value) => value.id === Number.parseInt(parameters.id)
   );
+
+  // if product id is greater than 10 show not found page
+  if (parseInt(parameters.id) >= 1000) {
+    notFound();
+  }
 
   // No Product Found
   if (!productdetail) {
