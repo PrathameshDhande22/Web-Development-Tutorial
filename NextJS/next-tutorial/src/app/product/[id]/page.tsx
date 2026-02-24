@@ -1,4 +1,5 @@
 import { products } from "@/mock";
+import { Metadata } from "next";
 
 type ProductPageProps = {
   // the id must be the same as provided in the `[id]` while creating the folder
@@ -8,6 +9,16 @@ type ProductPageProps = {
 import { notFound } from "next/navigation";
 
 // IMport the not found function from the 'next/navigation" to call the not found page programmatically
+
+// Creating the Dynamic metadata - must be the exact same function name
+export const generateMetadata = async ({
+  params,
+}: ProductPageProps): Promise<Metadata> => {
+  const id = await params;
+  return {
+    title: `Product - ${id.id}`,
+  };
+};
 
 // creating the async function for getting the id as the parameter from the router
 export default async function ProductDetail({ params }: ProductPageProps) {

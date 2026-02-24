@@ -1,4 +1,12 @@
 import { products } from "@/mock";
+import { Metadata } from "next";
+
+// Overriding the static metadata object
+// the description will be applied from the root layout.tsx
+export const metadata: Metadata = {
+  title: "Product List Page",
+};
+
 export default function ProductPage() {
   return (
     <div>
