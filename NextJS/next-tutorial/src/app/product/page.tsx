@@ -1,5 +1,6 @@
 import { products } from "@/mock";
 import { Metadata } from "next";
+import Link from "next/link";
 
 // Overriding the static metadata object
 // the description will be applied from the root layout.tsx
@@ -18,6 +19,8 @@ export default function ProductPage() {
               <span>ID: {value.id}</span>
               <span>ProductName: {value.productname}</span>
               <span>Quantity: {value.quantity}</span>
+              {/* Navigating the Pages */}
+              <Link href={`/product/${value.id}`}>View Product</Link>
             </div>
           );
         })}
