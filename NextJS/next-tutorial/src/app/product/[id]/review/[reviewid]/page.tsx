@@ -1,9 +1,15 @@
+import { redirect, RedirectType } from "next/navigation";
+
 const ReviewDetail = async ({
   params,
 }: //   passing the page props which is declared as globally
 PageProps<"/product/[id]/review/[reviewid]">) => {
   // awaiting the params
   const { id, reviewid } = await params;
+
+  if (Number.parseInt(reviewid) >= 1000) {
+    redirect(`/product/${id}`, RedirectType.push);
+  }
 
   return (
     <div>
