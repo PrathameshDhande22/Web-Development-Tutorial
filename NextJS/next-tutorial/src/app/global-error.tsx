@@ -1,6 +1,6 @@
 "use client";
 
-// deine the global error as the client side and its must have its own html and body
+// define the global error as the client side and its must have its own html and body
 const GlobalError = ({ error }: ErrorPageProps) => {
   return (
     <html>

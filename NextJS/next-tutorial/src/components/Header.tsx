@@ -12,6 +12,7 @@ const NavLinks: Navtypes = [
   { link: "/blog", text: "Blog" },
   { link: "/product", text: "Products" },
   { link: "/article", text: "Articles" },
+  { link: "/dashboard", text: "Dashboard" },
 ];
 
 const Header = () => {
@@ -19,7 +20,7 @@ const Header = () => {
   const currentpathname = usePathname();
 
   return (
-    <header className="bg-yellow-600 text-black p-3">
+    <header className="bg-yellow-600 text-black p-3 flex flex-row justify-between">
       <nav className="flex gap-3">
         {NavLinks.map((value, index) => {
           const isActive =
