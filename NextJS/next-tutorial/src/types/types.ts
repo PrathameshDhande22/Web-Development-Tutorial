@@ -4,3 +4,8 @@ export interface Navlink {
 }
 
 export type NavLinks = Navlink[];
+
+export interface Comment {
+  id: number;
+  text: string;
+}

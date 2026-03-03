@@ -13,6 +13,7 @@ const NavLinks: Navtypes = [
   { link: "/product", text: "Products" },
   { link: "/article", text: "Articles" },
   { link: "/dashboard", text: "Dashboard" },
+  { link: "/feed", text: "Feed" },
 ];
 
 const Header = () => {

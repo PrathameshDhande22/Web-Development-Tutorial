@@ -1,0 +1,7 @@
+@baseurl=http://localhost:3000
+
+### Sample Dashboard API Call
+GET {{baseurl}}/dashboard/api
+
+### First GET Request returning the JSON Response
+GET {{baseurl}}/comments
