@@ -5,3 +5,41 @@ GET {{baseurl}}/dashboard/api
 
 ### First GET Request returning the JSON Response
 GET {{baseurl}}/comments
+
+### POST Request
+POST {{baseurl}}/comments
+Content-Type: application/json
+
+{
+    "id":4,
+    "text":"This is Fourth Comment"
+}
+
+### Dynamic Route Segements
+GET {{baseurl}}/comments/3
+
+### Patch Request 
+PATCH {{baseurl}}/comments/2
+Content-Type: application/json
+
+{
+    "text":"Updated Comment"
+}
+
+### Delete Request
+DELETE {{baseurl}}/comments/2
+
+### Applying the Query
+GET {{baseurl}}/comments?query=hello
+
+### Sending the Headers
+GET {{baseurl}}/comments/detail
+Content-Type: application/json
+Authorization: Bearer 1234556
+
+### Accessing the Cookies
+GET {{baseurl}}/comments/cookie
+Cookie: Auth=nice
+
+### Redirect the Routes
+GET {{baseurl}}/blog/api
