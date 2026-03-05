@@ -42,7 +42,10 @@ export async function PATCH(
   });
 }
 
-export async function DELETE({ params }: RouteContext<"/comments/[id]">) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: RouteContext<"/comments/[id]">
+) {
   const commentparams = await params;
   return NextResponse.json({
     message: "Comment Deleted For ID",
