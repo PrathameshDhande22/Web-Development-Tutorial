@@ -2,7 +2,7 @@
 // Layout which will show the different page slots
 
 import { Card } from "@/components/Card";
-import { use } from "react";
+import { ClientSideFunction } from "@/utils/client-fn";
 
 // getting the slot as the props in the layout
 const DashboardLayout = ({
@@ -13,6 +13,13 @@ const DashboardLayout = ({
 }: LayoutProps<"/dashboard">) => {
   // flag for checking if the user is logged in or not
   const isLoggedIn = true;
+
+  // These line throw the error as these function must be used as an server side page only.
+  // const res=ServerSideFunction()
+
+  // These function is been used as client side function hence will not throw an error.
+  const res = ClientSideFunction();
+
   // rendering the Slots based on Conditions
   return isLoggedIn ? (
     <div className="p-4">
