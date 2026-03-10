@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Provider from "@/components/Provider";
 
 // Title metadata configuring title to be used by the child routes also
 export const metadata: Metadata = {
@@ -23,7 +24,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header></Header>
-        <main>{children}</main>
+        {/* Pass the Context Provider or any client side provider in these way */}
+        <Provider>
+          <main>{children}</main>
+        </Provider>
         <Footer />
       </body>
     </html>
