@@ -24,3 +24,11 @@ export type User = {
   email: string;
   address: Address;
 };
+
+export type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  createdAt: Date;
+};
