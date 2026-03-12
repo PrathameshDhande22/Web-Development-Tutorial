@@ -1,6 +1,7 @@
-"use server";
-
+import { deleteProduct } from "@/actions/product";
 import { prisma } from "@/prisma.client";
+import Form from "next/form";
+import Link from "next/link";
 
 const DBFetch = async () => {
   // Accessing the DB prisma client on the server side page only
@@ -45,11 +46,24 @@ const DBFetch = async () => {
                     }).format(product.createdAt)}
                   </time>
                 </div>
+                <Form action={deleteProduct.bind(null, product.id)}>
+                  <button
+                    type="submit"
+                    className="mt-2 cursor-pointer rounded-2xl bg-red-400 p-2 px-4"
+                  >
+                    Delete
+                  </button>
+                </Form>
               </article>
             );
           })}
         </section>
       )}
+      <div className="mt-3 flex w-full justify-center">
+        <Link href="/dbfetch/add" className="bg-blue-500 p-2 text-white">
+          Add Product
+        </Link>
+      </div>
     </div>
   );
 };
