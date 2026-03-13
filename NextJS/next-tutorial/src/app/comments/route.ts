@@ -12,6 +12,8 @@ export async function GET(request: NextRequest) {
     headers: {
       "x-query": String(query),
       "X-Powered-By": "Prathamesh Dhande",
+      // Using the Env values in the NextJS
+      Analyticcs: String(process.env.ANALYTICS_URL),
     },
   });
 }

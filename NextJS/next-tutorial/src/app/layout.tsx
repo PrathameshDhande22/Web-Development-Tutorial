@@ -3,6 +3,9 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Provider from "@/components/Provider";
+import { Suspense } from "react";
+// Importing the font with its font name
+import { Edu_NSW_ACT_Cursive } from "next/font/google";
 
 // Title metadata configuring title to be used by the child routes also
 export const metadata: Metadata = {
@@ -15,19 +18,29 @@ export const metadata: Metadata = {
     "A simple NextJS tutorial to get started with NextJS 13 and the new app directory structure.",
 };
 
+// Declaring the Font
+const cursivefont = Edu_NSW_ACT_Cursive({
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // add to include as the classname
+    <html lang="en" className={cursivefont.className}>
       <body>
-        <Header></Header>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header></Header>
+        </Suspense>
         {/* Pass the Context Provider or any client side provider in these way */}
-        <Provider>
-          <main>{children}</main>
-        </Provider>
+        <Suspense fallback={<div>Loading....</div>}>
+          <Provider>
+            <main>{children}</main>
+          </Provider>
+        </Suspense>
         <Footer />
       </body>
     </html>

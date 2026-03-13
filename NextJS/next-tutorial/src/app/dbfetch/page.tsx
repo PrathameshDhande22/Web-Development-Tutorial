@@ -1,9 +1,17 @@
 import { deleteProduct } from "@/actions/product";
 import { prisma } from "@/prisma.client";
+import { cacheLife } from "next/cache";
 import Form from "next/form";
 import Link from "next/link";
 
 const DBFetch = async () => {
+  // caching these content
+  "use cache";
+  cacheLife({
+    stale: 60,
+    revalidate: 60,
+    expire: 60,
+  });
   // Accessing the DB prisma client on the server side page only
   const products = await prisma.product.findMany({
     orderBy: {

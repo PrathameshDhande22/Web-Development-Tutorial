@@ -1,5 +1,6 @@
 import Review from "@/components/Review";
 import Link from "next/link";
+import Script from "next/script";
 import { Suspense } from "react";
 
 // These page will be generated as Static page
@@ -15,6 +16,11 @@ const ProductPage = () => {
       <Suspense fallback={<div>Loading....</div>}>
         <Review />
       </Suspense>
+      {/* Script from the next js */}
+      <Script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        strategy="afterInteractive"
+      ></Script>
     </div>
   );
 };

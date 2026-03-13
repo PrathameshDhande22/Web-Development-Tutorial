@@ -17,6 +17,8 @@ const FetcherPage = () => {
   });
   return (
     <div>
+      {/* Using the Browser based ENV value */}
+      {process.env.NEXT_PUBLIC_ANALYTICS_URL}
       <div>
         {isLoading ? (
           <div>Loading...</div>

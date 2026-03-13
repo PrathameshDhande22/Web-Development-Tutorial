@@ -1,10 +1,13 @@
-import ArticleCard from "@/components/ArticleCard";
+import dynamic from "next/dynamic";
 
 // creating the type safety for the the Article Search Params
 interface ArticleDetailsPageProps {
   params: Promise<{ articleId: string }>;
   searchParams: Promise<{ lang: "en" | "es" | "fr" }>;
 }
+
+// Dynamic import component or lazy load the component
+const ArticleCard = dynamic(() => import("@/components/ArticleCard"));
 
 const ArticleDetailsPage = async ({
   params,
