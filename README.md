@@ -10,7 +10,7 @@ My aim is to learn the Django Framework so to do this need to learn Web Developm
 
 ## Tutorials:
 
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) 
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -27,6 +27,7 @@ My aim is to learn the Django Framework so to do this need to learn Web Developm
 ![ASP.NET MVC](https://img.shields.io/badge/ASP.NET%20MVC-%235C2D91.svg?style=for-the-badge&logo=.net&logoColor=white)
 ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![Next JS](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 
@@ -41,18 +42,19 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 3. Bootstrap
 4. Javascript
 5. ReactJS
-6. Flask (Python) with API
-7. FastAPI (Python)
-8. TailwindCSS
-9. Typescript
-10. NodeJS (JavaScript)
-11. React Recoil
-12. ExpressJS or MERN Stack
-13. jQuery
-14. ASP.NET MVC Framework (C#)
-15. Angular 
-16. React Query (Tanstack Query)
-17. NgRX
+6. NextJS
+7. Flask (Python) with API
+8. FastAPI (Python)
+9. TailwindCSS
+10. Typescript
+11. NodeJS (JavaScript)
+12. React Recoil
+13. ExpressJS or MERN Stack
+14. jQuery
+15. ASP.NET MVC Framework (C#)
+16. Angular
+17. React Query (Tanstack Query)
+18. NgRX
 
 ## Projects :
 
@@ -94,3 +96,4 @@ SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-
 17. Angular 👉 https://www.youtube.com/playlist?list=PL1BztTYDF-QNlGo5-g65Xj1mINHYk_FM9
 18. React Query Tutorial 👉 https://youtu.be/GEeBG7AoQdM?si=mtA3tLebm2ffK-Ur
 19. NgRX Tutorial 👉 https://ngrx.io/docs
+20. NextJS 👉 https://www.youtube.com/watch?v=k7o9R6eaSes and https://nextjs.org/docs
