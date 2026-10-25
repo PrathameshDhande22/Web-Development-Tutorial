@@ -1,6 +1,7 @@
 // Step 1: Configuring the required services
 using CoreProject;
-using System.Runtime.CompilerServices;
+using CoreProject.Models;
+using Microsoft.Extensions.Options;
 
 // Creating the Web application options
 WebApplicationOptions options = new()
@@ -13,6 +14,12 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(options);
 
 // Injecting the middleware
 builder.Services.AddTransient<CallNextMiddleware>();
+
+// Configure to inject these class
+builder.Services.Configure<ComplexOptions>(builder.Configuration.GetSection("Complex"));
+
+// Alternative
+builder.Services.AddOptions<ComplexOptions>().BindConfiguration("Complex").ValidateDataAnnotations();
 
 Console.WriteLine(builder.Configuration.GetValue<string>("CustomKey"));
 
@@ -36,6 +43,13 @@ app.UseStaticFiles();
 
 // Step 3: Configure the Routes and middleware
 app.MapGet("/", () => "Hello World From Prathamesh");
+
+// Reading the values from the options
+app.MapGet("/get-options-value", (IOptions<ComplexOptions> complex) =>
+{
+    return $"Complex Key={complex.Value.ApiKey}";
+
+});
 
 app.MapGet("/error", async (context) =>
 {
