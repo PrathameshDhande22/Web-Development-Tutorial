@@ -11,6 +11,9 @@ WebApplicationOptions options = new()
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(options);
 
+// Injecting the middleware
+builder.Services.AddTransient<CallNextMiddleware>();
+
 Console.WriteLine(builder.Configuration.GetValue<string>("CustomKey"));
 
 // Step 2: Build the Web application
@@ -51,6 +54,12 @@ app.MapGet("/nested", () => $"Authentication Key = {authorization_key}\nModule={
 
 // Defining the Middleware using the Map Method
 app.Map("/nested-route", () => "hello route");
+
+// using the class based middleware
+app.UseMiddleware<CallNextMiddleware>();
+
+// Using the Delegate based middleware
+app.UseMiddleware<DelegateCallMiddleware>();
 
 // Defining the middleware using the Use Extension method
 app.Use(async (context, next) =>
