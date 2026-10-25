@@ -2,11 +2,7 @@
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-This Repository Contains the Web Developmet Tutorial.
-
-My aim is to learn the Django Framework so to do this need to learn Web Development.
-
-**More Tutorials Are coming soon** => Django.
+This repository contains code, projects, and tutorials related to web development. It covers the essential technologies used to build modern websites and web applications, from HTML and CSS fundamentals to JavaScript, front-end frameworks, APIs, and full-stack development. Each section includes learning material and practical examples to help you understand concepts by building projects.
 
 ## Tutorials:
 
@@ -34,6 +30,20 @@ My aim is to learn the Django Framework so to do this need to learn Web Developm
 ## Hosted Tutorial :
 
 SEE HERE 👉 [Click Here](https://prathameshdhande22.github.io/Web-Development-Tutorial)
+
+## Where to Start
+
+For a structured learning path, begin with the fundamentals and then move to frameworks and back-end development:
+
+1. **HTML** - Learn how to structure web pages using elements, forms, and semantic markup.
+2. **CSS** - Learn styling, layouts, Flexbox, Grid, and responsive design.
+3. **Bootstrap** - Build responsive user interfaces with ready-made components.
+4. **JavaScript** - Learn programming fundamentals, DOM manipulation, and browser interactions.
+5. **TypeScript** - Add type safety to your JavaScript skills.
+6. **ReactJS** - Build reusable, component-based user interfaces.
+7. **NextJS, Angular, or React tools** - Explore NextJS, Angular, Recoil, React Query, and NgRX after learning React.
+8. **NodeJS and MERN Stack** - Learn server-side JavaScript, ExpressJS, MongoDB, and full-stack development.
+9. **Flask, FastAPI, Django, or ASP.NET MVC** - Choose a back-end framework based on the language and ecosystem you want to use.
 
 ## Contents:
 
