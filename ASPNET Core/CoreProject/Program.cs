@@ -7,12 +7,15 @@ using Microsoft.Extensions.Options;
 // Creating the Web application options
 WebApplicationOptions options = new()
 {
-    ApplicationName = "Tutorial NET Core",
     Args = args
 };
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(options);
 
+// Add the required MVC services in teh Project
+builder.Services.AddMvc();
+
+#region Dependency Injection
 // Injecting the middleware
 builder.Services.AddTransient<CallNextMiddleware>();
 
@@ -29,6 +32,7 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 
 // Injecting as a Keyed Service
 builder.Services.AddKeyedScoped<IEmailService, SendGridEmailService>("sendgrid");
+#endregion
 
 // Step 2: Build the Web application
 WebApplication app = builder.Build();
@@ -40,13 +44,15 @@ if (app.Environment.IsDevelopment())
 }
 
 // Serving the default files
-app.UseDefaultFiles();
+//app.UseDefaultFiles();
 
 // Serving as the directory browser
 app.UseDirectoryBrowser("/browse");
 
 // Configure middleware for serving the static files
 app.UseStaticFiles();
+
+#region Endpoints or Routing
 
 // Step 3: Configure the Routes and middleware
 app.MapGet("/", () => "Hello World From Prathamesh");
@@ -92,32 +98,35 @@ app.MapGet("/nested", () => $"Authentication Key = {authorization_key}\nModule={
 
 // Defining the Middleware using the Map Method
 app.Map("/nested-route", () => "hello route");
+#endregion
 
-// using the class based middleware
-app.UseMiddleware<CallNextMiddleware>();
+//#region Middleware Configuration
+//// using the class based middleware
+//app.UseMiddleware<CallNextMiddleware>();
 
-// Using the Delegate based middleware
-app.UseMiddleware<DelegateCallMiddleware>();
+//// Using the Delegate based middleware
+//app.UseMiddleware<DelegateCallMiddleware>();
 
-// Defining the middleware using the Use Extension method
-app.Use(async (context, next) =>
-{
-    // Here it can forward the request to the next middleware
-    await context.Response.WriteAsync("Response from the Use Middleware");
-    // call the next middleware
-    await next();
-});
+//// Defining the middleware using the Use Extension method
+//app.Use(async (context, next) =>
+//{
+//    // Here it can forward the request to the next middleware
+//    await context.Response.WriteAsync("Response from the Use Middleware");
+//    // call the next middleware
+//    await next();
+//});
 
 
-// Configuring the Middleware using the Run Method
-app.Run(async (context) =>
-{
-    // Accessing the context
-    await context.Response.WriteAsync("these is middleware");
-});
+//// Configuring the Middleware using the Run Method
+//app.Run(async (context) =>
+//{
+//    // Accessing the context
+//    await context.Response.WriteAsync("these is middleware");
+//});
 
-// Using the Middleware as the Method
-app.Run(Middlewares.SecondMiddleware);
+//// Using the Middleware as the Method
+//app.Run(Middlewares.SecondMiddleware);
+//#endregion
 
 // Step 4: Run the application
 await app.RunAsync();
