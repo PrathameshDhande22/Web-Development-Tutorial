@@ -44,7 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Serving the default files
-//app.UseDefaultFiles();
+app.UseDefaultFiles();
 
 // Serving as the directory browser
 app.UseDirectoryBrowser("/browse");
@@ -100,33 +100,37 @@ app.MapGet("/nested", () => $"Authentication Key = {authorization_key}\nModule={
 app.Map("/nested-route", () => "hello route");
 #endregion
 
-//#region Middleware Configuration
-//// using the class based middleware
-//app.UseMiddleware<CallNextMiddleware>();
+#region Middleware Configuration
+// using the class based middleware
+app.UseMiddleware<CallNextMiddleware>();
 
-//// Using the Delegate based middleware
-//app.UseMiddleware<DelegateCallMiddleware>();
+// Using the Delegate based middleware
+app.UseMiddleware<DelegateCallMiddleware>();
 
-//// Defining the middleware using the Use Extension method
-//app.Use(async (context, next) =>
-//{
-//    // Here it can forward the request to the next middleware
-//    await context.Response.WriteAsync("Response from the Use Middleware");
-//    // call the next middleware
-//    await next();
-//});
+// Defining the middleware using the Use Extension method
+app.Use(async (context, next) =>
+{
+    // Here it can forward the request to the next middleware
+    await context.Response.WriteAsync("Response from the Use Middleware");
+    // call the next middleware
+    await next();
+});
 
 
-//// Configuring the Middleware using the Run Method
-//app.Run(async (context) =>
-//{
-//    // Accessing the context
-//    await context.Response.WriteAsync("these is middleware");
-//});
+// Configuring the Middleware using the Run Method
+app.Run(async (context) =>
+{
+    // Accessing the context
+    await context.Response.WriteAsync("these is middleware");
+});
 
-//// Using the Middleware as the Method
-//app.Run(Middlewares.SecondMiddleware);
-//#endregion
+// Using the Middleware as the Method
+app.Run(Middlewares.SecondMiddleware);
+#endregion
+
+// Enable to use the Routing
+app.UseRouting();
+app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 // Step 4: Run the application
 await app.RunAsync();
