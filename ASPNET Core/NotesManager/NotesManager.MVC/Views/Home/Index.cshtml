@@ -1,4 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    // Accessing the View data passed from the controller
+    var features = ViewData["Features"] as List<Feature>;
 }
 
+<span class="my-10 text-lg">
+    <!--Accessing the View Data with Attribute -->
+    @ViewData["About"]
+</span>
+
+<!-- Displaying all the features -->
+@foreach (Feature feature in features)
+{
+    <div>
+        <h4 class="text-lg">@feature.Name</h4>
+        <p>@feature.Description</p>
+    </div>
+}

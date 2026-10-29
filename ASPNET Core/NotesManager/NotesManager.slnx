@@ -2,5 +2,6 @@
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
   </Folder>
+  <Project Path="NotesManager.Domain/NotesManager.Domain.csproj" Id="ce2b24be-33e2-419e-8e42-59d66f3d518d" />
   <Project Path="NotesManager.MVC/NotesManager.MVC.csproj" />
 </Solution>

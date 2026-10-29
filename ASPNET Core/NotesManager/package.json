@@ -4,7 +4,8 @@
   "description": "Demo: [Link](https://prathameshsystenics.github.io/notewell/index.html)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tailwind:build": "npx @tailwindcss/cli -i ./NotesManager.MVC/wwwroot/css/app.css -o ./NotesManager.MVC/wwwroot/css/site.css",
+    "tailwind:watch": "npx @tailwindcss/cli -i ./NotesManager.MVC/wwwroot/css/app.css -o ./NotesManager.MVC/wwwroot/css/site.css --watch"
   },
   "keywords": [],
   "author": "",
