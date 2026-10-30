@@ -16,3 +16,15 @@
         <p>@feature.Description</p>
     </div>
 }
+
+
+<!-- displaying all the FAQs -->
+<div class="mt-10">
+    @foreach (FAQItem faq in ViewBag.FAQs)
+    {
+        <div>
+            <h4>@faq.Question</h4>
+            <p>@faq.Answer</p>
+        </div>
+    }
+</div>

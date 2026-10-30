@@ -18,6 +18,9 @@ namespace NotesManager.MVC.Controllers
             ViewData["Features"] = DataConstants.Features; // List of features
             About = "Lists · Checklists · Undo any change";
 
+            // Passing the Data from the ViewBag
+            ViewBag.FAQs = DataConstants.FAQs;
+
             return View();
         }
 

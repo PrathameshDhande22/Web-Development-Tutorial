@@ -43,5 +43,38 @@ namespace NotesManager.Domain.StaticData
         Description = "Search every note, filter by category or status, and pin the ones you use most."
     }
 };
+        public static IReadOnlyList<FAQItem> FAQs = [
+            new()
+    {
+        Id = 1,
+        Question = "Is Notewell free?",
+        Answer = "Yes. Notewell is completely free to use, with no ads and no subscription."
+    },
+    new()
+    {
+        Id = 2,
+        Question = "Do I need to install anything?",
+        Answer = "No. Notewell works in any modern web browser on your phone, tablet or computer."
+    },
+    new()
+    {
+        Id = 3,
+        Question = "Where are my notes saved?",
+        Answer = "Your notes are saved in your browser on your own device. You can download a backup at any time from your account settings."
+    },
+    new()
+    {
+        Id = 4,
+        Question = "Can I get back something I changed by mistake?",
+        Answer = "Yes. Every time you save, Notewell keeps the earlier version. Open a note's history to see what changed and bring an older version back."
+    },
+    new()
+    {
+        Id = 5,
+        Question = "What can I attach to a note?",
+        Answer = "Photos and PDF files up to 5 MB each, such as receipts, tickets, warranties or recipes."
+    }
+
+            ];
     }
 }
