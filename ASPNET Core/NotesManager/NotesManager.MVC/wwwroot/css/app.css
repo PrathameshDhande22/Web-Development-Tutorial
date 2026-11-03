@@ -1,7 +1,15 @@
-﻿@import "tailwindcss";
+﻿@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
 
 @source "../../Views";
 @source "../../Pages";
 @source "../../Areas";
 
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: light --default;
+}
+
+html, body {
+    font-family: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}

@@ -6,11 +6,73 @@
     <title>@ViewData["Title"] - NoteWell</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NotesManager.MVC.styles.css" asp-append-version="true" />
+
 </head>
 <body>
-    @RenderBody()
+    <!--Header Creating as the Layout-->
+    <header class="sticky top-0">
+        <div class="navbar mx-auto flex w-full flex-row items-center justify-between gap-10 bg-base-100 px-4 shadow-sm md:px-8">
+            <!--Left side Navigation-->
+            <div class="flex flex-row items-center justify-between gap-2">
+                <!--Navbar logo-->
+                <a class="text-lg font-bold tracking-tight">Notewell</a>
+                <!--Navbar menu-->
+                <nav class="ml-5">
+                    <ul class="flex flex-row gap-7">
+                        <li>Features</li>
+                        <li>Views</li>
+                        <li>Privacy</li>
+                    </ul>
+                </nav>
+            </div>
+            <!--Right Side Navigation-->
+            <div>
+                <!--Buttons-->
+                <div>
+                    <button class="btn">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3.32031 11.6835C3.32031 16.6541 7.34975 20.6835 12.3203 20.6835C16.1075 20.6835 19.3483 18.3443 20.6768 15.032C19.6402 15.4486 18.5059 15.6834 17.3203 15.6834C12.3497 15.6834 8.32031 11.654 8.32031 6.68342C8.32031 5.50338 8.55165 4.36259 8.96453 3.32996C5.65605 4.66028 3.32031 7.89912 3.32031 11.6835Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                    <a>Sign In</a>
+                    <button>Get Started</button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false);
+    <!--footer-->
+    <footer class="hairline max-w-6xl border-t bg-base-100 px-5">
+        <ul class="flex flex-row items-center gap-10 py-4 text-sm">
+            <li>
+                Made by <span class="font-bold">Prathamesh Dhande</span>
+            </li>
+            <li>
+                <a href="https://github.com/PrathameshDhande" class="link link-hover flex flex-row items-center gap-2">
+                    <!--Github Logo-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <g fill="none">
+                            <g clip-path="url(#SVGXv8lpc2Y)">
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12" clip-rule="evenodd" />
+                            </g>
+                            <defs>
+                                <clipPath id="SVGXv8lpc2Y">
+                                    <path fill="#fff" d="M0 0h24v24H0z" />
+                                </clipPath>
+                            </defs>
+                        </g>
+                    </svg>
+                    <span>
+                        Source Code on Github
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </footer>
 </body>
 </html>
