@@ -15,5 +15,8 @@
     "@tailwindcss/cli": "^4.3.4",
     "daisyui": "^5.7.50",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/jquery": "^4.0.1"
   }
 }

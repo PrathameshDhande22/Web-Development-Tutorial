@@ -1,14 +1,15 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @source "../../Views";
 @source "../../Pages";
 @source "../../Areas";
 
 @plugin "daisyui" {
-    themes: light --default;
+    themes: light --default, dark;
 }
-
 
 @plugin "daisyui/theme" {
     name: "light";
@@ -18,7 +19,21 @@
     --color-primary-content: #ffffff;
 }
 
+@plugin "daisyui/theme" {
+    name: "dark";
+    color-scheme: dark;
+    --color-base-100: #191919;
+    --color-base-200: #202020;
+    --color-base-300: #2f2f2f;
+    --color-primary: #2383e2;
+    --color-primary-content: #ffffff;
+}
+
 html, body {
     font-family: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+}
+
+.nav-link {
+    @apply rounded-md p-2.5 transition-colors hover:bg-gray-100 hover:text-black dark:hover:bg-neutral-800 dark:hover:text-gray-300;
 }

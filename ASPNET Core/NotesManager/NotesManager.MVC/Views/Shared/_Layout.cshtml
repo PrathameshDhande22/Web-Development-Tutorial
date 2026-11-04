@@ -12,56 +12,55 @@
 
 <body>
     <!--Header Creating as the Layout-->
-    <header class="sticky top-0 border-b z-30 border-gray-300/50 ">
-        <div
-            class="navbar mx-auto max-w-7xl flex w-full flex-row items-center justify-between gap-10 bg-base-100 px-4 md:px-8">
+    <header class="sticky top-0 border-b border-gray-300/50 bg-base-100 backdrop-blur">
+        <div class="navbar z-30 mx-auto flex w-full max-w-7xl flex-row items-center gap-10 bg-base-100 px-4 md:px-8">
             <!--Left side Navigation-->
-            <div class="flex flex-row items-center justify-between gap-2">
+            <div class="navbar-start flex flex-row items-center gap-2">
                 <!--Navbar logo-->
-                <a class="text-lg font-bold tracking-tight flex flex-row gap-1 items-center">
+                <a href="/" class="flex cursor-pointer flex-row items-center gap-1 text-lg font-bold tracking-tight">
                     <img src="/images/logo.png" class="w-12" loading="lazy" alt="Logo of Notewell" />
                     <span>Notewell</span>
                 </a>
                 <!--Navbar menu-->
-                <nav class="ml-10 hidden sm:block">
-                    <ul class="flex flex-row gap-7 text-gray-500 text-sm">
-                        <li>Features</li>
-                        <li>Views</li>
-                        <li>Privacy</li>
+                <nav class="ml-6 hidden sm:block">
+                    <ul class="flex flex-row gap-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                        <li class="nav-link"><a href="#features">Features</a></li>
+                        <li class="nav-link"><a href="#views">Views</a></li>
+                        <li class="nav-link"><a href="#privacy">Privacy</a></li>
                     </ul>
                 </nav>
             </div>
             <!--Right Side Navigation-->
-            <div class="flex flex-row items-center gap-1">
+            <div class="navbar-end flex flex-row items-center gap-1">
                 <!--Dark theme toggle-->
-                <button id="theme-toggle" class="btn text-black btn-ghost btn-sm btn-square text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24">
+                <button id="theme-toggle" class="btn btn-ghost btn-sm btn-square text-sm text-black dark:text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="block size-5 dark:hidden" viewBox="0 0 24 24">
                         <path fill="currentColor"
                               d="M21.64 13a1 1 0 0 0-1.05-.14a8.05 8.05 0 0 1-3.37.73a8.15 8.15 0 0 1-8.14-8.1a8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69a1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14a9.79 9.79 0 0 0 2.1-.22a8.11 8.11 0 0 1-7.18 4.32Z" />
                     </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="hidden size-5 dark:block" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7" />
+                    </svg>
                 </button>
-                <a href="/Account/Login" class="btn btn-ghost btn-sm">Sign In</a>
-                <a href="/Account/Register" class="btn btn-primary btn-sm shadow-none rounded-md">Get Started</a>
+                <a href="/Account/Login" class="btn btn-ghost btn-sm dark:text-gray-400">Sign In</a>
+                <a href="/Account/Register" class="btn btn-primary btn-sm rounded-md shadow-none">Get Started</a>
             </div>
 
         </div>
     </header>
-    <main class="container">
+    <main class="mx-auto max-w-7xl px-4 md:px-8">
         @RenderBody()
     </main>
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false);
     <!--footer-->
-    <footer class=" border-t z-30 border-gray-300/50 px-5 text-gray-500">
-        <ul class="flex mx-auto max-w-7xl flex-row items-center gap-10 py-4 text-sm">
+    <footer class="z-30 border-t border-gray-300/50 px-6 text-gray-500 dark:text-gray-400">
+        <ul class="mx-auto flex max-w-7xl flex-row items-center gap-10 py-4 text-sm">
             <li>
                 Made by <span class="font-bold">Prathamesh Dhande</span>
             </li>
             <li>
                 <a href="https://github.com/PrathameshDhande" class="link link-hover flex flex-row items-center gap-2">
                     <!--Github Logo-->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24">
                         <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
                               stroke-width="2"
                               d="M9 22v-3q0-2 1-3A7 6.5 0 0 1 5 5Q4 3 5 1q3 0 4 2q3.5-1 7 0q1-2 4-2q1 2 0 4a7 6.5 0 0 1-5 11q1 1 1 3v3m-7-3c-4 1-4-2-7-3" />
@@ -73,6 +72,9 @@
             </li>
         </ul>
     </footer>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
