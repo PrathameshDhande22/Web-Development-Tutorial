@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NotesManager.MVC.styles.css" asp-append-version="true" />
 </head>
-
 <body>
     <!--Header Creating as the Layout-->
     <header class="sticky top-0 border-b border-gray-300/50 bg-base-100 backdrop-blur">
@@ -49,6 +47,7 @@
         </div>
     </header>
     <main class="mx-auto max-w-7xl px-4 md:px-8">
+        @*Use the Render the body from the action method*@
         @RenderBody()
     </main>
     <!--footer-->
@@ -76,5 +75,4 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>
