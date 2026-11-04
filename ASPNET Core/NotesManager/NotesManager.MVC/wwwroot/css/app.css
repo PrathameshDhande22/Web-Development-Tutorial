@@ -9,6 +9,15 @@
     themes: light --default;
 }
 
+
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    color-scheme: light;
+    --color-primary: #2383e2;
+    --color-primary-content: #ffffff;
+}
+
 html, body {
     font-family: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
