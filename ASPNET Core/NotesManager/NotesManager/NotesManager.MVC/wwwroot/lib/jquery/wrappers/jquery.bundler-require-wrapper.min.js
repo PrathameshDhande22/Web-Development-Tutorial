@@ -1,0 +1,1 @@
+"use strict";const{jQuery:jQuery}=require("../../dist-module/jquery.module.js");module.exports=jQuery;
