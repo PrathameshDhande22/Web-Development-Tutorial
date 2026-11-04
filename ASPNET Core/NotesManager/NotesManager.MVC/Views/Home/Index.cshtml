@@ -3,20 +3,151 @@
     var features = ViewData["Features"] as List<Feature>;
     Layout = "_Layout";
 }
+<!--Hero Section-->
+<section class="py-16 lg:py-24">
+    <div class="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
+        <!--Hero Text-->
+        <div class="text-stone-800 dark:text-neutral-200">
+            <div class="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-base-100 px-3 py-1 text-sm dark:border-neutral-700">
+                <span class="size-2 rounded-full bg-emerald-600"></span>
+                <!--Accessing the View Data with Attribute -->
+                @ViewData["About"]
+            </div>
 
-<span class="my-10 text-lg">
-    <!--Accessing the View Data with Attribute -->
-    @ViewData["About"]
-</span>
+            <h1 class="mt-6 text-5xl font-bold tracking-tight sm:text-6xl">
+                Your notes and documents,
+                <span class="text-primary">in one tidy place.</span>
+            </h1>
 
-<!-- Displaying all the features -->
-@foreach (Feature feature in features)
-{
-    <div>
-        <h4 class="text-lg">@feature.Name</h4>
-        <p>@feature.Description</p>
+            <p class="text-xl/8 mt-6 max-w-xl text-stone-500 dark:text-neutral-400">
+                Shopping lists, meal plans, trip checklists and household budgets, all in one place. Tick things off, see what is still to do at a glance, and keep receipts and photos with the note they belong to.
+            </p>
+
+            <!--Hero buttons-->
+            <div class="mt-9 flex flex-wrap items-center gap-3">
+                <a href="/Account/Register" class="btn btn-primary gap-2 rounded-md shadow-none">
+                    Create a free account
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 32 32" fill="currentColor">
+                        <path d="m18.72 6.78l-1.44 1.44L24.063 15H4v2h20.063l-6.782 6.78l1.44 1.44l8.5-8.5l.686-.72l-.687-.72l-8.5-8.5z" />
+                    </svg>
+                </a>
+                <a href="/Account/Login" class="btn btn-outline rounded-md border-stone-200 shadow-none dark:border-neutral-700">
+                    Sign in
+                </a>
+            </div>
+        </div>
+
+        <!--Hero Graphics-->
+        <div class="relative pb-6 pl-6 lg:mt-20" aria-hidden="true">
+            <!--Board window-->
+            <div class="overflow-hidden rounded-lg border border-stone-200 bg-base-100 shadow-xl dark:border-neutral-700">
+                <!--Window title bar-->
+                <div class="flex items-center gap-5 border-b border-stone-200 bg-stone-50 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
+                    <div class="flex gap-2">
+                        <span class="size-2.5 rounded-full bg-stone-200 dark:bg-neutral-600"></span>
+                        <span class="size-2.5 rounded-full bg-stone-200 dark:bg-neutral-600"></span>
+                        <span class="size-2.5 rounded-full bg-stone-200 dark:bg-neutral-600"></span>
+                    </div>
+                    <span class="text-sm text-stone-400">My notes &middot; Board</span>
+                </div>
+
+                <!--Board columns-->
+                <div class="grid grid-cols-3 gap-3 p-3.5 text-sm text-stone-800 dark:text-neutral-200">
+                    <!--Draft-->
+                    <div class="board-column">
+                        <div class="board-column-title">
+                            <span class="board-dot bg-stone-400"></span>
+                            Draft
+                        </div>
+                        <div class="board-card">
+                            <p class="font-medium">Birthday party ideas</p>
+                            <div class="board-line mt-3 w-11/12"></div>
+                            <div class="board-line w-3/4"></div>
+                        </div>
+                        <div class="board-card">
+                            <p class="font-medium">Grocery list</p>
+                            <div class="board-line mt-3 w-2/3"></div>
+                        </div>
+                    </div>
+
+                    <!--In progress-->
+                    <div class="board-column">
+                        <div class="board-column-title">
+                            <span class="board-dot bg-orange-500"></span>
+                            In progress
+                        </div>
+                        <!--Highlighted card (the one that gets completed)-->
+                        <div class="board-card border-blue-300 ring-2 ring-blue-100 dark:border-blue-500 dark:ring-blue-500/20">
+                            <p class="font-medium">Weekend trip packing</p>
+                            <ul class="board-meta flex-col items-start gap-0.5">
+                                <li class="flex items-center gap-1">
+                                    <!--Checkbox Logo-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                                        <path d="m8.5 12 2.5 2.5 4.5-5" />
+                                    </svg>
+                                    Phone charger
+                                </li>
+                                <li class="flex items-center gap-1">
+                                    <!--Checkbox Logo-->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                                    </svg>
+                                    Sunscreen
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="board-card">
+                            <p class="font-medium">Weekly meal plan</p>
+                            <div class="board-line mt-3 w-2/3"></div>
+                        </div>
+                    </div>
+
+                    <!--Completed-->
+                    <div class="board-column">
+                        <div class="board-column-title">
+                            <span class="board-dot bg-emerald-600"></span>
+                            Completed
+                        </div>
+                        <div class="board-card">
+                            <p class="font-medium">Monthly budget</p>
+                            <p class="board-meta">
+                                <!--Attach Pin Logo-->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                                </svg>
+                                2 receipts
+                            </p>
+                        </div>
+                        <div class="board-card">
+                            <p class="font-medium">Fix the kitchen tap</p>
+                            <div class="board-line mt-3 w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Notification toast overlapping the bottom-left corner-->
+            <div class="absolute bottom-0 left-0 flex w-72 items-center gap-3 rounded-lg border border-stone-200 bg-base-100 p-4 text-sm text-stone-800 shadow-xl dark:border-neutral-700 dark:text-neutral-200">
+                <span class="grid size-8 shrink-0 place-items-center rounded-full bg-stone-100 text-stone-500 dark:bg-neutral-800">
+                    <!--Bell Logo-->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                    </svg>
+                </span>
+                <p>
+                    Your note &ldquo;Weekend trip packing&rdquo; is now <span class="font-bold">Completed</span>.
+                </p>
+            </div>
+        </div>
     </div>
-}
+</section>
+<!--Features Section-->
+<section class="py-10 lg:py-20">
+    <span class="text-sm font-bold text-blue-500">Features</span>
+    <h2 class="text-2xl font-extrabold">Everything a note needs, nothing it doesn't</h2>
+</section>
 
 
 <!-- displaying all the FAQs -->
