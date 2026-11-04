@@ -32,6 +32,7 @@
 html, body {
     font-family: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
 }
 
 /* Navbar */
@@ -54,7 +55,7 @@ html, body {
     }
 
     .board-card {
-        @apply bg-base-100 rounded-md border border-stone-200 p-2.5 dark:border-neutral-700;
+        @apply rounded-md border border-stone-200 bg-base-100 p-2.5 dark:border-neutral-700;
     }
 
     .board-line {

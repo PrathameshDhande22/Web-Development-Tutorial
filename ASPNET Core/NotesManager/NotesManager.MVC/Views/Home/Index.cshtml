@@ -144,7 +144,7 @@
     </div>
 </section>
 <!--Features Section-->
-<section class="border-b border-gray-200 py-10 lg:py-20">
+<section id="features" class="border-b border-gray-200 py-10 lg:py-20">
     <div class="mx-auto max-w-7xl space-y-2.5 px-4 md:px-8">
         <span class="inline-block text-sm font-bold text-blue-500">Features</span>
         <h2 class="text-3xl font-extrabold">Everything a note needs, nothing it doesn't</h2>
@@ -168,7 +168,7 @@
     </div>
 </section>
 <!--Display Section-->
-<section class="border-b border-gray-200 bg-[#f7f6f3] py-10 lg:py-20">
+<section id="views" class="border-b border-gray-200 bg-[#f7f6f3] py-10 lg:py-20">
     <div class="mx-auto grid max-w-7xl gap-12 px-4 md:px-8 lg:grid-cols-2">
         <!--Left Side-->
         <div class="space-y-2">
@@ -283,7 +283,7 @@ Ask the neighbour to
             @foreach (FAQItem fAQ in ViewBag.FAQs)
             {
                 <div class="collapse-plus join-item collapse w-full border-base-300">
-                    <input type="radio" name="faq" checked="checked" />
+                    <input type="radio" name="faq" />
                     <div class="collapse-title font-semibold">@fAQ.Question</div>
                     <div class="collapse-content leading-relaxed text-stone-500 dark:text-gray-400">@fAQ.Answer</div>
                 </div>
