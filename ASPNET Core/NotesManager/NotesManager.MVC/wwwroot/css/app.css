@@ -34,6 +34,34 @@ html, body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Navbar */
 .nav-link {
     @apply rounded-md p-2.5 transition-colors hover:bg-gray-100 hover:text-black dark:hover:bg-neutral-800 dark:hover:text-gray-300;
+}
+
+/* Hero board graphic (Home/Index) */
+@layer components {
+    .board-column {
+        @apply space-y-2 rounded-md bg-stone-100 p-2.5 dark:bg-neutral-800;
+    }
+
+    .board-column-title {
+        @apply flex items-center gap-2 pb-1 font-medium;
+    }
+
+    .board-dot {
+        @apply size-2 rounded-full;
+    }
+
+    .board-card {
+        @apply bg-base-100 rounded-md border border-stone-200 p-2.5 dark:border-neutral-700;
+    }
+
+    .board-line {
+        @apply mt-1.5 h-1.5 rounded-full bg-stone-200 dark:bg-neutral-700;
+    }
+
+    .board-meta {
+        @apply mt-2 flex items-center gap-1 text-xs text-stone-400;
+    }
 }
