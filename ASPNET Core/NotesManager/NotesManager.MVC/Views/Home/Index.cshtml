@@ -144,9 +144,26 @@
     </div>
 </section>
 <!--Features Section-->
-<section class="py-10 lg:py-20">
-    <span class="text-sm font-bold text-blue-500">Features</span>
-    <h2 class="text-2xl font-extrabold">Everything a note needs, nothing it doesn't</h2>
+<section class="space-y-3 py-10 lg:py-20">
+    <span class="inline-block text-sm font-bold text-blue-500">Features</span>
+    <h2 class="text-3xl font-extrabold">Everything a note needs, nothing it doesn't</h2>
+    <p class="text-lg text-stone-500 dark:text-gray-400">A simple place for the lists, plans and papers of everyday life.</p>
+    <div class="mt-9 grid grid-cols-2 gap-3 md:grid-cols-3">
+        <!--Displaying all the features-->
+        @foreach (Feature feature in features!)
+        {
+            <div class="space-y-2 rounded-2xl border border-gray-200 p-5 hover:border-blue-400">
+                <!--Feature Icon-->
+                <span class="inline-block rounded-xl bg-gray-100 p-3 text-blue-500">
+                    <img class="size-5 text-blue-500" src="@feature.Icon" alt="Feature Icon" />
+                </span>
+                <h3 class="text-lg font-semibold">@feature.Name</h3>
+                <p class="text-md text-stone-500 dark:text-gray-400">
+                    @feature.Description
+                </p>
+            </div>
+        }
+    </div>
 </section>
 
 
