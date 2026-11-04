@@ -25,6 +25,7 @@
     --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-700: oklch(37.3% 0.034 259.733);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-neutral-200: oklch(92.2% 0 none);
     --color-neutral-400: oklch(70.8% 0 none);
     --color-neutral-500: oklch(55.6% 0 none);
@@ -5000,6 +5001,12 @@
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
   }
+  .py-5 {
+    padding-block: calc(var(--spacing) * 5);
+  }
+  .py-7 {
+    padding-block: calc(var(--spacing) * 7);
+  }
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
   }
@@ -5092,6 +5099,9 @@
       --alert-border-color: var(--color-success);
       --alert-color: var(--color-success);
     }
+  }
+  .text-base-100 {
+    color: var(--color-base-100);
   }
   .text-black {
     color: var(--color-black);
@@ -5421,8 +5431,26 @@
   .dark\:border-gray-700:where([data-theme=dark], [data-theme=dark] *) {
     border-color: var(--color-gray-700);
   }
+  .dark\:border-gray-800:where([data-theme=dark], [data-theme=dark] *) {
+    border-color: var(--color-gray-800);
+  }
   .dark\:border-neutral-700:where([data-theme=dark], [data-theme=dark] *) {
     border-color: var(--color-neutral-700);
+  }
+  .dark\:bg-\[\#202020\]:where([data-theme=dark], [data-theme=dark] *) {
+    background-color: #202020;
+  }
+  .dark\:bg-base-100:where([data-theme=dark], [data-theme=dark] *) {
+    background-color: var(--color-base-100);
+  }
+  .dark\:bg-gray-200\/20:where([data-theme=dark], [data-theme=dark] *) {
+    background-color: color-mix(in srgb, oklch(92.8% 0.006 264.531) 20%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-gray-200) 20%, transparent);
+    }
+  }
+  .dark\:bg-gray-300:where([data-theme=dark], [data-theme=dark] *) {
+    background-color: var(--color-gray-300);
   }
   .dark\:bg-neutral-600:where([data-theme=dark], [data-theme=dark] *) {
     background-color: var(--color-neutral-600);
