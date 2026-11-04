@@ -5109,6 +5109,9 @@
   .text-blue-500 {
     color: var(--color-blue-500);
   }
+  .text-gray-400 {
+    color: var(--color-gray-400);
+  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
@@ -5457,6 +5460,9 @@
   }
   .dark\:bg-neutral-800:where([data-theme=dark], [data-theme=dark] *) {
     background-color: var(--color-neutral-800);
+  }
+  .dark\:text-gray-200:where([data-theme=dark], [data-theme=dark] *) {
+    color: var(--color-gray-200);
   }
   .dark\:text-gray-300:where([data-theme=dark], [data-theme=dark] *) {
     color: var(--color-gray-300);
