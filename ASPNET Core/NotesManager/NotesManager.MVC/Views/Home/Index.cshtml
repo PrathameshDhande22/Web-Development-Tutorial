@@ -4,8 +4,8 @@
     Layout = "_Layout";
 }
 <!--Hero Section-->
-<section class="py-16 lg:py-24">
-    <div class="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
+<section class="border-b border-gray-200 py-16 lg:py-24">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-4 md:px-8 lg:grid-cols-2">
         <!--Hero Text-->
         <div class="text-stone-800 dark:text-neutral-200">
             <div class="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-base-100 px-3 py-1 text-sm dark:border-neutral-700">
@@ -144,28 +144,135 @@
     </div>
 </section>
 <!--Features Section-->
-<section class="space-y-3 py-10 lg:py-20">
-    <span class="inline-block text-sm font-bold text-blue-500">Features</span>
-    <h2 class="text-3xl font-extrabold">Everything a note needs, nothing it doesn't</h2>
-    <p class="text-lg text-stone-500 dark:text-gray-400">A simple place for the lists, plans and papers of everyday life.</p>
-    <div class="mt-9 grid grid-cols-2 gap-3 md:grid-cols-3">
-        <!--Displaying all the features-->
-        @foreach (Feature feature in features!)
-        {
-            <div class="space-y-2 rounded-2xl border border-gray-200 p-5 hover:border-blue-400">
-                <!--Feature Icon-->
-                <span class="inline-block rounded-xl bg-gray-100 p-3 text-blue-500">
-                    <img class="size-5 text-blue-500" src="@feature.Icon" alt="Feature Icon" />
-                </span>
-                <h3 class="text-lg font-semibold">@feature.Name</h3>
-                <p class="text-md text-stone-500 dark:text-gray-400">
-                    @feature.Description
-                </p>
-            </div>
-        }
+<section class="border-b border-gray-200 py-10 lg:py-20">
+    <div class="mx-auto max-w-7xl space-y-3 px-4 md:px-8">
+        <span class="inline-block text-sm font-bold text-blue-500">Features</span>
+        <h2 class="text-3xl font-extrabold">Everything a note needs, nothing it doesn't</h2>
+        <p class="text-lg text-stone-500 dark:text-gray-400">A simple place for the lists, plans and papers of everyday life.</p>
+        <div class="mt-9 grid grid-cols-2 gap-3 md:grid-cols-3">
+            <!--Displaying all the features-->
+            @foreach (Feature feature in features!)
+            {
+                <div class="space-y-2 rounded-2xl border border-gray-200 p-5 hover:border-blue-400">
+                    <!--Feature Icon-->
+                    <span class="inline-block rounded-xl bg-gray-100 p-3 text-blue-500">
+                        <img class="size-5 text-blue-500" src="@feature.Icon" alt="Feature Icon" />
+                    </span>
+                    <h3 class="text-lg font-semibold">@feature.Name</h3>
+                    <p class="text-md text-stone-500 dark:text-gray-400">
+                        @feature.Description
+                    </p>
+                </div>
+            }
+        </div>
     </div>
 </section>
+<!--Display Section-->
+<section class="border-b border-gray-200 bg-[#f7f6f3] py-10 lg:py-20">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 md:px-8 lg:grid-cols-2">
+        <!--Left Side-->
+        <div class="space-y-2">
+            <span class="inline-block text-sm font-bold text-blue-500">Three ways to see your notes</span>
+            <h3 class="text-3xl font-extrabold">
+                Grid, list or board. Switch with one click.
+            </h3>
+            <ul class="mt-7 space-y-5">
+                <li class="flex gap-4">
+                    <!--Icon-->
+                    <span class="grid size-8 items-center rounded-lg bg-white p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500" fill="currentColor" viewBox="0 0 1024 1024"><path d="M960 1024H640c-35.344 0-64-28.656-64-64V640c0-35.344 28.656-64 64-64h320c35.344 0 64 28.656 64 64v320c0 35.344-28.656 64-64 64zm0-384H640v320h320V640zm0-192H640c-35.344 0-64-28.656-64-64V64c0-35.344 28.656-64 64-64h320c35.344 0 64 28.656 64 64v320c0 35.344-28.656 64-64 64zm0-384H640v320h320V64zm-576 960H64c-35.344 0-64-28.656-64-64V640c0-35.344 28.656-64 64-64h320c35.344 0 64 28.656 64 64v320c0 35.344-28.656 64-64 64zm0-384H64v320h320V640zm0-192H64c-35.344 0-64-28.656-64-64V64C0 28.656 28.656 0 64 0h320c35.344 0 64 28.656 64 64v320c0 35.344-28.656 64-64 64zm0-384H64v320h320V64z" /></svg>
+                    </span>
+                    <div>
+                        <div class="text-lg font-semibold">
+                            Grid
+                        </div>
+                        <div class="text-[0.9em] text-stone-500 dark:text-gray-400">
+                            Cards with a peek at each note, easy to scan.
+                        </div>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <!--Icon-->
+                    <span class="grid size-8 items-center rounded-lg bg-white p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path d="M1 4h2v2H1V4zm4 0h14v2H5V4zM1 9h2v2H1V9zm4 0h14v2H5V9zm-4 5h2v2H1v-2zm4 0h14v2H5v-2z" /></svg>
+                    </span>
+                    <div>
+                        <div class="text-lg font-semibold">
+                            List
+                        </div>
+                        <div class="text-[0.9em] text-stone-500 dark:text-gray-400">
+                            One note per line, with its category and status.
+                        </div>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <!--Icon-->
+                    <span class="grid size-8 items-center rounded-lg bg-white p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500" viewBox="0 0 24 24"><path fill="currentColor" d="M2 4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm14 15h4V5h-4zM14 5h-4v14h4zM4 5v14h4V5z" /></svg>
+                    </span>
+                    <div>
+                        <div class="text-lg font-semibold">
+                            Board
+                        </div>
+                        <div class="text-[0.9em] text-stone-500 dark:text-gray-400">
+                            To do, doing, done. Drag a card to move it along.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--Right Side-->
+        <div class="p-6">
+            <div class="rounded-xl bg-white p-5 sm:p-6">
+                <div class="mb-4 flex flex-row justify-between text-sm text-stone-500 dark:text-gray-400">
+                    <span class="inline-block">
+                        Weekend trip packing
+                    </span>
+                    <span class="inline-block">
+                        Write and preview side by side
+                    </span>
+                </div>
+                <div class="grid sm:mt-0 sm:grid-cols-2">
+                    <div class="bg-[#f7f6f3] p-3">
+                        <pre class="text-sm/6 font-mono text-stone-700">
+<span class="text-blue-500">## Packing list</span>
+- [x] Phone charger
+- [x] Tickets
+- [ ] Sunscreen
 
+Ask the neighbour to
+**water the plants**.
+                        </pre>
+                    </div>
+                    <div class="mt-4 px-4 sm:mt-0">
+                        <h3 class="text-xl font-semibold">Packing List</h3>
+                        <ul class="mt-2 space-y-2 text-lg font-light">
+                            <li class="space-x-2">
+                                <input type="checkbox" disabled checked />
+                                <span>Phone charger</span>
+                            </li>
+                            <li class="space-x-2">
+                                <input type="checkbox" disabled checked />
+                                <span>
+                                    Tickets
+                                </span>
+                            </li>
+                            <li class="space-x-2">
+                                <input type="checkbox" disabled />
+                                <span>
+                                    Sunscreen
+                                </span>
+                            </li>
+                        </ul>
+                        <p class="mt-4 text-lg">
+                            Ask the neighbour to <b class="font-semibold">water the plants</b>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- displaying all the FAQs -->
 <div class="mt-10">
