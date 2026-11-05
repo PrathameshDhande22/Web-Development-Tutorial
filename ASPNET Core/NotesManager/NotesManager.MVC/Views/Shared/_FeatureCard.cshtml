@@ -1,0 +1,14 @@
+﻿@*These is the Partial View*@
+@using NotesManager.Domain.Models.Home
+@model Feature
+
+<div class="space-y-2 rounded-2xl border border-gray-300 p-5 hover:border-blue-400 dark:border-gray-800">
+    <!--Feature Icon-->
+    <span class="inline-block rounded-xl bg-gray-100 p-3 text-blue-500 dark:bg-gray-300">
+        <img class="size-5 text-blue-500" src="@Model.Icon" alt="Feature Icon" />
+    </span>
+    <h3 class="text-lg font-semibold">@Model.Name</h3>
+    <p class="text-md text-stone-500 dark:text-gray-400">
+        @Model.Description
+    </p>
+</div>
