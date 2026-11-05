@@ -1,4 +1,5 @@
-﻿using NotesManager.Domain.Models.Home;
+﻿using NotesManager.Domain.Models;
+using NotesManager.Domain.Models.Home;
 
 namespace NotesManager.Domain.StaticData
 {
@@ -82,5 +83,45 @@ namespace NotesManager.Domain.StaticData
     }
 
             ];
+
+        public static readonly List<Notes> Notes = new()
+{
+    new()
+    {
+        Id = 1,
+        Title = "Meeting Notes",
+        Description = "Keep track of important discussions, decisions, and action items from team meetings."
+    },
+    new()
+    {
+        Id = 2,
+        Title = "Daily Tasks",
+        Description = "Organize your daily activities, manage priorities, and keep track of completed tasks."
+    },
+    new()
+    {
+        Id = 3,
+        Title = "Project Ideas",
+        Description = "Capture creative ideas, brainstorm solutions, and plan your upcoming projects."
+    },
+    new()
+    {
+        Id = 4,
+        Title = "Personal Journal",
+        Description = "Write down your thoughts, experiences, and personal reflections in one place."
+    },
+    new()
+    {
+        Id = 5,
+        Title = "Shopping List",
+        Description = "Keep track of groceries, household essentials, and things you need to buy."
+    },
+    new()
+    {
+        Id = 6,
+        Title = "Important Reminders",
+        Description = "Save important dates, deadlines, appointments, and reminders so nothing gets missed."
+    }
+};
     }
 }
