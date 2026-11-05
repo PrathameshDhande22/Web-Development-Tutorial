@@ -9,9 +9,5 @@
   <ItemGroup>
     <ProjectReference Include="..\NotesManager.Domain\NotesManager.Domain.csproj" />
   </ItemGroup>
-	
-  <ItemGroup>
-    <Folder Include="Views\Shared\Components\PinnedNotes\" />
-  </ItemGroup>
 
 </Project>

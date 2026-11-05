@@ -6,9 +6,9 @@ namespace NotesManager.MVC.Controllers
     public class NotesController : Controller
     {
         [HttpGet]  // Specifying these action method as the get method only
-        public string Index(int id)
+        public IActionResult Index(int id)
         {
-            return $"Index({id}) of the Notes Controller";
+            return View();
         }
 
         // defining the custom Route constraint

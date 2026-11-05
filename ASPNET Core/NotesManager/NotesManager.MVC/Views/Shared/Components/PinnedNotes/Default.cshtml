@@ -1,0 +1,15 @@
+﻿@model List<Notes>
+@*These is the View component cshtml*@
+<div>
+    @foreach (Notes note in Model)
+    {
+        <div>
+            <div>
+                @note.Title
+            </div>
+            <div>
+                @note.Description
+            </div>
+        </div>
+    }
+</div>
