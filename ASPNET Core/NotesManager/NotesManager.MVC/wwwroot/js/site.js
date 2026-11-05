@@ -14,7 +14,17 @@
         current_theme = localStorage.getItem("notewell-theme");
         let changethemeto = current_theme == "light" ? "dark" : "light";
         $("html").attr("data-theme", changethemeto);
+        changeLogo(changethemeto);
         localStorage.setItem("notewell-theme", changethemeto);
     })
+
+    /**
+     * Change the logo of the navbar based on the theme Provided
+     * theme: 'dark' or 'light' only supported. 
+     */
+    function changeLogo(theme) {
+        let image_url = theme === "dark" ? "/images/logo-dark.png" : "/images/logo.png"
+        $("#nav-logo > img").attr("src", image_url);
+    }
     //#endregion
 })
