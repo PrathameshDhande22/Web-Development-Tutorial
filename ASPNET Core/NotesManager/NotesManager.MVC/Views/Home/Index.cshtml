@@ -3,6 +3,18 @@
     var features = ViewData["Features"] as List<Feature>;
     Layout = "_Layout";
 }
+
+<!--Section defining in the child view -->
+@section Seo{
+  <meta name="description" content="Notewell is a free, simple notes app for everyday life. Keep shopping lists, meal plans, trip checklists and budgets in one place, track what is done on a board, attach receipts and photos, and undo any change.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://prathameshsystenics.github.io/notewell/">
+  <link rel="alternate" hreflang="en" href="https://prathameshsystenics.github.io/notewell/">
+  <link rel="alternate" hreflang="x-default" href="https://prathameshsystenics.github.io/notewell/">
+  <meta name="author" content="Prathamesh">
+  <meta name="keywords" content="notes app, to-do list, checklist app, shopping list, meal planner, packing list, budget planner, free notes app, online notebook">
+}
+
 <!--Hero Section-->
 <section class="border-b border-gray-300/50 py-16 lg:py-24 dark:border-gray-800">
     <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-4 md:px-8 lg:grid-cols-2">
