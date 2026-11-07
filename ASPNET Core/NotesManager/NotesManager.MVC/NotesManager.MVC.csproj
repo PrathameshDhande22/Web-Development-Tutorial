@@ -11,6 +11,7 @@
   </ItemGroup>
 	
   <ItemGroup>
+    <ProjectReference Include="..\NotesManager.Data\NotesManager.Data.csproj" />
     <ProjectReference Include="..\NotesManager.Domain\NotesManager.Domain.csproj" />
   </ItemGroup>
 
