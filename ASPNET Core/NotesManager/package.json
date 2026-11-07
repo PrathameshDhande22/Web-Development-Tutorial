@@ -12,7 +12,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@tailwindcss/cli": "^4.3.4",
+    "@tailwindcss/cli": "^4.3.5",
     "daisyui": "^5.7.50",
     "tailwindcss": "^4.3.3"
   },
