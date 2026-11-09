@@ -3,6 +3,9 @@ using NotesManager.Data.Models;
 
 namespace NotesManager.Data
 {
+    /// <summary>
+    /// Seeds the required data which is required when created or setupping the database for the first time using the EF tools. 
+    /// </summary>
     public static class DbInitalizer
     {
         // Static class method for seeding the data using the AsynSeeding method of Ef core
