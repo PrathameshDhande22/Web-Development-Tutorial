@@ -8,6 +8,7 @@ namespace NotesManager.Data
         // Static class method for seeding the data using the AsynSeeding method of Ef core
         public static void Initialize(DbContext context, bool perform)
         {
+            // Typecast the context to the original context
             NoteDbContext noteDbContext = (NoteDbContext)context;
 
             // Seeding the category
