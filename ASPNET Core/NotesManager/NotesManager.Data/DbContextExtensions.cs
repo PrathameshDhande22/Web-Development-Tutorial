@@ -23,6 +23,8 @@ namespace NotesManager.Data
                 options.EnableSensitiveDataLogging(true);
                 options.LogTo(Console.WriteLine);
                 options.UseSqlServer(configuration.GetConnectionString("NoteDbContext"));
+                // Use these method for async seeding
+                options.UseSeeding(DbInitalizer.Initialize);
             });
 
             return services;
