@@ -15,7 +15,10 @@ namespace NotesManager.Data.Models
         [MaxLength(60)]
         public string Action { get; set; } = string.Empty;
 
+        [MaxLength(100)]
         public string? OldTitle { get; set; }
+
+        [MaxLength(100)]
         public string? NewTitle { get; set; }
 
         public NoteStatus? OldStatus { get; set; }

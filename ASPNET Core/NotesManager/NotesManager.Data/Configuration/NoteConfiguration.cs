@@ -21,7 +21,7 @@ namespace NotesManager.Data.Configuration
             builder.HasOne(n => n.Category)
                 .WithMany(c => c.Notes)
                 .HasForeignKey(n => n.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

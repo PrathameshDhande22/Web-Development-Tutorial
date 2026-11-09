@@ -15,7 +15,7 @@ namespace NotesManager.Data.Models
         public string Title { get; set; } = string.Empty;
 
         public string? Description { get; set; } = string.Empty;
-        public NoteStatus Status { get; set; } = NoteStatus.Draft;
+        public NoteStatus Status { get; set; }
         public int CategoryId { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
