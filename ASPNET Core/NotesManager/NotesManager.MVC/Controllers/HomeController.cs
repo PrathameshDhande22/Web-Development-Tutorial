@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using NotesManager.Domain.StaticData;
 using NotesManager.MVC.Models;
 using System.Diagnostics;
-using NotesManager.Domain.StaticData;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -11,7 +11,8 @@ namespace NotesManager.MVC.Controllers
         [ViewData]
         public string About { get; set; }
 
-        public IActionResult Index()
+        // Returning the View result
+        public ViewResult Index()
         {
             // Data Passing between Controller and View using View Data
             ViewData["Title"] = "NoteWell";
