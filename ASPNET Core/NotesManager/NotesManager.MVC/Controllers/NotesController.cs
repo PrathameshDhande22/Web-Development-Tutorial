@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using NotesManager.Data;
 using NotesManager.Data.Models;
 using NotesManager.Domain.Enums;
+using System.Net.Mime;
 using System.Text.Json;
 
 namespace NotesManager.MVC.Controllers
@@ -48,6 +49,26 @@ namespace NotesManager.MVC.Controllers
             var results = dbContext.Notes.Include(n => n.Category).ToList();
             // Returning the partial view
             return PartialView(results);
+        }
+
+        // Returning the File
+        public FileResult Export(int Id)
+        {
+            Note? note = dbContext.Notes.AsNoTracking().FirstOrDefault(note => note.Id == Id);
+            string content = $"""
+                # {note.Title}
+
+                {note.Description}
+                """;
+
+            var memoryStream = new MemoryStream();
+            using var streamWriter = new StreamWriter(memoryStream, leaveOpen: true);
+            streamWriter.Write(content);
+            streamWriter.Flush();
+
+            memoryStream.Position = 0;
+
+            return File(memoryStream, MediaTypeNames.Text.Markdown, $"{note.Title.ToLower()}.md");
         }
 
         // Action method to return the JSON Data
