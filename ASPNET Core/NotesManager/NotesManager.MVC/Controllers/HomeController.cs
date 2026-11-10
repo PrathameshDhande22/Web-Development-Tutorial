@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using NotesManager.Domain.StaticData;
 using NotesManager.MVC.Models;
 using System.Diagnostics;
+using System.Net.Mime;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -23,6 +24,21 @@ namespace NotesManager.MVC.Controllers
             ViewBag.FAQs = DataConstants.FAQs;
 
             return View();
+        }
+
+        // action method with content results
+        [Route("robots.txt")]
+        [HttpGet]
+        public ContentResult RobotsTxt()
+        {
+            string txtrecord = """
+                User-agent: *
+                Disallow: 
+                Disallow: /api
+                Sitemap: https://localhost:7014/sitemap.xml
+                """;
+            // Return the content result
+            return Content(txtrecord, MediaTypeNames.Text.Plain);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
