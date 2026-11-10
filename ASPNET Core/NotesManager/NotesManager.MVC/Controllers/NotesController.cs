@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NotesManager.Data;
+using NotesManager.Data.Models;
 using NotesManager.Domain.Enums;
+using System.Text.Json;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -16,8 +18,13 @@ namespace NotesManager.MVC.Controllers
         }
 
         [HttpGet]  // Specifying these action method as the get method only
-        public IActionResult Index(int id)
+        public IActionResult Index(int? id)
         {
+            if (id.HasValue)
+            {
+                Note? note = dbContext.Notes.Include(n => n.Category).FirstOrDefault(n => n.Id == id);
+                return View("NoteDetail", note);
+            }
             return View();
         }
 
@@ -41,6 +48,19 @@ namespace NotesManager.MVC.Controllers
             var results = dbContext.Notes.Include(n => n.Category).ToList();
             // Returning the partial view
             return PartialView(results);
+        }
+
+        // Action method to return the JSON Data
+        public JsonResult AllStatus()
+        {
+            // Options for serializing
+            JsonSerializerOptions options = new()
+            {
+                WriteIndented = true,
+            };
+
+            // Returning the Json data
+            return Json(Enum.GetNames<NoteStatus>(), options);
         }
     }
 }
