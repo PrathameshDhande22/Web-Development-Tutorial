@@ -18,12 +18,23 @@ namespace NotesManager.MVC.Controllers
             this.dbContext = dbContext;
         }
 
+        // This is the action method of redirect result
+        public RedirectToActionResult Details(int Id)
+        {
+            return RedirectToAction(nameof(Index), new { Id = Id });
+        }
+
         [HttpGet]  // Specifying these action method as the get method only
         public IActionResult Index(int? id)
         {
             if (id.HasValue)
             {
                 Note? note = dbContext.Notes.Include(n => n.Category).FirstOrDefault(n => n.Id == id);
+                if(note is null)
+                {
+                    // Returning the not found result
+                    return NotFound();
+                }
                 return View("NoteDetail", note);
             }
             return View();
