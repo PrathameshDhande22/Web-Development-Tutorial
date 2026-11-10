@@ -1,0 +1,15 @@
+﻿@model List<Note>
+
+@*These is the partial View*@
+<div class="grid grid-cols-3">
+    @foreach (Note note in Model)
+    {
+        <div>
+            <h4>@note.Title</h4>
+            <p>@note.Description</p>
+            <div class="bg-[@note.Category.Color]">
+                @note.Category.Name
+            </div>
+        </div>
+    }
+</div>

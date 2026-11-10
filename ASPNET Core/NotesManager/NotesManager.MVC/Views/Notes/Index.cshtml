@@ -3,4 +3,34 @@
 
     @*Invoking the components using tag helper*@
     @await Component.InvokeAsync("PinnedNotes")
+
+    <h3 class="text-lg">
+        My Notes
+    </h3>
+    <button class="btn btn-sm btn-primary" id="load-notes">
+        Load My Notes
+    </button>
+    <!--partial view result-->
+    <div id="my-notes-grid">
+    </div>
+
 </div>
+@section Scripts {
+    <script>
+        $(function () {
+            $("#load-notes").on("click", function () {
+                // Making the Ajax request
+                $.ajax({
+                    type: "GET",
+                    method: "GET",
+                    // Url for the partial view
+                    url: "/Notes/MyNotes",
+                    success: function (viewHtml) {
+                        // Set the HTML in the resutll direclty
+                        $("#my-notes-grid").html(viewHtml);
+                    }
+                })
+            })
+        })
+    </script>
+}
