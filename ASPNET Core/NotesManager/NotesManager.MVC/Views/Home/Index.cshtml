@@ -37,7 +37,8 @@
 
             <!--Hero buttons-->
             <div class="mt-9 flex flex-wrap items-center gap-3">
-                <a href="/Account/Register" class="btn btn-primary gap-2 rounded-md shadow-none">
+                <!--Anchor tag helper-->
+                <a asp-controller="Account" asp-action="Register" class="btn btn-primary gap-2 rounded-md shadow-none">
                     Create a free account
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 32 32" fill="currentColor">
                         <path d="m18.72 6.78l-1.44 1.44L24.063 15H4v2h20.063l-6.782 6.78l1.44 1.44l8.5-8.5l.686-.72l-.687-.72l-8.5-8.5z" />
@@ -305,7 +306,8 @@ Ask the neighbour to
             </p>
         </div>
         <div class="flex flex-wrap gap-3">
-            <a href="/Account/Register" class="btn btn-primary">Get started</a>
+            <!--Url action to generate the URL-->
+            <a href="@Url.Action("Register","Account")" class="btn btn-primary">Get started</a>
             <a href="/Account/Login" class="btn btn-ghost hairline border bg-base-100">Try the demo</a>
         </div>
     </div>

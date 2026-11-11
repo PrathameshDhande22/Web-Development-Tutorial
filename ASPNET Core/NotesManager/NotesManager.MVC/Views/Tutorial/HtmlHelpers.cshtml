@@ -44,4 +44,7 @@
         <!--Custom Html Helper-->
         @Html.Status(NoteStatus.InProgress)
     }
+
+    <!--route link Html helper-->
+    @Html.RouteLink("Home Page", "Home", new { controller = "Home", action = "Index" })
 </div>
