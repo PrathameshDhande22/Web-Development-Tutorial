@@ -43,9 +43,8 @@
                         <path d="m18.72 6.78l-1.44 1.44L24.063 15H4v2h20.063l-6.782 6.78l1.44 1.44l8.5-8.5l.686-.72l-.687-.72l-8.5-8.5z" />
                     </svg>
                 </a>
-                <a href="/Account/Login" class="btn btn-outline rounded-md border-stone-200 shadow-none dark:border-neutral-700">
-                    Sign in
-                </a>
+                <!--Html action link to generate URL-->
+                @Html.ActionLink("Sign in", "Login", "Account",null, new{@class="btn btn-outline rounded-md border-stone-200 shadow-none dark:border-neutral-700"})
             </div>
         </div>
 

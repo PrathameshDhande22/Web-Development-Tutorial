@@ -10,5 +10,7 @@ namespace NotesManager.Domain.Models
         public int CategoryId { get; set; }
         public string Status { get; set; } = Enum.GetName<NoteStatus>(NoteStatus.Draft)!;
         public bool IsPinned { get; set; } = false;
+        public IEnumerable<int> FilterCategoryId { get; set; } = new List<int>();
+        public DateTime Createdat { get; set; } = DateTime.Now;
     }
 }
