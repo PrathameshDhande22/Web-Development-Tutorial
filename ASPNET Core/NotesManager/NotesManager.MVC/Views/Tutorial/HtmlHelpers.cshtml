@@ -1,0 +1,34 @@
+﻿@model Notes
+
+@{
+    ViewData["Title"] = "Html Helpers";
+    List<SelectListItem> categories = ViewBag.Categories as List<SelectListItem>;
+}
+
+<div class="mx-auto max-w-7xl space-y-3 px-4 py-20">
+    <!--TextBox for Html helper-->
+    @Html.TextBoxFor(notes => notes.Title, new { @class = "input input-md w-full", placeholder = "Enter the Title", id = "note-title-box" })
+    <!--TextArea HTML Helper-->
+    @Html.TextAreaFor(notes => notes.Description, new { @class = "textarea w-full", placeholder = "Enter the Content", id = "note-content-area" })
+    <!--Drop down list HTML Helper-->
+    @Html.LabelFor(notes => notes.CategoryId, "Select Category", new { @class = "label text-sm" })
+    @Html.DropDownListFor(notes => notes.CategoryId, categories, new { @class = "select" })
+    <!--RadionButton Html Helper-->
+    <div class="flex flex-row flex-wrap gap-2 text-sm">
+        @foreach (string status in Enum.GetNames<NoteStatus>())
+        {
+            @Html.Label(status, status, new { @class = "label" })
+            @Html.RadioButtonFor(notes => notes.Status, status, new { @class = "radio radio-sm" })
+        }
+    </div>
+    <div>
+        <!--Checkbox Html Helper-->
+        @Html.LabelFor(notes => notes.IsPinned, "Pin", new { @class = "label" })
+        @Html.CheckBoxFor(notes => notes.IsPinned, new { @class = "checkbox" })
+    </div>
+    <div>
+        <!--Listbox html helper-->
+
+    </div>
+
+</div>

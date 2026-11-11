@@ -94,5 +94,12 @@ namespace NotesManager.MVC.Controllers
             // Returning the Json data
             return Json(Enum.GetNames<NoteStatus>(), options);
         }
+
+        // Action method for using the Html Helpers
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+            return View();
+        }
     }
 }
