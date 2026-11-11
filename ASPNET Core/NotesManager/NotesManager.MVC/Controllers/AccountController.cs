@@ -21,5 +21,11 @@ namespace NotesManager.MVC.Controllers
             // Passing the model to the view
             return View(model);
         }
+
+        [HttpGet(Name = "Login")] // specifying the route name
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }
