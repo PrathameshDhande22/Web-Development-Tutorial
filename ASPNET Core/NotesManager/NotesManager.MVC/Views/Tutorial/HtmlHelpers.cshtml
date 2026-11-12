@@ -8,7 +8,7 @@
 <div class="mx-auto max-w-7xl space-y-3 px-4 py-6">
     <h2 class="text-lg font-bold">Html Helpers Tutorial</h2>
     <!--Html begin form Html helper-->
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "space-y-3" }))
     {
         <!--TextBox for Html helper-->
         @Html.TextBoxFor(notes => notes.Title, new { @class = "input input-md w-full", placeholder = "Enter the Title", id = "note-title-box" })
@@ -47,4 +47,11 @@
 
     <!--route link Html helper-->
     @Html.RouteLink("Home Page", "Home", new { controller = "Home", action = "Index" })
+
+    <!--Environment Tag helper-->
+    <environment include="Development">
+        <div>
+            These is Development
+        </div>
+    </environment>
 </div>
