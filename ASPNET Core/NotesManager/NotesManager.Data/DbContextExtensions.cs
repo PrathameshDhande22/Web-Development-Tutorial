@@ -20,8 +20,6 @@ namespace NotesManager.Data
             services.AddDbContext<NoteDbContext>(options =>
             {
                 options.EnableDetailedErrors(true);
-                options.EnableSensitiveDataLogging(true);
-                options.LogTo(Console.WriteLine);
                 options.UseSqlServer(configuration.GetConnectionString("NoteDbContext"));
                 // Use these method for async seeding
                 options.UseSeeding(DbInitalizer.Initialize);

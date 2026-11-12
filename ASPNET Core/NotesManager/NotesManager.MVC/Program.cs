@@ -8,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddNoteDbContext(builder.Configuration);
 
 // Adds the Logging services
-builder.Services.AddLogging();
+builder.Services.AddLogging(config =>
+{
+    config.AddConsole();
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
