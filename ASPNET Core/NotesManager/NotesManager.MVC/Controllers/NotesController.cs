@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using NotesManager.Data;
 using NotesManager.Data.Models;
 using NotesManager.Domain.Enums;
+using NotesManager.Domain.Models.Note;
+using NotesManager.Services.Interfaces;
 using System.Net.Mime;
 using System.Text.Json;
 
@@ -11,11 +13,19 @@ namespace NotesManager.MVC.Controllers
     public class NotesController : Controller
     {
         private NoteDbContext dbContext;
+        private ILogger<NotesController> _logger;
+        private ICategoryService categoryService;
 
         // Constructor with dependency injection
-        public NotesController(NoteDbContext dbContext)
+        public NotesController(
+            NoteDbContext dbContext,
+            ILogger<NotesController> logger,
+            ICategoryService categoryService
+        )
         {
             this.dbContext = dbContext;
+            this._logger = logger;
+            this.categoryService = categoryService;
         }
 
         // This is the action method of redirect result
@@ -30,7 +40,7 @@ namespace NotesManager.MVC.Controllers
             if (id.HasValue)
             {
                 Note? note = dbContext.Notes.Include(n => n.Category).FirstOrDefault(n => n.Id == id);
-                if(note is null)
+                if (note is null)
                 {
                     // Returning the not found result
                     return NotFound();
@@ -100,6 +110,23 @@ namespace NotesManager.MVC.Controllers
         public IActionResult Edit(int Id)
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> New()
+        {
+            try
+            {
+                // Calling the service layer interface over here
+                ViewBag.Categories = await categoryService.GetCategoriesAsync();
+
+                return View(new CreateNote());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error Occurred");
+                return RedirectToAction("Error", "Home");
+            }
         }
     }
 }
