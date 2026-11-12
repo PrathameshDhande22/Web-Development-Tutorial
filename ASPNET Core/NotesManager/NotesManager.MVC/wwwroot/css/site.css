@@ -9,9 +9,12 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-600: oklch(57.7% 0.245 27.325);
     --color-orange-500: oklch(70.5% 0.213 47.604);
     --color-yellow-400: oklch(85.2% 0.199 91.936);
+    --color-yellow-600: oklch(68.1% 0.162 75.834);
     --color-green-400: oklch(79.2% 0.209 151.711);
+    --color-green-500: oklch(72.3% 0.219 149.579);
     --color-emerald-600: oklch(59.6% 0.145 163.225);
     --color-blue-100: oklch(93.2% 0.032 255.585);
     --color-blue-300: oklch(80.9% 0.105 251.813);
@@ -4656,6 +4659,11 @@
       right: auto;
       inset-block: var(--tt-tail-inset, 50% auto);
     }
+    .toast-end {
+      inset-inline-start: auto;
+      inset-inline-end: calc(0.25rem * 4);
+      --toast-x: 0;
+    }
     .dropdown-start.dropdown-right {
       --anchor-h: right;
       --anchor-v: span-bottom;
@@ -5158,8 +5166,17 @@
   .z-30 {
     z-index: 30;
   }
+  .z-40 {
+    z-index: 40;
+  }
   .z-50 {
     z-index: 50;
+  }
+  .z-9999 {
+    z-index: 9999;
+  }
+  .z-\[9999\] {
+    z-index: 9999;
   }
   @layer daisyui.l1.l2.l3 {
     .tab-content {
@@ -6799,6 +6816,11 @@
     letter-spacing: var(--tracking-tight);
   }
   @layer daisyui.l1.l2 {
+    .alert-info {
+      color: var(--color-info-content);
+      --alert-border-color: var(--color-info);
+      --alert-color: var(--color-info);
+    }
     .alert-success {
       color: var(--color-success-content);
       --alert-border-color: var(--color-success);
@@ -6877,8 +6899,14 @@
   .text-gray-500 {
     color: var(--color-gray-500);
   }
+  .text-green-500 {
+    color: var(--color-green-500);
+  }
   .text-primary {
     color: var(--color-primary);
+  }
+  .text-red-600 {
+    color: var(--color-red-600);
   }
   .text-stone-400 {
     color: var(--color-stone-400);
@@ -6891,6 +6919,9 @@
   }
   .text-stone-800 {
     color: var(--color-stone-800);
+  }
+  .text-yellow-600 {
+    color: var(--color-yellow-600);
   }
   .lowercase {
     text-transform: lowercase;

@@ -15,6 +15,7 @@ namespace NotesManager.Services
         {
             // Injecting the Repository as scoped only
             services.AddScoped<CategoryRepository>();
+            services.AddScoped<NoteRepository>();
 
             return services;
         }
@@ -23,6 +24,7 @@ namespace NotesManager.Services
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<INoteService, NoteService>();
 
             return services;
         }

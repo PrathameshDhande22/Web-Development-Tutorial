@@ -27,4 +27,10 @@
         $("#nav-logo > img").attr("src", image_url);
     }
     //#endregion
+
+    //#region Toast hide
+    setTimeout(() => {
+        $("#toast-message").addClass("hidden");
+    }, 3000)
+    //#endregion
 })

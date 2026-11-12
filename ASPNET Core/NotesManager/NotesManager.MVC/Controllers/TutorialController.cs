@@ -15,8 +15,7 @@ namespace NotesManager.MVC.Controllers
             this.dbContext = dbContext;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> HtmlHelpers()
+        public async Task<IActionResult> HtmlHelpers(Notes notes)
         {
             // For Dropdown list convert it to the SelectListItem
             List<SelectListItem> categories = await dbContext.Category.AsNoTracking().Select(c => new SelectListItem()
@@ -27,6 +26,8 @@ namespace NotesManager.MVC.Controllers
 
             // Assigning it to the ViewBag
             ViewBag.Categories = categories;
+
+            TempData["Info"] = "HTMLTutorial";
             return View(new Notes());
         }
     }

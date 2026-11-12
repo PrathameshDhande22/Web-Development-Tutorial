@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NotesManager.Data;
 using NotesManager.Data.Models;
+using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
@@ -15,17 +16,20 @@ namespace NotesManager.MVC.Controllers
         private NoteDbContext dbContext;
         private ILogger<NotesController> _logger;
         private ICategoryService categoryService;
+        private INoteService noteService;
 
         // Constructor with dependency injection
         public NotesController(
             NoteDbContext dbContext,
             ILogger<NotesController> logger,
-            ICategoryService categoryService
+            ICategoryService categoryService,
+            INoteService noteService
         )
         {
             this.dbContext = dbContext;
             this._logger = logger;
             this.categoryService = categoryService;
+            this.noteService = noteService;
         }
 
         // This is the action method of redirect result
@@ -126,6 +130,31 @@ namespace NotesManager.MVC.Controllers
             {
                 _logger.LogError(ex, "Error Occurred");
                 return RedirectToAction("Error", "Home");
+            }
+        }
+
+        // Action method with post only for FromForm attribute
+        [HttpPost]
+        public async Task<IActionResult> New([FromForm] CreateNote createNote)
+        {
+            try
+            {
+                _logger.LogInformation("Saving the Note with Title {Title}", createNote.Title);
+                NoteDTO newlycreatedNote = await noteService.NewNoteAsync(createNote);
+                if (newlycreatedNote != null)
+                {
+                    TempData["Success"] = "Note Added";
+                    return RedirectToAction(nameof(Index), new { id = newlycreatedNote.Id });
+                }
+
+                return View(createNote);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occured when creating the new note");
+                // Setting the Tempdata as the error
+                TempData["Error"] = "Error occured creating the new note";
+                return View(createNote);
             }
         }
     }
