@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NotesManager.Data\NotesManager.Data.csproj" />
     <ProjectReference Include="..\NotesManager.Domain\NotesManager.Domain.csproj" />
+    <ProjectReference Include="..\NotesManager.Services\NotesManager.Services.csproj" />
   </ItemGroup>
 
 </Project>

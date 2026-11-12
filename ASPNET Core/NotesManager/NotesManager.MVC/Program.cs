@@ -1,10 +1,14 @@
 using NotesManager.Data;
 using NotesManager.MVC.RouteConstraints;
+using NotesManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Adding the DbContext
 builder.Services.AddNoteDbContext(builder.Configuration);
+
+// Adds the Logging services
+builder.Services.AddLogging();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -15,6 +19,10 @@ builder.Services.AddRouting(options =>
     // Registered with notestatus
     options.ConstraintMap.Add("notestatus", typeof(NoteStatusConstraint));
 });
+
+// Add the services and database related services
+builder.Services.AddDataServices();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
