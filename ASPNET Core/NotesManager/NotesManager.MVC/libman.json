@@ -3,9 +3,23 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "provider": "cdnjs",
       "library": "jquery@4.0.0",
       "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "markdown-text-editor@1.9.4",
+      "destination": "wwwroot/lib/markdown-text-editor/",
+      "files": [
+        "dist/markdown-text-editor.es.js",
+        "dist/markdown-text-editor.es.js.map",
+        "dist/markdown-text-editor.es.min.js",
+        "dist/markdown-text-editor.min.js",
+        "dist/markdown-text-editor.min.js.map",
+        "dist/markdown-text-editor.umd.js",
+        "dist/markdown-text-editor.umd.js.map",
+        "dist/markdown-text-editor.umd.min.js"
+      ]
     }
   ]
 }
