@@ -162,12 +162,15 @@
         <h2 class="text-3xl font-extrabold">Everything a note needs, nothing it doesn't</h2>
         <p class="text-lg text-stone-500 dark:text-gray-400">A simple place for the lists, plans and papers of everyday life.</p>
         <div class="mt-9 grid grid-cols-2 gap-3 md:grid-cols-3">
-            <!--Displaying all the features-->
-            @foreach (Feature feature in features!)
-            {
-                <!--Rendering the Partial View using tag helper-->
-                <partial name="_FeatureCard" model="feature"/>
-            }
+            <!--Cache Tag helper-->
+            <cache expires-after="TimeSpan.FromDays(1)">
+                <!--Displaying all the features-->
+                @foreach (Feature feature in features!)
+                {
+                    <!--Rendering the Partial View using tag helper-->
+                    <partial name="_FeatureCard" model="feature"/>
+                }
+            </cache>
         </div>
     </div>
 </section>
