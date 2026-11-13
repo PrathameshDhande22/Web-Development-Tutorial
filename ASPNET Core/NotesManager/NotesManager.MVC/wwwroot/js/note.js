@@ -1,9 +1,13 @@
 ﻿$(function () {
     //#region Search Notes
-    // Note search Handling
     let searchTimeout;
     let searchedtext, selectedCategoryid, status;
-    $("#search-box").on("input", function () {
+
+    // elements declaration
+    let $searchbox = $("#search-box");
+
+    // Note search Handling
+    $searchbox.on("input", function () {
         $("#clear-filter-btn").show();
         clearTimeout(searchTimeout);
         searchedtext = $(this).val();
@@ -37,7 +41,7 @@
         selectedCategoryid = 0;
         $("#note-status").val("Default");
         $("#note-category").val(0);
-        $("#search-box").val("")
+        $searchbox.val("")
         loadNotes(null, null, 0);
     })
 
@@ -51,7 +55,7 @@
 
         if (enable) {
             $("#error-alert").hide();
-            $("#notes-view").children().remove();
+            $("#notes-view").empty();
         }
         loadingDiv.removeClass(enable ? "hidden" : "inline-block");
         loadingDiv.addClass(enable ? "inline-block" : "hidden");
@@ -100,8 +104,10 @@
             error: function () {
                 showNotesLoading(false);
                 $("#notes-count").text(`0 notes`);
-                $("#notes-view").children().remove();
+                $("#notes-view").empty();
                 $("#error-alert").show();
+            }, complete: function () {
+                showNotesLoading(false);
             }
         })
 
