@@ -1,4 +1,6 @@
-﻿using NotesManager.Data.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NotesManager.Data.Models;
+using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Models.Note;
 
@@ -13,7 +15,30 @@ namespace NotesManager.Data.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<NoteDTO> Add(CreateNote note)
+        public async Task<List<NoteDTO>> GetAsync()
+        {
+            List<NoteDTO> notes = await dbContext.Notes.AsNoTracking()
+                         .Include(n => n.Category)
+                         .Select(note => new NoteDTO()
+                         {
+                             Id = note.Id,
+                             CategoryId = note.CategoryId,
+                             CreatedAt = note.CreatedAt,
+                             Description = note.Description,
+                             Status = note.Status,
+                             Title = note.Title,
+                             Category = new CategoryDTO()
+                             {
+                                 Id = note.Category!.Id,
+                                 Color = note.Category.Color,
+                                 Name = note.Category.Name
+                             }
+                         }).ToListAsync();
+            return notes;
+
+        }
+
+        public async Task<AddNoteDTO> Add(CreateNote note)
         {
             Note newnote = new()
             {
@@ -25,7 +50,7 @@ namespace NotesManager.Data.Repositories
             };
             await dbContext.Notes.AddAsync(newnote);
             await dbContext.SaveChangesAsync();
-            return new NoteDTO()
+            return new AddNoteDTO()
             {
                 Id = newnote.Id,
                 CategoryId = note.CategoryId,

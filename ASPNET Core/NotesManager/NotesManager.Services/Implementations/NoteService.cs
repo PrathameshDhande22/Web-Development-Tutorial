@@ -17,6 +17,19 @@ namespace NotesManager.Services.Implementations
             this.logger = logger;
         }
 
+        public async Task<List<NoteDTO>> GetNotesAsync()
+        {
+            try
+            {
+                return await noteRepository.GetAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error occured when getting the notes");
+                throw;
+            }
+        }
+
         public async Task<AddNoteDTO> NewNoteAsync(CreateNote createNote)
         {
             try
@@ -26,6 +39,7 @@ namespace NotesManager.Services.Implementations
             catch (Exception ex)
             {
                 logger.LogError(ex, "Error occured when creating the new note");
+                // Throw directly to maintain the stack of the exception
                 throw;
             }
         }
