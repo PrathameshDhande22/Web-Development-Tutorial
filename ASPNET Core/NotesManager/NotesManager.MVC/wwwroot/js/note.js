@@ -43,6 +43,7 @@
         searchedtext = "";
         status = "";
         selectedCategoryid = 0;
+        pageno = 1;
         $("#note-status").val("Default");
         $("#note-category").val(0);
         $searchbox.val("")
