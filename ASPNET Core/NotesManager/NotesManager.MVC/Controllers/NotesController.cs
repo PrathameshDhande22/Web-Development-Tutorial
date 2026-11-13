@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NotesManager.Data;
 using NotesManager.Data.Models;
+using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models.Note;
@@ -40,22 +41,38 @@ namespace NotesManager.MVC.Controllers
 
         [HttpGet]  // Specifying these action method as the get method only
         [Route("Notes")]
-        [Route("Note/{id:int}")]
-        public IActionResult Index(int? id)
+        [Route("Note/{id:int}", Name = "NoteDetails")]
+        public async Task<IActionResult> Index(int? id)
         {
-            if (id.HasValue)
+            try
             {
-                Note? note = dbContext.Notes.Include(n => n.Category).FirstOrDefault(n => n.Id == id);
-                if (note is null)
+                if (id.HasValue)
                 {
-                    // Returning the not found result
-                    return NotFound();
+                    Note? note = dbContext.Notes.Include(n => n.Category).FirstOrDefault(n => n.Id == id);
+                    if (note is null)
+                    {
+                        // Returning the not found result
+                        return NotFound();
+                    }
+                    return View("NoteDetail", note);
                 }
-                return View("NoteDetail", note);
+                List<CategoryDTO> categories = await categoryService.GetCategoriesAsync();
+                List<NoteDTO> notes = await noteService.GetNotesAsync();
+
+                NoteListViewModel vmmodel = new()
+                {
+                    Notes = notes,
+                    Category = categories
+                };
+
+                return View(vmmodel);
             }
-
-
-            return View();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occured when getting the notes");
+                TempData["Error"] = "Error occured when getting the notes";
+                return View();
+            }
         }
 
         // defining the custom Route constraint

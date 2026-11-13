@@ -19,6 +19,7 @@ namespace NotesManager.Data.Repositories
         {
             List<NoteDTO> notes = await dbContext.Notes.AsNoTracking()
                          .Include(n => n.Category)
+                         .OrderByDescending(n=>n.CreatedAt)
                          .Select(note => new NoteDTO()
                          {
                              Id = note.Id,

@@ -29,7 +29,7 @@ namespace NotesManager.MVC.TagHelpers
             output.Content.SetContent(label);
 
             // Set the attributes
-            output.Attributes.SetAttribute("class", $"{color} px-2 py-1");
+            output.Attributes.SetAttribute("class", $"inline text-xs bg-gray-200 w-auto text-gray-500 px-2 py-1 dark:bg-gray-800 dark:text-gray-400");
         }
     }
 }

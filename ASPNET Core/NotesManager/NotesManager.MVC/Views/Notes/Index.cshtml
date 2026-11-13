@@ -1,36 +1,69 @@
-﻿<div>
-    Notes
+﻿@model NoteListViewModel
 
-    @*Invoking the components using tag helper*@
-    @await Component.InvokeAsync("PinnedNotes")
+@{
+    ViewData["Title"] = "My notes";
+    SelectList selectlist_Category = new SelectList(Model.Category, "Id", "Name");
+    NoteStatus[] statuses = Enum.GetValues<NoteStatus>();
 
-    <h3 class="text-lg">
-        My Notes
-    </h3>
-    <button class="btn btn-sm btn-primary" id="load-notes">
-        Load My Notes
-    </button>
-    <!--partial view result-->
-    <div id="my-notes-grid">
-    </div>
-
-</div>
-@section Scripts {
-    <script>
-        $(function () {
-            $("#load-notes").on("click", function () {
-                // Making the Ajax request
-                $.ajax({
-                    type: "GET",
-                    method: "GET",
-                    // Url for the partial view
-                    url: "/Notes/MyNotes",
-                    success: function (viewHtml) {
-                        // Set the HTML in the resutll direclty
-                        $("#my-notes-grid").html(viewHtml);
-                    }
-                })
-            })
-        })
-    </script>
 }
+
+<div class="mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-10">
+    <div class="flex items-center justify-between">
+        <!--Heading-->
+        <div class="space-y-0.5">
+            <h3 class="text-2xl font-semibold">My notes</h3>
+            <span class="text-sm text-stone-400" id="notes-count">8 notes</span>
+        </div>
+        <!--View Buttons-->
+        <div class="flex items-center gap-2">
+            <div class="join" id="view-btns">
+                <button type="button" aria-label="Grid View" class="btn btn-sm btn-ghost btn-active join-item rounded-s-md border border-gray-200 dark:border-gray-600" id="grid-view">
+                    <svg class="size-4 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M10 13H2v1H1v8h1v1h8v-1h1v-8h-1zm-1 8H3v-6h6zm1-19V1H2v1H1v8h1v1h8v-1h1V2zM3 9V3h6v6zm19 4h-8v1h-1v8h1v1h8v-1h1v-8h-1zm-1 8h-6v-6h6zm1-19V1h-8v1h-1v8h1v1h8v-1h1V2zm-1 7h-6V3h6z" /></svg>
+                </button>
+                <button type="button" aria-label="List View" class="btn btn-sm btn-ghost join-item border border-gray-200 dark:border-gray-600" id="list-view">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 dark:text-gray-200" viewBox="0 0 24 24"><path fill="currentColor" d="M2 19.004h2.004V17H2v2.004ZM7 19h15v-2H7v2Zm-5-5.996h2.004V11H2v2.004ZM7 13h15v-2H7v2ZM2 7.004h2.004V5H2v2.004ZM7 7h15V5H7v2Z" /></svg>
+                </button>
+                <button type="button" aria-label="Column View" class="btn btn-sm btn-ghost join-item rounded-e-md border border-gray-200 dark:border-gray-600" id="kanban-view">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 dark:text-gray-200" viewBox="0 0 24 24"><path fill="currentColor" d="M2 4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm14 15h4V5h-4zM14 5h-4v14h4zM4 5v14h4V5z" /></svg>
+                </button>
+            </div>
+            <a asp-action="New" asp-controller="Notes" class="btn btn-primary btn-sm space-x-2 sm:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-white" viewBox="0 0 24 24"><path  fill="currentColor" d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2Z" /></svg>
+                <span>New note</span>
+            </a>
+        </div>
+    </div>
+    <!--Filter Form-->
+    <div class="my-6 flex flex-wrap gap-2" id="note-filters">
+        <!--Search box-->
+        <label class="input input-sm min-w-56 flex-1">
+            <svg class="size-4 opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g stroke-linejoin="round"
+                   stroke-linecap="round"
+                   stroke-width="2.5"
+                   fill="none"
+                   stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </g>
+            </svg>
+            <input type="search" id="search-box" placeholder="Search title and content" />
+        </label>
+        <!--Categories Drop Down with Select Tag Helper-->
+        <select class="select select-sm w-auto max-sm:min-w-36 max-sm:flex-1" asp-items="selectlist_Category" id="note-category">
+            <option selected>All categories</option>
+        </select>
+        <!--Status Drop down-->
+        <select class="select select-sm w-auto max-sm:min-w-36 max-sm:flex-1" id="note-status">
+            <option selected>Any status</option>
+            @foreach (NoteStatus status in statuses)
+            {
+                <option value="@status">@CategoryConstants.StatusMapping[status].label</option>
+            }
+        </select>
+    </div>
+    <!--Notes List-->
+    <div id="notes-view" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <partial name="MyNotes" model="Model.Notes" />
+    </div>
+</div>
