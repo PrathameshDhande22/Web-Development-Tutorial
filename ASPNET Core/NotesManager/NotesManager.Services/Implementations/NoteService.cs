@@ -22,6 +22,11 @@ namespace NotesManager.Services.Implementations
         {
             try
             {
+                if (searchQuery.Page <= 0)
+                {
+                    searchQuery.Page = 1;
+                }
+
                 return await noteRepository.GetAsync(searchQuery.Page, searchQuery?.CategoryId, searchQuery?.Status, searchQuery?.Search);
             }
             catch (Exception ex)

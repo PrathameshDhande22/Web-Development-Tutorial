@@ -64,6 +64,8 @@ namespace NotesManager.MVC.Controllers
                 {
                     Notes = notes.Data,
                     TotalNotes = notes.TotalItems,
+                    Page = notes.CurrentPage,
+                    TotalPage = notes.TotalPages,
                     Category = categories
                 };
 
@@ -101,7 +103,8 @@ namespace NotesManager.MVC.Controllers
                 PaginatedResponse<NoteDTO> noteDTOs = await noteService.GetNotesAsync(searchNote);
 
                 // Setting the Total Counts
-                ViewData["TotalNotes"] = noteDTOs.TotalPages;
+                ViewData["TotalNotes"] = noteDTOs.TotalItems;
+                ViewData["TotalPages"] = noteDTOs.TotalPages;
 
                 // Returning the partial view
                 return PartialView(noteDTOs.Data);

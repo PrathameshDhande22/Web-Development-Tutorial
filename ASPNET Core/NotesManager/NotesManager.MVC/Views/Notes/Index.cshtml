@@ -11,7 +11,7 @@
         <!--Heading-->
         <div class="space-y-0.5">
             <h3 class="text-2xl font-semibold">My notes</h3>
-            <span class="text-sm text-stone-400" id="notes-count">@Model.TotalNotes notes</span>
+            <span class="text-sm text-stone-400" id="notes-count" data-total-notes="@Model.TotalNotes">@Model.TotalNotes notes</span>
         </div>
         <!--View Buttons-->
         <div class="flex items-center gap-2">
@@ -91,6 +91,11 @@
         <button class="btn btn-sm mt-3" type="button" id="clear-filter-btn-nomatch">
             Clear filters
         </button>
+    </div>
+    <!--Pagination-->
+    <div class="join float-right my-6 hidden" id="pagination" data-current-page="@Model.Page" data-total-pages="@Model.TotalPage">
+        <button class="join-item btn-sm btn btn-outline text-stone-500 dark:border-gray-700 dark:text-gray-300" type="button" id="previous-btn">Previous page</button>
+        <button class="join-item btn btn-sm btn-outline text-stone-500 dark:border-gray-700 dark:text-gray-300" type="button" id="next-btn">Next</button>
     </div>
 </div>
 

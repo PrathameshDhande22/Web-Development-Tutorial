@@ -2045,6 +2045,32 @@
       }
     }
   }
+  @layer daisyui {
+    .btn:is(:is(.btn-disabled), :disabled, [disabled], [aria-disabled="true"]) {
+      pointer-events: none;
+      color: var(--color-base-content);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .btn:is(:is(.btn-disabled), :disabled, [disabled], [aria-disabled="true"]) {
+        color: color-mix(in oklch, var(--color-base-content) 20%, #0000);
+      }
+    }
+    .btn:is(:is(.btn-disabled), :disabled, [disabled], [aria-disabled="true"]) {
+      --btn-bg: #0000;
+      --btn-border: #0000;
+      background-image: none;
+      --btn-inset: 0 0 0 0 oklch(0% 0 0/0);
+      --btn-shadow: 0 0 0 0 oklch(0% 0 0/0);
+    }
+    .btn:is(:is(.btn-disabled), :disabled, [disabled], [aria-disabled="true"]):not(.btn-link, .btn-ghost) {
+      background-color: var(--color-base-content);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .btn:is(:is(.btn-disabled), :disabled, [disabled], [aria-disabled="true"]):not(.btn-link, .btn-ghost) {
+        background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
+      }
+    }
+  }
   .countdown.countdown {
     line-height: 1em;
   }
@@ -5118,6 +5144,9 @@
       --modal-bl: 0;
       --modal-br: var(--radius-box);
     }
+  }
+  .float-right {
+    float: right;
   }
   .container {
     width: 100%;
