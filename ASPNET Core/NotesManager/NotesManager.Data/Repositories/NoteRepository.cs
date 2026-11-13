@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NotesManager.Data.Models;
+using NotesManager.Domain.Constants;
 using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
+using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 
 namespace NotesManager.Data.Repositories
@@ -23,7 +25,7 @@ namespace NotesManager.Data.Repositories
         /// <param name="status">Status of the Note to Search for</param>
         /// <param name="Search">Title and Content to Search</param>
         /// <returns>List of Notes with Category</returns>
-        public async Task<List<NoteDTO>> GetAsync(int? CategoryId = null, NoteStatus? status = null, string? Search = null)
+        public async Task<PaginatedResponse<NoteDTO>> GetAsync(int Page = 1, int? CategoryId = null, NoteStatus? status = null, string? Search = null)
         {
             var notes = dbContext.Notes
                          .AsNoTracking()
@@ -49,6 +51,16 @@ namespace NotesManager.Data.Repositories
                 notes = notes.Where(n => n.Title.Contains(Search) || (n.Description != null && n.Description.Contains(Search)));
             }
 
+            PaginatedResponse<NoteDTO> paginatedResponse = new()
+            {
+                PageSize = NoteConstants.PageSize,
+                TotalItems = await notes.CountAsync(),
+                CurrentPage = Page
+            };
+
+            // Apply pagination
+            notes = notes.Skip((Page - 1) * NoteConstants.PageSize).Take(NoteConstants.PageSize);
+
             // Map to DTO
             var notedto = notes.Select(note => new NoteDTO()
             {
@@ -66,7 +78,9 @@ namespace NotesManager.Data.Repositories
                 }
             });
 
-            return await notedto.ToListAsync();
+            paginatedResponse.Data = await notedto.ToListAsync();
+
+            return paginatedResponse;
         }
 
         public async Task<AddNoteDTO> Add(CreateNote note)

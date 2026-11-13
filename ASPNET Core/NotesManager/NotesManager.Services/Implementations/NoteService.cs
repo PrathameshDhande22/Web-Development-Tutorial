@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NotesManager.Data.Repositories;
 using NotesManager.Domain.DTO.Note;
+using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
 
@@ -17,11 +18,11 @@ namespace NotesManager.Services.Implementations
             this.logger = logger;
         }
 
-        public async Task<List<NoteDTO>> GetNotesAsync(SearchNoteQuery? searchQuery = null)
+        public async Task<PaginatedResponse<NoteDTO>> GetNotesAsync(SearchNoteQuery searchQuery)
         {
             try
             {
-                return await noteRepository.GetAsync(searchQuery?.CategoryId, searchQuery?.Status, searchQuery?.Search);
+                return await noteRepository.GetAsync(searchQuery.Page, searchQuery?.CategoryId, searchQuery?.Status, searchQuery?.Search);
             }
             catch (Exception ex)
             {

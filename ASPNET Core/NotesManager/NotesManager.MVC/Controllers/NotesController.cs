@@ -5,6 +5,7 @@ using NotesManager.Data.Models;
 using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
+using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
@@ -57,11 +58,12 @@ namespace NotesManager.MVC.Controllers
                     return View("NoteDetail", note);
                 }
                 List<CategoryDTO> categories = await categoryService.GetCategoriesAsync();
-                List<NoteDTO> notes = await noteService.GetNotesAsync();
+                PaginatedResponse<NoteDTO> notes = await noteService.GetNotesAsync(new());
 
                 NoteListViewModel vmmodel = new()
                 {
-                    Notes = notes,
+                    Notes = notes.Data,
+                    TotalNotes = notes.TotalItems,
                     Category = categories
                 };
 
@@ -96,9 +98,13 @@ namespace NotesManager.MVC.Controllers
         {
             try
             {
-                List<NoteDTO> noteDTOs = await noteService.GetNotesAsync(searchNote);
+                PaginatedResponse<NoteDTO> noteDTOs = await noteService.GetNotesAsync(searchNote);
+
+                // Setting the Total Counts
+                ViewData["TotalNotes"] = noteDTOs.TotalPages;
+
                 // Returning the partial view
-                return PartialView(noteDTOs);
+                return PartialView(noteDTOs.Data);
             }
             catch (Exception ex)
             {

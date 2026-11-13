@@ -1,5 +1,6 @@
 ﻿@model List<NoteDTO>
 
+<span id="total-notes" class="hidden">@ViewData["TotalNotes"]</span>
 @*These is the partial View*@
 @foreach (NoteDTO note in Model)
 {

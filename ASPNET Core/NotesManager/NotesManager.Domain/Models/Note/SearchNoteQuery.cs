@@ -20,5 +20,7 @@ namespace NotesManager.Domain.Models.Note
         /// CategoryId to search for the notes
         /// </summary>
         public int? CategoryId { get; set; }
+
+        public int Page { get; set; } = 1;
     }
 }
