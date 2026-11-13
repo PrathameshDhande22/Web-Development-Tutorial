@@ -16,6 +16,13 @@ namespace NotesManager.Data.Repositories
             this.dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Gets the notes
+        /// </summary>
+        /// <param name="CategoryId">CategoryId of the Note to Search for</param>
+        /// <param name="status">Status of the Note to Search for</param>
+        /// <param name="Search">Title and Content to Search</param>
+        /// <returns>List of Notes with Category</returns>
         public async Task<List<NoteDTO>> GetAsync(int? CategoryId = null, NoteStatus? status = null, string? Search = null)
         {
             var notes = dbContext.Notes

@@ -91,7 +91,8 @@ namespace NotesManager.MVC.Controllers
 
         // Partial View action method
         // Action method accepting the parameters from query
-        public async Task<PartialViewResult> MyNotes([FromQuery] SearchNoteQuery searchNote)
+        [HttpPost]
+        public async Task<IActionResult> MyNotes([FromQuery] SearchNoteQuery searchNote)
         {
             try
             {
@@ -102,7 +103,8 @@ namespace NotesManager.MVC.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error Occurred when retrieving the notes for Search={Search},Status={Status},CategoryId={CategoryId}", searchNote.Search, searchNote.Search, searchNote.CategoryId);
-                return PartialView(new List<NoteDTO>());
+                // Explicitly returning the status code.
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 

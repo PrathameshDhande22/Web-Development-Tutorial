@@ -8,7 +8,7 @@
     @RenderSection("Seo", false)
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body>
+<body class="flex min-h-screen flex-col">
     <!--Header Creating as the Layout-->
     <header class="sticky top-0 z-50 border-b border-gray-300/50 bg-base-100 backdrop-blur dark:border-gray-800">
         <div class="navbar mx-auto flex w-full max-w-7xl flex-row items-center gap-10 bg-base-100 px-4 md:px-8">
@@ -53,7 +53,7 @@
     </header>
     <!--Toast-->
     <partial name="_Toast" />
-    <main class="">
+    <main class="flex-1">
         @*Use the Render the body from the action method*@
         @RenderBody()
     </main>

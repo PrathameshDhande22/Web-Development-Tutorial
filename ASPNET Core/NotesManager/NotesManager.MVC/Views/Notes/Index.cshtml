@@ -4,10 +4,9 @@
     ViewData["Title"] = "My notes";
     SelectList selectlist_Category = new SelectList(Model.Category, "Id", "Name");
     NoteStatus[] statuses = Enum.GetValues<NoteStatus>();
-
 }
 
-<div class="mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-10">
+<div class="mx-auto max-w-7xl flex-1 px-4 py-8 md:px-8 md:py-10">
     <div class="flex items-center justify-between">
         <!--Heading-->
         <div class="space-y-0.5">
@@ -51,19 +50,50 @@
         </label>
         <!--Categories Drop Down with Select Tag Helper-->
         <select class="select select-sm w-auto max-sm:min-w-36 max-sm:flex-1" asp-items="selectlist_Category" id="note-category">
-            <option selected>All categories</option>
+            <option selected value="0">All categories</option>
         </select>
         <!--Status Drop down-->
         <select class="select select-sm w-auto max-sm:min-w-36 max-sm:flex-1" id="note-status">
-            <option selected>Any status</option>
+            <option selected value="Default">Any status</option>
             @foreach (NoteStatus status in statuses)
             {
                 <option value="@status">@CategoryConstants.StatusMapping[status].label</option>
             }
         </select>
+        <!--Clear filter button-->
+        <button class="btn btn-sm btn-ghost hidden w-auto max-sm:flex-1" type="button" id="clear-filter-btn">
+            Clear filters
+        </button>
+    </div>
+    <!--Error View-->
+    <div role="alert" class="alert-error alert hidden" id="error-alert">
+        <span class="text-white">
+            Error Occured. Try again later
+        </span>
+    </div>
+    <!--Loading View-->
+    <div class="hidden w-full content-center space-x-1 text-center" id="loading-view">
+        <span class="text-lg font-semibold text-stone-500 dark:text-gray-200">Loading notes..</span>
+        <span class="loading loading-spinner loading-xl text-primary"></span>
     </div>
     <!--Notes List-->
     <div id="notes-view" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <partial name="MyNotes" model="Model.Notes" />
     </div>
+    <!--No Match Found View-->
+    <div class="hidden space-y-1.5 py-16 text-center" id="no-match-found">
+        <h5 class="block text-lg font-semibold">
+            No notes match these filters
+        </h5>
+        <span class="block text-sm text-stone-500 dark:text-gray-300">
+            Try a different search or clear the filters
+        </span>
+        <button class="btn btn-sm mt-3" type="button" id="clear-filter-btn-nomatch">
+            Clear filters
+        </button>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/note.js" asp-append-version="true"></script>
+}
