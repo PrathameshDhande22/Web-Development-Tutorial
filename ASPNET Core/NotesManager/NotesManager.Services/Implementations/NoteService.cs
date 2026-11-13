@@ -17,11 +17,11 @@ namespace NotesManager.Services.Implementations
             this.logger = logger;
         }
 
-        public async Task<List<NoteDTO>> GetNotesAsync()
+        public async Task<List<NoteDTO>> GetNotesAsync(SearchNoteQuery? searchQuery = null)
         {
             try
             {
-                return await noteRepository.GetAsync();
+                return await noteRepository.GetAsync(searchQuery?.CategoryId, searchQuery?.Status, searchQuery?.Search);
             }
             catch (Exception ex)
             {

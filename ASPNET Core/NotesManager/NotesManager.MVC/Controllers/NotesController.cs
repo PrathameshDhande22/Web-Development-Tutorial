@@ -90,11 +90,20 @@ namespace NotesManager.MVC.Controllers
         }
 
         // Partial View action method
-        public PartialViewResult MyNotes()
+        // Action method accepting the parameters from query
+        public async Task<PartialViewResult> MyNotes([FromQuery] SearchNoteQuery searchNote)
         {
-            var results = dbContext.Notes.Include(n => n.Category).ToList();
-            // Returning the partial view
-            return PartialView(results);
+            try
+            {
+                List<NoteDTO> noteDTOs = await noteService.GetNotesAsync(searchNote);
+                // Returning the partial view
+                return PartialView(noteDTOs);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error Occurred when retrieving the notes for Search={Search},Status={Status},CategoryId={CategoryId}", searchNote.Search, searchNote.Search, searchNote.CategoryId);
+                return PartialView(new List<NoteDTO>());
+            }
         }
 
         // Returning the File

@@ -2,6 +2,7 @@
 using NotesManager.Data.Models;
 using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.DTO.Note;
+using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models.Note;
 
 namespace NotesManager.Data.Repositories
@@ -15,28 +16,50 @@ namespace NotesManager.Data.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<List<NoteDTO>> GetAsync()
+        public async Task<List<NoteDTO>> GetAsync(int? CategoryId = null, NoteStatus? status = null, string? Search = null)
         {
-            List<NoteDTO> notes = await dbContext.Notes.AsNoTracking()
+            var notes = dbContext.Notes
+                         .AsNoTracking()
                          .Include(n => n.Category)
-                         .OrderByDescending(n=>n.CreatedAt)
-                         .Select(note => new NoteDTO()
-                         {
-                             Id = note.Id,
-                             CategoryId = note.CategoryId,
-                             CreatedAt = note.CreatedAt,
-                             Description = note.Description,
-                             Status = note.Status,
-                             Title = note.Title,
-                             Category = new CategoryDTO()
-                             {
-                                 Id = note.Category!.Id,
-                                 Color = note.Category.Color,
-                                 Name = note.Category.Name
-                             }
-                         }).ToListAsync();
-            return notes;
+                         .OrderByDescending(n => n.CreatedAt)
+                         .AsQueryable();
 
+            // Check the Categoryid
+            if (CategoryId.HasValue && CategoryId != 0)
+            {
+                notes = notes.Where(n => n.CategoryId == CategoryId);
+            }
+
+            // Check the status
+            if (status.HasValue)
+            {
+                notes = notes.Where(n => n.Status == status);
+            }
+
+            // Check the Title and content
+            if (!string.IsNullOrWhiteSpace(Search))
+            {
+                notes = notes.Where(n => n.Title.Contains(Search) || (n.Description != null && n.Description.Contains(Search)));
+            }
+
+            // Map to DTO
+            var notedto = notes.Select(note => new NoteDTO()
+            {
+                Id = note.Id,
+                CategoryId = note.CategoryId,
+                CreatedAt = note.CreatedAt,
+                Description = note.Description,
+                Status = note.Status,
+                Title = note.Title,
+                Category = new CategoryDTO()
+                {
+                    Id = note.Category!.Id,
+                    Color = note.Category.Color,
+                    Name = note.Category.Name
+                }
+            });
+
+            return await notedto.ToListAsync();
         }
 
         public async Task<AddNoteDTO> Add(CreateNote note)
