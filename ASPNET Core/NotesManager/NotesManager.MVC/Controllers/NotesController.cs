@@ -39,6 +39,8 @@ namespace NotesManager.MVC.Controllers
         }
 
         [HttpGet]  // Specifying these action method as the get method only
+        [Route("Notes")]
+        [Route("Note/{id:int}")]
         public IActionResult Index(int? id)
         {
             if (id.HasValue)
@@ -51,6 +53,8 @@ namespace NotesManager.MVC.Controllers
                 }
                 return View("NoteDetail", note);
             }
+
+
             return View();
         }
 
@@ -140,7 +144,7 @@ namespace NotesManager.MVC.Controllers
             try
             {
                 _logger.LogInformation("Saving the Note with Title {Title}", createNote.Title);
-                NoteDTO newlycreatedNote = await noteService.NewNoteAsync(createNote);
+                AddNoteDTO newlycreatedNote = await noteService.NewNoteAsync(createNote);
                 if (newlycreatedNote != null)
                 {
                     TempData["Success"] = "Note Added";

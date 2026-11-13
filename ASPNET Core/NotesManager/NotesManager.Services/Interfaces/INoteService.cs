@@ -5,6 +5,6 @@ namespace NotesManager.Services.Interfaces
 {
     public interface INoteService
     {
-        public Task<NoteDTO> NewNoteAsync(CreateNote createNote);
+        public Task<AddNoteDTO> NewNoteAsync(CreateNote createNote);
     }
 }

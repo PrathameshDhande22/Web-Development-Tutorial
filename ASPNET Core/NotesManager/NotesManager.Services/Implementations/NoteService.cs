@@ -17,7 +17,7 @@ namespace NotesManager.Services.Implementations
             this.logger = logger;
         }
 
-        public async Task<NoteDTO> NewNoteAsync(CreateNote createNote)
+        public async Task<AddNoteDTO> NewNoteAsync(CreateNote createNote)
         {
             try
             {

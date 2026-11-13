@@ -2,7 +2,7 @@
 
 namespace NotesManager.Domain.DTO.Note
 {
-    public class NoteDTO : CreateNote
+    public class AddNoteDTO : CreateNote
     {
         public int Id { get; set; }
     }
