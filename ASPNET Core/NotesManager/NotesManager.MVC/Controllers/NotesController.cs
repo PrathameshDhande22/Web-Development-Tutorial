@@ -40,23 +40,27 @@ namespace NotesManager.MVC.Controllers
             return RedirectToAction(nameof(Index), new { Id = Id });
         }
 
+        // Action method to get the data from the route
         [HttpGet]  // Specifying these action method as the get method only
         [Route("Notes")]
         [Route("Note/{id:int}", Name = "NoteDetails")]
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index([FromRoute(Name = "id")] int? noteId)
         {
             try
             {
-                if (id.HasValue)
+                // When Id specified then show the detail view.
+                if (noteId.HasValue)
                 {
-                    Note? note = dbContext.Notes.Include(n => n.Category).FirstOrDefault(n => n.Id == id);
-                    if (note is null)
+                    NoteDTO? note = await noteService.GetNoteById(noteId.Value);
+                    if (note == null)
                     {
-                        // Returning the not found result
+                        // Returning the Not Found result
                         return NotFound();
                     }
                     return View("NoteDetail", note);
                 }
+
+                // For getting all the notes
                 List<CategoryDTO> categories = await categoryService.GetCategoriesAsync();
                 PaginatedResponse<NoteDTO> notes = await noteService.GetNotesAsync(new());
 

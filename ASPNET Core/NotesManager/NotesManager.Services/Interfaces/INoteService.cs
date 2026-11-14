@@ -8,5 +8,6 @@ namespace NotesManager.Services.Interfaces
     {
         public Task<AddNoteDTO> NewNoteAsync(CreateNote createNote);
         public Task<PaginatedResponse<NoteDTO>> GetNotesAsync(SearchNoteQuery query);
+        public Task<NoteDTO?> GetNoteById(int Id);
     }
 }

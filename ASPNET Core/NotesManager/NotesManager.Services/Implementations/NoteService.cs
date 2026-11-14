@@ -18,6 +18,19 @@ namespace NotesManager.Services.Implementations
             this.logger = logger;
         }
 
+        public async Task<NoteDTO?> GetNoteById(int Id)
+        {
+            try
+            {
+                return await noteRepository.GetById(Id);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error occured when fetching the note for Id={Id}", Id);
+                throw;
+            }
+        }
+
         public async Task<PaginatedResponse<NoteDTO>> GetNotesAsync(SearchNoteQuery searchQuery)
         {
             try

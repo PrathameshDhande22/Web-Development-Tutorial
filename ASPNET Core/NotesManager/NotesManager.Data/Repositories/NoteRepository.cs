@@ -104,5 +104,30 @@ namespace NotesManager.Data.Repositories
                 Title = note.Title
             };
         }
+
+        public async Task<NoteDTO?> GetById(int id)
+        {
+            return await dbContext.Notes
+                        .Include(n => n.Category)
+                        .Include(n => n.History)
+                        .AsNoTracking()
+                        .AsSplitQuery()
+                        .Where(n => n.Id == id)
+                        .Select(n => new NoteDTO()
+                        {
+                            Id = n.Id,
+                            CategoryId = n.CategoryId,
+                            Title = n.Title,
+                            CreatedAt = n.CreatedAt,
+                            Description = n.Description,
+                            Status = n.Status,
+                            Category = new CategoryDTO()
+                            {
+                                Id = n.Category!.Id,
+                                Name = n.Category.Name,
+                                Color = n.Category.Color
+                            }
+                        }).FirstOrDefaultAsync();
+        }
     }
 }
