@@ -42,7 +42,7 @@ namespace NotesManager.MVC.Controllers
 
         // Action method to get the data from the route
         [HttpGet]  // Specifying these action method as the get method only
-        [Route("Notes")]
+        [Route("Notes", Name = "NotesList")]
         [Route("Note/{id:int}", Name = "NoteDetails")]
         public async Task<IActionResult> Index([FromRoute(Name = "id")] int? noteId)
         {

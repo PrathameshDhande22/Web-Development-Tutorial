@@ -1,13 +1,144 @@
-﻿@model Note
+﻿@model NoteDTO
 
-<div>
-    <h3>@Model.Title</h3>
-    <p>
-        @Model.Description
-    </p>
-    <a class="btn btn-lg btn-info" href="/Notes/Export/@Model.Id">
-        Export
-    </a>
-    <!--Rendering the Custom Tag-->
-    <status-badge status="Draft"/>
+@{
+    ViewData["Title"] = Model.Title.ToLower().Substring(0, 10);
+    NoteStatus[] statuses = Enum.GetValues<NoteStatus>();
+}
+
+<div class="mx-auto max-w-7xl flex-1 px-4 py-8 md:px-8 md:py-10">
+    <div>
+        <div class="flex flex-row items-center justify-between">
+            <!--Back Button-->
+            <a asp-route="NotesList" class="btn btn-sm btn-ghost space-x-1.5 self-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 dark:text-gray-300" viewBox="0 0 1024 1024">
+                    <path fill="currentColor" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" />
+                    <path fill="currentColor" d="m237.248 512l265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z" />
+                </svg>
+                <span class="hidden sm:inline">
+                    Notes
+                </span>
+            </a>
+            <!--Notes Action Buttons-->
+            <div class="flex flex-row items-center gap-1 sm:gap-3">
+                <!--Status Drop down-->
+                <select class="select dark:text-gray-300" id="status-selected" name="note-status">
+                    @foreach (NoteStatus status in statuses)
+                    {
+                        var currentStatusMapping = CategoryConstants.StatusMapping[status];
+                        <option value="@status" selected="@(Model.Status == status)" class="space-x-1.5 checked:bg-black checked:text-white">
+                            <span class="size-2 @currentStatusMapping.color rounded-full"></span>
+                            <span>@currentStatusMapping.label</span>
+                        </option>
+                    }
+                </select>
+                <!--Note History Button-->
+                <a asp-action="History" asp-controller="Notes" asp-route-id="@Model.Id" class="btn btn-sm btn-ghost space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3M3.223 14A9 9 0 1 0 12 3a9 9 0 0 0-8.294 5.5M7 9H3V5" /></svg>
+                    <span class="hidden sm:inline">History</span>
+                </a>
+                <!--Edit note button-->
+                <a asp-action="Edit" asp-controller="Notes" asp-route-id="@Model.Id" class="btn btn-sm btn-primary space-x-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M5 12.24L.5 13.5L1.76 9L10 .8a1 1 0 0 1 1.43 0l1.77 1.78a1.001 1.001 0 0 1 0 1.42z" /></svg>
+                    <span class="hidden sm:inline">Edit</span>
+                </a>
+                <!--Dropdown content-->
+                <div class="dropdown dropdown-end">
+                    <div tabindex="0" role="button" class="btn btn-ghost rounded-field">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4 dark:text-gray-300" viewBox="0 0 16 16"><path fill="currentColor" d="M3 9.5a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3z" /></svg>
+                    </div>
+                    <ul tabindex="-1"
+                        class="menu dropdown-content rounded-box z-1 mt-4 w-52 bg-base-100 p-2 shadow-sm">
+                        <li>
+                            <!--Export to MD-->
+                            <a id="export-md" class="dark:text-gray-300" asp-action="Export" asp-controller="Notes" asp-route-id="@Model.Id">
+                                <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>Download as text file
+                            </a>
+                        </li>
+                        <li>
+                            <!--Delete Note-->
+                            <button id="delete" class="text-error">
+                                <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>Delete note
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Note Content-->
+        <div class="mt-6 grid gap-10 lg:grid-cols-3">
+            <!--Note-->
+            <div class="min-w-0 lg:col-span-2">
+                <!--Title-->
+                <h2 class="text-3xl font-semibold">@Model.Title</h2>
+                <div class="mt-3 flex flex-wrap gap-5">
+                    <!--Status-->
+                    <status-badge status="@Model.Status" />
+                    <!--Category-->
+                    <div class="space-x-1">
+                        <span class="inline-block size-2.5 rounded-[0.2em]" style="background-color: @Model.Category.Color;"></span>
+                        <span class="text-sm dark:text-gray-400">@Model.Category.Name</span>
+                    </div>
+                    <!--Updated Time Ago-->
+                    <span class="text-stone-500">·</span>
+                    <span>
+                        @if (Model.UpdatedAt.HasValue)
+                        {
+                            <span class="text-sm text-stone-400">
+                                Updated
+                            </span>
+                            <time-ago date="Model.UpdatedAt.Value.DateTime" />
+                        }
+                        else
+                        {
+                            <span class="text-sm text-stone-400">
+                                Created
+                            </span>
+                            <time-ago date="Model.CreatedAt.DateTime" />
+                        }
+                    </span>
+                </div>
+                <!--Content-->
+                <div class="markdown-content mt-6 border-t border-gray-300 pt-6">
+                    @if (!string.IsNullOrWhiteSpace(Model.Description))
+                    {
+                        @Html.Raw(MarkdownRenderer.ConvertToHTML(Model.Description))
+                    }
+                    else
+                    {
+                        <span class="text-xl text-gray-400 italic">Nothing written yet</span>
+                    }
+                </div>
+            </div>
+            <!--Note Details-->
+            <aside class="border-t border-gray-300 pt-6 lg:border-t-0 lg:pt-0 lg:pl-8">
+                <h3 class="text-sm font-medium tracking-wide text-gray-400 uppercase">Details</h3>
+                <dl class="mt-4 space-y-4 text-sm">
+                    <div class="grid grid-cols-3 items-center gap-3">
+                        <dt class="text-gray-500 dark:text-gray-400">Status</dt>
+                        <dd class="col-span-2">
+                            <status-badge status="@Model.Status" />
+                        </dd>
+                    </div>
+                    <div class="grid grid-cols-3 items-center gap-3">
+                        <dt class="text-gray-500 dark:text-gray-400">Category</dt>
+                        <dd class="col-span-2 flex items-center gap-2">
+                            <span class="inline-block size-2.5 rounded-[0.2em]" style="background-color: @Model.Category.Color;"></span>
+                            <span>@Model.Category.Name</span>
+                        </dd>
+                    </div>
+                    <div class="grid grid-cols-3 items-start gap-3">
+                        <dt class="text-gray-500 dark:text-gray-400">Created</dt>
+                        <dd class="col-span-2">@Model.CreatedAt.LocalDateTime.ToString("MMM dd, yyyy, hh:mm tt")</dd>
+                    </div>
+                    @if (Model.UpdatedAt.HasValue)
+                    {
+                        <div class="grid grid-cols-3 items-start gap-3">
+                            <dt class="text-gray-500 dark:text-gray-400">Updated</dt>
+                            <dd class="col-span-2">@Model.UpdatedAt.Value.LocalDateTime.ToString("MMM dd, yyyy, hh:mm tt")</dd>
+                        </div>
+                    }
+                </dl>
+            </aside>
+        </div>
+    </div>
 </div>

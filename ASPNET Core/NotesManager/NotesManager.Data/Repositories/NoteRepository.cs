@@ -121,6 +121,7 @@ namespace NotesManager.Data.Repositories
                             CreatedAt = n.CreatedAt,
                             Description = n.Description,
                             Status = n.Status,
+                            UpdatedAt = n.UpdatedAt,
                             Category = new CategoryDTO()
                             {
                                 Id = n.Category!.Id,
