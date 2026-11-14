@@ -6,7 +6,7 @@
 
 <div class="mx-auto max-w-7xl px-4 py-5 md:px-8 md:py-10">
     <!--Create Note Form using the tag Helper-->
-    <form asp-action="New" asp-controller="Notes" method="post">
+    <form asp-action="New" asp-controller="Notes" method="post" id="create-note-form">
         <!--Back button and save button-->
         <div class="flex flex-row items-center justify-between">
             <!--Back Button-->
@@ -85,10 +85,13 @@
 </div>
 
 @section Scripts {
-    <script src="/lib/markdown-text-editor/dist/markdown-text-editor.min.js" asp-append-version="true"></script>
-    <script>
-        $(function () {
-            new MarkdownEditor('#markdown-editor');
-        })
-    </script>
-}
+    <partial name="_ValidationScriptsPartial"></partial>
+        <script src="/lib/markdown-text-editor/dist/markdown-text-editor.min.js" asp-append-version="true"></script>
+
+        <!--Validation Scripts-->
+        <script>
+            $(function () {
+                new MarkdownEditor('#markdown-editor');
+            })
+        </script>
+    }

@@ -3,10 +3,6 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "jquery@4.0.0",
-      "destination": "wwwroot/lib/jquery/"
-    },
-    {
       "provider": "jsdelivr",
       "library": "markdown-text-editor@1.9.4",
       "destination": "wwwroot/lib/markdown-text-editor/",
@@ -19,6 +15,27 @@
         "dist/markdown-text-editor.umd.js",
         "dist/markdown-text-editor.umd.js.map",
         "dist/markdown-text-editor.umd.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validate@1.22.1",
+      "destination": "wwwroot/lib/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js",
+        "jquery.validate.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@4.0.0",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery@3.7.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "jquery.min.js",
+        "jquery.js"
       ]
     }
   ]
