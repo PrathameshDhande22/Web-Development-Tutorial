@@ -12,10 +12,11 @@ namespace NotesManager.Domain.Models.Note
 
         public string? Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Status is required")]
         public NoteStatus Status { get; set; } = NoteStatus.Draft;
 
-        [Required]
+        [Required(ErrorMessage = "Please select appropriate category for your note")]
+        [Range(1, 9999, ErrorMessage = "Select the appropriate category")]
         public int CategoryId { get; set; }
     }
 }

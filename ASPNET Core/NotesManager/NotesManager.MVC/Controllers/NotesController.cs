@@ -184,13 +184,19 @@ namespace NotesManager.MVC.Controllers
         {
             try
             {
-                _logger.LogInformation("Saving the Note with Title {Title}", createNote.Title);
-                AddNoteDTO newlycreatedNote = await noteService.NewNoteAsync(createNote);
-                if (newlycreatedNote != null)
+                // Checking from the ModelBinding is the model state is valid or not
+                if (ModelState.IsValid)
                 {
-                    TempData["Success"] = "Note Added";
-                    return RedirectToAction(nameof(Index), new { id = newlycreatedNote.Id });
+                    _logger.LogInformation("Saving the Note with Title {Title}", createNote.Title);
+                    AddNoteDTO newlycreatedNote = await noteService.NewNoteAsync(createNote);
+                    if (newlycreatedNote != null)
+                    {
+                        TempData["Success"] = "Note Added";
+                        return RedirectToAction(nameof(Index), new { id = newlycreatedNote.Id });
+                    }
                 }
+                // Calling the service layer interface over here
+                ViewBag.Categories = await categoryService.GetCategoriesAsync();
 
                 return View(createNote);
             }
