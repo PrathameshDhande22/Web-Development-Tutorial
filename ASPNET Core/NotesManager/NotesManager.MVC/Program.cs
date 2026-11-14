@@ -1,4 +1,5 @@
 using NotesManager.Data;
+using NotesManager.MVC.ModelBinders;
 using NotesManager.MVC.RouteConstraints;
 using NotesManager.Services;
 
@@ -14,7 +15,11 @@ builder.Services.AddLogging(config =>
 });
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(config =>
+{
+    // Register the newly created model binder
+    config.ModelBinderProviders.Insert(0, new CommaSeparatedModelBinderProvider());
+});
 
 // Registering the custom Route Constraint
 builder.Services.AddRouting(options =>

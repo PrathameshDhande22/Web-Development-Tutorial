@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NotesManager.Data;
+using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
+using NotesManager.MVC.ModelBinders;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -29,6 +31,13 @@ namespace NotesManager.MVC.Controllers
 
             TempData["Info"] = "HTMLTutorial";
             return View(new Notes());
+        }
+
+        // using the custom model binder by specifying the ModelBinder attribute
+        public async Task<IActionResult> CustomBinder(
+            [ModelBinder(typeof(CommaSeparatedStatusBinder))] List<NoteStatus> status)
+        {
+            return Json(status);
         }
     }
 }
