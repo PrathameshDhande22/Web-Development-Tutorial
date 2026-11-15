@@ -1,4 +1,5 @@
 ﻿using NotesManager.Domain.Enums;
+using NotesManager.Domain.Validations;
 using System.ComponentModel.DataAnnotations;
 
 namespace NotesManager.Domain.Models.Note
@@ -8,6 +9,7 @@ namespace NotesManager.Domain.Models.Note
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Title is required")]
         [MaxLength(100)]
+        [ValidNoteTitle] // Custom Data Annotation
         public string Title { get; set; } = string.Empty;
 
         public string? Description { get; set; }

@@ -1,7 +1,7 @@
 ﻿@model NoteDTO
 
 @{
-    ViewData["Title"] = Model.Title.ToLower().Substring(0, 10);
+    ViewData["Title"] = Model.Title.ToLower();
     NoteStatus[] statuses = Enum.GetValues<NoteStatus>();
 }
 
