@@ -21,6 +21,11 @@ namespace NotesManager.Services.Implementations
             this._logger = logger;
         }
 
+        public async Task<bool> CategoryExists(string name)
+        {
+            return await _categoryRepository.CategoryExists(name);
+        }
+
         public async Task<CategoryDTO> CreateAsync(CreateCategory category)
         {
             if (await _categoryRepository.CategoryExists(category.Name))

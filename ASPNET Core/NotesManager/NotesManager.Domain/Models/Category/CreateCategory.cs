@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace NotesManager.Domain.Models.Category
 {
@@ -6,6 +7,7 @@ namespace NotesManager.Domain.Models.Category
     {
         [Required(ErrorMessage = "Category Name is required")]
         [StringLength(60, ErrorMessage = "Name must be 60 characters only")]
+        [Remote("IsCategoryAvailable", "Admin")] // Adding the Remote validation
         public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Category color selection is required")]

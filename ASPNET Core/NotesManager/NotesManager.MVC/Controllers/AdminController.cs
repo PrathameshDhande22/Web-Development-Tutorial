@@ -77,6 +77,23 @@ namespace NotesManager.MVC.Controllers
                 return View(category);
             }
         }
+
+        // Action method for Remote validation
+        [HttpGet, HttpPost]
+        public async Task<JsonResult> IsCategoryAvailable(string Name)
+        {
+            try
+            {
+                bool categoryExists = await categoryService.CategoryExists(Name);
+                // Return true for Remote validation Success
+                return Json(categoryExists ? "The category with this name already exists" : true);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return Json(StatusCode(StatusCodes.Status500InternalServerError, ex.Message));
+            }
+        }
     }
 }
 
