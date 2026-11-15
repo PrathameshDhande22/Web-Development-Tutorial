@@ -161,6 +161,12 @@ namespace NotesManager.MVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Edit(UpdateNote updateNote)
+        {
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> New()
         {

@@ -29,7 +29,10 @@
                 </div>
                 <!--Color Selection-->
                 <div class="">
-                    <label class="text-sm font-medium text-stone-500 dark:text-gray-300">Colour</label>
+                    <label class="text-sm font-medium text-stone-500 dark:text-gray-300">
+                        <!--Display Name Html Helper-->
+                        @Html.DisplayNameFor(m=>m.Color)
+                    </label>
                     <div class="mt-2 flex flex-wrap gap-3">
                         @foreach (string color in CategoryConstants.Colors)
                         {
