@@ -32,5 +32,18 @@ namespace NotesManager.Services.Implementations
                 throw;
             }
         }
+
+        public async Task<List<CategoryNotesDTO>> GetCategoriesNotesAsync()
+        {
+            try
+            {
+                return await _categoryRepository.GetCategoriesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occured when gettign the categories with notes");
+                throw;
+            }
+        }
     }
 }

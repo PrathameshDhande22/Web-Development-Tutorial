@@ -9,5 +9,7 @@ namespace NotesManager.Services.Interfaces
         /// </summary>
         /// <returns>List of Category</returns>
         public Task<List<CategoryDTO>> GetCategoriesAsync();
+
+        public Task<List<CategoryNotesDTO>> GetCategoriesNotesAsync();
     }
 }
