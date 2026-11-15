@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using NotesManager.Data.Repositories;
 using NotesManager.Domain.DTO.Category;
+using NotesManager.Domain.Exceptions;
+using NotesManager.Domain.Models.Category;
 using NotesManager.Services.Interfaces;
 
 namespace NotesManager.Services.Implementations
@@ -17,6 +19,16 @@ namespace NotesManager.Services.Implementations
         {
             this._categoryRepository = categoryRepository;
             this._logger = logger;
+        }
+
+        public async Task<CategoryDTO> CreateAsync(CreateCategory category)
+        {
+            if (await _categoryRepository.CategoryExists(category.Name))
+            {
+                throw new AlreadyExistsException($"Category with Name {category.Name} already exists");
+            }
+
+            return await _categoryRepository.AddAsync(category.Name, category.Color);
         }
 
         /// <inheritdoc/>

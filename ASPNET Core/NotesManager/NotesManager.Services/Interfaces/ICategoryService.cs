@@ -1,4 +1,5 @@
 ﻿using NotesManager.Domain.DTO.Category;
+using NotesManager.Domain.Models.Category;
 
 namespace NotesManager.Services.Interfaces
 {
@@ -11,5 +12,6 @@ namespace NotesManager.Services.Interfaces
         public Task<List<CategoryDTO>> GetCategoriesAsync();
 
         public Task<List<CategoryNotesDTO>> GetCategoriesNotesAsync();
+        public Task<CategoryDTO> CreateAsync(CreateCategory category);
     }
 }

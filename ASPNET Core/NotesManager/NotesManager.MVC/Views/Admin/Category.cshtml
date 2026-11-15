@@ -1,0 +1,85 @@
+﻿@model CreateCategory
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="mx-auto max-w-7xl flex-1 px-4 py-8 md:px-8 md:py-10">
+    <div class="max-w-3xl space-y-6">
+        <!--Page Header Section-->
+        <div class="space-y-2">
+            <h2 class="text-2xl font-semibold">Categories</h2>
+            <p class="text-sm text-stone-400 dark:text-gray-300">
+                Shared by every user. Each category has a colour that appears next to it on notes. Names are unique (case-insensitive). Deleting a category moves its notes to Uncategorized.
+            </p>
+        </div>
+        <div class="mt-4">
+            <!--Category Creation Form-->
+            <form asp-action="Category" asp-controller="Admin" class="w-full space-y-3 rounded-xl border border-gray-300 p-6 dark:border-gray-700">
+                <!--Category Input box and Submit button-->
+                <div>
+                    <div class="flex flex-row flex-wrap gap-2">
+                        <input type="text" asp-for="Name" class="input input-sm flex-1" placeholder="New category name" />
+                        <button class="btn btn-sm btn-primary space-x-1" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-white" viewBox="0 0 24 24"><path fill="currentColor" d="M13 4v7h7v2h-7v7h-2v-7H4v-2h7V4h2Z" /></svg>
+                            <span>Add category</span>
+                        </button>
+                    </div>
+                    <span asp-validation-for="Name" class="mt-2 text-sm text-error"></span>
+                </div>
+                <!--Color Selection-->
+                <div class="">
+                    <label class="text-sm font-medium text-stone-500 dark:text-gray-300">Colour</label>
+                    <div class="mt-2 flex flex-wrap gap-3">
+                        @foreach (string color in CategoryConstants.Colors)
+                        {
+                            <label class="bg-@(color)-100 relative flex size-8 cursor-pointer items-center justify-center rounded-full has-checked:ring-@(color)-500 has-checked:ring-2">
+                                <input asp-for="Color" type="radio" value="@color"
+                                       class="peer sr-only" />
+                                <span class="bg-@(color)-500 size-4 rounded-full"></span>
+                            </label>
+                        }
+                    </div>
+                    <span asp-validation-for="Color" class="mt-2 text-sm text-error"></span>
+                </div>
+            </form>
+        </div>
+        <!--Categories Table-->
+        <div class="rounded-box overflow-x-auto border border-gray-200 dark:border-gray-700">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th class="text-right">Notes</th>
+                        <th>Created</th>
+                        <th class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CategoryNotesDTO categorynotes in ViewBag.Categories)
+                    {
+                        <tr id="category-@categorynotes.Id" class="category-table-row">
+                            <td class="text-xs">@categorynotes.Name</td>
+                            <td class="text-right text-xs">@categorynotes.NotesCount</td>
+                            <td class="text-xs text-gray-400">@categorynotes.CreatedAt.DateTime.ToString("MMM d, yyyy")</td>
+                            <td class="text-right">
+                                <!--Action Buttons-->
+                                <button class="btn btn-xs btn-ghost" type="button" role="dialog">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M5 12.24L.5 13.5L1.76 9L10 .8a1 1 0 0 1 1.43 0l1.77 1.78a1.001 1.001 0 0 1 0 1.42z" /></svg>
+                                </button>
+                                <button class="btn btn-xs btn-ghost" type="button" role="alertdialog">
+                                    <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+    }

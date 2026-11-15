@@ -13,5 +13,17 @@ namespace NotesManager.Domain.Constants
             {NoteStatus.InProgress,("In progress","bg-orange-500") },
             {NoteStatus.Completed,("Completed","bg-green-400") }
         };
+
+        public static readonly List<string> Colors = [
+            "gray",
+            "amber",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "purple",
+            "pink",
+            "red"
+        ];
     }
 }
