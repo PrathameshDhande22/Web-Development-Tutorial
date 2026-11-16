@@ -18,12 +18,12 @@ namespace NotesManager.Data
             if (!noteDbContext.Category.Any())
             {
                 List<Category> categories = new List<Category>(){
-                    new() { Name = "Home", Color = "#4F8065" },
-                    new() { Name = "Ideas", Color = "#C0528D" },
-                    new() { Name = "Money", Color = "#C9973F" },
-                    new() { Name = "Personal", Color = "#4785AD" },
-                    new() { Name = "Travel", Color = "#D9792B" },
-                    new() { Name = "Work", Color = "#8964AE" }
+                    new() { Name = "Home", Color = "gray" },
+                    new() { Name = "Ideas", Color = "amber" },
+                    new() { Name = "Money", Color = "orange" },
+                    new() { Name = "Personal", Color = "green" },
+                    new() { Name = "Travel", Color = "blue" },
+                    new() { Name = "Work", Color = "pink" }
                 };
 
                 noteDbContext.AddRange(categories);
