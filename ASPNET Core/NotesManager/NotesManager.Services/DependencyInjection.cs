@@ -2,6 +2,9 @@
 using NotesManager.Data.Repositories;
 using NotesManager.Services.Implementations;
 using NotesManager.Services.Interfaces;
+using FluentValidation
+
+using NotesManager.Services.Validators;
 
 namespace NotesManager.Services
 {
@@ -25,6 +28,15 @@ namespace NotesManager.Services
         {
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<INoteService, NoteService>();
+
+            return services;
+        }
+
+        // Extension method for injecting the class and model related to Fluent Validation
+        public static IServiceCollection AddFluentValidation(this IServiceCollection services)
+        {
+            // Registering the validator and injecting
+            services.AddValidatorsFromAssemblyContaining<RegisterValidator>();
 
             return services;
         }

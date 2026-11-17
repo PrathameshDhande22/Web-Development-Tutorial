@@ -31,6 +31,7 @@ builder.Services.AddRouting(options =>
 // Add the services and database related services
 builder.Services.AddDataServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddFluentValidation();
 
 var app = builder.Build();
 
