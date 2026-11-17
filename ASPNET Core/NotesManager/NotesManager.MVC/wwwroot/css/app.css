@@ -235,4 +235,13 @@ html, body {
         .markdown-content summary {
             @apply cursor-pointer font-semibold;
         }
+
+    /* Registration and Login */
+    .input-label {
+        @apply label text-gray-700;
+    }
+
+    .form-input {
+        @apply flex flex-col space-y-2;
+    }
 }
