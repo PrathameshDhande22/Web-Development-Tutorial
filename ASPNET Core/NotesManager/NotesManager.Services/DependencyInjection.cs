@@ -2,7 +2,7 @@
 using NotesManager.Data.Repositories;
 using NotesManager.Services.Implementations;
 using NotesManager.Services.Interfaces;
-using FluentValidation
+using FluentValidation;
 
 using NotesManager.Services.Validators;
 

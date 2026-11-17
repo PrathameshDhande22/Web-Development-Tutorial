@@ -1,1 +1,41 @@
-﻿
+﻿@model RegisterUser
+
+@{
+    ViewData["Title"] = "Create a free account";
+}
+
+<div>
+    <div class="flex-1">
+        <!--Page header-->
+        <h2>Create your account</h2>
+        <p>Keep notes and documents organised in one place</p>
+        <!--Register Form-->
+        <div>
+            <form asp-action="Register" asp-controller="Auth" method="post">
+                <div>
+                    <label class="label" asp-for="FullName">Full name</label>
+                    <input asp-for="FullName" class="input" type="text" />
+                    <span asp-validation-for="FullName" class="text-error"></span>
+                </div>
+                <div>
+                    <label class="label" asp-for="Email">Email</label>
+                    <input asp-for="Email" type="email" class="input" />
+                    <span asp-validation-for="Email" class="text-error"></span>
+                </div>
+                <div>
+                    <label class="label" asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" class="input" />
+                    <span asp-validation-for="Password" class="text-error"></span>
+                </div>
+                <div>
+                    <label class="label" asp-for="ConfirmPassword">Confirm password</label>
+                    <input asp-for="ConfirmPassword" type="password" class="input" />
+                    <span asp-validation-for="ConfirmPassword" class="text-error"></span>
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    Create account
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
