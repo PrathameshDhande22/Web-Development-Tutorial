@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NoteWell</title>
+    @*Render section over here for rendering from the child view*@
+    @RenderSection("Seo", false)
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="flex min-h-screen flex-col">
+    <!--Render the Nested Layout-->
+    @RenderBody();
+    <!--Toast-->
+    <partial name="_Toast" />
+    <!--footer-->
+    <footer class="z-30 border-t border-gray-300/50 px-6 py-4 text-gray-500 dark:border-gray-800 dark:text-gray-400">
+        <ul class="mx-auto flex max-w-7xl flex-row items-center gap-10 py-4 text-sm">
+            <li>
+                Made by <span class="font-bold">Prathamesh Dhande</span>
+            </li>
+            <li>
+                <a href="https://github.com/PrathameshDhande" class="link link-hover flex flex-row items-center gap-2">
+                    <!--Github Logo-->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24">
+                        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M9 22v-3q0-2 1-3A7 6.5 0 0 1 5 5Q4 3 5 1q3 0 4 2q3.5-1 7 0q1-2 4-2q1 2 0 4a7 6.5 0 0 1-5 11q1 1 1 3v3m-7-3c-4 1-4-2-7-3" />
+                    </svg>
+                    <span>
+                        Source Code on Github
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

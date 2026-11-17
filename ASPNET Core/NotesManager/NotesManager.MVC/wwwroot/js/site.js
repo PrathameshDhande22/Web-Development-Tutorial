@@ -6,6 +6,7 @@
     let current_theme = localStorage.getItem("notewell-theme");
     if (current_theme) {
         $("html").attr("data-theme", current_theme);
+        changeLogo(current_theme);
     } else {
         localStorage.setItem("notewell-theme", "light");
     }

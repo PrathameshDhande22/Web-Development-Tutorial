@@ -74,10 +74,7 @@
                     <!--Status-->
                     <status-badge status="@Model.Status" />
                     <!--Category-->
-                    <div class="space-x-1">
-                        <span class="inline-block size-2.5 rounded-[0.2em]" style="background-color: @Model.Category.Color;"></span>
-                        <span class="text-sm dark:text-gray-400">@Model.Category.Name</span>
-                    </div>
+                    <category category-name="@Model.Category.Name" color="@Model.Category.Color" />
                     <!--Updated Time Ago-->
                     <span class="text-stone-500">·</span>
                     <span>
@@ -98,7 +95,7 @@
                     </span>
                 </div>
                 <!--Content-->
-                <div class="markdown-content mt-6 border-t border-gray-300 pt-6">
+                <div class="markdown-content mt-6 border-t border-gray-300 pt-6 dark:border-gray-700">
                     @if (!string.IsNullOrWhiteSpace(Model.Description))
                     {
                         @Html.Raw(MarkdownRenderer.ConvertToHTML(Model.Description))
@@ -121,10 +118,7 @@
                     </div>
                     <div class="grid grid-cols-3 items-center gap-3">
                         <dt class="text-gray-500 dark:text-gray-400">Category</dt>
-                        <dd class="col-span-2 flex items-center gap-2">
-                            <span class="inline-block size-2.5 rounded-[0.2em]" style="background-color: @Model.Category.Color;"></span>
-                            <span>@Model.Category.Name</span>
-                        </dd>
+                        <category category-name="@Model.Category.Name" color="@Model.Category.Color" class="w-auto" />
                     </div>
                     <div class="grid grid-cols-3 items-start gap-3">
                         <dt class="text-gray-500 dark:text-gray-400">Created</dt>
