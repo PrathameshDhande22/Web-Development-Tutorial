@@ -32,7 +32,9 @@ namespace NotesManager.Services.Validators
 
             RuleFor(r => r.ConfirmPassword)
                 .NotEmpty()
-                .WithMessage("Confirm Password is required");
+                .WithMessage("Confirm Password is required")
+                .Equal(r => r.Password)
+                .WithMessage("Confirm password must be same as password");
         }
     }
 }
