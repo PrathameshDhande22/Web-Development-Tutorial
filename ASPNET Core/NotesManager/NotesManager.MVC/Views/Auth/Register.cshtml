@@ -4,35 +4,40 @@
     ViewData["Title"] = "Create a free account";
 }
 
-<div>
-    <div class="flex-1">
+<div class="grid flex-1 place-items-center px-4 py-16 md:px-8">
+    <div class="space-y-1">
         <!--Page header-->
-        <h2>Create your account</h2>
-        <p>Keep notes and documents organised in one place</p>
+        <h2 class="text-2xl font-semibold">Create your account</h2>
+        <p class="text-sm text-stone-400 dark:text-gray-300">Keep notes and documents organised in one place</p>
         <!--Register Form-->
-        <div>
-            <form asp-action="Register" asp-controller="Auth" method="post">
-                <div>
-                    <label class="label" asp-for="FullName">Full name</label>
+        <div class="mt-8 rounded-md bg-white p-5 shadow-md">
+            <form asp-action="Register" asp-controller="Auth" method="post" class="space-y-4">
+                <div class="flex flex-col space-y-2">
+                    <label class="label text-gray-700" asp-for="FullName">Full name</label>
                     <input asp-for="FullName" class="input" type="text" />
-                    <span asp-validation-for="FullName" class="text-error"></span>
+                    <span asp-validation-for="FullName" class="inline-block text-sm text-error"></span>
                 </div>
-                <div>
+                <div class="flex flex-col space-y-2">
                     <label class="label" asp-for="Email">Email</label>
                     <input asp-for="Email" type="email" class="input" />
-                    <span asp-validation-for="Email" class="text-error"></span>
+                    <span asp-validation-for="Email" class="inline-block text-sm text-error"></span>
                 </div>
-                <div>
+                <div class="flex flex-col space-y-2">
                     <label class="label" asp-for="Password">Password</label>
                     <input asp-for="Password" type="password" class="input" />
-                    <span asp-validation-for="Password" class="text-error"></span>
+                    <div class="text-sm text-stone-500" id="password-hints">
+                        <span>
+
+                        </span>
+                    </div>
+                    <span asp-validation-for="Password" class="inline-block text-sm text-error"></span>
                 </div>
-                <div>
+                <div class="flex flex-col space-y-2">
                     <label class="label" asp-for="ConfirmPassword">Confirm password</label>
                     <input asp-for="ConfirmPassword" type="password" class="input" />
-                    <span asp-validation-for="ConfirmPassword" class="text-error"></span>
+                    <span asp-validation-for="ConfirmPassword" class="inline-block text-sm text-error"></span>
                 </div>
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-primary btn-block w-full" type="submit">
                     Create account
                 </button>
             </form>

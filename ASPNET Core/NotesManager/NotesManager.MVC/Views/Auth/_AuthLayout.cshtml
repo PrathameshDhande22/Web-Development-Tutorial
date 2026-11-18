@@ -1,10 +1,13 @@
 ﻿@*Specifying the parent layout for these nested layout*@
 @{
     Layout = "_BaseLayout";
+
+    // Get the Controller name
+    string actionMethodName = ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
 }
 
-@section Seo{
-    @await RenderSectionAsync("seo",false)
+@section Seo {
+    @await RenderSectionAsync("seo", false)
 }
 
 <!--Header Creating as the Layout-->
@@ -22,13 +25,6 @@
                     <span class="rounded-md bg-yellow-400 px-2 py-1 text-xs text-black">Dev</span>
                 </environment>
             </a>
-            <!--Navbar menu-->
-            <nav class="ml-6 hidden sm:block">
-                <ul class="flex flex-row gap-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
-                    <li class="nav-link"><a href="#features">Features</a></li>
-                    <li class="nav-link"><a href="#views">Views</a></li>
-                </ul>
-            </nav>
         </div>
         <!--Right Side Navigation-->
         <div class="navbar-end flex flex-row items-center gap-1">
@@ -44,16 +40,22 @@
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7" />
                 </svg>
             </button>
-            <a href="/Account/Login" class="btn btn-ghost btn-sm dark:text-gray-400">Sign In</a>
-            <a href="/Account/Register" class="btn btn-primary btn-sm rounded-md shadow-none">Get Started</a>
+            @if (actionMethodName.Equals("Login"))
+            {
+                <a href="/Account/Register" class="btn btn-primary btn-sm rounded-md shadow-none">Get Started</a>
+            }
+            else if (actionMethodName.Equals("Register"))
+            {
+                <a href="/Account/Login" class="btn btn-ghost btn-sm dark:text-gray-400">Sign In</a>
+            }
         </div>
     </div>
 </header>
-<main class="flex-1">
+<main class="flex flex-1 bg-[#f7f6f3]">
     @*Use the Render the body from the action method*@
     @RenderBody()
 </main>
 
-@section Scripts{
-    @await RenderSectionAsync("Scripts",false)
+@section Scripts {
+    @await RenderSectionAsync("Scripts", false)
 }
