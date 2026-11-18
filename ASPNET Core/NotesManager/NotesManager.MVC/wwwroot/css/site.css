@@ -62,6 +62,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-sm: 24rem;
     --container-xl: 36rem;
     --container-3xl: 48rem;
     --container-7xl: 80rem;
@@ -6105,6 +6106,9 @@
   .max-w-7xl {
     max-width: var(--container-7xl);
   }
+  .max-w-sm {
+    max-width: var(--container-sm);
+  }
   .max-w-xl {
     max-width: var(--container-xl);
   }
@@ -7634,6 +7638,9 @@
     }
   }
   @media (width >= 48rem) {
+    .md\:max-w-1\/2 {
+      max-width: calc(1 / 2 * 100%);
+    }
     .md\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -8330,6 +8337,11 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: var(--spacing);
+  }
+  .hint {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
   }
 }
 @layer base {

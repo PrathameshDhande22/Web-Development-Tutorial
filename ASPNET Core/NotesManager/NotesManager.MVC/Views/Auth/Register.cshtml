@@ -27,9 +27,13 @@
                     <input asp-for="Password" type="password" class="input" />
                     <!--Password Hints-->
                     <div class="grid grid-cols-2 gap-3 text-sm text-gray-400" id="password-hints">
-                        <span class="flex items-center gap-2" id="character-length">
+                        <span class="hint" id="character-length">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 21 21"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m15.5 15.5l-10-10zm0-10l-10 10" /></svg>
-                            <span>at least 8 characters</span>
+                            <span>At least 8 characters</span>
+                        </span>
+                        <span class="hint" id="uppercase-hint">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 21 21"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m15.5 15.5l-10-10zm0-10l-10 10" /></svg>
+                            <span>An uppercase letter</span>
                         </span>
                     </div>
                     <span asp-validation-for="Password" class="inline-block text-sm text-error"></span>
