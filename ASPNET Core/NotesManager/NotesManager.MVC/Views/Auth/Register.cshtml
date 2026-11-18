@@ -12,18 +12,18 @@
         <!--Register Form-->
         <div class="mt-8 rounded-md bg-white p-5 shadow-md">
             <form asp-action="Register" asp-controller="Auth" method="post" class="space-y-4">
-                <div class="flex flex-col space-y-2">
-                    <label class="label text-gray-700" asp-for="FullName">Full name</label>
+                <div class="form-input">
+                    <label class="input-label" asp-for="FullName">Full name</label>
                     <input asp-for="FullName" class="input" type="text" />
                     <span asp-validation-for="FullName" class="inline-block text-sm text-error"></span>
                 </div>
-                <div class="flex flex-col space-y-2">
-                    <label class="label" asp-for="Email">Email</label>
+                <div class="form-input">
+                    <label class="input-label" asp-for="Email">Email</label>
                     <input asp-for="Email" type="email" class="input" />
                     <span asp-validation-for="Email" class="inline-block text-sm text-error"></span>
                 </div>
-                <div class="flex flex-col space-y-2">
-                    <label class="label" asp-for="Password">Password</label>
+                <div class="form-input">
+                    <label class="input-label" asp-for="Password">Password</label>
                     <input asp-for="Password" type="password" class="input" />
                     <div class="text-sm text-stone-500" id="password-hints">
                         <span>
@@ -32,8 +32,8 @@
                     </div>
                     <span asp-validation-for="Password" class="inline-block text-sm text-error"></span>
                 </div>
-                <div class="flex flex-col space-y-2">
-                    <label class="label" asp-for="ConfirmPassword">Confirm password</label>
+                <div class="form-input">
+                    <label class="input-label" asp-for="ConfirmPassword">Confirm password</label>
                     <input asp-for="ConfirmPassword" type="password" class="input" />
                     <span asp-validation-for="ConfirmPassword" class="inline-block text-sm text-error"></span>
                 </div>
@@ -44,3 +44,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+}
