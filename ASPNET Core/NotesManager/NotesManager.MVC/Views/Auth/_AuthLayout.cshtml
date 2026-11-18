@@ -42,11 +42,11 @@
             </button>
             @if (actionMethodName.Equals("Login"))
             {
-                <a href="/Account/Register" class="btn btn-primary btn-sm rounded-md shadow-none">Get Started</a>
+                <a asp-action="Register" asp-controller="Auth" class="btn btn-primary btn-sm rounded-md shadow-none">Get Started</a>
             }
             else if (actionMethodName.Equals("Register"))
             {
-                <a href="/Account/Login" class="btn btn-ghost btn-sm dark:text-gray-400">Sign In</a>
+                <a asp-action="Login" asp-controller="Auth" class="btn btn-ghost btn-sm dark:text-gray-400">Sign In</a>
             }
         </div>
     </div>
