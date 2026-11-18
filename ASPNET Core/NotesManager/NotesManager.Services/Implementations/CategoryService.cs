@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FluentValidation;
+using Microsoft.Extensions.Logging;
 using NotesManager.Data.Repositories;
 using NotesManager.Domain.DTO.Category;
-using NotesManager.Domain.Exceptions;
 using NotesManager.Domain.Models.Category;
 using NotesManager.Services.Interfaces;
 
@@ -11,14 +11,17 @@ namespace NotesManager.Services.Implementations
     {
         private CategoryRepository _categoryRepository;
         private ILogger<CategoryService> _logger;
+        private IValidator<CreateCategory> validator;
 
         public CategoryService(
             CategoryRepository categoryRepository,
-            ILogger<CategoryService> logger
+            ILogger<CategoryService> logger,
+            IValidator<CreateCategory> validator
         )
         {
             this._categoryRepository = categoryRepository;
             this._logger = logger;
+            this.validator = validator;
         }
 
         public async Task<bool> CategoryExists(string name)
@@ -28,10 +31,8 @@ namespace NotesManager.Services.Implementations
 
         public async Task<CategoryDTO> CreateAsync(CreateCategory category)
         {
-            if (await _categoryRepository.CategoryExists(category.Name))
-            {
-                throw new AlreadyExistsException($"Category with Name {category.Name} already exists");
-            }
+            // Now instead of calling these categoryexits use the async validator by fluentvalidation
+            await validator.ValidateAndThrowAsync(category);
 
             return await _categoryRepository.AddAsync(category.Name, category.Color);
         }

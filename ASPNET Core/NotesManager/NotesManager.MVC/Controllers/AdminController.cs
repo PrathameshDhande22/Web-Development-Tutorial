@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.Exceptions;
 using NotesManager.Domain.Models.Category;
@@ -62,11 +63,16 @@ namespace NotesManager.MVC.Controllers
                 }
                 return View(category);
             }
-            catch (AlreadyExistsException ae)
+            // Catch the validation exception here for fluent validation
+            catch (ValidationException vex)
             {
-                logger.LogError(ae, ae.Message);
-                // Adding the Error explicitly in the Model Error
-                ModelState.AddModelError("Name", ae.Message);
+                logger.LogError(vex, vex.Message);
+
+                // Add the errors in the model state
+                foreach (var err in vex.Errors)
+                {
+                    ModelState.AddModelError(err.PropertyName, err.ErrorMessage);
+                }
 
                 return View(category);
             }
