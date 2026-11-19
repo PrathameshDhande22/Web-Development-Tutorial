@@ -16,16 +16,20 @@
         <!--View Buttons-->
         <div class="flex items-center gap-2">
             <div class="join" id="view-btns">
+                <!--Grid View-->
                 <button type="button" aria-label="Grid View" class="btn btn-sm btn-ghost btn-active join-item rounded-s-md border border-gray-200 dark:border-gray-600" id="grid-view">
                     <svg class="size-4 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M10 13H2v1H1v8h1v1h8v-1h1v-8h-1zm-1 8H3v-6h6zm1-19V1H2v1H1v8h1v1h8v-1h1V2zM3 9V3h6v6zm19 4h-8v1h-1v8h1v1h8v-1h1v-8h-1zm-1 8h-6v-6h6zm1-19V1h-8v1h-1v8h1v1h8v-1h1V2zm-1 7h-6V3h6z" /></svg>
                 </button>
+                <!--List View-->
                 <button type="button" aria-label="List View" class="btn btn-sm btn-ghost join-item border border-gray-200 dark:border-gray-600" id="list-view">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4 dark:text-gray-200" viewBox="0 0 24 24"><path fill="currentColor" d="M2 19.004h2.004V17H2v2.004ZM7 19h15v-2H7v2Zm-5-5.996h2.004V11H2v2.004ZM7 13h15v-2H7v2ZM2 7.004h2.004V5H2v2.004ZM7 7h15V5H7v2Z" /></svg>
                 </button>
+                <!--Kanban View-->
                 <button type="button" aria-label="Column View" class="btn btn-sm btn-ghost join-item rounded-e-md border border-gray-200 dark:border-gray-600" id="kanban-view">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4 dark:text-gray-200" viewBox="0 0 24 24"><path fill="currentColor" d="M2 4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm14 15h4V5h-4zM14 5h-4v14h4zM4 5v14h4V5z" /></svg>
                 </button>
             </div>
+            <!--New Note-->
             <a asp-action="New" asp-controller="Notes" class="btn btn-primary btn-sm space-x-2 sm:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-white" viewBox="0 0 24 24"><path fill="currentColor" d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2Z" /></svg>
                 <span>New note</span>
@@ -57,7 +61,7 @@
             <option selected="@(Model.SearchNoteQuery.Status == null)" value="Default">Any status</option>
             @foreach (NoteStatus status in statuses)
             {
-                <option value="@status" selected="@(Model.SearchNoteQuery.Status != null)">@CategoryConstants.StatusMapping[status].label</option>
+                <option value="@status" selected="@(Model.SearchNoteQuery.Status == status)">@CategoryConstants.StatusMapping[status].label</option>
             }
         </select>
         <!--Clear filter button-->

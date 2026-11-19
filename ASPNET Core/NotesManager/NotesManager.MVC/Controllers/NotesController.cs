@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NotesManager.Data;
 using NotesManager.Data.Models;
+using NotesManager.Domain.Constants;
 using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
@@ -44,7 +45,7 @@ namespace NotesManager.MVC.Controllers
         [HttpGet]  // Specifying these action method as the get method only
         [Route("Notes", Name = "NotesList")]
         [Route("Note/{id:int}", Name = "NoteDetails")]
-        public async Task<IActionResult> Index([FromRoute(Name = "id")] int? noteId)
+        public async Task<IActionResult> Index([FromRoute(Name = "id")] int? noteId, bool LoadPrevFilter = false)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace NotesManager.MVC.Controllers
                     return View("NoteDetail", note);
                 }
                 // Getting the cookies from the request
-                if (!Request.Cookies.TryGetValue("NotesView", out string? noteview))
+                if (!Request.Cookies.TryGetValue(NoteConstants.NotesViewCookieName, out string? noteview))
                 {
                     // Setting the cookie options
                     CookieOptions options = new()
@@ -72,12 +73,16 @@ namespace NotesManager.MVC.Controllers
                     };
 
                     // Not found then Set the cookies
-                    Response.Cookies.Append("NotesView", "Grid", options);
+                    Response.Cookies.Append(NoteConstants.NotesViewCookieName, "Grid", options);
                 }
 
-                // Get the last notes filter using the Session
-                string? lastnotesfilter = HttpContext.Session.GetString("LastNotesFilter");
-                SearchNoteQuery searchQuery = !string.IsNullOrEmpty(lastnotesfilter) ? JsonSerializer.Deserialize<SearchNoteQuery>(lastnotesfilter) ?? new SearchNoteQuery() : new SearchNoteQuery();
+                SearchNoteQuery searchQuery = new();
+                if (LoadPrevFilter)
+                {
+                    // Get the last notes filter using the Session
+                    string? lastnotesfilter = HttpContext.Session.GetString(NoteConstants.LastNotesFilterSessionKey);
+                    searchQuery = !string.IsNullOrEmpty(lastnotesfilter) ? JsonSerializer.Deserialize<SearchNoteQuery>(lastnotesfilter) ?? new SearchNoteQuery() : new SearchNoteQuery();
+                }
 
                 // For getting all the notes
                 List<CategoryDTO> categories = await categoryService.GetCategoriesAsync();
@@ -125,7 +130,7 @@ namespace NotesManager.MVC.Controllers
             try
             {
                 // Setting the filter in the Session
-                HttpContext.Session.SetString("LastNotesFilter", JsonSerializer.Serialize(searchNote));
+                HttpContext.Session.SetString(NoteConstants.LastNotesFilterSessionKey, JsonSerializer.Serialize(searchNote));
 
                 PaginatedResponse<NoteDTO> noteDTOs = await noteService.GetNotesAsync(searchNote);
 
