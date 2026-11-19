@@ -59,11 +59,26 @@ namespace NotesManager.MVC.Controllers
                     }
                     return View("NoteDetail", note);
                 }
+                // Getting the cookies from the request
+                if (!Request.Cookies.TryGetValue("NotesView", out string? noteview))
+                {
+                    // Setting the cookie options
+                    CookieOptions options = new()
+                    {
+                        Expires = DateTime.UtcNow.AddDays(30),
+                        IsEssential = true,
+                        SameSite = SameSiteMode.Strict,
+                        Secure = true
+                    };
+
+                    // Not found then Set the cookies
+                    Response.Cookies.Append("NotesView", "Grid", options);
+                }
 
                 // For getting all the notes
                 List<CategoryDTO> categories = await categoryService.GetCategoriesAsync();
                 PaginatedResponse<NoteDTO> notes = await noteService.GetNotesAsync(new());
-
+                
                 NoteListViewModel vmmodel = new()
                 {
                     Notes = notes.Data,
