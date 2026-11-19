@@ -56,6 +56,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Adds the Status code pages middleware
+app.UseStatusCodePagesWithRedirects("/Error");
+
 app.UseHttpsRedirection();
 app.UseRouting();
 
