@@ -5,26 +5,26 @@
 }
 
 <div class="grid w-full flex-1 place-items-center px-4 py-16 md:px-8">
-    <div class="space-y-1">
+    <div class="w-full max-w-md space-y-1">
         <!--Page header-->
         <h2 class="text-2xl font-semibold">Create your account</h2>
         <p class="text-sm text-stone-400 dark:text-gray-300">Keep notes and documents organised in one place</p>
         <!--Register Form-->
-        <div class="mt-8 rounded-md bg-white p-6 shadow-md">
+        <div class="mt-8 rounded-md bg-white p-6 shadow-md dark:bg-base-100">
             <form asp-action="Register" asp-controller="Auth" method="post" id="register-form" novalidate class="flex flex-col items-center gap-3">
                 <div class="form-input">
                     <label class="input-label" asp-for="FullName">Full name</label>
-                    <input asp-for="FullName" class="input" type="text" />
+                    <input asp-for="FullName" class="input w-full" type="text" />
                     <span asp-validation-for="FullName" class="inline-block text-sm text-error"></span>
                 </div>
                 <div class="form-input">
                     <label class="input-label" asp-for="Email">Email</label>
-                    <input asp-for="Email" type="email" class="input" />
+                    <input asp-for="Email" type="email" class="input w-full" />
                     <span asp-validation-for="Email" class="inline-block text-sm text-error"></span>
                 </div>
                 <div class="form-input">
                     <label class="input-label" asp-for="Password">Password</label>
-                    <input asp-for="Password" type="password" class="input" />
+                    <input asp-for="Password" type="password" class="input w-full" />
                     <!--Password Hints-->
                     <div class="mt-1 grid grid-cols-2 gap-2 text-sm text-gray-400" id="password-hints">
                         <span class="hint" id="character-hint">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-input">
                     <label class="input-label" asp-for="ConfirmPassword">Confirm password</label>
-                    <input asp-for="ConfirmPassword" type="password" class="input" />
+                    <input asp-for="ConfirmPassword" type="password" class="input w-full" />
                     <span asp-validation-for="ConfirmPassword" class="inline-block text-sm text-error"></span>
                 </div>
                 <!--Submit Form Button-->

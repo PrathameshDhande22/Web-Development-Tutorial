@@ -51,12 +51,11 @@
         </div>
     </div>
 </header>
-<main class="flex flex-1 bg-[#f7f6f3]">
+<main class="flex flex-1 bg-[#f7f6f3] dark:bg-base-200">
     @*Use the Render the body from the action method*@
     @RenderBody()
 </main>
 
 @section Scripts {
-    <script src="~/js/auth.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", false)
 }

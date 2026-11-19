@@ -238,11 +238,11 @@ html, body {
 
     /* Registration and Login */
     .input-label {
-        @apply label text-gray-700;
+        @apply label text-gray-700 dark:text-gray-300;
     }
 
     .form-input {
-        @apply flex w-full flex-col gap-1;
+        @apply flex w-full flex-col gap-1.5;
     }
 
     .hint {

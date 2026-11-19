@@ -19,7 +19,7 @@ namespace NotesManager.MVC.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            return View(new LoginUser());
         }
 
         [HttpGet]
@@ -38,7 +38,6 @@ namespace NotesManager.MVC.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
 
             result.Errors.ForEach(err => ModelState.AddModelError(err.PropertyName, err.ErrorMessage));
 
