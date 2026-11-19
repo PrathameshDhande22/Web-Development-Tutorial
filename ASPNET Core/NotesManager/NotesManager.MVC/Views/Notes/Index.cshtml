@@ -46,22 +46,22 @@
                     <path d="m21 21-4.3-4.3"></path>
                 </g>
             </svg>
-            <input type="search" id="search-box" placeholder="Search title and content" />
+            <input type="search" id="search-box" placeholder="Search title and content" asp-for="SearchNoteQuery.Search" />
         </label>
         <!--Categories Drop Down with Select Tag Helper-->
-        <select class="select select-sm w-auto max-sm:min-w-36 max-sm:flex-1" asp-items="selectlist_Category" id="note-category">
+        <select class="select select-sm w-auto max-sm:min-w-36 max-sm:flex-1" asp-items="selectlist_Category" id="note-category" asp-for="SearchNoteQuery.CategoryId">
             <option selected value="0">All categories</option>
         </select>
         <!--Status Drop down-->
         <select class="select select-sm w-auto max-sm:min-w-36 max-sm:flex-1" id="note-status">
-            <option selected value="Default">Any status</option>
+            <option selected="@(Model.SearchNoteQuery.Status == null)" value="Default">Any status</option>
             @foreach (NoteStatus status in statuses)
             {
-                <option value="@status">@CategoryConstants.StatusMapping[status].label</option>
+                <option value="@status" selected="@(Model.SearchNoteQuery.Status != null)">@CategoryConstants.StatusMapping[status].label</option>
             }
         </select>
         <!--Clear filter button-->
-        <button class="btn btn-sm btn-ghost hidden w-auto max-sm:flex-1" type="button" id="clear-filter-btn">
+        <button class="btn btn-sm btn-ghost @(Model.SearchNoteQuery.FilterApplied ? null : "hidden") w-auto max-sm:flex-1" type="button" id="clear-filter-btn">
             Clear filters
         </button>
     </div>

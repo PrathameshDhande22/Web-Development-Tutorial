@@ -75,17 +75,22 @@ namespace NotesManager.MVC.Controllers
                     Response.Cookies.Append("NotesView", "Grid", options);
                 }
 
+                // Get the last notes filter using the Session
+                string? lastnotesfilter = HttpContext.Session.GetString("LastNotesFilter");
+                SearchNoteQuery searchQuery = !string.IsNullOrEmpty(lastnotesfilter) ? JsonSerializer.Deserialize<SearchNoteQuery>(lastnotesfilter) ?? new SearchNoteQuery() : new SearchNoteQuery();
+
                 // For getting all the notes
                 List<CategoryDTO> categories = await categoryService.GetCategoriesAsync();
-                PaginatedResponse<NoteDTO> notes = await noteService.GetNotesAsync(new());
-                
+                PaginatedResponse<NoteDTO> notes = await noteService.GetNotesAsync(searchQuery);
+
                 NoteListViewModel vmmodel = new()
                 {
                     Notes = notes.Data,
                     TotalNotes = notes.TotalItems,
                     Page = notes.CurrentPage,
                     TotalPage = notes.TotalPages,
-                    Category = categories
+                    Category = categories,
+                    SearchNoteQuery = searchQuery
                 };
 
                 return View(vmmodel);
@@ -119,6 +124,9 @@ namespace NotesManager.MVC.Controllers
         {
             try
             {
+                // Setting the filter in the Session
+                HttpContext.Session.SetString("LastNotesFilter", JsonSerializer.Serialize(searchNote));
+
                 PaginatedResponse<NoteDTO> noteDTOs = await noteService.GetNotesAsync(searchNote);
 
                 // Setting the Total Counts

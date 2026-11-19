@@ -14,6 +14,19 @@ builder.Services.AddLogging(config =>
     config.AddConsole();
 });
 
+// Add the memory cache
+builder.Services.AddMemoryCache();
+
+// Add the Session configuration
+builder.Services.AddSession(configure =>
+{
+    // Settings these as the cookie in the browser with some restrictions
+    configure.Cookie.Name = "NotesManager.Session";
+    configure.Cookie.IsEssential = true;
+    configure.IdleTimeout = TimeSpan.FromMinutes(1);
+    configure.Cookie.HttpOnly = true;
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews(config =>
 {
@@ -47,6 +60,9 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
+
+// Enable to use the Session : Remember the Middleware ordering
+app.UseSession();
 
 app.MapStaticAssets();
 

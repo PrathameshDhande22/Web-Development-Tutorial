@@ -22,5 +22,13 @@ namespace NotesManager.Domain.Models.Note
         public int? CategoryId { get; set; }
 
         public int Page { get; set; } = 1;
+
+        public bool FilterApplied
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(Search) || Status != null || CategoryId.HasValue;
+            }
+        }
     }
 }
