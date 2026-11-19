@@ -81,6 +81,7 @@ namespace NotesManager.MVC.Controllers
                 {
                     // Get the last notes filter using the Session
                     string? lastnotesfilter = HttpContext.Session.GetString(NoteConstants.LastNotesFilterSessionKey);
+                    _logger.LogInformation("Fetched from the last applied filter {Filter}", lastnotesfilter);
                     searchQuery = !string.IsNullOrEmpty(lastnotesfilter) ? JsonSerializer.Deserialize<SearchNoteQuery>(lastnotesfilter) ?? new SearchNoteQuery() : new SearchNoteQuery();
                 }
 
