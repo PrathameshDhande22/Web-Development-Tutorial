@@ -44,8 +44,8 @@
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7" />
                 </svg>
             </button>
-            <a href="/Account/Login" class="btn btn-ghost btn-sm dark:text-gray-400">Sign In</a>
-            <a href="/Account/Register" class="btn btn-primary btn-sm rounded-md shadow-none">Get Started</a>
+            <a asp-action="Login" asp-controller="Auth" class="btn btn-ghost btn-sm dark:text-gray-400">Sign In</a>
+            <a asp-action="Register" asp-controller="Auth" class="btn btn-primary btn-sm rounded-md shadow-none">Get Started</a>
         </div>
     </div>
 </header>

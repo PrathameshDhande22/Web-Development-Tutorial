@@ -242,6 +242,10 @@ html, body {
     }
 
     .form-input {
-        @apply flex flex-col space-y-2;
+        @apply flex flex-col gap-1;
+    }
+
+    .hint {
+        @apply flex items-center gap-2;
     }
 }
