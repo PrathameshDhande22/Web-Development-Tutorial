@@ -20,7 +20,7 @@
                 <div class="form-input">
                     <div class="flex flex-row justify-between">
                         <label class="input-label" asp-for="Password">Password</label>
-                        <a class="text-gray-400" asp-action="ForgotPassword" asp-controller="Auth" class="">Forgot password?</a>
+                        <a class="text-gray-400 hover:underline" asp-action="ForgotPassword" asp-controller="Auth" class="">Forgot password?</a>
                     </div>
                     <input asp-for="Password" type="password" class="input w-full" />
                     <span asp-validation-for="Password" class="inline-block text-sm text-error"></span>
