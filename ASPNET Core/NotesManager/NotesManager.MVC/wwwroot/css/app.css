@@ -242,10 +242,14 @@ html, body {
     }
 
     .form-input {
-        @apply flex flex-col gap-1;
+        @apply flex w-full flex-col gap-1;
     }
 
     .hint {
         @apply flex items-center gap-2;
+    }
+
+    .hint-valid {
+        @apply text-green-600;
     }
 }

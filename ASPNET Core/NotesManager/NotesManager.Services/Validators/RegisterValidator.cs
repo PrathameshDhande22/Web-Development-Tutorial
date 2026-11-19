@@ -27,8 +27,16 @@ namespace NotesManager.Services.Validators
             RuleFor(r => r.Password)
                 .NotEmpty()
                 .WithMessage("Password is required")
-                .Length(5, 40)
-                .WithMessage("Password must be 5 characters long");
+                .Length(8, 40)
+                .WithMessage("Password must be between 8 to 40 characters")
+                .Matches("[A-Z]")
+                .WithMessage("Password must contain an uppercase letter")
+                .Matches("[a-z]")
+                .WithMessage("Password must contain a lowercase letter")
+                .Matches("[0-9]")
+                .WithMessage("Password must contain a number")
+                .Matches("[^A-Za-z0-9]")
+                .WithMessage("Password must contain a symbol");
 
             RuleFor(r => r.ConfirmPassword)
                 .NotEmpty()
