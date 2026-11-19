@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NotesManager.Data.Configuration;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NotesManager.Data.Models
 {
-
     public class Category
     {
         [Key]
