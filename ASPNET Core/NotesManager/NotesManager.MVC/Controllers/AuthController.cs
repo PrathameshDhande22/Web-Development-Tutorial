@@ -17,11 +17,14 @@ namespace NotesManager.MVC.Controllers
             this._validator = validator;
         }
 
+        #region Login
         public IActionResult Login()
         {
             return View(new LoginUser());
         }
+        #endregion
 
+        #region Register User
         [HttpGet]
         public IActionResult Register()
         {
@@ -43,5 +46,20 @@ namespace NotesManager.MVC.Controllers
 
             return View(registeruser);
         }
+        #endregion
+
+        #region Forgot Password
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            return View(model);
+        }
+        #endregion
     }
 }
