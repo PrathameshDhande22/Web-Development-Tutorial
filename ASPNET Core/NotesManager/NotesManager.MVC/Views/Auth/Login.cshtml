@@ -1,1 +1,45 @@
-﻿
+﻿@model LoginUser
+
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<div class="grid w-full flex-1 place-items-center px-4 py-16 md:px-8">
+    <div class="w-full max-w-md space-y-1">
+        <!--Page Header-->
+        <h3 class="text-2xl font-semibold">Sign in</h3>
+        <p class="text-sm text-stone-400 dark:text-gray-300">Welcome back to Notewell</p>
+        <!--Login Form-->
+        <div class="mt-8 rounded-md bg-white p-6 shadow-md dark:bg-base-100">
+            <form asp-action="Login" asp-controller="Auth" method="post" id="login-form" class="flex flex-col items-center gap-3">
+                <div class="form-input">
+                    <label class="input-label" asp-for="Email">Email</label>
+                    <input asp-for="Email" class="input w-full" type="text" />
+                    <span asp-validation-for="Email" class="inline-block text-sm text-error"></span>
+                </div>
+                <div class="form-input">
+                    <div class="flex flex-row justify-between">
+                        <label class="input-label" asp-for="Password">Password</label>
+                        <a class="text-gray-400 hover:underline" asp-action="ForgotPassword" asp-controller="Auth" class="">Forgot password?</a>
+                    </div>
+                    <input asp-for="Password" type="password" class="input w-full" />
+                    <span asp-validation-for="Password" class="inline-block text-sm text-error"></span>
+                </div>
+                <!--Submit Form Button-->
+                <button class="btn btn-primary btn-block mb-0 w-full" type="submit">
+                    Sign in
+                </button>
+            </form>
+        </div>
+        <!--Not have an account-->
+        <div class="mt-5 text-center text-sm text-gray-500">
+            <span>No account?</span>
+            <a asp-action="Register" asp-controller="Auth" class="link font-semibold">Create one</a>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+}

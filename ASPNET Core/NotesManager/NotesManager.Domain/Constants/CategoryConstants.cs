@@ -14,6 +14,9 @@ namespace NotesManager.Domain.Constants
             {NoteStatus.Completed,("Completed","bg-green-400") }
         };
 
+        /// <summary>
+        /// Colors list for the category. This list contains the available colors that can be assigned to categories in the application.
+        /// </summary>
         public static readonly List<string> Colors = [
             "gray",
             "amber",

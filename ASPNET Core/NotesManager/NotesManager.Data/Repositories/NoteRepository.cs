@@ -19,12 +19,13 @@ namespace NotesManager.Data.Repositories
         }
 
         /// <summary>
-        /// Gets the notes
+        /// Get a paginated list of notes based on the provided filters.
         /// </summary>
+        /// <param name="Page">Page Number must start with 1</param>
         /// <param name="CategoryId">CategoryId of the Note to Search for</param>
         /// <param name="status">Status of the Note to Search for</param>
         /// <param name="Search">Title and Content to Search</param>
-        /// <returns>List of Notes with Category</returns>
+        /// <returns>Returns a paginated list of notes as a <see cref="PaginatedResponse{NoteDTO}"/></returns>
         public async Task<PaginatedResponse<NoteDTO>> GetAsync(int Page = 1, int? CategoryId = null, NoteStatus? status = null, string? Search = null)
         {
             var notes = dbContext.Notes
