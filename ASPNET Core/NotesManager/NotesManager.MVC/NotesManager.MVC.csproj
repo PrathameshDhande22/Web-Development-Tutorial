@@ -20,5 +20,9 @@
     <ProjectReference Include="..\NotesManager.Domain\NotesManager.Domain.csproj" />
     <ProjectReference Include="..\NotesManager.Services\NotesManager.Services.csproj" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
 
 </Project>

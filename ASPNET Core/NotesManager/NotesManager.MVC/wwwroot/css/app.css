@@ -249,6 +249,15 @@ html, body {
         @apply flex items-center gap-2;
     }
 
+    /* Any main that holds a .full-page child becomes flex, so the child can fill its full height */
+    main:has(> .full-page) {
+        @apply flex;
+    }
+
+    .full-page {
+        @apply flex-1;
+    }
+
     .hint-valid {
         @apply text-green-600;
     }
