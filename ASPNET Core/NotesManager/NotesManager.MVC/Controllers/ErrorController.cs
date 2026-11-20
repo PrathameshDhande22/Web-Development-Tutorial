@@ -7,11 +7,14 @@ namespace NotesManager.MVC.Controllers
         // Action method to handle the errors
         public IActionResult Index()
         {
-            if (Response.StatusCode == StatusCodes.Status404NotFound)
+            ViewResult result = HttpContext.Response.StatusCode switch
             {
-                return View("NotFound");
-            }
-            return View("NotFound");
+                StatusCodes.Status404NotFound => View("NotFound"),
+                StatusCodes.Status403Forbidden => View("AccessDenied"),
+                StatusCodes.Status500InternalServerError => View("ServerError"),
+                _ => View("NotFound")
+            };
+            return result;
         }
     }
 }

@@ -1,0 +1,17 @@
+@using System.Diagnostics
+@{
+    ViewData["Title"] = "Something went wrong";
+    // Reference id that matches the request in the logs, so an error can be traced
+    string requestId = Activity.Current?.Id ?? Context.TraceIdentifier;
+}
+
+<!--Internal Server Error Page-->
+<div class="full-page grid place-items-center bg-[#f7f6f3] px-4 py-10 md:px-8 dark:bg-base-200">
+    <div class="flex flex-col items-center gap-2 text-center">
+        <p class="font-mono text-gray-500">500</p>
+        <h1 class="text-xl font-semibold">Something went wrong on our side</h1>
+        <p class="text-sm text-gray-500">Please try again in a moment. If it keeps happening, let us know the reference below</p>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary btn-sm mt-2 rounded-md">Go to Home</a>
+        <p class="mt-4 font-mono text-xs text-gray-400">Reference: @requestId</p>
+    </div>
+</div>

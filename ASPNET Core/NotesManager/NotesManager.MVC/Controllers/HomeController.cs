@@ -38,14 +38,5 @@ namespace NotesManager.MVC.Controllers
             // Return the content result
             return Content(txtrecord, MediaTypeNames.Text.Plain);
         }
-
-        public IActionResult ThrowError(bool notfound)
-        {
-            if (notfound)
-            {
-                return NotFound();
-            }
-            return Unauthorized();
-        }
     }
 }
