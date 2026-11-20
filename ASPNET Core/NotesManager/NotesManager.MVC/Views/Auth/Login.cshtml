@@ -2,6 +2,19 @@
 
 @{
     ViewData["Title"] = "Sign in";
+    string pageUrl = Url.Action("Login", "Auth", null, Context.Request.Scheme)!;
+}
+
+<!--SEO tags rendered in the head of _BaseLayout-->
+@section Seo {
+    <meta name="description" content="Sign in to Notewell to open your notes, checklists and documents." />
+    <!--Login page has no useful content for search results, so keep it out of the index but follow its links-->
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="@pageUrl" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sign in - NoteWell" />
+    <meta property="og:description" content="Welcome back to Notewell. Sign in to open your notes." />
+    <meta property="og:url" content="@pageUrl" />
 }
 
 <div class="grid w-full flex-1 place-items-center px-4 py-16 md:px-8">

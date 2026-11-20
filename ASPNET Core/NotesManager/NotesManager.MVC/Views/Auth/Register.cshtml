@@ -2,6 +2,18 @@
 
 @{
     ViewData["Title"] = "Create a free account";
+    string pageUrl = Url.Action("Register", "Auth", null, Context.Request.Scheme)!;
+}
+
+<!--SEO tags rendered in the head of _BaseLayout-->
+@section Seo {
+    <meta name="description" content="Create a free Notewell account to keep your notes, checklists and documents organised in one place. No ads, no subscription." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="@pageUrl" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create a free account - NoteWell" />
+    <meta property="og:description" content="Sign up for free and keep your notes, checklists and documents in one tidy place." />
+    <meta property="og:url" content="@pageUrl" />
 }
 
 <div class="grid w-full flex-1 place-items-center px-4 py-16 md:px-8">
