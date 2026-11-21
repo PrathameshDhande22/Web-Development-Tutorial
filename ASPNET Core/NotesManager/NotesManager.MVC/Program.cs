@@ -17,6 +17,9 @@ builder.Services.AddLogging(config =>
 // Add the memory cache
 builder.Services.AddMemoryCache();
 
+// Add the Response caching
+builder.Services.AddResponseCaching();
+
 // Add the Session configuration
 builder.Services.AddSession(configure =>
 {
@@ -62,6 +65,9 @@ app.UseStatusCodePagesWithReExecute("/Error"); // These will redirect and execut
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+// add the response caching middleware components
+app.UseResponseCaching();
 
 app.UseAuthorization();
 
