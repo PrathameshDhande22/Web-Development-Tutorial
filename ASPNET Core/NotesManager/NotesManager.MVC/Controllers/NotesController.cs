@@ -215,7 +215,8 @@ namespace NotesManager.MVC.Controllers
 
         // Action method with post only for FromForm attribute
         [HttpPost]
-        public async Task<IActionResult> New([FromForm] CreateNote createNote)
+        [ValidateAntiForgeryToken] // Validate the antiforgery token
+        public async Task<IActionnse Result> New([FromForm] CreateNote createNote)
         {
             try
             {

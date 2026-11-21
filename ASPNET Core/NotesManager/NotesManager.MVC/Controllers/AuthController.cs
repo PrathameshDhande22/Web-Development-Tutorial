@@ -33,6 +33,7 @@ namespace NotesManager.MVC.Controllers
 
         // Action method with Fluent Validation
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterUser registeruser)
         {
             // using the Validator by injected

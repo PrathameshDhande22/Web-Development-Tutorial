@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using NotesManager.Domain.DTO.Category;
-using NotesManager.Domain.Exceptions;
 using NotesManager.Domain.Models.Category;
+using NotesManager.MVC.Filters;
 using NotesManager.Services.Interfaces;
 
 namespace NotesManager.MVC.Controllers
 {
+    [TypeFilter<NoIndexFilter>()] // Using the typefilter as our filter is not an attribute
     [Route("admin/[action]")] // Token Attribute Routing
     public class AdminController : Controller
     {
@@ -47,6 +48,7 @@ namespace NotesManager.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Category(CreateCategory category)
         {
             try

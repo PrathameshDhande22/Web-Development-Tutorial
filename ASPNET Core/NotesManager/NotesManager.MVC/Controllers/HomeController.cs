@@ -4,6 +4,7 @@ using System.Net.Mime;
 
 namespace NotesManager.MVC.Controllers
 {
+    [ResponseCache(Duration = 3400)] // Setting the response cache for the entire controller
     public class HomeController : Controller
     {
         // You can even declare the property with attribute ViewData
