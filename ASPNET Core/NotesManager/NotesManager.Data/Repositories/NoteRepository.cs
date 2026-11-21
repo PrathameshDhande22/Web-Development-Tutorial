@@ -30,7 +30,7 @@ namespace NotesManager.Data.Repositories
             var notes = dbContext.Notes
                          .AsNoTracking()
                          .Include(n => n.Category)
-                         .OrderByDescending(n => n.CreatedAt)
+                         .OrderByDescending(n => n.UpdatedAt.HasValue ? n.UpdatedAt : n.CreatedAt)
                          .AsQueryable();
 
             // Check the Categoryid

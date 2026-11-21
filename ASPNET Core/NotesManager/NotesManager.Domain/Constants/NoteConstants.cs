@@ -17,5 +17,7 @@
         /// Key for the session variable that stores the last notes filter.
         /// </summary>
         public const string LastNotesFilterSessionKey = "LastNotesFilter";
+
+        public const int RecentNoteCount = 5;
     }
 }

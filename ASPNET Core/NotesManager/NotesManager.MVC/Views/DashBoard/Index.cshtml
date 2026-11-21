@@ -1,0 +1,69 @@
+﻿@model List<NoteDTO>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@*Declaring the functions in the view*@
+@functions {
+    public string GetDetailTimeOfDay(DateTime time)
+    {
+        int hour = time.Hour;
+        return hour switch
+        {
+            >= 5 and < 12 => "Morning",
+            >= 12 and < 17 => "Afternoon",
+            >= 17 and < 21 => "Evening",
+            _ => "Night"
+        };
+    }
+}
+
+<div class="mx-auto max-w-7xl px-4 py-5 md:px-8 md:py-10">
+    <div class="flex items-center justify-between">
+        <div class="space-y-1.5">
+            <!--Page Header-->
+            <h1 class="text-2xl font-semibold">Good @GetDetailTimeOfDay(DateTime.Now), User</h1>
+            <p class="text-sm text-gray-500">Here is where your notes stand</p>
+        </div>
+        <!--New Note Button-->
+        <a asp-action="New" asp-controller="Notes" class="btn btn-primary btn-sm space-x-2 md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-white" viewBox="0 0 24 24"><path fill="currentColor" d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2Z" /></svg>
+            <span>New note</span>
+        </a>
+    </div>
+    <!--Dashboard Counts Component-->
+    <vc:dashboard-stats></vc:dashboard-stats>
+    <div class="mt-10 grid lg:grid-cols-3">
+        <!--Reccently Updated Notes-->
+        <section>
+            <div class="flex items-center justify-between">
+                <h3 class="text-sm font-semibold">Recently updated</h3>
+                <a class="text-sm text-gray-500 hover:text-gray-600" asp-route="NotesList">View all</a>
+            </div>
+            <ul class="mt-4">
+                <!--Each Recent Note-->
+                @foreach (NoteDTO note in Model)
+                {
+                    <li>
+                        <a asp-route="NoteDetails" asp-route-Id="@note.Id">
+                            <!--Note Title and Desc-->
+                            <div>
+                                <h5>@note.Title</h5>
+                                <div class="text-sm">
+                                    <div>
+                                        <span class="bg-@note.Category.Color-500 size-3 rounded-md"></span>
+                                        <span>@note.Category.Name</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </section>
+        <!--Pinned Notes-->
+        <div>
+        </div>
+    </div>
+</div>
