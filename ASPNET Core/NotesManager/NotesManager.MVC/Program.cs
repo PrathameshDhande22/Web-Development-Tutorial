@@ -44,6 +44,15 @@ builder.Services.AddRouting(options =>
     options.ConstraintMap.Add("notestatus", typeof(NoteStatusConstraint));
 });
 
+// Configure the Antiforgery token
+builder.Services.AddAntiforgery(setup =>
+{
+    // set the custom from field name
+    setup.FormFieldName = "CSRFToken";
+    setup.Cookie.Name = "NotesManager.CSRF";
+    setup.HeaderName = "X-CSRF-Token";
+});
+
 // Add the services and database related services
 builder.Services.AddDataServices();
 builder.Services.AddApplicationServices();
