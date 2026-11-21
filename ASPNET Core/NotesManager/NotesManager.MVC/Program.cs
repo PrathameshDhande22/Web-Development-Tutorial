@@ -14,6 +14,8 @@ builder.Services.AddLogging(config =>
     config.AddConsole();
 });
 
+builder.Logging.AddConsole();
+
 // Add the memory cache
 builder.Services.AddMemoryCache();
 
@@ -44,6 +46,9 @@ builder.Services.AddRouting(options =>
     options.ConstraintMap.Add("notestatus", typeof(NoteStatusConstraint));
 });
 
+// http logging services
+builder.Services.AddHttpLogging();
+
 // Configure the Antiforgery token
 builder.Services.AddAntiforgery(setup =>
 {
@@ -59,6 +64,9 @@ builder.Services.AddApplicationServices();
 builder.Services.AddFluentValidation();
 
 var app = builder.Build();
+
+// Middleware component to log the http 
+app.UseHttpLogging();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -77,6 +85,7 @@ app.UseRouting();
 
 // add the response caching middleware components
 app.UseResponseCaching();
+
 
 app.UseAuthorization();
 
