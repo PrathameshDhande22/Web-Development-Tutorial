@@ -5,6 +5,8 @@ using NotesManager.Services.Interfaces;
 using FluentValidation;
 
 using NotesManager.Services.Validators;
+using NotesManager.Data.Interfaces;
+using NotesManager.Data;
 
 namespace NotesManager.Services
 {
@@ -19,6 +21,9 @@ namespace NotesManager.Services
             // Injecting the Repository as scoped only
             services.AddScoped<CategoryRepository>();
             services.AddScoped<NoteRepository>();
+
+            // register the Unit of work
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

@@ -22,7 +22,7 @@ namespace NotesManager.Data.Models
         public DateTimeOffset? UpdatedAt { get; set; }
 
         // Navigational Properties
-        public Category? Category { get; set; }
+        public Category Category { get; set; } = null!;
         public ICollection<NoteHistory> History { get; set; }=new List<NoteHistory>();
 
     }

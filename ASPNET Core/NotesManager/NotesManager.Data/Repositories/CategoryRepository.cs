@@ -18,10 +18,10 @@ namespace NotesManager.Data.Repositories
         /// <summary>
         /// Get all the Categories
         /// </summary>
-        /// <returns>List of Category with Id,Name and color only.</returns>
-        public async Task<List<CategoryDTO>> GetAll()
+        /// <returns>List of <see cref="Category"/>.</returns>
+        public Task<List<Category>> GetAll()
         {
-            return await dbContext.Category.AsNoTracking().Select(c => new CategoryDTO() { Id = c.Id, Name = c.Name, Color = c.Color }).ToListAsync();
+            return dbContext.Category.AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -29,16 +29,16 @@ namespace NotesManager.Data.Repositories
         /// </summary>
         /// <param name="Name">Name of the category to check</param>
         /// <returns><see cref="true"/> if the category exists otherwise false</returns>
-        public async Task<bool> CategoryExists(string Name)
+        public Task<bool> CategoryExists(string Name)
         {
-            return await dbContext.Category.Where(c => c.Name.Contains(Name)).AnyAsync();
+            return dbContext.Category.Where(c => c.Name.Contains(Name)).AnyAsync();
         }
 
         /// <summary>
         /// Get all the categories with the count of notes in each category. It will return a list of <see cref="CategoryNotesDTO"/> which contains Id, Name, Color, CreatedAt and NotesCount.
         /// </summary>
         /// <returns>Returns a list of <see cref="CategoryNotesDTO"/></returns>
-        public async Task<List<CategoryNotesDTO>> GetCategoriesAsync()
+        public Task<List<CategoryNotesDTO>> GetCategoriesAsync()
         {
             var categories = dbContext.Category
                              .AsNoTracking()
@@ -50,7 +50,7 @@ namespace NotesManager.Data.Repositories
                                  Name = c.Name,
                                  NotesCount = c.Notes.Count
                              });
-            return await categories.ToListAsync();
+            return categories.ToListAsync();
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace NotesManager.Data.Repositories
         /// <param name="Name">Name of the category</param>
         /// <param name="Color">Color of the category</param>
         /// <returns>Returns the newly created category</returns>
-        public async Task<CategoryDTO> AddAsync(string Name, string Color)
+        public async Task<Category> AddAsync(string Name, string Color)
         {
             Category newCategory = new()
             {
@@ -69,13 +69,7 @@ namespace NotesManager.Data.Repositories
             };
 
             await dbContext.Category.AddAsync(newCategory);
-            await dbContext.SaveChangesAsync();
-            return new CategoryDTO()
-            {
-                Id = newCategory.Id,
-                Name = newCategory.Name,
-                Color = newCategory.Color
-            };
+            return newCategory;
         }
     }
 }

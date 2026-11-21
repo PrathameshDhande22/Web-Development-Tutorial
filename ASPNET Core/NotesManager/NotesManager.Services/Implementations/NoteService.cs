@@ -4,25 +4,51 @@ using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
+using NotesManager.Data.Models;
+using NotesManager.Data.Interfaces;
 
 namespace NotesManager.Services.Implementations
 {
     public class NoteService : INoteService
     {
-        private NoteRepository noteRepository;
+        private readonly NoteRepository noteRepository;
         private ILogger<NoteService> logger;
+        // Injecting the unit of work for saving the entities in one save only
+        private readonly IUnitOfWork unitOfWork;
 
-        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger)
+        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger, IUnitOfWork unitofwork)
         {
             this.noteRepository = noteRepository;
             this.logger = logger;
+            this.unitOfWork = unitofwork;
         }
 
         public async Task<NoteDTO?> GetNoteById(int Id)
         {
             try
             {
-                return await noteRepository.GetById(Id);
+                Note? note = await noteRepository.GetById(Id);
+                if (note == null)
+                {
+                    return null;
+                }
+
+                return new NoteDTO()
+                {
+                    Id = note.Id,
+                    Status = note.Status,
+                    CreatedAt = note.CreatedAt,
+                    CategoryId = note.CategoryId,
+                    Description = note.Description,
+                    Title = note.Title,
+                    UpdatedAt = note.UpdatedAt,
+                    Category = new()
+                    {
+                        Id = note.Category.Id,
+                        Name = note.Category.Name,
+                        Color = note.Category.Color
+                    }
+                };
             }
             catch (Exception ex)
             {
@@ -40,7 +66,30 @@ namespace NotesManager.Services.Implementations
                     searchQuery.Page = 1;
                 }
 
-                return await noteRepository.GetAsync(searchQuery.Page, searchQuery?.CategoryId, searchQuery?.Status, searchQuery?.Search);
+                PaginatedResponse<Note> notes = await noteRepository.GetAsync(searchQuery.Page, searchQuery?.CategoryId, searchQuery?.Status, searchQuery?.Search);
+
+                return new PaginatedResponse<NoteDTO>()
+                {
+                    CurrentPage = notes.CurrentPage,
+                    PageSize = notes.PageSize,
+                    TotalItems = notes.TotalItems,
+                    Data = notes.Data.Select(n => new NoteDTO()
+                    {
+                        Id = n.Id,
+                        Category = new()
+                        {
+                            Id = n.Category.Id,
+                            Color = n.Category.Color,
+                            Name = n.Category.Name
+                        },
+                        CategoryId = n.CategoryId,
+                        CreatedAt = n.CreatedAt,
+                        Description = n.Description,
+                        Status = n.Status,
+                        Title = n.Title,
+                        UpdatedAt = n.UpdatedAt
+                    }).ToList()
+                };
             }
             catch (Exception ex)
             {
@@ -53,7 +102,17 @@ namespace NotesManager.Services.Implementations
         {
             try
             {
-                return await noteRepository.Add(createNote);
+                Note note = await noteRepository.Add(createNote);
+                // use the unit of work to save
+                await unitOfWork.SaveChangesAsync();
+                return new AddNoteDTO()
+                {
+                    Id = note.Id,
+                    CategoryId = note.CategoryId,
+                    Description = note.Description,
+                    Status = note.Status,
+                    Title = note.Title
+                };
             }
             catch (Exception ex)
             {

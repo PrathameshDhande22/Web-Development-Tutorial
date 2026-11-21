@@ -26,7 +26,7 @@ namespace NotesManager.Data.Repositories
         /// <param name="status">Status of the Note to Search for</param>
         /// <param name="Search">Title and Content to Search</param>
         /// <returns>Returns a paginated list of notes as a <see cref="PaginatedResponse{NoteDTO}"/></returns>
-        public async Task<PaginatedResponse<NoteDTO>> GetAsync(int Page = 1, int? CategoryId = null, NoteStatus? status = null, string? Search = null)
+        public async Task<PaginatedResponse<Note>> GetAsync(int Page = 1, int? CategoryId = null, NoteStatus? status = null, string? Search = null)
         {
             var notes = dbContext.Notes
                          .AsNoTracking()
@@ -52,7 +52,7 @@ namespace NotesManager.Data.Repositories
                 notes = notes.Where(n => n.Title.Contains(Search) || (n.Description != null && n.Description.Contains(Search)));
             }
 
-            PaginatedResponse<NoteDTO> paginatedResponse = new()
+            PaginatedResponse<Note> paginatedResponse = new()
             {
                 PageSize = NoteConstants.PageSize,
                 TotalItems = await notes.CountAsync(),
@@ -62,29 +62,12 @@ namespace NotesManager.Data.Repositories
             // Apply pagination
             notes = notes.Skip((Page - 1) * NoteConstants.PageSize).Take(NoteConstants.PageSize);
 
-            // Map to DTO
-            var notedto = notes.Select(note => new NoteDTO()
-            {
-                Id = note.Id,
-                CategoryId = note.CategoryId,
-                CreatedAt = note.CreatedAt,
-                Description = note.Description,
-                Status = note.Status,
-                Title = note.Title,
-                Category = new CategoryDTO()
-                {
-                    Id = note.Category!.Id,
-                    Color = note.Category.Color,
-                    Name = note.Category.Name
-                }
-            });
-
-            paginatedResponse.Data = await notedto.ToListAsync();
+            paginatedResponse.Data = await notes.ToListAsync();
 
             return paginatedResponse;
         }
 
-        public async Task<AddNoteDTO> Add(CreateNote note)
+        public async Task<Note> Add(CreateNote note)
         {
             Note newnote = new()
             {
@@ -95,41 +78,18 @@ namespace NotesManager.Data.Repositories
                 CreatedAt = DateTime.UtcNow,
             };
             await dbContext.Notes.AddAsync(newnote);
-            await dbContext.SaveChangesAsync();
-            return new AddNoteDTO()
-            {
-                Id = newnote.Id,
-                CategoryId = note.CategoryId,
-                Description = note.Description,
-                Status = note.Status,
-                Title = note.Title
-            };
+            return newnote;
         }
 
-        public async Task<NoteDTO?> GetById(int id)
+        public Task<Note?> GetById(int id)
         {
-            return await dbContext.Notes
+            return dbContext.Notes
                         .Include(n => n.Category)
                         .Include(n => n.History)
                         .AsNoTracking()
                         .AsSplitQuery()
                         .Where(n => n.Id == id)
-                        .Select(n => new NoteDTO()
-                        {
-                            Id = n.Id,
-                            CategoryId = n.CategoryId,
-                            Title = n.Title,
-                            CreatedAt = n.CreatedAt,
-                            Description = n.Description,
-                            Status = n.Status,
-                            UpdatedAt = n.UpdatedAt,
-                            Category = new CategoryDTO()
-                            {
-                                Id = n.Category!.Id,
-                                Name = n.Category.Name,
-                                Color = n.Category.Color
-                            }
-                        }).FirstOrDefaultAsync();
+                        .FirstOrDefaultAsync();
         }
     }
 }
