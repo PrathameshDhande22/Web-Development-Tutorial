@@ -29,9 +29,9 @@ namespace NotesManager.Services.Implementations
             this.UnitOfWork = unitOfWork;
         }
 
-        public async Task<bool> CategoryExists(string name)
+        public Task<bool> CategoryExists(string name)
         {
-            return await _categoryRepository.CategoryExists(name);
+            return _categoryRepository.CategoryExists(name);
         }
 
         public async Task<CategoryDTO> CreateAsync(CreateCategory category)

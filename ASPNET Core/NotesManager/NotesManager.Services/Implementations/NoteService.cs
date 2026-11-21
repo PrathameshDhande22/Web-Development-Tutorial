@@ -121,5 +121,16 @@ namespace NotesManager.Services.Implementations
                 throw;
             }
         }
+
+        public async Task<NoteStatusCountsDTO> GetNotesCountsByStatusAsync()
+        {
+            return await noteRepository.GetNoteStatusCountsAsync() ?? new NoteStatusCountsDTO()
+            {
+                CompletedCount = 0,
+                DraftCount = 0,
+                InProgressCount = 0,
+                TotalCount = 0
+            };
+        }
     }
 }

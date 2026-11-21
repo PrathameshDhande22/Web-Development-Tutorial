@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NotesManager.Data.Models;
 using NotesManager.Domain.Constants;
+using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
@@ -88,6 +89,21 @@ namespace NotesManager.Data.Repositories
                         .AsSplitQuery()
                         .Where(n => n.Id == id)
                         .FirstOrDefaultAsync();
+        }
+
+        public Task<NoteStatusCountsDTO?> GetNoteStatusCountsAsync()
+        {
+            var query = from note in dbContext.Notes
+                        group note by 1 into grouped
+                        select new NoteStatusCountsDTO()
+                        {
+                            TotalCount = grouped.Count(),
+                            CompletedCount = grouped.Count(n => n.Status == NoteStatus.Completed),
+                            DraftCount = grouped.Count(n => n.Status == NoteStatus.Draft),
+                            InProgressCount = grouped.Count(n => n.Status == NoteStatus.InProgress)
+                        };
+            return query.FirstOrDefaultAsync();
+
         }
     }
 }

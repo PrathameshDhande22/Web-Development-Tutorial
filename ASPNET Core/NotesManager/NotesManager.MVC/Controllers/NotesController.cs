@@ -45,7 +45,7 @@ namespace NotesManager.MVC.Controllers
         [HttpGet]  // Specifying these action method as the get method only
         [Route("Notes", Name = "NotesList")]
         [Route("Note/{id:int}", Name = "NoteDetails")]
-        public async Task<IActionResult> Index([FromRoute(Name = "id")] int? noteId, bool LoadPrevFilter = false)
+        public async Task<IActionResult> Index([FromRoute(Name = "id")] int? noteId, bool LoadPrevFilter = false, [FromQuery] SearchNoteQuery? searchquery = null)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace NotesManager.MVC.Controllers
                     Response.Cookies.Append(NoteConstants.NotesViewCookieName, "Grid", options);
                 }
 
-                SearchNoteQuery searchQuery = new();
+                SearchNoteQuery searchQuery = searchquery ?? new();
                 if (LoadPrevFilter)
                 {
                     // Get the last notes filter using the Session
