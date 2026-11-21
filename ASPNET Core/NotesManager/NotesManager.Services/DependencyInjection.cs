@@ -1,12 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using NotesManager.Data;
+using NotesManager.Data.Interfaces;
 using NotesManager.Data.Repositories;
 using NotesManager.Services.Implementations;
 using NotesManager.Services.Interfaces;
-using FluentValidation;
-
 using NotesManager.Services.Validators;
-using NotesManager.Data.Interfaces;
-using NotesManager.Data;
 
 namespace NotesManager.Services
 {

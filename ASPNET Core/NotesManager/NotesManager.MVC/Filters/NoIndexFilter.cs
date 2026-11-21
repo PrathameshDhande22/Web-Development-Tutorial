@@ -7,7 +7,7 @@ namespace NotesManager.MVC.Filters
     {
         public void OnResultExecuted(ResultExecutedContext context)
         {
-            
+
         }
 
         // These methods is called before action method result executes

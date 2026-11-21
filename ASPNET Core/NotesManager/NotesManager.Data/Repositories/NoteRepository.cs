@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NotesManager.Data.Models;
 using NotesManager.Domain.Constants;
-using NotesManager.Domain.DTO.Category;
-using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;

@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
-using NotesManager.Data;
 using NotesManager.Data.Interfaces;
 using NotesManager.Data.Models;
 using NotesManager.Data.Repositories;

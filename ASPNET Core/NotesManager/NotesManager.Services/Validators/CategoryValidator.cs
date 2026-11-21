@@ -31,7 +31,7 @@ namespace NotesManager.Services.Validators
             RuleFor(c => c.Color)
                 .NotEmpty()
                 .WithMessage("Color is required")
-                .Length(2,40)
+                .Length(2, 40)
                 .WithMessage("Color must be 40 characters long");
         }
     }

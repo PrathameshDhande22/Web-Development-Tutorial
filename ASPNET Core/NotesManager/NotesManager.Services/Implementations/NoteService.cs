@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
+using NotesManager.Data.Interfaces;
+using NotesManager.Data.Models;
 using NotesManager.Data.Repositories;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
-using NotesManager.Data.Models;
-using NotesManager.Data.Interfaces;
 
 namespace NotesManager.Services.Implementations
 {
