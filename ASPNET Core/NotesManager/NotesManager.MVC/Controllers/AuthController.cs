@@ -61,5 +61,19 @@ namespace NotesManager.MVC.Controllers
             return View(model);
         }
         #endregion
+
+        #region Reset Password
+        [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            return View(new ResetPasswordViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            return View(model);
+        }
+        #endregion
     }
 }

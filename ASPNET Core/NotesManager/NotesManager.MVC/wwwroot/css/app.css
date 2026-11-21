@@ -249,6 +249,24 @@ html, body {
         @apply flex items-center gap-2;
     }
 
+    /* Header links for the user and admin layout, used on desktop and mobile */
+    .header-link {
+        @apply flex items-center gap-2 rounded-md px-3 py-2 text-gray-500 transition-colors hover:bg-base-200 hover:text-base-content dark:text-gray-400 dark:hover:text-gray-200;
+    }
+
+    .header-link-active {
+        @apply bg-base-200 text-base-content dark:text-gray-200;
+    }
+
+    /* Any main that holds a .full-page child becomes flex, so the child can fill its full height */
+    main:has(> .full-page) {
+        @apply flex;
+    }
+
+    .full-page {
+        @apply flex-1;
+    }
+
     .hint-valid {
         @apply text-green-600;
     }

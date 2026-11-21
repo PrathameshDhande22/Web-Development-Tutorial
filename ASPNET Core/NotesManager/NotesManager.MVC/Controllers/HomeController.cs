@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using NotesManager.Domain.StaticData;
-using NotesManager.MVC.Models;
-using System.Diagnostics;
 using System.Net.Mime;
 
 namespace NotesManager.MVC.Controllers
@@ -39,18 +37,6 @@ namespace NotesManager.MVC.Controllers
                 """;
             // Return the content result
             return Content(txtrecord, MediaTypeNames.Text.Plain);
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        [Route("Error")]
-        public IActionResult NotFoundPage()
-        {
-            return View();
         }
     }
 }

@@ -1,0 +1,193 @@
+﻿@*Specifying the parent layout for these nested layout*@
+@{
+    Layout = "_BaseLayout";
+}
+
+@section Seo {
+    @await RenderSectionAsync("seo", false)
+}
+
+<!--Header for the signed in user and admin-->
+<header class="group/header sticky top-0 z-50 border-b border-gray-300/50 bg-base-100 dark:border-gray-800">
+    <!--Mobile menu toggle, the header shows the menu when these is checked-->
+    <input type="checkbox" id="mobile-menu-toggle" class="hidden" aria-hidden="true" />
+
+    <div class="navbar mx-auto flex w-full max-w-7xl flex-row items-center gap-6 bg-base-100 px-4 md:px-8">
+        <!--Left side Navigation-->
+        <div class="navbar-start flex w-auto flex-row items-center gap-2">
+            <!--Hamburger and close button for mobile-->
+            <label for="mobile-menu-toggle" class="btn btn-ghost btn-sm btn-square md:hidden" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 group-has-checked/header:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h16" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="hidden size-5 group-has-checked/header:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+            </label>
+            <!--Navbar logo using the anchor tag helper-->
+            <a asp-action="Index" asp-controller="Home" id="nav-logo" class="flex cursor-pointer flex-row items-center gap-1 text-lg font-bold tracking-tight">
+                <!--Image tag Helper-->
+                <img src="/images/logo.png" asp-append-version="true" class="w-12" loading="lazy" alt="Logo of Notewell" />
+                <span>Notewell</span>
+                <!--Environment Tag Helper-->
+                <environment include="Development, Staging">
+                    <span class="rounded-md bg-yellow-400 px-2 py-1 text-xs text-black">Dev</span>
+                </environment>
+            </a>
+            <!--Desktop Navbar menu-->
+            <nav class="ml-6 hidden md:block">
+                <!--User Role Menu-->
+                <ul class="flex flex-row gap-1 text-sm">
+                    <li>
+                        <a asp-action="Index" asp-controller="Dashboard" class="header-link header-link-active">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1" /><rect width="7" height="5" x="14" y="3" rx="1" /><rect width="7" height="9" x="14" y="12" rx="1" /><rect width="7" height="5" x="3" y="16" rx="1" /></svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Notes" class="header-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg>
+                            <span>Notes</span>
+                        </a>
+                    </li>
+                </ul>
+                <!--Admin Role Menu-->
+                @*<ul class="flex flex-row gap-1 text-sm">
+                    <li>
+                        <a asp-action="Index" asp-controller="Admin" class="header-link header-link-active">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></svg>
+                            <span>Admin</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Users" asp-controller="Admin" class="header-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Category" asp-controller="Admin" class="header-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12.59 2.59A2 2 0 0 0 11.17 2H4a2 2 0 0 0-2 2v7.17a2 2 0 0 0 .59 1.41l8.7 8.71a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z" /><circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /></svg>
+                            <span>Categories</span>
+                        </a>
+                    </li>
+                </ul>*@
+            </nav>
+        </div>
+        <!--Right Side Navigation-->
+        <div class="navbar-end flex flex-1 flex-row items-center gap-2">
+            <!--New note button, only for the User Role-->
+            <a asp-action="New" asp-controller="Notes" class="btn btn-primary btn-sm mr-2 hidden rounded-md shadow-none md:inline-flex">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                <span>New note</span>
+            </a>
+            <!--Dark theme toggle-->
+            <button id="theme-toggle" class="btn btn-ghost btn-sm btn-square text-sm text-black dark:text-gray-300" aria-label="Toggle theme">
+                <!--Moon Logo-->
+                <svg xmlns="http://www.w3.org/2000/svg" class="block size-5 dark:hidden" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                          d="M21.64 13a1 1 0 0 0-1.05-.14a8.05 8.05 0 0 1-3.37.73a8.15 8.15 0 0 1-8.14-8.1a8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69a1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14a9.79 9.79 0 0 0 2.1-.22a8.11 8.11 0 0 1-7.18 4.32Z" />
+                </svg>
+                <!--Sun Logo-->
+                <svg xmlns="http://www.w3.org/2000/svg" class="hidden size-5 dark:block" viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7" />
+                </svg>
+            </button>
+            <!--Profile dropdown, same for User and Admin Role-->
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="avatar avatar-placeholder cursor-pointer" aria-label="Open profile menu">
+                    <div class="w-9 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
+                        <span class="text-sm font-semibold">PD</span>
+                    </div>
+                </div>
+                <div tabindex="0" class="dropdown-content z-50 mt-3 w-64 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
+                    <div class="px-3 py-2">
+                        <p class="font-semibold">Prathamesh Dhande</p>
+                        <p class="truncate text-sm text-gray-500 dark:text-gray-400">prathamesh@gmail.com</p>
+                    </div>
+                    <ul class="menu w-full p-0">
+                        <li>
+                            <a asp-action="Index" asp-controller="Account">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                                Account settings
+                            </a>
+                        </li>
+                        <li>
+                            <button type="submit" form="sign-out-form">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><path d="m16 17 5-5-5-5" /><path d="M21 12H9" /></svg>
+                                Sign out
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--Sign out is a post request so it can not be triggered by a simple link-->
+            <form id="sign-out-form" asp-action="Logout" asp-controller="Auth" method="post" class="hidden"></form>
+        </div>
+    </div>
+
+    <!--Mobile menu with a dark backdrop, closes when clicking the backdrop-->
+    <div class="absolute inset-x-0 top-full hidden h-[calc(100dvh-4rem)] max-md:group-has-checked/header:block">
+        <label for="mobile-menu-toggle" class="absolute inset-0 bg-black/40" aria-label="Close menu"></label>
+        <nav class="relative rounded-b-box bg-base-100 p-3 shadow-lg">
+            <!--User Role Menu-->
+            <ul class="flex flex-col gap-1">
+                <li>
+                    <a asp-action="Index" asp-controller="Dashboard" class="header-link header-link-active text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1" /><rect width="7" height="5" x="14" y="3" rx="1" /><rect width="7" height="9" x="14" y="12" rx="1" /><rect width="7" height="5" x="3" y="16" rx="1" /></svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Notes" class="header-link text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg>
+                        <span>Notes</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="New" asp-controller="Notes" class="header-link text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
+                        <span>New note</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Account" class="header-link text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                        <span>Account settings</span>
+                    </a>
+                </li>
+            </ul>
+            <!--Admin Role Menu-->
+            @*<ul class="flex flex-col gap-1">
+                <li>
+                    <a asp-action="Index" asp-controller="Admin" class="header-link header-link-active text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></svg>
+                        <span>Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Users" asp-controller="Admin" class="header-link text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Category" asp-controller="Admin" class="header-link text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12.59 2.59A2 2 0 0 0 11.17 2H4a2 2 0 0 0-2 2v7.17a2 2 0 0 0 .59 1.41l8.7 8.71a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z" /><circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /></svg>
+                        <span>Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-action="Index" asp-controller="Account" class="header-link text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                        <span>Account settings</span>
+                    </a>
+                </li>
+            </ul>*@
+        </nav>
+    </div>
+</header>
+<main class="flex-1">
+    @*Use the Render the body from the action method*@
+    @RenderBody()
+</main>
+
+@section Scripts {
+    @await RenderSectionAsync("Scripts", false)
+}
