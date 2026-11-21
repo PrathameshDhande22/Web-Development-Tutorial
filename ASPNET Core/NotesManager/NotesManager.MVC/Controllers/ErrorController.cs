@@ -7,6 +7,12 @@ namespace NotesManager.MVC.Controllers
         // Action method to handle the errors
         public IActionResult Index()
         {
+            // Clear the previous response
+            Response.Clear();
+
+            // Setting the Error Status code explicitly
+            Response.StatusCode = HttpContext.Response.StatusCode;
+
             ViewResult result = HttpContext.Response.StatusCode switch
             {
                 StatusCodes.Status404NotFound => View("NotFound"),
