@@ -7,5 +7,6 @@ namespace NotesManager.Domain.DTO.Note
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? UpdatedAt { get; set; } = null;
         public CategoryDTO Category { get; set; }
+        public bool Pinned { get; set; }
     }
 }

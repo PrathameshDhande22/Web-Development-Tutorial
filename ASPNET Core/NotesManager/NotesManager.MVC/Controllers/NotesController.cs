@@ -8,6 +8,7 @@ using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
+using NotesManager.Services;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
 using System.Text.Json;
@@ -243,6 +244,24 @@ namespace NotesManager.MVC.Controllers
                 TempData["Error"] = "Error occured creating the new note";
                 return View(createNote);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Pin(int id)
+        {
+            ServiceResult<bool> result = await noteService.TogglePinAsync(id);
+            if (!result.Success)
+            {
+                return NotFound(new
+                {
+                    message = result.Message
+                });
+            }
+            return Ok(new
+            {
+                message = result.Message,
+                success = result.Success
+            });
         }
     }
 }

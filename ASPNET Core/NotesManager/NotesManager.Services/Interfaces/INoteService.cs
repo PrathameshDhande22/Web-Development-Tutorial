@@ -10,5 +10,6 @@ namespace NotesManager.Services.Interfaces
         public Task<PaginatedResponse<NoteDTO>> GetNotesAsync(SearchNoteQuery query);
         public Task<NoteDTO?> GetNoteById(int Id);
         public Task<NoteStatusCountsDTO> GetNotesCountsByStatusAsync();
+        public Task<ServiceResult<bool>> TogglePinAsync(int noteId);
     }
 }

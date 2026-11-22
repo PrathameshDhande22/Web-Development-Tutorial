@@ -41,6 +41,7 @@ namespace NotesManager.Services.Implementations
                     CategoryId = note.CategoryId,
                     Description = note.Description,
                     Title = note.Title,
+                    Pinned = note.Pinned,
                     UpdatedAt = note.UpdatedAt,
                     Category = new()
                     {
@@ -76,6 +77,7 @@ namespace NotesManager.Services.Implementations
                     Data = notes.Data.Select(n => new NoteDTO()
                     {
                         Id = n.Id,
+                        Pinned = n.Pinned,
                         Category = new()
                         {
                             Id = n.Category.Id,
@@ -131,6 +133,22 @@ namespace NotesManager.Services.Implementations
                 InProgressCount = 0,
                 TotalCount = 0
             };
+        }
+
+        public async Task<ServiceResult<bool>> TogglePinAsync(int noteid)
+        {
+            Note? note = await noteRepository.GetById(noteid);
+            if (note == null)
+            {
+                logger.LogError("Tried to get notes with id={Id} which does not exists", noteid);
+                return ServiceResult<bool>.Fail("Note with id not found");
+            }
+
+            note.Pinned = !note.Pinned;
+            noteRepository.Update(note);
+            await unitOfWork.SaveChangesAsync();
+            logger.LogInformation("Pinned the Note with id={Id} Pin={Pin}", noteid, note.Pinned);
+            return ServiceResult<bool>.Ok(note.Pinned, note.Pinned ? "note pin successfully" : "note unpin successfully");
         }
     }
 }

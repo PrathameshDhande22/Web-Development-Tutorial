@@ -30,7 +30,8 @@ namespace NotesManager.Data.Repositories
             var notes = dbContext.Notes
                          .AsNoTracking()
                          .Include(n => n.Category)
-                         .OrderByDescending(n => n.UpdatedAt.HasValue ? n.UpdatedAt : n.CreatedAt)
+                         .OrderByDescending(n => n.Pinned)
+                         .ThenByDescending(n => n.UpdatedAt.HasValue ? n.UpdatedAt : n.CreatedAt)
                          .AsQueryable();
 
             // Check the Categoryid
@@ -103,7 +104,11 @@ namespace NotesManager.Data.Repositories
                             InProgressCount = grouped.Count(n => n.Status == NoteStatus.InProgress)
                         };
             return query.FirstOrDefaultAsync();
+        }
 
+        public void Update(Note note)
+        {
+            dbContext.Notes.Update(note);
         }
     }
 }
