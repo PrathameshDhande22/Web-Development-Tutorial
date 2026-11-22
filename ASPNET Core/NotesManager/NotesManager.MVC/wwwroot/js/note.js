@@ -168,4 +168,35 @@
 
     //#endregion
 
+    //#region Pin Notes
+    $("#notes-view").on("click", ".pin-note", function (e) {
+        // stop from bubble event
+        e.stopPropagation();
+        e.preventDefault();
+
+        let noteid = $(this).data("noteid");
+
+        // call the pin note endpoint
+        $.ajax(
+            {
+                method: "POST",
+                url: `/Notes/Pin/${noteid}`,
+                success: function (response) {
+                    // If success then again load the notes
+                    if (response?.success) {
+                        showToast(response?.data ? "Pinned" : "Unpinned", "success");
+                        loadNotes(searchedtext, status, selectedCategoryid, pageno);
+                    } else {
+                        showToast(response?.message || "Unable to update the note.", "error");
+                    }
+                }, error: function (xhr) {
+                    showToast(xhr.responseJSON?.message || "Unable to update the note.", "error");
+                }
+            }
+        );
+
+    })
+
+    //#endregion
+
 })

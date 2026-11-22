@@ -260,7 +260,8 @@ namespace NotesManager.MVC.Controllers
             return Ok(new
             {
                 message = result.Message,
-                success = result.Success
+                success = result.Success,
+                data = result.Data
             });
         }
     }
