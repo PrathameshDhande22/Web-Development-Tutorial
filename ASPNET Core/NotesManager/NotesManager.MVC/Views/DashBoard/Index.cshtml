@@ -45,7 +45,7 @@
                 <!--Each Recent Note-->
                 @foreach (NoteDTO note in Model)
                 {
-                    <li class="border border-gray-200 transition-colors first:rounded-t-lg last:rounded-b-lg hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800">
+                    <li class="border-x border-t border-gray-200 transition-colors first:rounded-t-lg first:border-t last:rounded-b-lg last:border-b hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800">
                         <a asp-route="NoteDetails" asp-route-Id="@note.Id" class="flex items-center gap-3 px-4 py-3">
                             <!--Note Title and Desc-->
                             <div class="flex-1">
