@@ -34,7 +34,7 @@
     </div>
     <!--Dashboard Counts Component-->
     <vc:dashboard-stats></vc:dashboard-stats>
-    <div class="mt-10 grid lg:grid-cols-3">
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
         <!--Reccently Updated Notes-->
         <section class="lg:col-span-2">
             <div class="flex items-center justify-between">
@@ -68,7 +68,12 @@
             </ul>
         </section>
         <!--Pinned Notes-->
-        <div>
-        </div>
+        <section>
+            <h3 class="text-sm font-semibold">
+                Pinned
+            </h3>
+            @*Invoking the component using Component*@
+            @await Component.InvokeAsync("PinnedNotes")
+        </section>
     </div>
 </div>

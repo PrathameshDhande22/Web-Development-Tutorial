@@ -4225,9 +4225,6 @@
   .ml-1 {
     margin-left: var(--spacing);
   }
-  .ml-2 {
-    margin-left: calc(var(--spacing) * 2);
-  }
   .ml-6 {
     margin-left: calc(var(--spacing) * 6);
   }
@@ -4533,9 +4530,6 @@
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
-  }
-  .w-16 {
-    width: calc(var(--spacing) * 16);
   }
   .w-24 {
     width: calc(var(--spacing) * 24);
@@ -5482,6 +5476,9 @@
     .hover\:border-gray-400:hover {
       border-color: var(--color-gray-400);
     }
+    .hover\:border-gray-500:hover {
+      border-color: var(--color-gray-500);
+    }
     .hover\:bg-base-200:hover {
       background-color: var(--color-base-200);
     }
@@ -5495,12 +5492,6 @@
       .hover\:bg-gray-200\/50:hover {
         background-color: color-mix(in oklab, var(--color-gray-200) 50%, transparent);
       }
-    }
-    .hover\:bg-gray-300:hover {
-      background-color: var(--color-gray-300);
-    }
-    .hover\:text-gray-600:hover {
-      color: var(--color-gray-600);
     }
     .hover\:text-gray-800:hover {
       color: var(--color-gray-800);
@@ -5683,6 +5674,9 @@
   .dark\:text-blue-300:where([data-theme=dark], [data-theme=dark] *) {
     color: var(--color-blue-300);
   }
+  .dark\:text-gray-100:where([data-theme=dark], [data-theme=dark] *) {
+    color: var(--color-gray-100);
+  }
   .dark\:text-gray-200:where([data-theme=dark], [data-theme=dark] *) {
     color: var(--color-gray-200);
   }
@@ -5691,6 +5685,9 @@
   }
   .dark\:text-gray-400:where([data-theme=dark], [data-theme=dark] *) {
     color: var(--color-gray-400);
+  }
+  .dark\:text-gray-500:where([data-theme=dark], [data-theme=dark] *) {
+    color: var(--color-gray-500);
   }
   .dark\:text-neutral-200:where([data-theme=dark], [data-theme=dark] *) {
     color: var(--color-neutral-200);
@@ -5705,6 +5702,9 @@
     }
   }
   @media (hover: hover) {
+    .dark\:hover\:border-gray-300:where([data-theme=dark], [data-theme=dark] *):hover {
+      border-color: var(--color-gray-300);
+    }
     .hover\:dark\:border-gray-500:hover:where([data-theme=dark], [data-theme=dark] *) {
       border-color: var(--color-gray-500);
     }

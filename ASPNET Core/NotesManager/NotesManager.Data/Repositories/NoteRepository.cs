@@ -97,6 +97,15 @@ namespace NotesManager.Data.Repositories
             return dbContext.Notes.FirstOrDefaultAsync(n => n.Id == id);
         }
 
+        public Task<List<Note>> GetPinnedNotes()
+        {
+            return dbContext.Notes
+                .AsNoTracking()
+                .Where(n => n.Pinned)
+                .OrderByDescending(n => n.UpdatedAt.HasValue ? n.UpdatedAt : n.CreatedAt)
+                .ToListAsync();
+        }
+
         public Task<NoteStatusCountsDTO?> GetNoteStatusCountsAsync()
         {
             var query = from note in dbContext.Notes

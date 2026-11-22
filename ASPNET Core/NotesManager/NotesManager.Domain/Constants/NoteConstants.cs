@@ -19,5 +19,6 @@
         public const string LastNotesFilterSessionKey = "LastNotesFilter";
 
         public const int RecentNoteCount = 5;
+        public const int PinNoteCount = 5;
     }
 }

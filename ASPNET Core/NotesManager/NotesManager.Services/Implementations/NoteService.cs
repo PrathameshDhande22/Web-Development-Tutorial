@@ -176,5 +176,17 @@ namespace NotesManager.Services.Implementations
                 UpdatedAt = note.UpdatedAt
             };
         }
+
+        public async Task<List<NoteDTO>> GetPinNotesAsync()
+        {
+            List<Note> pinnotes = await noteRepository.GetPinnedNotes();
+            return pinnotes.Select(n => new NoteDTO()
+            {
+                Id = n.Id,
+                Title = n.Title,
+                Description = n.Description,
+                Status = n.Status,
+            }).ToList();
+        }
     }
 }

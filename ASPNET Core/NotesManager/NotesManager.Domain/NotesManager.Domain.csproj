@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.14" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>
