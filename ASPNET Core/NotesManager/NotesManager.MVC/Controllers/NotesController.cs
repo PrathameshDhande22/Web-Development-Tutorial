@@ -8,6 +8,7 @@ using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
+using NotesManager.MVC.Filters;
 using NotesManager.Services;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
@@ -247,6 +248,7 @@ namespace NotesManager.MVC.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter<ApiExceptionFilter>] // You cannot use the exception filter directly where the services are injected
         public async Task<IActionResult> Pin(int id)
         {
             ServiceResult<bool> result = await noteService.TogglePinAsync(id);

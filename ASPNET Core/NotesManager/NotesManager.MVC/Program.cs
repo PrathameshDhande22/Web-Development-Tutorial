@@ -1,4 +1,5 @@
 using NotesManager.Data;
+using NotesManager.MVC.Filters;
 using NotesManager.MVC.ModelBinders;
 using NotesManager.MVC.RouteConstraints;
 using NotesManager.Services;
@@ -57,6 +58,9 @@ builder.Services.AddAntiforgery(setup =>
     setup.Cookie.Name = "NotesManager.CSRF";
     setup.HeaderName = "X-CSRF-Token";
 });
+
+// Injecting the custom filter
+builder.Services.AddScoped<ApiExceptionFilter>();
 
 // Add the services and database related services
 builder.Services.AddDataServices();
