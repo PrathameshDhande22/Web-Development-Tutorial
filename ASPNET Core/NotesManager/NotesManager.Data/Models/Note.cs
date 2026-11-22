@@ -17,6 +17,7 @@ namespace NotesManager.Data.Models
         public string? Description { get; set; } = string.Empty;
         public NoteStatus Status { get; set; }
         public int CategoryId { get; set; }
+        public bool Pinned { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
         public DateTimeOffset? UpdatedAt { get; set; }
