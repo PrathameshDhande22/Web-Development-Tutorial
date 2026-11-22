@@ -10,12 +10,12 @@
 <!--Dashboard Stats-->
 <div class="md mt-8 grid w-full grid-cols-2 rounded-lg md:grid-cols-4">
     <!--Total Count-->
-    <a asp-route="NotesList" class="rounded-tl-lg border border-gray-200 p-5 transition-colors hover:bg-base-200 md:rounded-s-lg">
+    <a asp-route="NotesList" class="rounded-tl-lg border border-gray-200 p-5 transition-colors hover:bg-base-200 md:rounded-s-lg dark:border-gray-700">
         <div class="text-sm text-gray-500">All notes</div>
         <span class="mt-1 inline-block text-2xl font-semibold">@Model.TotalCount</span>
     </a>
     <!--Draft Count-->
-    <a asp-route="NotesList" asp-route-Status="@NoteStatus.Draft" class="rounded-tr-lg border border-gray-200 p-5 transition-colors hover:bg-base-200">
+    <a asp-route="NotesList" asp-route-Status="@NoteStatus.Draft" class="rounded-tr-lg border border-gray-200 p-5 transition-colors hover:bg-base-200 md:rounded-none dark:border-gray-700">
         <div class="flex items-center gap-2">
             <span class="size-2 @GetStatusColor(NoteStatus.Draft) rounded-full"></span>
             <span class="text-sm text-gray-500">Draft</span>
@@ -23,7 +23,7 @@
         <span class="mt-1 inline-block text-2xl font-semibold">@Model.DraftCount</span>
     </a>
     <!--In Progress Count-->
-    <a asp-route="NotesList" asp-route-Status="@NoteStatus.InProgress" class="rounded-bl-lg border border-gray-200 p-5 transition-colors hover:bg-base-200">
+    <a asp-route="NotesList" asp-route-Status="@NoteStatus.InProgress" class="rounded-bl-lg border border-gray-200 p-5 transition-colors hover:bg-base-200 md:rounded-none dark:border-gray-700">
         <div class="flex items-center gap-2">
             <span class="size-2 @GetStatusColor(NoteStatus.InProgress) rounded-full"></span>
             <span class="text-sm text-gray-500">In progress</span>
@@ -31,7 +31,7 @@
         <span class="mt-1 inline-block text-2xl font-semibold">@Model.InProgressCount</span>
     </a>
     <!--Completed Count-->
-    <a asp-route="NotesList" asp-route-Status="@NoteStatus.Completed" class="rounded-br-lg border border-gray-200 p-5 transition-colors hover:bg-base-200 md:rounded-e-lg">
+    <a asp-route="NotesList" asp-route-Status="@NoteStatus.Completed" class="rounded-br-lg border border-gray-200 p-5 transition-colors hover:bg-base-200 md:rounded-e-lg dark:border-gray-700">
         <div class="flex items-center gap-2">
             <span class="size-2 @GetStatusColor(NoteStatus.Completed) rounded-full"></span>
             <span class="text-sm text-gray-500">Completed</span>

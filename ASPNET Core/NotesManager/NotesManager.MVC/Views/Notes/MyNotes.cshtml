@@ -25,7 +25,7 @@
                         <span class="text-sm dark:text-gray-400">@note.Category.Name</span>
                     </div>
                     <div>
-                        <time-ago date="@note.CreatedAt.DateTime" />
+                        <time-ago date="@note.UpdatedAt.HasValue ? note.UpdatedAt.Value.DateTime : note.CreatedAt.DateTime" />
                     </div>
                 </div>
             </div>

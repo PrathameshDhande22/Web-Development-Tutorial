@@ -5581,6 +5581,9 @@
     .md\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+    .md\:rounded-none {
+      border-radius: 0;
+    }
     .md\:rounded-s-lg {
       border-start-start-radius: var(--radius-lg);
       border-end-start-radius: var(--radius-lg);
@@ -5705,8 +5708,14 @@
     .hover\:dark\:border-gray-500:hover:where([data-theme=dark], [data-theme=dark] *) {
       border-color: var(--color-gray-500);
     }
+    .dark\:hover\:bg-gray-800:where([data-theme=dark], [data-theme=dark] *):hover {
+      background-color: var(--color-gray-800);
+    }
     .dark\:hover\:bg-gray-900:where([data-theme=dark], [data-theme=dark] *):hover {
       background-color: var(--color-gray-900);
+    }
+    .dark\:hover\:text-gray-300:where([data-theme=dark], [data-theme=dark] *):hover {
+      color: var(--color-gray-300);
     }
   }
   .has-checked\:dark\:text-gray-200:has(:checked):where([data-theme=dark], [data-theme=dark] *) {
