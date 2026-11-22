@@ -1,5 +1,4 @@
-﻿using NotesManager.Domain.Models;
-using NotesManager.Domain.Models.Home;
+﻿using NotesManager.Domain.Models.Home;
 
 namespace NotesManager.Domain.StaticData
 {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NotesManager.Domain.DTO.Note;
-using NotesManager.Domain.StaticData;
 using NotesManager.Services.Interfaces;
 
 namespace NotesManager.MVC.ViewComponents
