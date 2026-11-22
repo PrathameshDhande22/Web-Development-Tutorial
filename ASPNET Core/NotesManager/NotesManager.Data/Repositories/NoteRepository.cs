@@ -92,6 +92,11 @@ namespace NotesManager.Data.Repositories
                         .FirstOrDefaultAsync();
         }
 
+        public Task<Note?> GetForUpdateAsync(int id)
+        {
+            return dbContext.Notes.FirstOrDefaultAsync(n => n.Id == id);
+        }
+
         public Task<NoteStatusCountsDTO?> GetNoteStatusCountsAsync()
         {
             var query = from note in dbContext.Notes

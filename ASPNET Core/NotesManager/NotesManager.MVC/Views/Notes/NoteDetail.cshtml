@@ -21,7 +21,7 @@
             <!--Notes Action Buttons-->
             <div class="flex flex-row items-center gap-1 sm:gap-3">
                 <!--Status Drop down-->
-                <select class="select dark:text-gray-300" id="status-selected" name="note-status">
+                <select class="select dark:text-gray-300" id="status-selected" name="note-status" data-noteid="@Model.Id">
                     @foreach (NoteStatus status in statuses)
                     {
                         var currentStatusMapping = CategoryConstants.StatusMapping[status];

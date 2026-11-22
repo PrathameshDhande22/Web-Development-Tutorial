@@ -11,5 +11,6 @@ namespace NotesManager.Services.Interfaces
         public Task<NoteDTO?> GetNoteById(int Id);
         public Task<NoteStatusCountsDTO> GetNotesCountsByStatusAsync();
         public Task<ServiceResult<bool>> TogglePinAsync(int noteId);
+        public Task<NoteDTO?> UpdateAsync(UpdateNote updateNote);
     }
 }

@@ -112,10 +112,33 @@ namespace NotesManager.MVC.Controllers
         }
 
         // defining the custom Route constraint
-        [Route("status/{status:notestatus}")]
-        public string Status(NoteStatus status)
+        [Route("note/status/{status:notestatus}")]
+        [ServiceFilter<ApiExceptionFilter>]
+        [HttpPut]  // put action method
+        public async Task<IActionResult> Status(NoteStatus status, [FromQuery] int noteid)
         {
-            return $"Status of the Notes {status.ToString()}";
+            UpdateNote updatedNote = new()
+            {
+                Id = noteid,
+                Status = status
+            };
+
+            NoteDTO? updated = await noteService.UpdateAsync(updatedNote);
+            if (updated == null)
+            {
+                return Json(new
+                {
+                    message = "Note with provided id does'nt exist",
+                    success = false
+                });
+            }
+
+            return Json(new
+            {
+                message = "Note status updated",
+                success = true,
+                data = status
+            });
         }
 
         [Route("note/{id:int}/history")]  // defining the route with attribute routing
@@ -170,19 +193,6 @@ namespace NotesManager.MVC.Controllers
             memoryStream.Position = 0;
 
             return File(memoryStream, MediaTypeNames.Text.Markdown, $"{note.Title.ToLower()}.md");
-        }
-
-        // Action method to return the JSON Data
-        public JsonResult AllStatus()
-        {
-            // Options for serializing
-            JsonSerializerOptions options = new()
-            {
-                WriteIndented = true,
-            };
-
-            // Returning the Json data
-            return Json(Enum.GetNames<NoteStatus>(), options);
         }
 
         // Action method for using the Html Helpers
@@ -247,6 +257,7 @@ namespace NotesManager.MVC.Controllers
             }
         }
 
+        // Action method to return the JSON Data as an API Call
         [HttpPost]
         [ServiceFilter<ApiExceptionFilter>] // You cannot use the exception filter directly where the services are injected
         public async Task<IActionResult> Pin(int id)

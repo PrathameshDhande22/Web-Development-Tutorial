@@ -26,4 +26,32 @@
         })
     })
     //#endregion
+
+    //#region Status Change
+    let previous_status = $("#status-selected").val();
+
+    $("#status-selected").on("change", function (e) {
+        let newstatus = $(this).val()
+        let noteid = $(this).data("noteid")
+
+        // Ajax Call
+        $.ajax({
+            method: "PUT",
+            url: `/note/status/${newstatus}?noteid=${noteid}`,
+            success: function (response) {
+                if (response?.success) {
+                    showToast(`Your note is now ${newstatus}`, "success");
+                } else {
+                    showToast("Failed to update the status", "error");
+                    $("#status-selected").data(previous_status);
+                }
+            },
+            error: function (err) {
+                showToast(err.responseJSON?.message || "Failed to update the status");
+                $("#status-selected").data(previous_status);
+            }
+        })
+
+    })
+    //#endregion
 })

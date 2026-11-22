@@ -137,7 +137,7 @@ namespace NotesManager.Services.Implementations
 
         public async Task<ServiceResult<bool>> TogglePinAsync(int noteid)
         {
-            Note? note = await noteRepository.GetById(noteid);
+            Note? note = await noteRepository.GetForUpdateAsync(noteid);
             if (note == null)
             {
                 logger.LogError("Tried to get notes with id={Id} which does not exists", noteid);
@@ -145,10 +145,36 @@ namespace NotesManager.Services.Implementations
             }
 
             note.Pinned = !note.Pinned;
-            noteRepository.Update(note);
             await unitOfWork.SaveChangesAsync();
             logger.LogInformation("Pinned the Note with id={Id} Pin={Pin}", noteid, note.Pinned);
             return ServiceResult<bool>.Ok(note.Pinned, note.Pinned ? "note pin successfully" : "note unpin successfully");
+        }
+
+        public async Task<NoteDTO?> UpdateAsync(UpdateNote updateNote)
+        {
+            Note? note = await noteRepository.GetForUpdateAsync(updateNote.Id);
+            if (note == null)
+            {
+                logger.LogError("Note with id={Id} does not exists", updateNote.Id);
+                return null;
+            }
+
+            note.Title = string.IsNullOrWhiteSpace(updateNote.Title) ? note.Title : updateNote.Title;
+            note.UpdatedAt = DateTime.UtcNow;
+            note.Description = string.IsNullOrWhiteSpace(updateNote.Description) ? note.Description : updateNote.Description;
+            note.Status = updateNote.Status == note.Status ? note.Status : updateNote.Status;
+            note.CategoryId = updateNote.CategoryId == 0 || updateNote.CategoryId == note.CategoryId ? note.CategoryId : updateNote.CategoryId;
+
+            await unitOfWork.SaveChangesAsync();
+            return new NoteDTO()
+            {
+                Id = note.Id,
+                Title = note.Title,
+                Description = note.Description,
+                CategoryId = note.CategoryId,
+                Status = note.Status,
+                UpdatedAt = note.UpdatedAt
+            };
         }
     }
 }
