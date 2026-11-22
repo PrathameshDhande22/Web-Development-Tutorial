@@ -14,7 +14,12 @@ namespace NotesManager.MVC.TagHelpers
         {
             output.TagName = "span";
             output.TagMode = TagMode.StartTagAndEndTag;
-            output.Attributes.SetAttribute("class", "text-sm text-stone-400");
+
+            // Applying the existing classes
+            output.Attributes.TryGetAttribute("class", out var attributes);
+            string existingClass = attributes?.Value?.ToString() ?? string.Empty;
+
+            output.Attributes.SetAttribute("class", $"{existingClass} text-sm text-stone-400");
             string? humanDateTime = DateTime.Humanize(true);
             if (!string.IsNullOrWhiteSpace(humanDateTime))
             {

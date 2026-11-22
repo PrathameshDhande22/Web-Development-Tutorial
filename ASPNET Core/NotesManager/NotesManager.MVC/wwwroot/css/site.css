@@ -4216,6 +4216,12 @@
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
+  .ml-1 {
+    margin-left: var(--spacing);
+  }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
   .ml-6 {
     margin-left: calc(var(--spacing) * 6);
   }
@@ -4522,6 +4528,12 @@
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
+  .w-16 {
+    width: calc(var(--spacing) * 16);
+  }
+  .w-24 {
+    width: calc(var(--spacing) * 24);
+  }
   .w-52 {
     width: calc(var(--spacing) * 52);
   }
@@ -4730,19 +4742,6 @@
     margin-inline-start: calc(calc(var(--spacing) * 2) * var(--tw-space-x-reverse));
     margin-inline-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-x-reverse)));
   }
-  :where(.divide-x > :not(:last-child)) {
-    --tw-divide-x-reverse: 0;
-    border-inline-style: var(--tw-border-style);
-    border-inline-start-width: calc(1px * var(--tw-divide-x-reverse));
-    border-inline-end-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
-  }
-  :where(.divide-y > :not(:last-child)) {
-    --tw-divide-y-reverse: 0;
-    border-bottom-style: var(--tw-border-style);
-    border-top-style: var(--tw-border-style);
-    border-top-width: calc(1px * var(--tw-divide-y-reverse));
-    border-bottom-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
-  }
   .self-start {
     align-self: flex-start;
   }
@@ -4787,10 +4786,6 @@
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
-  .rounded-s-lg {
-    border-start-start-radius: var(--radius-lg);
-    border-end-start-radius: var(--radius-lg);
-  }
   .rounded-s-md {
     border-start-start-radius: var(--radius-md);
     border-end-start-radius: var(--radius-md);
@@ -4798,10 +4793,6 @@
   .rounded-e-md {
     border-start-end-radius: var(--radius-md);
     border-end-end-radius: var(--radius-md);
-  }
-  .rounded-t-lg {
-    border-top-left-radius: var(--radius-lg);
-    border-top-right-radius: var(--radius-lg);
   }
   .rounded-tl-lg {
     border-top-left-radius: var(--radius-lg);
@@ -4822,10 +4813,6 @@
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
-  }
-  .border-s {
-    border-inline-start-style: var(--tw-border-style);
-    border-inline-start-width: 1px;
   }
   .border-t {
     border-top-style: var(--tw-border-style);
@@ -5222,6 +5209,9 @@
   .text-gray-500 {
     color: var(--color-gray-500);
   }
+  .text-gray-700 {
+    color: var(--color-gray-700);
+  }
   .text-green-500 {
     color: var(--color-green-500);
   }
@@ -5454,6 +5444,14 @@
   :is(:where(.group\/header):has(:checked) .group-has-checked\/header\:hidden) {
     display: none;
   }
+  .first\:rounded-t-lg:first-child {
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+  }
+  .last\:rounded-b-lg:last-child {
+    border-bottom-right-radius: var(--radius-lg);
+    border-bottom-left-radius: var(--radius-lg);
+  }
   .checked\:bg-black:checked {
     background-color: var(--color-black);
   }
@@ -5470,6 +5468,9 @@
     .hover\:bg-base-200:hover {
       background-color: var(--color-base-200);
     }
+    .hover\:bg-gray-100:hover {
+      background-color: var(--color-gray-100);
+    }
     .hover\:bg-gray-200\/50:hover {
       background-color: color-mix(in srgb, oklch(92.8% 0.006 264.531) 50%, transparent);
     }
@@ -5478,8 +5479,14 @@
         background-color: color-mix(in oklab, var(--color-gray-200) 50%, transparent);
       }
     }
+    .hover\:bg-gray-300:hover {
+      background-color: var(--color-gray-300);
+    }
     .hover\:text-gray-600:hover {
       color: var(--color-gray-600);
+    }
+    .hover\:text-gray-800:hover {
+      color: var(--color-gray-800);
     }
     .hover\:underline:hover {
       text-decoration-line: underline;
@@ -5523,6 +5530,9 @@
     }
     .sm\:inline {
       display: inline;
+    }
+    .sm\:inline-flex {
+      display: inline-flex;
     }
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6651,20 +6661,10 @@ html, body {
   inherits: false;
   initial-value: 0;
 }
-@property --tw-divide-x-reverse {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
-}
-@property --tw-divide-y-reverse {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
 }
 @property --tw-leading {
   syntax: "*";
@@ -6842,9 +6842,7 @@ html, body {
       --tw-skew-y: initial;
       --tw-space-y-reverse: 0;
       --tw-space-x-reverse: 0;
-      --tw-divide-x-reverse: 0;
       --tw-border-style: solid;
-      --tw-divide-y-reverse: 0;
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
