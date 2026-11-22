@@ -188,5 +188,17 @@ namespace NotesManager.Services.Implementations
                 Status = n.Status,
             }).ToList();
         }
+
+        public async Task<bool> DeleteNoteAsync(int id)
+        {
+            Note? note = await noteRepository.GetById(id);
+            if (note == null)
+            {
+                return false;
+            }
+            int noofrow = await noteRepository.DeleteAsync(id);
+            logger.LogInformation("Deleted a Note with Id={Id} which affected Rows={Rows}", id, noofrow);
+            return noofrow > 0;
+        }
     }
 }

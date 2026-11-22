@@ -4030,6 +4030,103 @@
   .col-span-2 {
     grid-column: span 2 / span 2;
   }
+  @layer daisyui.l1.l2.l3 {
+    .modal-box {
+      grid-column-start: 1;
+      grid-row-start: 1;
+      max-height: 100vh;
+      width: calc(11 / 12 * 100%);
+      max-width: 32rem;
+      background-color: var(--color-base-100);
+      padding: calc(0.25rem * 6);
+      transition: translate 0.3s ease-out, scale 0.3s ease-out, opacity 0.2s ease-out 0.05s, box-shadow 0.3s ease-out;
+      border-top-left-radius: var(--modal-tl, var(--radius-box));
+      border-top-right-radius: var(--modal-tr, var(--radius-box));
+      border-bottom-left-radius: var(--modal-bl, var(--radius-box));
+      border-bottom-right-radius: var(--modal-br, var(--radius-box));
+      scale: 95%;
+      opacity: 0;
+      box-shadow: oklch(0% 0 0/ 0.25) 0px 25px 50px -12px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+  }
+  @layer daisyui.l1.l2 {
+    .modal-top > .modal-box {
+      height: auto;
+      width: 100%;
+      max-width: none;
+      max-height: calc(100vh - 5em);
+      translate: 0 -100%;
+      scale: 1;
+      --modal-tl: 0;
+      --modal-tr: 0;
+      --modal-bl: var(--radius-box);
+      --modal-br: var(--radius-box);
+    }
+    .modal-middle > .modal-box {
+      height: auto;
+      width: calc(11 / 12 * 100%);
+      max-width: 32rem;
+      max-height: calc(100vh - 5em);
+      translate: 0 2%;
+      scale: 98%;
+      --modal-tl: var(--radius-box);
+      --modal-tr: var(--radius-box);
+      --modal-bl: var(--radius-box);
+      --modal-br: var(--radius-box);
+    }
+    .modal-bottom > .modal-box {
+      height: auto;
+      width: 100%;
+      max-width: none;
+      max-height: calc(100vh - 5em);
+      translate: 0 100%;
+      scale: 1;
+      --modal-tl: var(--radius-box);
+      --modal-tr: var(--radius-box);
+      --modal-bl: 0;
+      --modal-br: 0;
+    }
+    .modal-start > .modal-box {
+      height: 100vh;
+      max-height: none;
+      width: auto;
+      max-width: none;
+      translate: -100% 0;
+      scale: 1;
+      --modal-tl: 0;
+      --modal-tr: var(--radius-box);
+      --modal-bl: 0;
+      --modal-br: var(--radius-box);
+    }
+    [dir="rtl"] :is(.modal-start > .modal-box) {
+      translate: 100% 0;
+      --modal-tl: var(--radius-box);
+      --modal-tr: 0;
+      --modal-bl: var(--radius-box);
+      --modal-br: 0;
+    }
+    .modal-end > .modal-box {
+      height: 100vh;
+      max-height: none;
+      width: auto;
+      max-width: none;
+      translate: 100% 0;
+      scale: 1;
+      --modal-tl: var(--radius-box);
+      --modal-tr: 0;
+      --modal-bl: var(--radius-box);
+      --modal-br: 0;
+    }
+    [dir="rtl"] :is(.modal-end > .modal-box) {
+      translate: -100% 0;
+      --modal-tl: 0;
+      --modal-tr: var(--radius-box);
+      --modal-bl: 0;
+      --modal-br: var(--radius-box);
+    }
+  }
   .float-right {
     float: right;
   }
@@ -4175,6 +4272,12 @@
     }
   }
   @layer daisyui.l1.l2.l3 {
+    .modal-action {
+      margin-top: calc(0.25rem * 6);
+      display: flex;
+      justify-content: flex-end;
+      gap: calc(0.25rem * 2);
+    }
     .menu .dropdown-content {
       margin-top: calc(0.25rem * 2);
       padding: calc(0.25rem * 2);
@@ -5081,6 +5184,12 @@
   .py-16 {
     padding-block: calc(var(--spacing) * 16);
   }
+  .pt-2 {
+    padding-top: calc(var(--spacing) * 2);
+  }
+  .pt-4 {
+    padding-top: calc(var(--spacing) * 4);
+  }
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
   }
@@ -5409,6 +5518,11 @@
     .floating-label:has(.select-sm) {
       --top-mul: 4;
       --font-size: 0.75rem;
+    }
+    .btn-error {
+      --btn-color: var(--color-error);
+      --btn-fg: var(--color-error-content);
+      --btn-soft-bg: initial;
     }
     .btn-primary {
       --btn-color: var(--color-primary);

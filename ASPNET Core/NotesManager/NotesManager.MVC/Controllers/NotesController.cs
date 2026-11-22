@@ -312,5 +312,18 @@ namespace NotesManager.MVC.Controllers
                 data = result.Data
             });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteNote(int id)
+        {
+            bool deleted = await noteService.DeleteNoteAsync(id);
+            if (!deleted)
+            {
+                return NotFound();
+            }
+            TempData["Success"] = "Note Deleted";
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

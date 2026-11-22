@@ -54,4 +54,11 @@
 
     })
     //#endregion
+
+    //#region Delete Modal Popup
+    $("#delete-note").on("click", function () {
+        delete_note_dialog.showModal();
+    })
+
+    //#endregion
 })

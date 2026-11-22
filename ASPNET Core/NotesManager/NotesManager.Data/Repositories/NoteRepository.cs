@@ -119,5 +119,13 @@ namespace NotesManager.Data.Repositories
                         };
             return query.FirstOrDefaultAsync();
         }
+
+        public Task<int> DeleteAsync(int id)
+        {
+            return dbContext.Notes
+                    .Include(n => n.History)
+                    .Where(n => n.Id == id)
+                    .ExecuteDeleteAsync();
+        }
     }
 }
