@@ -24,6 +24,6 @@ ON c.Id=n.CategoryId
 GROUP BY c.Name,c.Id,c.Color,c.CreatedAt;
 
 -- Get Counts by Status
-SELECT COUNT(*),Status AS TotalNotes
+SELECT COUNT(*) AS Count,Status
 FROM Notes
 GROUP BY Status;
