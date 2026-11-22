@@ -3,6 +3,7 @@ using NotesManager.Data.Interfaces;
 using NotesManager.Data.Models;
 using NotesManager.Data.Repositories;
 using NotesManager.Domain.DTO.Note;
+using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
@@ -175,17 +176,45 @@ namespace NotesManager.Services.Implementations
                 return null;
             }
 
+            // Store old values for history
+            string? oldTitle = note.Title;
+            string? oldDescription = note.Description;
+            NoteStatus? oldStatus = note.Status;
+            int? oldCategoryId = note.CategoryId;
+
+            // Apply updates
             note.Title = string.IsNullOrWhiteSpace(updateNote.Title) ? note.Title : updateNote.Title;
             note.UpdatedAt = DateTime.UtcNow;
             note.Description = string.IsNullOrWhiteSpace(updateNote.Description) ? note.Description : updateNote.Description;
             note.Status = updateNote.Status == note.Status ? note.Status : updateNote.Status;
             note.CategoryId = updateNote.CategoryId == 0 || updateNote.CategoryId == note.CategoryId ? note.CategoryId : updateNote.CategoryId;
 
+            // Check what changed
+            bool titleChanged = note.Title != oldTitle;
+            bool descriptionChanged = note.Description != oldDescription;
+            bool statusChanged = note.Status != oldStatus;
+            bool categoryChanged = note.CategoryId != oldCategoryId;
+
+            // Determine action
+            string action = GetUpdateAction(titleChanged, descriptionChanged, statusChanged, categoryChanged, note.Status);
+
             // Record the Update
             NoteHistory newhistory = new()
             {
-                
+                NoteId = note.Id,
+                Action = action,
+                OldTitle = titleChanged ? oldTitle : null,
+                NewTitle = titleChanged ? note.Title : null,
+                OldDescription = descriptionChanged ? oldDescription : null,
+                NewDescripton = descriptionChanged ? note.Description : null,
+                OldStatus = statusChanged ? oldStatus : null,
+                NewStatus = statusChanged ? note.Status : null,
+                OldCategoryId = categoryChanged ? oldCategoryId : null,
+                NewCategoryId = categoryChanged ? note.CategoryId : null,
+                Note = note
             };
+
+            await noteRepository.RecordHistoryAsync(newhistory);
 
             await unitOfWork.SaveChangesAsync();
             return new NoteDTO()
@@ -221,6 +250,13 @@ namespace NotesManager.Services.Implementations
             int noofrow = await noteRepository.DeleteAsync(id);
             logger.LogInformation("Deleted a Note with Id={Id} which affected Rows={Rows}", id, noofrow);
             return noofrow > 0;
+        }
+
+        private string GetUpdateAction(bool titleChanged, bool descriptionChanged, bool statusChanged, bool categoryChanged, NoteStatus newStatus)
+        {
+            if (!titleChanged && !descriptionChanged && !categoryChanged && statusChanged)
+                return $"Status -> {newStatus}";
+            return "Edited";
         }
     }
 }
