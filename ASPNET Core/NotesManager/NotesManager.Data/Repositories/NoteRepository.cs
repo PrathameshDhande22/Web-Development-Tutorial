@@ -110,10 +110,5 @@ namespace NotesManager.Data.Repositories
                         };
             return query.FirstOrDefaultAsync();
         }
-
-        public void Update(Note note)
-        {
-            dbContext.Notes.Update(note);
-        }
     }
 }

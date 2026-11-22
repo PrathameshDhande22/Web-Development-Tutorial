@@ -197,15 +197,50 @@ namespace NotesManager.MVC.Controllers
 
         // Action method for using the Html Helpers
         [HttpGet]
-        public IActionResult Edit(int Id)
+        public async Task<IActionResult> Edit(int Id)
         {
-            return View();
+            NoteDTO? note = await noteService.GetNoteById(Id);
+            ViewBag.Categories = await categoryService.GetCategoriesAsync();
+
+            if (note == null)
+            {
+                // Not Found Result
+                return NotFound();
+            }
+
+            UpdateNote updateNote = new()
+            {
+                Id = note.Id,
+                CategoryId = note.CategoryId,
+                Description = note.Description,
+                CreatedAt = note.CreatedAt,
+                Title = note.Title,
+                Status = note.Status
+            };
+
+            return View(updateNote);
         }
 
         [HttpPost]
-        public IActionResult Edit(UpdateNote updateNote)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(UpdateNote updateNote)
         {
-            return View();
+            // Validate the model
+            if (ModelState.IsValid)
+            {
+                // Update the Note
+                NoteDTO? updatedNote = await noteService.UpdateAsync(updateNote);
+                if (updatedNote == null)
+                {
+                    return NotFound();
+                }
+                // Success
+                TempData["Success"] = "Note Updated";
+                return RedirectToAction(nameof(Index), new { Id = updatedNote.Id });
+            }
+
+            ViewBag.Categories = await categoryService.GetCategoriesAsync();
+            return View(updateNote);
         }
 
         [HttpGet]
