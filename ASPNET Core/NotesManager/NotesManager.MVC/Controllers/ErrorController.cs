@@ -5,15 +5,12 @@ namespace NotesManager.MVC.Controllers
     public class ErrorController : Controller
     {
         // Action method to handle the errors
-        public IActionResult Index()
+        public IActionResult Index(int statuscode)
         {
-            // Clear the previous response
-            Response.Clear();
-
             // Setting the Error Status code explicitly
-            Response.StatusCode = HttpContext.Response.StatusCode;
+            Response.StatusCode = statuscode;
 
-            ViewResult result = HttpContext.Response.StatusCode switch
+            ViewResult result = statuscode switch
             {
                 StatusCodes.Status404NotFound => View("NotFound"),
                 StatusCodes.Status403Forbidden => View("AccessDenied"),

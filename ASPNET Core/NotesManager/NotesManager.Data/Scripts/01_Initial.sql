@@ -16,6 +16,7 @@ GO
 -- Select Query for All Tables
 SELECT * FROM Category;
 SELECT * FROM Notes;
+SELECT * FROM NoteHistory;
 
 -- Get Category by notes count
 SELECT c.Name,c.Id,c.Color,c.CreatedAt,COUNT(n.Id) FROM Category c

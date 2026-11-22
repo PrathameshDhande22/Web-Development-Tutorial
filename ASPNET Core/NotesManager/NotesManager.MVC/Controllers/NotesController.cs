@@ -288,7 +288,7 @@ namespace NotesManager.MVC.Controllers
                 _logger.LogError(ex, "Error occured when creating the new note");
                 // Setting the Tempdata as the error
                 TempData["Error"] = "Error occured creating the new note";
-                return View(createNote);
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
 

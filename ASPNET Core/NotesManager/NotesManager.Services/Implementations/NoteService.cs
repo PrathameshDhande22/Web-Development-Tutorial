@@ -104,9 +104,25 @@ namespace NotesManager.Services.Implementations
         {
             try
             {
+                // Add Note
                 Note note = await noteRepository.Add(createNote);
+
+                // Record the Creation History
+                NoteHistory history = new()
+                {
+                    Action = "Created",
+                    NewCategoryId = note.CategoryId,
+                    NewDescripton = note.Description,
+                    NewStatus = note.Status,
+                    NewTitle = note.Title,
+                    Note = note
+                };
+
+                await noteRepository.RecordHistoryAsync(history);
+
                 // use the unit of work to save
                 await unitOfWork.SaveChangesAsync();
+
                 return new AddNoteDTO()
                 {
                     Id = note.Id,
@@ -164,6 +180,12 @@ namespace NotesManager.Services.Implementations
             note.Description = string.IsNullOrWhiteSpace(updateNote.Description) ? note.Description : updateNote.Description;
             note.Status = updateNote.Status == note.Status ? note.Status : updateNote.Status;
             note.CategoryId = updateNote.CategoryId == 0 || updateNote.CategoryId == note.CategoryId ? note.CategoryId : updateNote.CategoryId;
+
+            // Record the Update
+            NoteHistory newhistory = new()
+            {
+                
+            };
 
             await unitOfWork.SaveChangesAsync();
             return new NoteDTO()

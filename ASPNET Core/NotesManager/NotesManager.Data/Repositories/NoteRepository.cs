@@ -127,5 +127,10 @@ namespace NotesManager.Data.Repositories
                     .Where(n => n.Id == id)
                     .ExecuteDeleteAsync();
         }
+
+        public async Task RecordHistoryAsync(NoteHistory history)
+        {
+            await dbContext.NoteHistory.AddAsync(history);
+        }
     }
 }
