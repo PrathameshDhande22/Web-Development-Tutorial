@@ -41,6 +41,7 @@
             success: function (response) {
                 if (response?.success) {
                     showToast(`Your note is now ${newstatus}`, "success");
+                    $(".status-badge").text(newstatus);
                 } else {
                     showToast("Failed to update the status", "error");
                     $("#status-selected").data(previous_status);
