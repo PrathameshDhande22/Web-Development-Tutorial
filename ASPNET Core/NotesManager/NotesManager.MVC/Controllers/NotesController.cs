@@ -13,6 +13,7 @@ using NotesManager.Services;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -143,9 +144,15 @@ namespace NotesManager.MVC.Controllers
 
         [Route("note/{id:int}/history")]  // defining the route with attribute routing
         [Route("note/history/{id:int}")] // Specifying multiple route
-        public string History(int id)
+        [HttpGet]
+        public async Task<IActionResult> History(int id)
         {
-            return $"History for Notes {id}";
+            List<NoteHistoryDTO>? history = await noteService.GetHistoryForNoteAsync(id);
+            if (history == null || history.Count == 0)
+            {
+                return NotFound();
+            }
+            return View(history);
         }
 
         // Partial View action method

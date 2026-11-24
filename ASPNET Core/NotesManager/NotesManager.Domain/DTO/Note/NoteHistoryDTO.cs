@@ -6,6 +6,7 @@
         public string ActionName { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public int RowNumber { get; set; }
+        public string Title { get; set; } = string.Empty;
         public string Version { get => $"v{RowNumber}"; }
     }
 }
