@@ -32,6 +32,9 @@
 
     $("#status-selected").on("change", function (e) {
         let newstatus = $(this).val()
+
+        // Get the Status text correctly from the option
+        let newStatus_text = $(this).find(`option[value="${newstatus}"]`).text().trim();
         let noteid = $(this).data("noteid")
 
         // Ajax Call
@@ -40,8 +43,8 @@
             url: `/note/status/${newstatus}?noteid=${noteid}`,
             success: function (response) {
                 if (response?.success) {
-                    showToast(`Your note is now ${newstatus}`, "success");
-                    $(".status-badge").text(newstatus);
+                    showToast(`Your note is now ${newStatus_text}`, "success");
+                    $(".status-badge").text(newStatus_text);
                 } else {
                     showToast("Failed to update the status", "error");
                     $("#status-selected").data(previous_status);
