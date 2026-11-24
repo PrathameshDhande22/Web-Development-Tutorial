@@ -5,7 +5,8 @@ namespace NotesManager.MVC.Controllers
     public class ErrorController : Controller
     {
         // Action method to handle the errors
-        public IActionResult Index(int statuscode)
+        [Route("Error")]
+        public IActionResult Index(int statuscode = 500)
         {
             // Setting the Error Status code explicitly
             Response.StatusCode = statuscode;
