@@ -17,11 +17,18 @@ namespace NotesManager.Data.Configuration
             builder.Property(note => note.Status)
                 .HasDefaultValue(NoteStatus.Draft);
 
-            // Configuring the Relationship
+            // Configuring the Relationship for the Category Table
             builder.HasOne(n => n.Category)
                 .WithMany(c => c.Notes)
                 .HasForeignKey(n => n.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Configuring the Relationship for the NoteAttachments Table
+            // The Relationship with None returning
+            builder.HasMany(n => n.Attachments)
+                .WithOne()
+                .HasForeignKey(a => a.Noteid)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

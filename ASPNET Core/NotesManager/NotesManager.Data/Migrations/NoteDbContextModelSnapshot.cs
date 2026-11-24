@@ -92,6 +92,39 @@ namespace NotesManager.Data.Migrations
                     b.ToTable("Notes");
                 });
 
+            modelBuilder.Entity("NotesManager.Data.Models.NoteAttachments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Extension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Length")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Noteid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Noteid");
+
+                    b.ToTable("NoteAttachments");
+                });
+
             modelBuilder.Entity("NotesManager.Data.Models.NoteHistory", b =>
                 {
                     b.Property<int>("Id")
@@ -159,6 +192,15 @@ namespace NotesManager.Data.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("NotesManager.Data.Models.NoteAttachments", b =>
+                {
+                    b.HasOne("NotesManager.Data.Models.Note", null)
+                        .WithMany("Attachments")
+                        .HasForeignKey("Noteid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("NotesManager.Data.Models.NoteHistory", b =>
                 {
                     b.HasOne("NotesManager.Data.Models.Category", "NewCategory")
@@ -191,6 +233,8 @@ namespace NotesManager.Data.Migrations
 
             modelBuilder.Entity("NotesManager.Data.Models.Note", b =>
                 {
+                    b.Navigation("Attachments");
+
                     b.Navigation("History");
                 });
 #pragma warning restore 612, 618

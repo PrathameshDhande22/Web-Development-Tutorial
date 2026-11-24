@@ -25,6 +25,7 @@ namespace NotesManager.Data.Models
         // Navigational Properties
         public Category Category { get; set; } = null!;
         public ICollection<NoteHistory> History { get; set; } = new List<NoteHistory>();
+        public ICollection<NoteAttachments> Attachments { get; set; } = new List<NoteAttachments>();
 
     }
 }
