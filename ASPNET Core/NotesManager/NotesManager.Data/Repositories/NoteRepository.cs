@@ -132,5 +132,24 @@ namespace NotesManager.Data.Repositories
         {
             await dbContext.NoteHistory.AddAsync(history);
         }
+
+        public Task<List<NoteHistoryDTO>> GetHistoryListAsync(int noteId)
+        {
+            return dbContext.NoteHistory
+                .Where(nh => nh.NoteId == noteId)
+                .OrderByDescending(nh => nh.CreatedAt)
+                .Select((nh, i) => new NoteHistoryDTO()
+                {
+                    Id = nh.Id,
+                    ActionName = nh.Action,
+                    CreatedAt = nh.CreatedAt.DateTime,
+                    RowNumber = i
+                }).ToListAsync();
+        }
+
+        public Task<NoteHistory?> GetDetailNoteHistory(int id)
+        {
+            return dbContext.NoteHistory.FirstOrDefaultAsync(nh => nh.Id == id);
+        }
     }
 }
