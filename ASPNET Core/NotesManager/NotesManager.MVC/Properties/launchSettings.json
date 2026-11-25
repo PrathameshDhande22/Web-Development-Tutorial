@@ -16,7 +16,9 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7094;http://localhost:5213",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AWS_ACCESS_KEY_ID": "duPCYSViINAnX1Z2f1WG",
+        "AWS_SECRET_ACCESS_KEY": "VSFEPbqFKi1ijzEIx4i29oNEprjNUq22Yeb338bA"
       }
     }
   }

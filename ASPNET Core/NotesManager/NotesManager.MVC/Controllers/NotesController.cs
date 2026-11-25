@@ -332,5 +332,21 @@ namespace NotesManager.MVC.Controllers
             TempData["Success"] = "Note Deleted";
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public IActionResult Attachments([FromForm] UploadNoteAttachments attachments)
+        {
+            if (!ModelState.IsValid)
+            {
+                // handles the 400 Bad Request Automatically
+                return ValidationProblem(ModelState);
+            }
+            // Handle the file uploading
+
+            return Json(new
+            {
+                message = "Worked"
+            });
+        }
     }
 }
