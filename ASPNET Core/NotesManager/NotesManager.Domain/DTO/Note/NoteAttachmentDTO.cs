@@ -10,5 +10,6 @@ namespace NotesManager.Domain.DTO.Note
         public long Size { get; set; }
         public string FilePath { get; set; } = string.Empty;
         public NoteAttachmentType AttachMentType { get; set; }
+        public string ErrorMessage { get; set; } = string.Empty;
     }
 }

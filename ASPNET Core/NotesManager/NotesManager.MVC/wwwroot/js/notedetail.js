@@ -69,9 +69,14 @@
     const MAX_FILE_SIZE = 5120 * 1000;
     const MAX_FILES = 10;
     const SUPPORTED_TYPES = ["image/png", "image/jpg", "image/jpeg", "application/pdf"];
+    const PDF_ATTACHMENT_TYPE = 1;
+    const SIZE_UNITS = ["B", "KB", "MB", "GB"];
 
     let dropzone$ = $("#drop-zone");
     let fileinput$ = $("#file-dropzone");
+    let attachmentList$ = $("#attachment-list");
+    let attachmentCount$ = $("#attachment-count");
+    let attachmentTemplate = document.getElementById("attachment-template");
     let isUploading = false;
 
     // Stop the by default browser
@@ -140,9 +145,15 @@
             }
         });
 
-        if (validFiles.length > MAX_FILES) {
-            showToast(`A note can have only ${MAX_FILES} attachments. Only the first ${MAX_FILES} files will be uploaded`, "info");
-            validFiles.splice(MAX_FILES);
+        const remainingSlots = MAX_FILES - attachmentList$.children().length;
+        if (remainingSlots <= 0) {
+            showToast(`A note can have only ${MAX_FILES} attachments`, "error");
+            return;
+        }
+
+        if (validFiles.length > remainingSlots) {
+            showToast(`A note can have only ${MAX_FILES} attachments. Only the first ${remainingSlots} file(s) will be uploaded`, "info");
+            validFiles.splice(remainingSlots);
         }
 
         if (validFiles.length > 0) {
@@ -167,6 +178,49 @@
     }
 
     /**
+     * Converts the size in bytes to a readable text like "1.25 MB".
+     * @param {Number} bytes - Size of the file in bytes
+     * @returns {String} The readable size
+     */
+    function formatFileSize(bytes) {
+        let size = bytes;
+        let unitIndex = 0;
+        while (size >= 1024 && unitIndex < SIZE_UNITS.length - 1) {
+            size /= 1024;
+            unitIndex++;
+        }
+        return `${size.toFixed(2)} ${SIZE_UNITS[unitIndex]}`;
+    }
+
+    /**
+     * Creates the attachment list item from the template for an uploaded attachment.
+     * @param {Object} attachment - The uploaded attachment returned by the server
+     * @returns {jQuery} The list item element
+     */
+    function createAttachmentItem(attachment) {
+        const item$ = $(attachmentTemplate.content.firstElementChild.cloneNode(true));
+        const isPdf = attachment.attachMentType === PDF_ATTACHMENT_TYPE;
+
+        item$.find(`[data-icon="${isPdf ? "image" : "pdf"}"]`).remove();
+        item$.find('[data-field="name"]').text(attachment.fileName).attr("title", attachment.fileName);
+        item$.find('[data-field="size"]').text(formatFileSize(attachment.size));
+        item$.find('[data-action="download"]').attr("aria-label", `Download ${attachment.fileName}`);
+        item$.find('[data-action="delete"]').attr("aria-label", `Delete ${attachment.fileName}`);
+        return item$;
+    }
+
+    /**
+     * Adds the uploaded attachments to the list and updates the attachments count.
+     * @param {Object[]} attachments - The uploaded attachments returned by the server
+     */
+    function showAttachments(attachments) {
+        attachmentList$.append(attachments.map(createAttachmentItem));
+
+        const count = attachmentList$.children().length;
+        attachmentCount$.text(count).toggleClass("hidden", count === 0);
+    }
+
+    /**
      * Uploads the files to the note with a single request and shows the result as toasts.
      * @param {File[]} files - Valid files to upload
      */
@@ -187,6 +241,7 @@
             contentType: false,
             success: function (response) {
                 const failedFiles = response?.errors || [];
+                showAttachments(response?.attachments || []);
                 showToast(response?.message || "Files uploaded successfully", failedFiles.length > 0 ? "info" : "success");
                 failedFiles.forEach((message) => showToast(message, "error"));
             },

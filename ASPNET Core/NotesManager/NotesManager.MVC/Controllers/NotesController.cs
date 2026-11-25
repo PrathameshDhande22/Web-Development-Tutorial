@@ -342,15 +342,21 @@ namespace NotesManager.MVC.Controllers
                 return ValidationProblem(ModelState);
             }
             // Handle the file uploading
-            ServiceResult<List<string>> result = await noteService.AddAttachmentsToNote(attachments.Files, id);
+            ServiceResult<List<NoteAttachmentDTO>> result = await noteService.AddAttachmentsToNote(attachments.Files, id);
 
             if (result.Success)
+            {
+                List<NoteAttachmentDTO> files = result.Data ?? [];
+
+                // Splitting the uploaded attachments and the error messages of the failed files
                 return Ok(new
                 {
                     message = result.Message,
                     success = result.Success,
-                    errors = result.Data
+                    attachments = files.Where(f => string.IsNullOrEmpty(f.ErrorMessage)),
+                    errors = files.Where(f => !string.IsNullOrEmpty(f.ErrorMessage)).Select(f => f.ErrorMessage)
                 });
+            }
 
             return BadRequest(new
             {
