@@ -31,7 +31,7 @@ namespace NotesManager.Services.Implementations
         {
             try
             {
-                Note? note = await noteRepository.GetById(Id);
+                Note? note = await noteRepository.GetById(Id, new Data.PropertyInclude { IncludeAttachments = true, IncludeCategory = true, IncludeNoteHistory = true });
                 if (note == null)
                 {
                     return null;

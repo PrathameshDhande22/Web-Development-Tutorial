@@ -81,15 +81,27 @@ namespace NotesManager.Data.Repositories
             return newnote;
         }
 
-        public Task<Note?> GetById(int id)
+        public Task<Note?> GetById(int id, PropertyInclude? propertyInclude = null)
         {
-            return dbContext.Notes
-                        .Include(n => n.Category)
-                        .Include(n => n.History)
+            var query = dbContext.Notes
                         .AsNoTracking()
-                        .AsSplitQuery()
-                        .Where(n => n.Id == id)
-                        .FirstOrDefaultAsync();
+                        .AsSplitQuery();
+            if (propertyInclude != null)
+            {
+                if (propertyInclude.IncludeCategory)
+                {
+                    query = query.Include(n => n.Category);
+                }
+                if (propertyInclude.IncludeNoteHistory)
+                {
+                    query = query.Include(n => n.History);
+                }
+                if (propertyInclude.IncludeAttachments)
+                {
+                    query = query.Include(n => n.Attachments);
+                }
+            }
+            return query.FirstOrDefaultAsync(n => n.Id == id);
         }
 
         public Task<Note?> GetForUpdateAsync(int id)
