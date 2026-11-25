@@ -334,7 +334,7 @@ namespace NotesManager.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Attachments([FromForm] UploadNoteAttachments attachments)
+        public async Task<IActionResult> Attachments(int id, [FromForm] UploadNoteAttachments attachments)
         {
             if (!ModelState.IsValid)
             {
@@ -342,6 +342,10 @@ namespace NotesManager.MVC.Controllers
                 return ValidationProblem(ModelState);
             }
             // Handle the file uploading
+            foreach (IFormFile file in attachments.Files)
+            {
+                await noteService.UploadFiles(file, id);
+            }
 
             return Json(new
             {

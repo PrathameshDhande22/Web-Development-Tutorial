@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Amazon.S3;
+using Amazon.S3.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using NotesManager.Data.Interfaces;
 using NotesManager.Data.Models;
 using NotesManager.Data.Repositories;
@@ -16,12 +19,14 @@ namespace NotesManager.Services.Implementations
         private ILogger<NoteService> logger;
         // Injecting the unit of work for saving the entities in one save only
         private readonly IUnitOfWork unitOfWork;
+        private readonly IAmazonS3 s3;
 
-        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger, IUnitOfWork unitofwork)
+        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger, IUnitOfWork unitofwork, IAmazonS3 amazons3)
         {
             this.noteRepository = noteRepository;
             this.logger = logger;
             this.unitOfWork = unitofwork;
+            this.s3 = amazons3;
         }
 
         public async Task<NoteDTO?> GetNoteById(int Id)
@@ -287,6 +292,22 @@ namespace NotesManager.Services.Implementations
             };
         }
 
+        public async Task<string> UploadFiles(IFormFile file, int noteId)
+        {
+            string filePath = $"{noteId}/{file.FileName}_{Guid.NewGuid().ToString()}";
+
+            using var stream = file.OpenReadStream();
+            PutObjectRequest putobjectRequest = new()
+            {
+                BucketName = "notes-manager",
+                ContentType = file.ContentType,
+                Key = filePath,
+                InputStream = stream
+            };
+
+            var response = await s3.PutObjectAsync(putobjectRequest);
+            return filePath;
+        }
 
         #region Helper Methods
         private string GetUpdateAction(bool titleChanged, bool descriptionChanged, bool statusChanged, bool categoryChanged, NoteStatus newStatus)

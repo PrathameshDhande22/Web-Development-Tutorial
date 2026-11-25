@@ -1,4 +1,5 @@
-﻿using NotesManager.Domain.DTO.Note;
+﻿using Microsoft.AspNetCore.Http;
+using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 
@@ -16,5 +17,6 @@ namespace NotesManager.Services.Interfaces
         public Task<bool> DeleteNoteAsync(int id);
         public Task<List<NoteHistoryDTO>?> GetHistoryForNoteAsync(int noteid);
         public Task<NoteDetailedHistoryDTO?> GetHistoryById(int id);
+        public Task<string> UploadFiles(IFormFile file, int noteId);
     }
 }
