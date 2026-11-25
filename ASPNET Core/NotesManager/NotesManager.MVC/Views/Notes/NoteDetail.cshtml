@@ -1,8 +1,17 @@
 ﻿@model NoteDTO
+@using Humanizer
 
 @{
     ViewData["Title"] = Model.Title.ToLower();
     NoteStatus[] statuses = Enum.GetValues<NoteStatus>();
+
+}
+
+@functions {
+    public string ConvertToHuman(long value)
+    {
+        return value.Bytes().Humanize("0.00");
+    }
 }
 
 <div class="mx-auto max-w-7xl flex-1 px-4 py-8 md:px-8 md:py-10">
@@ -147,6 +156,31 @@
                     <div>
                         <!--Note Attachments List-->
                         <ul>
+                            @foreach (NoteAttachmentDTO attachmentDTO in Model.Attachments)
+                            {
+
+                                <li class="flex">
+                                    <!--File Details-->
+                                    <div>
+                                        <span class="truncate text-gray-800">@attachmentDTO.FileName</span>
+                                        <span class="text-gray-400">
+                                            @ConvertToHuman(attachmentDTO.Size)
+                                            <time-ago date="attachmentDTO.CreatedAt" />
+                                        </span>
+                                    </div>
+                                    <!--Attachment Actions-->
+                                    <div>
+                                        <button class="btn btn-ghost btn-sm">
+                                            <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>
+                                        </button>
+                                        <button class="btn btn-ghost btn-sm">
+                                            <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                                        </button>
+                                        
+
+                                    </div>
+                                </li>
+                            }
                         </ul>
                         <!--Note Attachments Upload-->
                         <div>

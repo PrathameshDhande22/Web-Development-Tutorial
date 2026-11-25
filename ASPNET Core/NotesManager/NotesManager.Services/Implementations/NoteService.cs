@@ -52,7 +52,16 @@ namespace NotesManager.Services.Implementations
                         Id = note.Category.Id,
                         Name = note.Category.Name,
                         Color = note.Category.Color
-                    }
+                    },
+                    Attachments = note.Attachments.Select(a => new NoteAttachmentDTO()
+                    {
+                        Id = a.Id,
+                        FileName = a.Name,
+                        Size = a.Length,
+                        FilePath = a.FilePath,
+                        CreatedAt = a.CreatedAt.DateTime,
+                        AttachMentType = a.Extension
+                    }).ToList()
                 };
             }
             catch (Exception ex)
@@ -335,7 +344,7 @@ namespace NotesManager.Services.Implementations
             {
                 return ServiceResult<List<string>>.Fail("Files Failed to Upload. No attachments added");
             }
-            return ServiceResult<List<string>>.Ok(failedresults, failedresults.Count > 0 ? "Some files failed to upload" : "Files uploaded successfully");
+            return ServiceResult<List<string>>.Ok(failedresults, failedresults.Count > 0 ? "Some files failed to upload" : "Files attached successfully");
         }
 
         #region Helper Methods
