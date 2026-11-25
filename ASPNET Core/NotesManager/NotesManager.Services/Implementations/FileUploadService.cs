@@ -63,10 +63,10 @@ namespace NotesManager.Services.Implementations
             }
         }
 
-        public Task<bool> UploadAsync(IFormFile file, string key, string ContentType)
+        public async Task<bool> UploadAsync(IFormFile file, string key, string ContentType)
         {
             using var stream = file.OpenReadStream();
-            return UploadAsync(stream, key, ContentType);
+            return await UploadAsync(stream, key, ContentType);
         }
     }
 }

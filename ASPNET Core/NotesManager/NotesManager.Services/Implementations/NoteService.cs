@@ -327,10 +327,14 @@ namespace NotesManager.Services.Implementations
 
             // Process all files concurrently and wait for all of them to complete
             var results = await Task.WhenAll(tasks);
-            List<string> failedresults = results.Where(r => !r.Item1).Select(r => $"Failed to upload file with {r.FileName}. Try again with these file later").ToList();
+            List<string> failedresults = results.Where(r => !r.Item1).Select(r => $"{r.FileName} failed to upload. Try again with these file later").ToList();
 
             await unitOfWork.SaveChangesAsync();
 
+            if (failedresults.Count == files.Count)
+            {
+                return ServiceResult<List<string>>.Fail("Files Failed to Upload. No attachments added");
+            }
             return ServiceResult<List<string>>.Ok(failedresults, failedresults.Count > 0 ? "Some files failed to upload" : "Files uploaded successfully");
         }
 

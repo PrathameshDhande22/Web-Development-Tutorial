@@ -344,7 +344,7 @@ namespace NotesManager.MVC.Controllers
             // Handle the file uploading
             ServiceResult<List<string>> result = await noteService.AddAttachmentsToNote(attachments.Files, id);
 
-            if (!result.Success)
+            if (result.Success)
                 return Ok(new
                 {
                     message = result.Message,
@@ -355,7 +355,7 @@ namespace NotesManager.MVC.Controllers
             return BadRequest(new
             {
                 message = result.Message,
-                success = result.Success
+                success = result.Success,
             });
         }
     }
