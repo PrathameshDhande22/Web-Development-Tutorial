@@ -17,9 +17,9 @@ namespace NotesManager.Services.Implementations
         private ILogger<NoteService> logger;
         // Injecting the unit of work for saving the entities in one save only
         private readonly IUnitOfWork unitOfWork;
-        private readonly IFileUploadService fileUploadService;
+        private readonly IBlobService fileUploadService;
 
-        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger, IUnitOfWork unitofwork, IFileUploadService fileUploadService)
+        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger, IUnitOfWork unitofwork, IBlobService fileUploadService)
         {
             this.noteRepository = noteRepository;
             this.logger = logger;
