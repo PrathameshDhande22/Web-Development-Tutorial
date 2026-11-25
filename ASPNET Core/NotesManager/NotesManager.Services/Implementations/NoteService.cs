@@ -252,11 +252,50 @@ namespace NotesManager.Services.Implementations
             return noofrow > 0;
         }
 
+        public async Task<List<NoteHistoryDTO>?> GetHistoryForNoteAsync(int noteid)
+        {
+            List<NoteHistoryDTO> history = await noteRepository.GetHistoryListAsync(noteid);
+            if (history.Count == 0)
+            {
+                logger.LogInformation("No history found for Note with Id={Id}", noteid);
+                return null;
+            }
+            return history;
+        }
+
+        public async Task<NoteDetailedHistoryDTO?> GetHistoryById(int id)
+        {
+            NoteHistory? history = await noteRepository.GetDetailNoteHistory(id);
+            if (history == null)
+            {
+                logger.LogInformation("No history found for NoteHistory with Id={Id}", id);
+                return null;
+            }
+            return new NoteDetailedHistoryDTO()
+            {
+                Id = history.Id,
+                ActionName = history.Action,
+                CreatedAt = history.CreatedAt.DateTime,
+                NewCategoryId = history.NewCategoryId,
+                NewDescripton = history.NewDescripton,
+                NewStatus = history.NewStatus,
+                NewTitle = history.NewTitle,
+                OldCategoryId = history.OldCategoryId,
+                OldDescription = history.OldDescription,
+                OldStatus = history.OldStatus,
+                OldTitle = history.OldTitle
+            };
+        }
+
+
+        #region Helper Methods
         private string GetUpdateAction(bool titleChanged, bool descriptionChanged, bool statusChanged, bool categoryChanged, NoteStatus newStatus)
         {
             if (!titleChanged && !descriptionChanged && !categoryChanged && statusChanged)
                 return $"Status -> {newStatus}";
             return "Edited";
         }
+        #endregion
+
     }
 }

@@ -14,5 +14,7 @@ namespace NotesManager.Services.Interfaces
         public Task<NoteDTO?> UpdateAsync(UpdateNote updateNote);
         public Task<List<NoteDTO>> GetPinNotesAsync();
         public Task<bool> DeleteNoteAsync(int id);
+        public Task<List<NoteHistoryDTO>?> GetHistoryForNoteAsync(int noteid);
+        public Task<NoteDetailedHistoryDTO?> GetHistoryById(int id);
     }
 }
