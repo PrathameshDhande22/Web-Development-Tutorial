@@ -98,7 +98,7 @@ namespace NotesManager.Data.Repositories
                 }
                 if (propertyInclude.IncludeAttachments)
                 {
-                    query = query.Include(n => n.Attachments);
+                    query = query.Include(n => n.Attachments.OrderByDescending(a => a.CreatedAt));
                 }
             }
             return query.FirstOrDefaultAsync(n => n.Id == id);
