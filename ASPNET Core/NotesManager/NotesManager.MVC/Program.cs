@@ -63,6 +63,7 @@ builder.Services.AddAntiforgery(setup =>
 builder.Services.AddScoped<ApiExceptionFilter>();
 
 // Add the services and database related services
+builder.Services.AddAWSRequiredServices(builder.Configuration);
 builder.Services.AddDataServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddFluentValidation();

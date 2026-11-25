@@ -1,4 +1,7 @@
-﻿using FluentValidation;
+﻿using Amazon.Extensions.NETCore.Setup;
+using Amazon.S3;
+using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NotesManager.Data;
 using NotesManager.Data.Interfaces;
@@ -41,6 +44,21 @@ namespace NotesManager.Services
         {
             // Registering the validator and injecting
             services.AddValidatorsFromAssemblyContaining<RegisterValidator>();
+
+            return services;
+        }
+
+        // Services for adding the AWS
+        public static IServiceCollection AddAWSRequiredServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            // Get the default configuration for the AWS
+            AWSOptions awsoptions = configuration.GetAWSOptions();
+
+            // Add the Default AWS Option
+            services.AddDefaultAWSOptions(awsoptions);
+
+            // AWS Services
+            services.AddAWSService<IAmazonS3>();
 
             return services;
         }
