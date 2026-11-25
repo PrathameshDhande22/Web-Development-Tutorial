@@ -24,7 +24,8 @@ namespace NotesManager.Data.Models
         [Required]
         public int Noteid { get; set; }
 
-        public DateTimeOffset CreatedAt { get; } = DateTimeOffset.UtcNow;
+        [Required]
+        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 
         [Required]
         public string FilePath { get; set; } = string.Empty;
