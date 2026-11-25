@@ -162,5 +162,10 @@ namespace NotesManager.Data.Repositories
         {
             return dbContext.NoteHistory.FirstOrDefaultAsync(nh => nh.Id == id);
         }
+
+        public void AddAttachments(NoteAttachments attachment)
+        {
+            dbContext.NoteAttachments.Add(attachment);
+        }
     }
 }

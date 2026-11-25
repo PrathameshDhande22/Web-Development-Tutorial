@@ -15,5 +15,6 @@ namespace NotesManager.Data
         public DbSet<Note> Notes { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<NoteHistory> NoteHistory { get; set; }
+        public DbSet<NoteAttachments> NoteAttachments { get; set; }
     }
 }

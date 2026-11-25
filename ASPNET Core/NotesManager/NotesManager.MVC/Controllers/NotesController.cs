@@ -342,10 +342,8 @@ namespace NotesManager.MVC.Controllers
                 return ValidationProblem(ModelState);
             }
             // Handle the file uploading
-            foreach (IFormFile file in attachments.Files)
-            {
-                await noteService.UploadFiles(file, id);
-            }
+            ServiceResult<bool> result = await noteService.AddAttachmentsToNote(attachments.Files,id);
+
 
             return Json(new
             {

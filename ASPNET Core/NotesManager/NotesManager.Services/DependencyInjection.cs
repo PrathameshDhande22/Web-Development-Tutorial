@@ -35,6 +35,7 @@ namespace NotesManager.Services
         {
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<INoteService, NoteService>();
+            services.AddScoped<IFileUploadService, FileUploadService>();
 
             return services;
         }

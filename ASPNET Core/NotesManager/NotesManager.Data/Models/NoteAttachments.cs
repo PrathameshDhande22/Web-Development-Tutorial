@@ -15,7 +15,7 @@ namespace NotesManager.Data.Models
         public string Name { get; set; } = string.Empty;
 
         [Required]
-        public int Length { get; set; }
+        public long Length { get; set; }
 
         [Required]
         public NoteAttachmentType Extension { get; set; }
@@ -23,6 +23,8 @@ namespace NotesManager.Data.Models
         // Foreign Key for the Note Id
         [Required]
         public int Noteid { get; set; }
+
+        public DateTimeOffset CreatedAt { get; } = DateTimeOffset.UtcNow;
 
         [Required]
         public string FilePath { get; set; } = string.Empty;
