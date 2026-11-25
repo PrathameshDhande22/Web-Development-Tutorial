@@ -3526,6 +3526,47 @@
     }
   }
   @layer daisyui.l1.l2.l3 {
+    .card-body {
+      display: flex;
+      flex: auto;
+      flex-direction: column;
+      gap: calc(0.25rem * 2);
+      padding: var(--card-p, 1.5rem);
+      font-size: var(--card-fs, 0.875rem);
+    }
+  }
+  @layer daisyui.l1.l2.l3.l4 {
+    .card-body p {
+      flex-grow: 1;
+    }
+  }
+  @layer daisyui.l1.l2 {
+    .image-full > .card-body {
+      position: relative;
+      color: var(--color-neutral-content);
+    }
+    .card-xs .card-body {
+      --card-p: 0.5rem;
+      --card-fs: 0.6875rem;
+    }
+    .card-sm .card-body {
+      --card-p: 1rem;
+      --card-fs: 0.75rem;
+    }
+    .card-md .card-body {
+      --card-p: 1.5rem;
+      --card-fs: 0.875rem;
+    }
+    .card-lg .card-body {
+      --card-p: 2rem;
+      --card-fs: 1rem;
+    }
+    .card-xl .card-body {
+      --card-p: 2.5rem;
+      --card-fs: 1.125rem;
+    }
+  }
+  @layer daisyui.l1.l2.l3 {
     .card {
       position: relative;
       display: flex;
@@ -4983,6 +5024,9 @@
   .bg-base-100 {
     background-color: var(--color-base-100);
   }
+  .bg-base-200 {
+    background-color: var(--color-base-200);
+  }
   .bg-black\/40 {
     background-color: color-mix(in srgb, #000 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -5397,6 +5441,12 @@
   .opacity-50 {
     opacity: 50%;
   }
+  .opacity-60 {
+    opacity: 60%;
+  }
+  .opacity-70 {
+    opacity: 70%;
+  }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -5554,6 +5604,13 @@
     .aura:has( > .card,  > .alert) {
       --aura-radius: var(--radius-box);
     }
+  }
+  @layer daisyui.l1.l2 {
+    .card-dash {
+      border: var(--border) dashed var(--color-base-200);
+    }
+  }
+  @layer daisyui.l1.l2.l3 {
     .aura:has( > .checkbox,  > .toggle,  > .badge) {
       --aura-radius: var(--radius-selector);
     }

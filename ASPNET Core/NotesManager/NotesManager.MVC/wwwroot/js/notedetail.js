@@ -63,6 +63,29 @@
     $("#delete-note").on("click", function () {
         delete_note_dialog.showModal();
     })
+    //#endregion
+
+    //#region Note Attachment Upload
+    let dropzone$ = $("#drop-zone")
+
+    // Stop the by default browser
+    dropzone$.on("dragenter dragover dragleave drop", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+
+    dropzone$.on("dragover dragenter", function () {
+        $(this).addClass("bg-base-200")
+    })
+
+    dropzone$.on("dragleave drop", function () {
+        $(this).removeClass("bg-base-200")
+    })
+
+    // After droping the file
+    dropzone$.on("drop", function () {
+        console.log("file dropped")
+    })
 
     //#endregion
 })
