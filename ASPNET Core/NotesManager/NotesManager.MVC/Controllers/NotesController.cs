@@ -342,12 +342,20 @@ namespace NotesManager.MVC.Controllers
                 return ValidationProblem(ModelState);
             }
             // Handle the file uploading
-            ServiceResult<bool> result = await noteService.AddAttachmentsToNote(attachments.Files,id);
+            ServiceResult<List<string>> result = await noteService.AddAttachmentsToNote(attachments.Files, id);
 
+            if (!result.Success)
+                return Ok(new
+                {
+                    message = result.Message,
+                    success = result.Success,
+                    errors = result.Data
+                });
 
-            return Json(new
+            return BadRequest(new
             {
-                message = "Worked"
+                message = result.Message,
+                success = result.Success
             });
         }
     }

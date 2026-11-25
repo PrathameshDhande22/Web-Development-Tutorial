@@ -17,6 +17,6 @@ namespace NotesManager.Services.Interfaces
         public Task<bool> DeleteNoteAsync(int id);
         public Task<List<NoteHistoryDTO>?> GetHistoryForNoteAsync(int noteid);
         public Task<NoteDetailedHistoryDTO?> GetHistoryById(int id);
-        public Task<ServiceResult<bool>> AddAttachmentsToNote(List<IFormFile> files, int noteId);
+        public Task<ServiceResult<List<string>>> AddAttachmentsToNote(List<IFormFile> files, int noteId);
     }
 }

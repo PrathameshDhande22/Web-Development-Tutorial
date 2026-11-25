@@ -1,7 +1,4 @@
-﻿using Amazon.S3;
-using Amazon.S3.Model;
-using Microsoft.AspNetCore.Http;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using NotesManager.Data.Interfaces;
 using NotesManager.Data.Models;
@@ -293,14 +290,15 @@ namespace NotesManager.Services.Implementations
             };
         }
 
-        public async Task<ServiceResult<bool>> AddAttachmentsToNote(List<IFormFile> files, int noteId)
+        public async Task<ServiceResult<List<string>>> AddAttachmentsToNote(List<IFormFile> files, int noteId)
         {
             Note? note = await noteRepository.GetById(noteId);
             if (note == null)
             {
-                return ServiceResult<bool>.Fail("Note with these id does not exists");
+                return ServiceResult<List<string>>.Fail("Note with these id does not exists");
             }
 
+            // Upload the files to S3 and save the attachment details in the database
             var tasks = files.Select(async f =>
             {
                 string filePath = $"{noteId}/{f.FileName}_{Guid.NewGuid().ToString()}";
@@ -318,19 +316,22 @@ namespace NotesManager.Services.Implementations
                     };
 
                     noteRepository.AddAttachments(attachment);
+                    return (true, f.FileName);
                 }
                 else
                 {
                     logger.LogInformation("Failed to add the attachments for NoteId={Id}", noteId);
                 }
-
+                return (false, f.FileName);
             });
 
-            await Task.WhenAll(tasks);
+            // Process all files concurrently and wait for all of them to complete
+            var results = await Task.WhenAll(tasks);
+            List<string> failedresults = results.Where(r => !r.Item1).Select(r => $"Failed to upload file with {r.FileName}. Try again with these file later").ToList();
 
             await unitOfWork.SaveChangesAsync();
 
-            return ServiceResult<bool>.Ok(true, "Files uploaded successfully");
+            return ServiceResult<List<string>>.Ok(failedresults, failedresults.Count > 0 ? "Some files failed to upload" : "Files uploaded successfully");
         }
 
         #region Helper Methods
