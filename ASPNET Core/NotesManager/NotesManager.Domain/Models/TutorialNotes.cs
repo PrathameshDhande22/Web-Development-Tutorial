@@ -2,7 +2,7 @@
 
 namespace NotesManager.Domain.Models
 {
-    public class Notes
+    public class TutorialNotes
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;

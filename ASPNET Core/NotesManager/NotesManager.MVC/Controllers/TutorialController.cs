@@ -17,7 +17,7 @@ namespace NotesManager.MVC.Controllers
             this.dbContext = dbContext;
         }
 
-        public async Task<IActionResult> HtmlHelpers(Notes notes)
+        public async Task<IActionResult> HtmlHelpers(TutorialNotes notes)
         {
             // For Dropdown list convert it to the SelectListItem
             List<SelectListItem> categories = await dbContext.Category.AsNoTracking().Select(c => new SelectListItem()
@@ -30,7 +30,7 @@ namespace NotesManager.MVC.Controllers
             ViewBag.Categories = categories;
 
             TempData["Info"] = "HTMLTutorial";
-            return View(new Notes());
+            return View(new TutorialNotes());
         }
 
         // using the custom model binder by specifying the ModelBinder attribute
