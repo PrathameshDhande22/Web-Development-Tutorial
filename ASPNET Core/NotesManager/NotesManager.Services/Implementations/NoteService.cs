@@ -9,7 +9,6 @@ using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
-using System.Runtime.InteropServices;
 
 namespace NotesManager.Services.Implementations
 {
@@ -29,6 +28,7 @@ namespace NotesManager.Services.Implementations
             this.fileUploadService = fileUploadService;
         }
 
+        #region Notes
         public async Task<NoteDTO?> GetNoteById(int Id)
         {
             try
@@ -265,7 +265,9 @@ namespace NotesManager.Services.Implementations
             logger.LogInformation("Deleted a Note with Id={Id} which affected Rows={Rows}", id, noofrow);
             return noofrow > 0;
         }
+        #endregion
 
+        #region NoteHistory
         public async Task<List<NoteHistoryDTO>?> GetHistoryForNoteAsync(int noteid)
         {
             List<NoteHistoryDTO> history = await noteRepository.GetHistoryListAsync(noteid);
@@ -300,7 +302,9 @@ namespace NotesManager.Services.Implementations
                 OldTitle = history.OldTitle
             };
         }
+        #endregion
 
+        #region Attachments
         public async Task<ServiceResult<List<NoteAttachmentDTO>>> AddAttachmentsToNote(List<IFormFile> files, int noteId)
         {
             Note? note = await noteRepository.GetById(noteId);
@@ -377,6 +381,18 @@ namespace NotesManager.Services.Implementations
             }
             return ServiceResult<List<NoteAttachmentDTO>>.Ok(result, "Files attached successfully");
         }
+
+        public async Task<string> GetFileUrlAsync(int attachmentId)
+        {
+            NoteAttachments? attachment = await noteRepository.GetAttachmentByIdAsync(attachmentId);
+            if (attachment == null)
+            {
+                return string.Empty;
+            }
+            return await fileUploadService.GetFileUrlAsync(attachment.Name);
+        }
+
+        #endregion
 
         #region Helper Methods
         private string GetUpdateAction(bool titleChanged, bool descriptionChanged, bool statusChanged, bool categoryChanged, NoteStatus newStatus)
