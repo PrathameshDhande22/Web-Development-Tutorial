@@ -13,7 +13,6 @@ using NotesManager.Services;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -363,6 +362,16 @@ namespace NotesManager.MVC.Controllers
                 message = result.Message,
                 success = result.Success,
             });
+        }
+
+        public async Task<IActionResult> DownloadAttachMent(int id)
+        {
+            Attachment? attachment = await noteService.DownloadAttachmentAsync(id);
+            if (attachment == null)
+            {
+                return NotFound();
+            }
+            return File(attachment.stream, attachment.ContentType, attachment.FileName);
         }
     }
 }

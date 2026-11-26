@@ -215,8 +215,8 @@
         item$.find('[data-field="name"]').text(attachment.fileName).attr("title", attachment.fileName);
         item$.find('[data-field="size"]').text(formatFileSize(attachment.size));
         item$.find('[data-field="created"]').attr("datetime", attachment.createdAt);
-        
-        item$.find('[data-action="download"]').attr("aria-label", `Download ${attachment.fileName}`);
+
+        item$.find('[data-action="download"]').attr("aria-label", `Download ${attachment.fileName}`).attr("href",`/Notes/DownloadAttachMent/${attachment.id}`);
         item$.find('[data-action="delete"]').attr("aria-label", `Delete ${attachment.fileName}`);
         return item$;
     }

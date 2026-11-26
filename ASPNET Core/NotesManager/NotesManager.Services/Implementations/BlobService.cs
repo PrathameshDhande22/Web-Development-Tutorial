@@ -81,7 +81,7 @@ namespace NotesManager.Services.Implementations
             return s3.GetPreSignedURLAsync(request);
         }
 
-        public async Task<Stream> DownloadFileAsync(string Key)
+        public async Task<Stream?> DownloadFileAsync(string Key)
         {
             GetObjectRequest request = new()
             {
@@ -89,9 +89,25 @@ namespace NotesManager.Services.Implementations
                 Key = Key,
                 ResponseExpires = DateTime.UtcNow.AddMinutes(10)
             };
-
-            var res = await s3.GetObjectAsync(request);
-            return res.ResponseStream;
+            try
+            {
+                GetObjectResponse res = await s3.GetObjectAsync(request);
+                if (res == null)
+                {
+                    return null;
+                }
+                return res.ResponseStream;
+            }
+            catch (AmazonS3Exception s3ex)
+            {
+                logger.LogError(s3ex, s3ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return null;
+            }
         }
     }
 }

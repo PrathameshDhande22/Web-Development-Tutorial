@@ -392,6 +392,23 @@ namespace NotesManager.Services.Implementations
             return await fileUploadService.GetFileUrlAsync(attachment.Name);
         }
 
+        public async Task<Attachment?> DownloadAttachmentAsync(int attachmentId)
+        {
+            NoteAttachments? attachments = await noteRepository.GetAttachmentByIdAsync(attachmentId);
+            if (attachments == null)
+            {
+                logger.LogInformation("No Attachments found for Attachment Id={Id}", attachmentId);
+                return null;
+            }
+            Stream? attachmentStream = await fileUploadService.DownloadFileAsync(attachments.FilePath);
+            if (attachmentStream == null)
+            {
+                logger.LogInformation("No Stream file found for the Attachments Attachment={Id} NoteId={Id}", attachments.Id, attachments.Noteid);
+                return null;
+            }
+            return new Attachment(attachments.Name, attachments.Extension, attachmentStream, GetContentTypeFromAttachmentType(attachments.Extension));
+        }
+
         #endregion
 
         #region Helper Methods
@@ -411,6 +428,18 @@ namespace NotesManager.Services.Implementations
                 "application/pdf" => NoteAttachmentType.PDF,
                 _ => NoteAttachmentType.PNG,
             };
+        }
+
+        private string GetContentTypeFromAttachmentType(NoteAttachmentType attachmentType)
+        {
+            return attachmentType switch
+            {
+                NoteAttachmentType.PDF => "application/pdf",
+                NoteAttachmentType.JPG => "image/jpg",
+                NoteAttachmentType.PNG => "image/png",
+                _ => "image/jpeg"
+            };
+
         }
         #endregion
 

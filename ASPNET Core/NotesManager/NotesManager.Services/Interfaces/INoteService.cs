@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using NotesManager.Domain.DTO.Note;
+using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 
 namespace NotesManager.Services.Interfaces
 {
+    public record Attachment(string FileName, NoteAttachmentType Extension, Stream stream,string ContentType);
     public interface INoteService
     {
         public Task<AddNoteDTO> NewNoteAsync(CreateNote createNote);
@@ -18,5 +20,6 @@ namespace NotesManager.Services.Interfaces
         public Task<List<NoteHistoryDTO>?> GetHistoryForNoteAsync(int noteid);
         public Task<NoteDetailedHistoryDTO?> GetHistoryById(int id);
         public Task<ServiceResult<List<NoteAttachmentDTO>>> AddAttachmentsToNote(List<IFormFile> files, int noteId);
+        public Task<Attachment?> DownloadAttachmentAsync(int attachmentId);
     }
 }

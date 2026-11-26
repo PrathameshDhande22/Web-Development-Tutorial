@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -6,6 +7,7 @@ namespace NotesManager.MVC.Controllers
     {
         // Action method to handle the errors
         [Route("Error")]
+        [AllowAnonymous]
         public IActionResult Index(int statuscode = 500)
         {
             // Setting the Error Status code explicitly
