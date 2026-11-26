@@ -13,6 +13,7 @@ using NotesManager.Services;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -372,6 +373,32 @@ namespace NotesManager.MVC.Controllers
                 return NotFound();
             }
             return File(attachment.stream, attachment.ContentType, attachment.FileName);
+        }
+
+        [ServiceFilter<ApiExceptionFilter>]
+        [HttpGet]
+        public async Task<IActionResult> ViewAttachment(int id)
+        {
+            var res = await noteService.GetFileUrlAsync(id);
+            if (!res.HasValue)
+            {
+                return NotFound(new
+                {
+                    message = "Not Attachment Found",
+                    success = false
+                });
+            }
+            return Ok(new
+            {
+                message = "File Url Fetched Successfully",
+                success = true,
+                data = new
+                {
+                    filename = res.Value.filename,
+                    url = res.Value.url
+                }
+            });
+
         }
     }
 }

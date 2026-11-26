@@ -382,14 +382,15 @@ namespace NotesManager.Services.Implementations
             return ServiceResult<List<NoteAttachmentDTO>>.Ok(result, "Files attached successfully");
         }
 
-        public async Task<string> GetFileUrlAsync(int attachmentId)
+        public async Task<(string filename, string url)?> GetFileUrlAsync(int attachmentId)
         {
             NoteAttachments? attachment = await noteRepository.GetAttachmentByIdAsync(attachmentId);
             if (attachment == null)
             {
-                return string.Empty;
+                return null;
             }
-            return await fileUploadService.GetFileUrlAsync(attachment.Name);
+            string url = await fileUploadService.GetFileUrlAsync(attachment.FilePath);
+            return (attachment.Name, url);
         }
 
         public async Task<Attachment?> DownloadAttachmentAsync(int attachmentId)

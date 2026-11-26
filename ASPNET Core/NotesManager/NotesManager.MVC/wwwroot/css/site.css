@@ -4917,11 +4917,17 @@
   .top-0 {
     top: 0px;
   }
+  .top-2 {
+    top: calc(var(--spacing) * 2);
+  }
   .top-3 {
     top: calc(var(--spacing) * 3);
   }
   .top-full {
     top: 100%;
+  }
+  .right-2 {
+    right: calc(var(--spacing) * 2);
   }
   .right-3 {
     right: calc(var(--spacing) * 3);
@@ -5169,6 +5175,22 @@
       grid-column: 1 / 4;
       grid-row: 1 / 6;
     }
+  }
+  @layer daisyui.l1.l2.l3 {
+    .modal-backdrop {
+      grid-column-start: 1;
+      grid-row-start: 1;
+      display: grid;
+      align-self: stretch;
+      justify-self: stretch;
+      color: transparent;
+      z-index: -1;
+    }
+    .modal-backdrop button {
+      cursor: pointer;
+    }
+  }
+  @layer daisyui.l1.l2 {
     .tabs-box {
       background-color: var(--color-base-200);
       padding: 0.25rem;
@@ -6163,6 +6185,12 @@
       --modal-bl: var(--radius-box);
       --modal-br: var(--radius-box);
     }
+    .btn-circle {
+      border-radius: calc(infinity * 1px);
+      padding-inline: 0px;
+      width: var(--size);
+      height: var(--size);
+    }
     .btn-square {
       padding-inline: 0px;
       width: var(--size);
@@ -6216,8 +6244,14 @@
   .h-full {
     height: 100%;
   }
+  .max-h-\[70dvh\] {
+    max-height: 70dvh;
+  }
   .min-h-40 {
     min-height: calc(var(--spacing) * 40);
+  }
+  .min-h-48 {
+    min-height: calc(var(--spacing) * 48);
   }
   .min-h-screen {
     min-height: 100vh;
@@ -6231,6 +6265,9 @@
   @layer daisyui.l1.l2 {
     .btn-block {
       width: 100%;
+    }
+    .loading-lg {
+      width: calc(var(--size-selector, 0.25rem) * 7);
     }
     .loading-xl {
       width: calc(var(--size-selector, 0.25rem) * 8);
@@ -7032,6 +7069,9 @@
   .stroke-current {
     stroke: currentcolor;
   }
+  .object-contain {
+    object-fit: contain;
+  }
   @layer daisyui.l1.l2 {
     .radio-sm {
       padding: 0.1875rem;
@@ -7114,6 +7154,9 @@
   }
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
+  }
+  .pr-8 {
+    padding-right: calc(var(--spacing) * 8);
   }
   .pr-10 {
     padding-right: calc(var(--spacing) * 10);
@@ -8003,6 +8046,10 @@
     .sm\:text-6xl {
       font-size: var(--text-6xl);
       line-height: var(--tw-leading, var(--text-6xl--line-height));
+    }
+    .sm\:text-lg {
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
   @media (width >= 48rem) {

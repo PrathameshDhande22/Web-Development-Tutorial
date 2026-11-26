@@ -186,12 +186,12 @@
         }
     }
 
-/**
-     * Reads the error message from a failed upload response.
-     * Handles the { message } response and the validation problem response with { errors }.
-     * @param {Object} err - The jQuery ajax error object
-     * @returns {String} The message to show to the user
-     */
+    /**
+         * Reads the error message from a failed upload response.
+         * Handles the { message } response and the validation problem response with { errors }.
+         * @param {Object} err - The jQuery ajax error object
+         * @returns {String} The message to show to the user
+         */
     function getUploadErrorMessage(err) {
         const response = err.responseJSON;
         if (response?.message) {
@@ -216,7 +216,7 @@
         item$.find('[data-field="size"]').text(formatFileSize(attachment.size));
         item$.find('[data-field="created"]').attr("datetime", attachment.createdAt);
 
-        item$.find('[data-action="download"]').attr("aria-label", `Download ${attachment.fileName}`).attr("href",`/Notes/DownloadAttachMent/${attachment.id}`);
+        item$.find('[data-action="download"]').attr("aria-label", `Download ${attachment.fileName}`).attr("href", `/Notes/DownloadAttachMent/${attachment.id}`);
         item$.find('[data-action="delete"]').attr("aria-label", `Delete ${attachment.fileName}`);
         return item$;
     }
@@ -243,7 +243,7 @@
 
         const count = attachmentList$.children().length;
         attachmentCount$.text(count).toggleClass("hidden", count === 0);
-        
+
         $("time.timeago").timeago();
     }
 
@@ -281,6 +281,30 @@
             }
         })
     }
+
+    //#endregion
+
+    //#region Note Attachment View
+    $(".attachment").on("click", function (e) {
+        let attachmentId = $(this).data("attachment-id");
+
+        if (attachmentId) {
+            // Ajax Call to load the File Url
+            $.ajax({
+                method: "GET",
+                url: `/Notes/Attachment/${attachmentId}`,
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (err) {
+                    showToast(err.responseJSON?.message || "Error occured when viewing the attachment", "error");
+                }
+            })
+
+            
+            view_attachment_dialog.showModal();
+        }
+    })
 
     //#endregion
 })
