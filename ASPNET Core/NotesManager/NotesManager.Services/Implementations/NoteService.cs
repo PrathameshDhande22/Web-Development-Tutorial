@@ -1,7 +1,4 @@
-﻿using Amazon.S3;
-using Amazon.S3.Model;
-using Microsoft.AspNetCore.Http;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using NotesManager.Data.Interfaces;
 using NotesManager.Data.Models;
@@ -20,9 +17,9 @@ namespace NotesManager.Services.Implementations
         private ILogger<NoteService> logger;
         // Injecting the unit of work for saving the entities in one save only
         private readonly IUnitOfWork unitOfWork;
-        private readonly IFileUploadService fileUploadService;
+        private readonly IBlobService fileUploadService;
 
-        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger, IUnitOfWork unitofwork, IFileUploadService fileUploadService)
+        public NoteService(NoteRepository noteRepository, ILogger<NoteService> logger, IUnitOfWork unitofwork, IBlobService fileUploadService)
         {
             this.noteRepository = noteRepository;
             this.logger = logger;
@@ -34,7 +31,7 @@ namespace NotesManager.Services.Implementations
         {
             try
             {
-                Note? note = await noteRepository.GetById(Id);
+                Note? note = await noteRepository.GetById(Id, new Data.PropertyInclude { IncludeAttachments = true, IncludeCategory = true, IncludeNoteHistory = true });
                 if (note == null)
                 {
                     return null;
@@ -55,7 +52,16 @@ namespace NotesManager.Services.Implementations
                         Id = note.Category.Id,
                         Name = note.Category.Name,
                         Color = note.Category.Color
-                    }
+                    },
+                    Attachments = note.Attachments.Select(a => new NoteAttachmentDTO()
+                    {
+                        Id = a.Id,
+                        FileName = a.Name,
+                        Size = a.Length,
+                        FilePath = a.FilePath,
+                        CreatedAt = a.CreatedAt.DateTime,
+                        AttachMentType = a.Extension
+                    }).ToList()
                 };
             }
             catch (Exception ex)
@@ -293,44 +299,76 @@ namespace NotesManager.Services.Implementations
             };
         }
 
-        public async Task<ServiceResult<bool>> AddAttachmentsToNote(List<IFormFile> files, int noteId)
+        public async Task<ServiceResult<List<NoteAttachmentDTO>>> AddAttachmentsToNote(List<IFormFile> files, int noteId)
         {
             Note? note = await noteRepository.GetById(noteId);
             if (note == null)
             {
-                return ServiceResult<bool>.Fail("Note with these id does not exists");
+                return ServiceResult<List<NoteAttachmentDTO>>.Fail("Note with these id does not exists");
             }
 
-            var tasks = files.Select(async f =>
+            // Upload all the files to S3 concurrently and wait for all of them to complete
+            var uploads = await Task.WhenAll(files.Select(async file =>
             {
-                string filePath = $"{noteId}/{f.FileName}_{Guid.NewGuid().ToString()}";
-                bool success = await fileUploadService.UploadAsync(f, filePath, f.ContentType);
+                // Guid first so the file extension stays at the end of the path
+                string filePath = $"{noteId}/{Guid.NewGuid()}_{file.FileName}";
+                bool uploaded = await fileUploadService.UploadAsync(file, filePath, file.ContentType);
+                return (File: file, FilePath: filePath, Uploaded: uploaded);
+            }));
 
-                if (success)
+            // DbContext is not thread safe, so the attachments are added only after all the uploads are finished
+            List<NoteAttachments> addedAttachments = uploads
+                .Where(u => u.Uploaded)
+                .Select(u => new NoteAttachments()
                 {
-                    NoteAttachments attachment = new()
-                    {
-                        Extension = GetNoteAttachmentType(f.ContentType),
-                        FilePath = filePath,
-                        Length = f.Length / 1000,
-                        Name = f.FileName,
-                        Noteid = note.Id
-                    };
+                    Extension = GetNoteAttachmentType(u.File.ContentType),
+                    FilePath = u.FilePath,
+                    Length = u.File.Length,
+                    Name = u.File.FileName,
+                    Noteid = note.Id
+                })
+                .ToList();
 
-                    noteRepository.AddAttachments(attachment);
-                }
-                else
+            List<NoteAttachmentDTO> failedAttachments = uploads
+                .Where(u => !u.Uploaded)
+                .Select(u => new NoteAttachmentDTO()
                 {
-                    logger.LogInformation("Failed to add the attachments for NoteId={Id}", noteId);
-                }
+                    FileName = u.File.FileName,
+                    Size = u.File.Length,
+                    ErrorMessage = $"{u.File.FileName} failed to upload. Try again with this file later"
+                })
+                .ToList();
 
-            });
+            if (addedAttachments.Count == 0)
+            {
+                logger.LogInformation("All the attachments failed to upload for NoteId={Id}", noteId);
+                return ServiceResult<List<NoteAttachmentDTO>>.Fail("Files failed to upload. No attachments added");
+            }
 
-            await Task.WhenAll(tasks);
+            addedAttachments.ForEach(noteRepository.AddAttachments);
 
+            // Saving before mapping so the Id generated by the database is available
             await unitOfWork.SaveChangesAsync();
 
-            return ServiceResult<bool>.Ok(true, "Files uploaded successfully");
+            List<NoteAttachmentDTO> result = addedAttachments
+                .Select(a => new NoteAttachmentDTO()
+                {
+                    Id = a.Id,
+                    FileName = a.Name,
+                    AttachMentType = a.Extension,
+                    CreatedAt = a.CreatedAt.DateTime,
+                    FilePath = a.FilePath,
+                    Size = a.Length
+                })
+                .Concat(failedAttachments)
+                .ToList();
+
+            if (failedAttachments.Count > 0)
+            {
+                logger.LogInformation("{Count} attachments failed to upload for NoteId={Id}", failedAttachments.Count, noteId);
+                return ServiceResult<List<NoteAttachmentDTO>>.Ok(result, "Some files failed to upload");
+            }
+            return ServiceResult<List<NoteAttachmentDTO>>.Ok(result, "Files attached successfully");
         }
 
         #region Helper Methods

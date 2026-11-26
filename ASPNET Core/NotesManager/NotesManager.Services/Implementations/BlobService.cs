@@ -7,15 +7,15 @@ using NotesManager.Services.Interfaces;
 
 namespace NotesManager.Services.Implementations
 {
-    public class FileUploadService : IFileUploadService
+    public class BlobService : IBlobService
     {
-        private readonly ILogger<FileUploadService> logger;
+        private readonly ILogger<BlobService> logger;
         private readonly IAmazonS3 s3;
 
         private static string BucketName { get; set; } = string.Empty;
 
-        public FileUploadService(
-            ILogger<FileUploadService> logger,
+        public BlobService(
+            ILogger<BlobService> logger,
             IAmazonS3 amazons3,
             IConfiguration configuration
         )
@@ -63,10 +63,10 @@ namespace NotesManager.Services.Implementations
             }
         }
 
-        public Task<bool> UploadAsync(IFormFile file, string key, string ContentType)
+        public async Task<bool> UploadAsync(IFormFile file, string key, string ContentType)
         {
             using var stream = file.OpenReadStream();
-            return UploadAsync(stream, key, ContentType);
+            return await UploadAsync(stream, key, ContentType);
         }
     }
 }

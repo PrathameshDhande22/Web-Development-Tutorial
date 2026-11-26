@@ -100,6 +100,9 @@ namespace NotesManager.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("Extension")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -108,8 +111,8 @@ namespace NotesManager.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Length")
-                        .HasColumnType("int");
+                    b.Property<long>("Length")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .IsRequired()

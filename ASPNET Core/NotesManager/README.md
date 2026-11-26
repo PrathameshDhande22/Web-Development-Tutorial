@@ -18,3 +18,8 @@ dotnet ef migrations add InitialCreate --project NotesManager.Data --startup-pro
 ```bash
 dotnet ef database update -p NotesManager.Mvc
 ```
+
+3. Remove EF Migration
+```bash
+dotnet ef migrations remove --project NotesManager.Data --startup-project NotesManager.Mvc
+```
