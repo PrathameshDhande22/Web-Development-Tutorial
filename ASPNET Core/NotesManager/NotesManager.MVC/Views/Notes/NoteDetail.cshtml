@@ -184,7 +184,7 @@
                                         <a type="button" asp-action="DownloadAttachMent" asp-controller="Notes" asp-route-id="@attachmentDTO.Id" class="btn btn-ghost btn-xs btn-square" aria-label="Download @attachmentDTO.FileName" title="Download">
                                             <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>
                                         </a>
-                                        <button type="button" class="btn btn-ghost btn-xs btn-square hover:text-error" aria-label="Delete @attachmentDTO.FileName" title="Delete">
+                                        <button type="button" data-action="delete" class="btn btn-ghost btn-xs btn-square hover:text-error" aria-label="Delete @attachmentDTO.FileName" title="Delete">
                                             <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
                                         </button>
                                     </div>
@@ -253,6 +253,25 @@
                 <input value="@Model.Id" type="hidden" name="id" />
                 <button type="submit" class="btn btn-error bg-red-500 text-white">Delete</button>
             </form>
+        </div>
+    </div>
+</dialog>
+
+<!--Delete Attachment Dialog-->
+<dialog id="delete_attachment_dialog" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-semibold">Delete attachment?</h3>
+        <p class="pt-2 text-sm text-gray-400">
+            The file will be removed permanently.
+        </p>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn">Close</button>
+            </form>
+            <button type="button" id="confirm-delete-attachment" class="btn btn-error bg-red-500 text-white">
+                <span class="loading loading-spinner loading-sm hidden"></span>
+                Delete
+            </button>
         </div>
     </div>
 </dialog>

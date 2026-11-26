@@ -398,7 +398,25 @@ namespace NotesManager.MVC.Controllers
                     url = res.Value.url
                 }
             });
+        }
 
+        [HttpPost]
+        [ServiceFilter<ApiExceptionFilter>]
+        public async Task<IActionResult> DeleteAttachment(int id)
+        {
+            ServiceResult<bool> res = await noteService.DeleteAttachmentAsync(id);
+            if (!res.Success)
+                return BadRequest(new
+                {
+                    message = res.Message,
+                    success = res.Success
+                });
+            return Ok(new
+            {
+                message = res.Message,
+                success = res.Success,
+                data = res.Data
+            });
         }
     }
 }

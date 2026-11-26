@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NotesManager.Services.Interfaces;
+using System.Net;
 
 namespace NotesManager.Services.Implementations
 {
@@ -108,6 +109,33 @@ namespace NotesManager.Services.Implementations
                 logger.LogError(ex, ex.Message);
                 return null;
             }
+        }
+
+        public async Task<bool> DeleteAsync(string Key)
+        {
+            DeleteObjectRequest request = new()
+            {
+                BucketName = BucketName,
+                Key = Key
+            };
+
+            logger.LogInformation("Deleting the Attachment for Key={Key}", Key);
+            try
+            {
+                var res = await s3.DeleteObjectAsync(request);
+                return true;
+            }
+            catch (AmazonS3Exception s3ex)
+            {
+                logger.LogError(s3ex, s3ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return false;
+            }
+
         }
     }
 }

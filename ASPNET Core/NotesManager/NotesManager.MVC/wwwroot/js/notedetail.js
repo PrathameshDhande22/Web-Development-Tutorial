@@ -288,9 +288,84 @@
 
     //#endregion
 
+    //#region Delete Attachment
+    let currentDeletingAttachmentId = null;
+    let currentDeletingAttachmentElement = null;
+
+    // Handle delete button click for both static and dynamic attachments
+    attachmentList$.on("click", "[data-action='delete']", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const attachmentItem = $(this).closest(".attachment");
+        currentDeletingAttachmentId = attachmentItem.data("attachment-id");
+        currentDeletingAttachmentElement = attachmentItem;
+
+        delete_attachment_dialog.showModal();
+    });
+
+    // Reset state when dialog is closed
+    delete_attachment_dialog.addEventListener('close', function () {
+        const button = $("#confirm-delete-attachment");
+        button.find(".loading").addClass("hidden");
+        button.prop("disabled", false);
+        currentDeletingAttachmentId = null;
+        currentDeletingAttachmentElement = null;
+    });
+
+    // Handle confirm delete
+    $("#confirm-delete-attachment").on("click", function () {
+        if (!currentDeletingAttachmentId) return;
+
+        const button = $(this);
+        const loadingSpan = button.find(".loading");
+        const textSpan = button.contents().filter(function () {
+            return this.nodeType === 3; // Text nodes
+        }).first();
+
+        // Show loading
+        loadingSpan.removeClass("hidden");
+        button.prop("disabled", true);
+
+        $.ajax({
+            method: "POST",
+            url: `/Notes/DeleteAttachment/${currentDeletingAttachmentId}`,
+            success: function (response) {
+                if (response?.success) {
+                    showToast("Attachment deleted", "success");
+                    // Remove from list
+                    if (currentDeletingAttachmentElement) {
+                        currentDeletingAttachmentElement.remove();
+                        updateAttachmentCount();
+                    }
+                    delete_attachment_dialog.close();
+                } else {
+                    showToast(response?.message || "Failed to delete attachment", "error");
+                }
+            },
+            error: function (err) {
+                showToast(err.responseJSON?.message || "Failed to delete attachment", "error");
+            },
+            complete: function () {
+                loadingSpan.addClass("hidden");
+                button.prop("disabled", false);
+                currentDeletingAttachmentId = null;
+                currentDeletingAttachmentElement = null;
+            }
+        });
+    });
+
+    function updateAttachmentCount() {
+        const count = attachmentList$.children().length;
+        attachmentCount$.text(count).toggleClass("hidden", count === 0);
+    }
+
+    //#endregion
+
     //#region Note Attachment View
     attachmentList$.on("click", ".attachment", function (e) {
-        if ($(e.target).is('a, button')) {
+        // Don't trigger if clicking on action buttons or their children (like SVG icons)
+        if ($(e.target).closest('a, button').length) {
             return;
         }
 

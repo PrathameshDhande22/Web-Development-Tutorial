@@ -22,5 +22,6 @@ namespace NotesManager.Services.Interfaces
         public Task<ServiceResult<List<NoteAttachmentDTO>>> AddAttachmentsToNote(List<IFormFile> files, int noteId);
         public Task<Attachment?> DownloadAttachmentAsync(int attachmentId);
         public Task<(string filename, string url)?> GetFileUrlAsync(int attachmentId);
+        public Task<ServiceResult<bool>> DeleteAttachmentAsync(int attachmentId);
     }
 }

@@ -191,5 +191,12 @@ namespace NotesManager.Data.Repositories
         {
             return dbContext.NoteAttachments.FirstOrDefaultAsync(a => a.Id == id);
         }
+
+        public Task<int> DeleteAttachmentAsync(int id)
+        {
+            return dbContext.NoteAttachments
+                    .Where(a => a.Id == id)
+                    .ExecuteDeleteAsync();
+        }
     }
 }

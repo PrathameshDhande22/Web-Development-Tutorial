@@ -410,6 +410,34 @@ namespace NotesManager.Services.Implementations
             return new Attachment(attachments.Name, attachments.Extension, attachmentStream, GetContentTypeFromAttachmentType(attachments.Extension));
         }
 
+        public async Task<ServiceResult<bool>> DeleteAttachmentAsync(int attachmentId)
+        {
+            NoteAttachments? attachments = await noteRepository.GetAttachmentByIdAsync(attachmentId);
+            if (attachments == null)
+            {
+                logger.LogError("No Attachments found for Attachment Id={Id}", attachmentId);
+                return ServiceResult<bool>.Fail("No Attachments found");
+            }
+
+            logger.LogInformation("Deleting the Attachments for Note Id={Id}, Attachment Name={Name}", attachments.Noteid, attachments.Name);
+
+            // Delete from the blob
+            bool isDeletedResponse = await fileUploadService.DeleteAsync(attachments.FilePath);
+            if (!isDeletedResponse)
+            {
+                return ServiceResult<bool>.Fail("Failed to delete the File");
+            }
+
+            // Delete from the Db.
+            int deletedCount = await noteRepository.DeleteAttachmentAsync(attachmentId);
+            if (deletedCount > 0)
+            {
+                logger.LogInformation("Deleted the Attachment for Id={Id} Affected rows in Delete {rowCount}", attachmentId, deletedCount);
+                return ServiceResult<bool>.Ok(true, "Attachment deleted successfully");
+            }
+            return ServiceResult<bool>.Fail("Failed to delete the attachment");
+        }
+
         #endregion
 
         #region Helper Methods
