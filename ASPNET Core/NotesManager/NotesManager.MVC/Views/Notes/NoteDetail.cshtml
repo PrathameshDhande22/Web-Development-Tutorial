@@ -204,7 +204,7 @@
                                     <span data-field="name" class="truncate text-sm font-medium text-gray-800 dark:text-gray-200"></span>
                                     <span class="truncate text-xs text-gray-400">
                                         <span data-field="size"></span> ·
-                                        <span class="text-sm text-stone-400">now</span>
+                                        <time class="timeago" data-field="created" datetime=""></time>
                                     </span>
                                 </div>
                                 <div class="flex shrink-0 gap-1 text-gray-400">
@@ -259,5 +259,6 @@
 
 
 @section Scripts {
+    <script src="~/lib/jquery-timeago/jquery.timeago.min.js" asp-append-version="true"></script>
     <script src="/js/notedetail.js" asp-append-version="true"></script>
 }

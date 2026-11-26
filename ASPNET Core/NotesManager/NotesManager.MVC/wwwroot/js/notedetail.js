@@ -1,4 +1,29 @@
 ﻿$(function () {
+    //#region Plugin Initialization
+    // Customize timeago to remove "about" text
+    $.timeago.settings.strings = {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: "ago",
+        suffixFromNow: "from now",
+        inPast: "any moment now",
+        seconds: "less than a minute",
+        minute: "1 minute",
+        minutes: "%d minutes",
+        hour: "1 hour",
+        hours: "%d hours",
+        day: "1 day",
+        days: "%d days",
+        month: "1 month",
+        months: "%d months",
+        year: "1 year",
+        years: "%d years",
+        wordSeparator: " ",
+        numbers: []
+    };
+    $("time.timeago").timeago();
+    //#endregion
+
     //#region Pin Note
     $("#pin-note").on("click", function () {
         // Note Id
@@ -161,7 +186,7 @@
         }
     }
 
-    /**
+/**
      * Reads the error message from a failed upload response.
      * Handles the { message } response and the validation problem response with { errors }.
      * @param {Object} err - The jQuery ajax error object
@@ -178,21 +203,6 @@
     }
 
     /**
-     * Converts the size in bytes to a readable text like "1.25 MB".
-     * @param {Number} bytes - Size of the file in bytes
-     * @returns {String} The readable size
-     */
-    function formatFileSize(bytes) {
-        let size = bytes;
-        let unitIndex = 0;
-        while (size >= 1024 && unitIndex < SIZE_UNITS.length - 1) {
-            size /= 1024;
-            unitIndex++;
-        }
-        return `${size.toFixed(2)} ${SIZE_UNITS[unitIndex]}`;
-    }
-
-    /**
      * Creates the attachment list item from the template for an uploaded attachment.
      * @param {Object} attachment - The uploaded attachment returned by the server
      * @returns {jQuery} The list item element
@@ -204,9 +214,24 @@
         item$.find(`[data-icon="${isPdf ? "image" : "pdf"}"]`).remove();
         item$.find('[data-field="name"]').text(attachment.fileName).attr("title", attachment.fileName);
         item$.find('[data-field="size"]').text(formatFileSize(attachment.size));
+        item$.find('[data-field="created"]').attr("datetime", attachment.createdAt);
+        
         item$.find('[data-action="download"]').attr("aria-label", `Download ${attachment.fileName}`);
         item$.find('[data-action="delete"]').attr("aria-label", `Delete ${attachment.fileName}`);
         return item$;
+    }
+
+    /**
+     * Simple file size formatter (bytes → human readable)
+     * @param {Number} bytes - File size in bytes
+     * @returns {String} Formatted size (e.g., "1.5 KB", "2.3 MB")
+     */
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return (bytes / Math.pow(k, i)).toFixed(2) + ' ' + sizes[i];
     }
 
     /**
@@ -218,6 +243,8 @@
 
         const count = attachmentList$.children().length;
         attachmentCount$.text(count).toggleClass("hidden", count === 0);
+        
+        $("time.timeago").timeago();
     }
 
     /**

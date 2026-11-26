@@ -341,14 +341,13 @@ namespace NotesManager.MVC.Controllers
                 // handles the 400 Bad Request Automatically
                 return ValidationProblem(ModelState);
             }
-            // Handle the file uploading
+
             ServiceResult<List<NoteAttachmentDTO>> result = await noteService.AddAttachmentsToNote(attachments.Files, id);
 
             if (result.Success)
             {
                 List<NoteAttachmentDTO> files = result.Data ?? [];
 
-                // Splitting the uploaded attachments and the error messages of the failed files
                 return Ok(new
                 {
                     message = result.Message,

@@ -30,12 +30,19 @@
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
     },
     {
-      "provider": "cdnjs",
       "library": "jquery@3.7.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
         "jquery.min.js",
         "jquery.js"
+      ]
+    },
+    {
+      "library": "jquery-timeago@1.6.7",
+      "destination": "wwwroot/lib/jquery-timeago/",
+      "files": [
+        "jquery.timeago.min.js",
+        "jquery.timeago.js"
       ]
     }
   ]
