@@ -176,7 +176,7 @@
                                         <span class="truncate text-sm font-medium text-gray-800 dark:text-gray-200" title="@attachmentDTO.FileName">@attachmentDTO.FileName</span>
                                         <span class="truncate text-xs text-gray-400">
                                             @ConvertToHuman(attachmentDTO.Size) ·
-                                            <time-ago date="attachmentDTO.CreatedAt" />
+                                            <time-ago class="text-xs" date="attachmentDTO.CreatedAt.DateTime" />
                                         </span>
                                     </div>
                                     <!--Attachment Actions-->

@@ -353,7 +353,7 @@ namespace NotesManager.Services.Implementations
                     Id = a.Id,
                     FileName = a.Name,
                     AttachMentType = a.Extension,
-                    CreatedAt = a.CreatedAt.DateTime,
+                    CreatedAt = a.CreatedAt,
                     FilePath = a.FilePath,
                     Size = a.Length
                 })
