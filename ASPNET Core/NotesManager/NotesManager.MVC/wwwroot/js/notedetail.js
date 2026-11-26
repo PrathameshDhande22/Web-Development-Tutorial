@@ -211,6 +211,10 @@
         const item$ = $(attachmentTemplate.content.firstElementChild.cloneNode(true));
         const isPdf = attachment.attachMentType === PDF_ATTACHMENT_TYPE;
 
+        // Set data attributes on the li element
+        item$.attr("data-attachment-id", attachment.id);
+        item$.attr("data-ispdf", isPdf);
+
         item$.find(`[data-icon="${isPdf ? "image" : "pdf"}"]`).remove();
         item$.find('[data-field="name"]').text(attachment.fileName).attr("title", attachment.fileName);
         item$.find('[data-field="size"]').text(formatFileSize(attachment.size));
@@ -285,26 +289,60 @@
     //#endregion
 
     //#region Note Attachment View
-    $(".attachment").on("click", function (e) {
-        let attachmentId = $(this).data("attachment-id");
-
-        if (attachmentId) {
-            // Ajax Call to load the File Url
-            $.ajax({
-                method: "GET",
-                url: `/Notes/Attachment/${attachmentId}`,
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function (err) {
-                    showToast(err.responseJSON?.message || "Error occured when viewing the attachment", "error");
-                }
-            })
-
-            
-            view_attachment_dialog.showModal();
+    attachmentList$.on("click", ".attachment", function (e) {
+        if ($(e.target).is('a, button')) {
+            return;
         }
-    })
+
+        const attachmentId = $(this).data("attachment-id");
+        const isPdf = $(this).attr("data-ispdf")?.toLowerCase() === "true";
+        const filename = $(this).find('[data-field="name"]').text();
+
+        if (!attachmentId) return;
+
+        // Reset and show modal with loading
+        view_attachment_dialog.showModal();
+        $("#attachment-dialog-title").text(filename);
+
+        // Reset loader to spinner state
+        const loader = $("#attachment-dialog-loader");
+        loader.addClass("loading loading-spinner loading-lg text-gray-400");
+        loader.removeClass("text-gray-500");
+        loader.text("");
+        loader.removeClass("hidden");
+
+        $("#attachment-dialog-image").addClass("hidden").attr("src", "");
+
+        $.ajax({
+            method: "GET",
+            url: `/Notes/ViewAttachment/${attachmentId}`,
+            success: function (response) {
+                loader.addClass("hidden");
+
+                if (response?.success && response.data?.url) {
+                    if (isPdf) {
+                        // Open PDF in new window
+                        window.open(response.data.url, '_blank');
+                        view_attachment_dialog.close();
+                    } else {
+                        // Show image
+                        $("#attachment-dialog-image").attr("src", response.data.url).removeClass("hidden");
+                    }
+                } else {
+                    // No URL available - show "No Image"
+                    loader.removeClass("loading loading-spinner loading-lg text-gray-400");
+                    loader.addClass("text-gray-500");
+                    loader.text("No Image");
+                    loader.removeClass("hidden");
+                }
+            },
+            error: function (err) {
+                loader.addClass("hidden");
+                showToast(err.responseJSON?.message || "Error occurred when viewing the attachment", "error");
+                view_attachment_dialog.close();
+            }
+        });
+    });
 
     //#endregion
 })
