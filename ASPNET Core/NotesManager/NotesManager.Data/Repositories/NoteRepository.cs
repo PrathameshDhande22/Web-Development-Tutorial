@@ -179,5 +179,12 @@ namespace NotesManager.Data.Repositories
         {
             dbContext.NoteAttachments.Add(attachment);
         }
+
+        public Task<int> GetAttachmentsCountAsync(int noteid)
+        {
+            return dbContext.NoteAttachments
+                    .Where(n => n.Noteid == noteid)
+                    .CountAsync();
+        }
     }
 }

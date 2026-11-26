@@ -20,5 +20,6 @@
 
         public const int RecentNoteCount = 5;
         public const int PinNoteCount = 5;
+        public const int MaxNoteAttachmentCount = 10;
     }
 }

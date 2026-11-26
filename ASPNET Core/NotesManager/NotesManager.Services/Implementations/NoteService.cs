@@ -3,11 +3,13 @@ using Microsoft.Extensions.Logging;
 using NotesManager.Data.Interfaces;
 using NotesManager.Data.Models;
 using NotesManager.Data.Repositories;
+using NotesManager.Domain.Constants;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
 using NotesManager.Domain.Models.Note;
 using NotesManager.Services.Interfaces;
+using System.Runtime.InteropServices;
 
 namespace NotesManager.Services.Implementations
 {
@@ -305,6 +307,14 @@ namespace NotesManager.Services.Implementations
             if (note == null)
             {
                 return ServiceResult<List<NoteAttachmentDTO>>.Fail("Note with these id does not exists");
+            }
+
+            // Max attachment Validation
+            int attachmentCounts = await noteRepository.GetAttachmentsCountAsync(noteId);
+            int remainingAttachment = NoteConstants.MaxNoteAttachmentCount - attachmentCounts;
+            if (files.Count > remainingAttachment)
+            {
+                return ServiceResult<List<NoteAttachmentDTO>>.Fail(remainingAttachment <= 0 ? $"a note can have only {NoteConstants.MaxNoteAttachmentCount} attachments" : $"Only {remainingAttachment} more files(s) can be attached to this note");
             }
 
             // Upload all the files to S3 concurrently and wait for all of them to complete
