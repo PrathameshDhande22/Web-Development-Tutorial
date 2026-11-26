@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using NotesManager.Data.Interfaces;
 using NotesManager.Data.Models;
 using NotesManager.Data.Repositories;
+using NotesManager.Domain.Constants;
 using NotesManager.Domain.DTO.Note;
 using NotesManager.Domain.Enums;
 using NotesManager.Domain.Models;
@@ -27,6 +28,7 @@ namespace NotesManager.Services.Implementations
             this.fileUploadService = fileUploadService;
         }
 
+        #region Notes
         public async Task<NoteDTO?> GetNoteById(int Id)
         {
             try
@@ -263,7 +265,9 @@ namespace NotesManager.Services.Implementations
             logger.LogInformation("Deleted a Note with Id={Id} which affected Rows={Rows}", id, noofrow);
             return noofrow > 0;
         }
+        #endregion
 
+        #region NoteHistory
         public async Task<List<NoteHistoryDTO>?> GetHistoryForNoteAsync(int noteid)
         {
             List<NoteHistoryDTO> history = await noteRepository.GetHistoryListAsync(noteid);
@@ -298,13 +302,23 @@ namespace NotesManager.Services.Implementations
                 OldTitle = history.OldTitle
             };
         }
+        #endregion
 
+        #region Attachments
         public async Task<ServiceResult<List<NoteAttachmentDTO>>> AddAttachmentsToNote(List<IFormFile> files, int noteId)
         {
             Note? note = await noteRepository.GetById(noteId);
             if (note == null)
             {
                 return ServiceResult<List<NoteAttachmentDTO>>.Fail("Note with these id does not exists");
+            }
+
+            // Max attachment Validation
+            int attachmentCounts = await noteRepository.GetAttachmentsCountAsync(noteId);
+            int remainingAttachment = NoteConstants.MaxNoteAttachmentCount - attachmentCounts;
+            if (files.Count > remainingAttachment)
+            {
+                return ServiceResult<List<NoteAttachmentDTO>>.Fail(remainingAttachment <= 0 ? $"a note can have only {NoteConstants.MaxNoteAttachmentCount} attachments" : $"Only {remainingAttachment} more files(s) can be attached to this note");
             }
 
             // Upload all the files to S3 concurrently and wait for all of them to complete
@@ -353,7 +367,7 @@ namespace NotesManager.Services.Implementations
                     Id = a.Id,
                     FileName = a.Name,
                     AttachMentType = a.Extension,
-                    CreatedAt = a.CreatedAt.DateTime,
+                    CreatedAt = a.CreatedAt,
                     FilePath = a.FilePath,
                     Size = a.Length
                 })
@@ -367,6 +381,36 @@ namespace NotesManager.Services.Implementations
             }
             return ServiceResult<List<NoteAttachmentDTO>>.Ok(result, "Files attached successfully");
         }
+
+        public async Task<(string filename, string url)?> GetFileUrlAsync(int attachmentId)
+        {
+            NoteAttachments? attachment = await noteRepository.GetAttachmentByIdAsync(attachmentId);
+            if (attachment == null)
+            {
+                return null;
+            }
+            string url = await fileUploadService.GetFileUrlAsync(attachment.FilePath);
+            return (attachment.Name, url);
+        }
+
+        public async Task<Attachment?> DownloadAttachmentAsync(int attachmentId)
+        {
+            NoteAttachments? attachments = await noteRepository.GetAttachmentByIdAsync(attachmentId);
+            if (attachments == null)
+            {
+                logger.LogInformation("No Attachments found for Attachment Id={Id}", attachmentId);
+                return null;
+            }
+            Stream? attachmentStream = await fileUploadService.DownloadFileAsync(attachments.FilePath);
+            if (attachmentStream == null)
+            {
+                logger.LogInformation("No Stream file found for the Attachments Attachment={Id} NoteId={Id}", attachments.Id, attachments.Noteid);
+                return null;
+            }
+            return new Attachment(attachments.Name, attachments.Extension, attachmentStream, GetContentTypeFromAttachmentType(attachments.Extension));
+        }
+
+        #endregion
 
         #region Helper Methods
         private string GetUpdateAction(bool titleChanged, bool descriptionChanged, bool statusChanged, bool categoryChanged, NoteStatus newStatus)
@@ -385,6 +429,18 @@ namespace NotesManager.Services.Implementations
                 "application/pdf" => NoteAttachmentType.PDF,
                 _ => NoteAttachmentType.PNG,
             };
+        }
+
+        private string GetContentTypeFromAttachmentType(NoteAttachmentType attachmentType)
+        {
+            return attachmentType switch
+            {
+                NoteAttachmentType.PDF => "application/pdf",
+                NoteAttachmentType.JPG => "image/jpg",
+                NoteAttachmentType.PNG => "image/png",
+                _ => "image/jpeg"
+            };
+
         }
         #endregion
 

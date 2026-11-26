@@ -334,6 +334,7 @@ namespace NotesManager.MVC.Controllers
         }
 
         [HttpPost]
+        [RequestSizeLimit(52428800)] // Request size attribute to apply exceed
         public async Task<IActionResult> Attachments(int id, [FromForm] UploadNoteAttachments attachments)
         {
             if (!ModelState.IsValid)
@@ -362,6 +363,42 @@ namespace NotesManager.MVC.Controllers
                 message = result.Message,
                 success = result.Success,
             });
+        }
+
+        public async Task<IActionResult> DownloadAttachMent(int id)
+        {
+            Attachment? attachment = await noteService.DownloadAttachmentAsync(id);
+            if (attachment == null)
+            {
+                return NotFound();
+            }
+            return File(attachment.stream, attachment.ContentType, attachment.FileName);
+        }
+
+        [ServiceFilter<ApiExceptionFilter>]
+        [HttpGet]
+        public async Task<IActionResult> ViewAttachment(int id)
+        {
+            var res = await noteService.GetFileUrlAsync(id);
+            if (!res.HasValue)
+            {
+                return NotFound(new
+                {
+                    message = "Not Attachment Found",
+                    success = false
+                });
+            }
+            return Ok(new
+            {
+                message = "File Url Fetched Successfully",
+                success = true,
+                data = new
+                {
+                    filename = res.Value.filename,
+                    url = res.Value.url
+                }
+            });
+
         }
     }
 }

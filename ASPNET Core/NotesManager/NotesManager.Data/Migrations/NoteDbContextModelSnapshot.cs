@@ -38,6 +38,9 @@ namespace NotesManager.Data.Migrations
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<DateTimeOffset?>("DeletedAt")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -214,7 +217,7 @@ namespace NotesManager.Data.Migrations
                     b.HasOne("NotesManager.Data.Models.Note", "Note")
                         .WithMany("History")
                         .HasForeignKey("NoteId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("NotesManager.Data.Models.Category", "OldCategory")

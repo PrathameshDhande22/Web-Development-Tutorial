@@ -68,5 +68,46 @@ namespace NotesManager.Services.Implementations
             using var stream = file.OpenReadStream();
             return await UploadAsync(stream, key, ContentType);
         }
+
+        public Task<string> GetFileUrlAsync(string key)
+        {
+            GetPreSignedUrlRequest request = new()
+            {
+                BucketName = BucketName,
+                Key = key,
+                Expires = DateTime.UtcNow.AddMinutes(2)
+            };
+
+            return s3.GetPreSignedURLAsync(request);
+        }
+
+        public async Task<Stream?> DownloadFileAsync(string Key)
+        {
+            GetObjectRequest request = new()
+            {
+                BucketName = BucketName,
+                Key = Key,
+                ResponseExpires = DateTime.UtcNow.AddMinutes(10)
+            };
+            try
+            {
+                GetObjectResponse res = await s3.GetObjectAsync(request);
+                if (res == null)
+                {
+                    return null;
+                }
+                return res.ResponseStream;
+            }
+            catch (AmazonS3Exception s3ex)
+            {
+                logger.LogError(s3ex, s3ex.Message);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, ex.Message);
+                return null;
+            }
+        }
     }
 }

@@ -81,16 +81,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// Adds the Status code pages middleware 
-//app.UseStatusCodePagesWithRedirects("/Error"); // here redirect will be happen to the client side
-app.UseStatusCodePagesWithReExecute("/Error?statuscode={0}"); // These will redirect and execute the error controller internally without redirecting to the client side
-
 app.UseHttpsRedirection();
 app.UseRouting();
 
+// Adds the Status code pages middleware 
+//app.UseStatusCodePagesWithRedirects("/Error"); // here redirect will be happen to the client side
+app.UseStatusCodePagesWithReExecute("/Error","?statuscode={0}"); // These will redirect and execute the error controller internally without redirecting to the client side
+
 // add the response caching middleware components
 app.UseResponseCaching();
-
 
 app.UseAuthorization();
 

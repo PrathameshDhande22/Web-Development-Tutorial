@@ -29,7 +29,7 @@ namespace NotesManager.Data.Configuration
             builder.HasOne(nh => nh.Note)
                 .WithMany(n => n.History)
                 .HasForeignKey(nh => nh.NoteId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

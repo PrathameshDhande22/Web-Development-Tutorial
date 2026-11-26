@@ -17,6 +17,7 @@ namespace NotesManager.Data.Models
 
         // Creating these column as nullable
         public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
 
         // Navigational Properties
         public ICollection<Note> Notes { get; set; } = new List<Note>();
