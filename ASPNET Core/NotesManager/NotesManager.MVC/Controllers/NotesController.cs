@@ -334,6 +334,7 @@ namespace NotesManager.MVC.Controllers
         }
 
         [HttpPost]
+        [RequestSizeLimit(52428800)] // Request size attribute to apply exceed
         public async Task<IActionResult> Attachments(int id, [FromForm] UploadNoteAttachments attachments)
         {
             if (!ModelState.IsValid)
