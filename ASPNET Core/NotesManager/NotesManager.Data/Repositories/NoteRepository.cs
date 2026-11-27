@@ -150,7 +150,7 @@ namespace NotesManager.Data.Repositories
             var query = dbContext.NoteHistory
                .Where(nh => nh.NoteId == noteId)
                .OrderByDescending(nh => nh.CreatedAt)
-               .Select((nh, i) => new NoteHistory()
+               .Select(nh => new NoteHistory()
                {
                    Id = nh.Id,
                    Action = nh.Action,
@@ -172,7 +172,7 @@ namespace NotesManager.Data.Repositories
 
         public Task<NoteHistory?> GetDetailNoteHistory(int id)
         {
-            return dbContext.NoteHistory.FirstOrDefaultAsync(nh => nh.Id == id);
+            return dbContext.NoteHistory.AsNoTracking().SingleOrDefaultAsync(nh => nh.Id == id);
         }
 
         public void AddAttachments(NoteAttachments attachment)
@@ -183,13 +183,14 @@ namespace NotesManager.Data.Repositories
         public Task<int> GetAttachmentsCountAsync(int noteid)
         {
             return dbContext.NoteAttachments
+                    .AsNoTracking()
                     .Where(n => n.Noteid == noteid)
                     .CountAsync();
         }
 
         public Task<NoteAttachments?> GetAttachmentByIdAsync(int id)
         {
-            return dbContext.NoteAttachments.FirstOrDefaultAsync(a => a.Id == id);
+            return dbContext.NoteAttachments.AsNoTracking().SingleOrDefaultAsync(a => a.Id == id);
         }
 
         public Task<int> DeleteAttachmentAsync(int id)
