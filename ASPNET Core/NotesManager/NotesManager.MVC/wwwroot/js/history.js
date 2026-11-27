@@ -16,16 +16,16 @@ $(function () {
     });
 
     // Tab switching for history detail (event delegation for dynamically loaded content)
-    $(document).on('click', '.tab-button', function () {
+    $(document).on('click', '.tab', function () {
         const tabName = $(this).data('tab');
 
-        // Update active tab button
-        $(this).closest('.border-b').find('.tab-button').removeClass('active bg-base-200');
-        $(this).addClass('active bg-base-200');
+        // Update active tab
+        $(this).closest('.tabs').find('.tab').removeClass('tab-active');
+        $(this).addClass('tab-active');
 
         // Show selected tab content
-        $(this).closest('.border-b').siblings('.tab-content').addClass('hidden');
-        $(this).closest('.border-b').siblings('#' + tabName + '-tab').removeClass('hidden');
+        $(this).closest('.mb-4').siblings('.tab-content').addClass('hidden');
+        $(this).closest('.mb-4').siblings('#' + tabName + '-tab').removeClass('hidden');
     });
 
     /**

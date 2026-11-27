@@ -1,157 +1,130 @@
 @model NoteDetailedHistoryDTO
 
-<!-- Loading indicator -->
-<div id="loading-indicator" class="hidden py-4 text-center">
-    <span class="loading loading-spinner loading-lg"></span>
-    <span class="ml-2">Loading...</span>
+<!-- Version Header -->
+<div class="mb-2">
+    <span class="font-semibold">@Model.Version • @Model.ActionName</span>
 </div>
 
-<!-- History Detail Content -->
-<div id="history-detail-content">
-    <!-- Version Header -->
-    <div class="mb-4 flex items-center gap-2">
-        <span class="font-semibold">@Model.Version • @Model.ActionName</span>
-    </div>
-    
-    <!-- Date, Status, and Category -->
-    <div class="mb-4 text-sm text-gray-500">
-        @if (Model.ActionName != "Created")
-        {
-            <span>Edited • </span>
-        }
-        <span>@Model.CreatedAt.ToString("MMM dd, yyyy, hh:mm tt")</span>
-        
-        @if (Model.NewStatus.HasValue)
-        {
-            <span> • @Model.NewStatus</span>
-        }
-        
-        @if (!string.IsNullOrEmpty(Model.NewCategoryName))
-        {
-            <span> • @Model.NewCategoryName</span>
-        }
-    </div>
-    
-    <!-- Tabs and Controls -->
-    <div class="mb-4 flex items-center gap-2 border-b border-gray-200 pb-2">
-        <button class="btn btn-sm btn-ghost tab-button active" data-tab="changes">Changes</button>
-        <button class="btn btn-sm btn-ghost tab-button" data-tab="content">Content</button>
-        
-        <div class="flex-1"></div>
-        
-        <select class="select select-sm select-bordered w-32">
-            <option>vs previous</option>
-        </select>
-        
+<!-- Date, Status, and Category -->
+<div class="mb-4 text-sm text-gray-500">
+    @if (Model.ActionName != "Created")
+    {
+        <span>Edited • </span>
+    }
+    <span>@Model.CreatedAt.ToString("MMM dd, yyyy, hh:mm tt")</span>
+
+    @if (Model.NewStatus.HasValue)
+    {
+        <span> • @Model.NewStatus</span>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.NewCategoryName))
+    {
+        <span> • @Model.NewCategoryName</span>
+    }
+</div>
+
+<!-- Tabs and Controls -->
+<div class="relative mb-4">
+    <div class="mt-2 flex items-center gap-2 md:absolute md:top-0 md:right-0 md:mt-0">
         <button class="btn btn-sm btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z" />
             </svg>
             Restore this version
         </button>
     </div>
-    
-    <!-- Tab Content -->
-    <div id="changes-tab" class="tab-content">
-        <!-- Title Changes -->
-        @if (!string.IsNullOrEmpty(Model.OldTitle) || !string.IsNullOrEmpty(Model.NewTitle))
-        {
-            <div class="mb-4 rounded-lg border border-gray-200 p-3">
-                <div class="mb-2 flex items-center gap-2">
-                    <span class="font-semibold">Title</span>
-                    <span class="flex-1 truncate text-gray-600">@Model.NewTitle</span>
-                    <span class="text-gray-400">→ Update</span>
-                </div>
-                
-                @if (!string.IsNullOrEmpty(Model.OldTitle) && Model.OldTitle != Model.NewTitle)
-                {
-                    <div class="mb-1 rounded bg-red-50 p-2">
-                        <span class="text-red-600">- @Model.OldTitle</span>
-                    </div>
-                    <div class="rounded bg-green-50 p-2">
-                        <span class="text-green-600">+ @Model.NewTitle</span>
-                    </div>
-                }
-                else if (!string.IsNullOrEmpty(Model.NewTitle))
-                {
-                    <div class="rounded bg-green-50 p-2">
-                        <span class="text-green-600">+ @Model.NewTitle</span>
-                    </div>
-                }
-            </div>
-        }
-        
-        <!-- Status Changes -->
-        @if (Model.OldStatus.HasValue && Model.NewStatus.HasValue && Model.OldStatus != Model.NewStatus)
-        {
-            <div class="mb-4 rounded-lg border border-gray-200 p-3">
-                <div class="mb-2 flex items-center gap-2">
-                    <span class="font-semibold">Status</span>
-                    <span class="flex-1 truncate text-gray-600">@Model.NewStatus</span>
-                    <span class="text-gray-400">→ Update</span>
-                </div>
-                
-                <div class="mb-1 rounded bg-red-50 p-2">
-                    <span class="text-red-600">- @Model.OldStatus</span>
-                </div>
-                <div class="rounded bg-green-50 p-2">
-                    <span class="text-green-600">+ @Model.NewStatus</span>
-                </div>
-            </div>
-        }
-        
-        <!-- Category Changes -->
-        @if (Model.OldCategoryId.HasValue && Model.NewCategoryId.HasValue && Model.OldCategoryId != Model.NewCategoryId)
-        {
-            <div class="mb-4 rounded-lg border border-gray-200 p-3">
-                <div class="mb-2 flex items-center gap-2">
-                    <span class="font-semibold">Category</span>
-                    <span class="flex-1 truncate text-gray-600">@Model.NewCategoryName</span>
-                    <span class="text-gray-400">→ Update</span>
-                </div>
-                
-                <div class="mb-1 rounded bg-red-50 p-2">
-                    <span class="text-red-600">- @Model.OldCategoryName</span>
-                </div>
-                <div class="rounded bg-green-50 p-2">
-                    <span class="text-green-600">+ @Model.NewCategoryName</span>
-                </div>
-            </div>
-        }
-        
-        <!-- Description Changes -->
-        @if ((!string.IsNullOrEmpty(Model.OldDescription) && !string.IsNullOrEmpty(Model.NewDescripton) && Model.OldDescription != Model.NewDescripton) ||
-            (!string.IsNullOrEmpty(Model.NewDescripton) && string.IsNullOrEmpty(Model.OldDescription)))
-        {
-            <div class="mb-4 rounded-lg border border-gray-200 p-3">
-                <div class="mb-2 flex items-center gap-2">
-                    <span class="font-semibold">Description</span>
-                    <span class="text-gray-400">→ Update</span>
-                </div>
-                
-                @if (!string.IsNullOrEmpty(Model.OldDescription))
-                {
-                    <div class="mb-1 rounded bg-red-50 p-2">
-                        <span class="text-red-600">- @Model.OldDescription</span>
-                    </div>
-                }
-                <div class="rounded bg-green-50 p-2">
-                    <span class="text-green-600">+ @Model.NewDescripton</span>
-                </div>
-            </div>
-        }
-    </div>
-    
-    <div id="content-tab" class="tab-content hidden">
-        <div class="rounded-lg border border-gray-200 p-3">
-            @if (!string.IsNullOrEmpty(Model.NewDescripton))
-            {
-                <div class="whitespace-pre-wrap">@Model.NewDescripton</div>
-            }
-            else
-            {
-                <div class="text-gray-400">No content available</div>
-            }
+</div>
+
+<!-- Tab Content - Changes -->
+<div id="changes-tab" class="tab-content">
+    @if (!string.IsNullOrEmpty(Model.OldTitle) || !string.IsNullOrEmpty(Model.NewTitle))
+    {
+        <div class="mb-2 flex items-center gap-2">
+            <span class="font-semibold">Title</span>
+            <span class="flex-1 truncate text-gray-600">@Model.NewTitle</span>
+            <span class="text-gray-400">→ Update</span>
         </div>
+
+        @if (!string.IsNullOrEmpty(Model.OldTitle) && Model.OldTitle != Model.NewTitle)
+        {
+            <div class="mb-1 rounded bg-red-50 p-2">
+                <span class="text-red-600">- @Model.OldTitle</span>
+            </div>
+            <div class="rounded bg-green-50 p-2">
+                <span class="text-green-600">+ @Model.NewTitle</span>
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(Model.NewTitle))
+        {
+            <div class="rounded bg-green-50 p-2">
+                <span class="text-green-600">+ @Model.NewTitle</span>
+            </div>
+        }
+    }
+
+    @if (Model.OldStatus.HasValue && Model.NewStatus.HasValue && Model.OldStatus != Model.NewStatus)
+    {
+        <div class="mt-4 mb-2 flex items-center gap-2">
+            <span class="font-semibold">Status</span>
+            <span class="flex-1 truncate text-gray-600">@Model.NewStatus</span>
+            <span class="text-gray-400">→ Update</span>
+        </div>
+
+        <div class="mb-1 rounded bg-red-50 p-2">
+            <span class="text-red-600">- @Model.OldStatus</span>
+        </div>
+        <div class="rounded bg-green-50 p-2">
+            <span class="text-green-600">+ @Model.NewStatus</span>
+        </div>
+    }
+
+    @if (Model.OldCategoryId.HasValue && Model.NewCategoryId.HasValue && Model.OldCategoryId != Model.NewCategoryId)
+    {
+        <div class="mt-4 mb-2 flex items-center gap-2">
+            <span class="font-semibold">Category</span>
+            <span class="flex-1 truncate text-gray-600">@Model.NewCategoryName</span>
+            <span class="text-gray-400">→ Update</span>
+        </div>
+
+        <div class="mb-1 rounded bg-red-50 p-2">
+            <span class="text-red-600">- @Model.OldCategoryName</span>
+        </div>
+        <div class="rounded bg-green-50 p-2">
+            <span class="text-green-600">+ @Model.NewCategoryName</span>
+        </div>
+    }
+
+    @if ((!string.IsNullOrEmpty(Model.OldDescription) && !string.IsNullOrEmpty(Model.NewDescripton) && Model.OldDescription != Model.NewDescripton) ||
+            (!string.IsNullOrEmpty(Model.NewDescripton) && string.IsNullOrEmpty(Model.OldDescription)))
+    {
+        <div class="mt-4 mb-2 flex items-center gap-2">
+            <span class="font-semibold">Description</span>
+            <span class="text-gray-400">→ Update</span>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.OldDescription))
+        {
+            <div class="mb-1 rounded bg-red-50 p-2">
+                <span class="text-red-600">- @Model.OldDescription</span>
+            </div>
+        }
+        <div class="rounded bg-green-50 p-2">
+            <span class="text-green-600">+ @Model.NewDescripton</span>
+        </div>
+    }
+</div>
+
+<!-- Tab Content - Content -->
+<div id="content-tab" class="tab-content hidden">
+    <div class="rounded-lg border border-gray-200 p-3">
+        @if (!string.IsNullOrEmpty(Model.NewDescripton))
+        {
+            <div class="whitespace-pre-wrap">@Model.NewDescripton</div>
+        }
+        else
+        {
+            <div class="text-gray-400">No content available</div>
+        }
     </div>
 </div>

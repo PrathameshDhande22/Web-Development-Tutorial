@@ -1085,6 +1085,97 @@
         transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
       }
     }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      --tabs-height: auto;
+      --tabs-direction: row;
+      --tab-height: calc(var(--size-field, 0.25rem) * 10);
+      height: var(--tabs-height);
+      flex-direction: var(--tabs-direction);
+    }
+    .tab:is(.tabs > .tab) {
+      position: relative;
+      display: inline-flex;
+      cursor: pointer;
+      appearance: none;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      webkit-user-select: none;
+      user-select: none;
+    }
+    @media (hover: hover) {
+      .tab:is(.tabs > .tab):hover {
+        color: var(--color-base-content);
+      }
+    }
+    .tab:is(.tabs > .tab) {
+      --tab-p: 0.75rem;
+      --tab-bg: var(--color-base-100);
+      --tab-border-color: var(--color-base-300);
+      --tab-radius-ss: 0;
+      --tab-radius-se: 0;
+      --tab-radius-es: 0;
+      --tab-radius-ee: 0;
+      --tab-order: 0;
+      --tab-radius-min: calc(0.75rem - var(--border));
+      --tab-radius-limit: min(var(--radius-field), var(--tab-radius-min));
+      --tab-radius-grad: #0000 calc(69% - var(--border)), var(--tab-border-color) calc(69% - var(--border) + 0.25px),
+        var(--tab-border-color) 69%, var(--tab-bg) calc(69% + 0.25px);
+      border-color: #0000;
+      order: var(--tab-order);
+      height: var(--tab-height);
+      font-size: 0.875rem;
+      padding-inline: var(--tab-p);
+    }
+    .tab:is(.tabs > .tab):is(input[type="radio"]) {
+      min-width: fit-content;
+      &:after {
+        --tw-content: attr(aria-label);
+        content: var(--tw-content);
+      }
+    }
+    .tab:is(.tabs > .tab):is(label) {
+      position: relative;
+      input {
+        position: absolute;
+        inset: 0px;
+        cursor: pointer;
+        appearance: none;
+        opacity: 0%;
+      }
+    }
+    :is(.tab:is(.tabs > .tab):checked, .tab:is(.tabs > .tab):is(label:has(:checked)), .tab:is(.tabs > .tab):is(.tab-active, [aria-selected="true"], [aria-current="true"], [aria-current="page"])) + .tab-content {
+      display: block;
+    }
+    .tab:is(.tabs > .tab):not(:checked, label:has(:checked), :hover, .tab-active, [aria-selected="true"], [aria-current="true"], [aria-current="page"] ) {
+      color: var(--color-base-content);
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+      }
+    }
+    .tab:is(.tabs > .tab):not(input):empty {
+      flex-grow: 1;
+      cursor: default;
+    }
+    .tab:is(.tabs > .tab):focus {
+      --tw-outline-style: none;
+      outline-style: none;
+      @media (forced-colors: active) {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+    }
+    .tab:is(.tabs > .tab):focus-visible, .tab:is(.tabs > .tab):is(label:has(:checked:focus-visible)) {
+      outline: 2px solid currentColor;
+      outline-offset: -5px;
+    }
+    .tab:is(.tabs > .tab)[disabled] {
+      pointer-events: none;
+      opacity: 40%;
+    }
     .menu {
       display: flex;
       width: fit-content;
@@ -5148,6 +5239,37 @@
   .border-stone-200 {
     border-color: var(--color-stone-200);
   }
+  @layer daisyui.l1.l2 {
+    :is(.tabs-lift :checked, .tabs-lift label:has(:checked), .tabs-lift :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"])) + .tab-content:nth-child(1) {
+      --tabcontent-radius-ss: var(--radius-box);
+    }
+    :is(.tabs-lift :checked, .tabs-lift label:has(:checked), .tabs-lift :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"])) + .tab-content:nth-child(n + 3) {
+      --tabcontent-radius-ss: var(--radius-box);
+    }
+    :is(.tabs-top :checked, .tabs-top label:has(:checked), .tabs-top :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"])) + .tab-content:nth-child(1) {
+      --tabcontent-radius-ss: var(--radius-box);
+    }
+    :is(.tabs-top :checked, .tabs-top label:has(:checked), .tabs-top :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"])) + .tab-content:nth-child(n + 3) {
+      --tabcontent-radius-ss: var(--radius-box);
+    }
+    :is(.tabs-bottom > :checked, .tabs-bottom > :is(label:has(:checked)), .tabs-bottom > :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"])) + .tab-content:not(:nth-child(2)) {
+      --tabcontent-radius-es: var(--radius-box);
+    }
+    .tabs-box > :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"]):not(.tab-disabled, [disabled] ) {
+      background-color: var(--tab-bg, var(--color-base-100));
+      box-shadow: 0 1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px 1px -1px var(--color-neutral), 0 1px 6px -4px var(--color-neutral);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .tabs-box > :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"]):not(.tab-disabled, [disabled] ) {
+        box-shadow: 0 1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset, 0 1px 1px -1px color-mix(in oklab, var(--color-neutral) calc(var(--depth) * 50%), #0000), 0 1px 6px -4px color-mix(in oklab, var(--color-neutral) calc(var(--depth) * 100%), #0000);
+      }
+    }
+    @media (forced-colors: active) {
+      .tabs-box > :is(:is(.tab-active), [aria-selected="true"], [aria-current="true"], [aria-current="page"]):not(.tab-disabled, [disabled] ) {
+        border: 1px solid;
+      }
+    }
+  }
   .bg-\[\#4F8065\] {
     background-color: #4F8065;
   }
@@ -5466,6 +5588,16 @@
   .text-xs {
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  @layer daisyui.l1.l2 {
+    .tabs-sm {
+      --tab-height: calc(var(--size-field, 0.25rem) * 8);
+    }
+    .tabs-sm > .tab {
+      font-size: 0.875rem;
+      --tab-p: 0.5rem;
+      --tab-radius-min: calc(0.5rem - var(--border));
+    }
   }
   .text-\[0\.9em\] {
     font-size: 0.9em;
@@ -5925,6 +6057,18 @@
     }
   }
   @media (width >= 48rem) {
+    .md\:absolute {
+      position: absolute;
+    }
+    .md\:top-0 {
+      top: 0px;
+    }
+    .md\:right-0 {
+      right: 0px;
+    }
+    .md\:mt-0 {
+      margin-top: 0px;
+    }
     .md\:block {
       display: block;
     }
