@@ -418,5 +418,16 @@ namespace NotesManager.MVC.Controllers
                 data = res.Data
             });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> HistoryDetail(int id)
+        {
+            NoteDetailedHistoryDTO? historydetail = await noteService.GetHistoryById(id);
+            if (historydetail == null)
+            {
+                return NotFound();
+            }
+            return PartialView(historydetail);
+        }
     }
 }

@@ -11,19 +11,45 @@
     <div>
         <!--Back Button and Page Header-->
         <div class="flex items-center gap-3">
-            <a asp-route="NoteDetails" asp-route-id="@noteId" class="btn btn-ghost">
+            <a asp-route="NoteDetails" asp-route-id="@noteId" class="btn btn-sm btn-ghost">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4 dark:text-gray-300" viewBox="0 0 1024 1024">
                     <path fill="currentColor" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" />
                     <path fill="currentColor" d="m237.248 512l265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z" />
                 </svg>
             </a>
-            <div class="flex flex-col gap-1">
-                <h1 class="text-lg font-semibold">@(Model.FirstOrDefault()?.Title ?? "")</h1>
-                <span class="inline-block text-gray-500">
+            <div>
+                <h1 class="text-lg font-semibold">@Model.FirstOrDefault()!.Title</h1>
+                <span class="inline-block text-sm text-gray-500">
                     @Model.Count versions | Newest first
                 </span>
             </div>
         </div>
-    </div>
+        <!--Version List and Detail-->
+        <div class="mt-6 grid gap-6 md:grid-cols-[16rem_minmax(0,1fr)]">
+            <!--Version List-->
+            <ol class="max-h-[70vh] overflow-y-auto rounded-lg border border-gray-300">
+                @foreach (NoteHistoryDTO history in Model)
+                {
+                    <li>
+                        <button type="button" class="w-full px-4 py-3 text-left hover:bg-base-200">
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400">@history.Version</span>
+                                <span class="flex-1 truncate font-semibold">@history.ActionName</span>
+                            </div>
+                            <!--History Detail-->
+                            <div class="text-sm text-gray-400">
+                                <span>@history.CreatedAt.ToString("MMM dd, yyyy, hh:mm tt")</span>
+                            </div>
+                        </button>
+                    </li>
+                }
+            </ol>
+            <!--History Detail-->
+            <div class="rounded-lg border border-gray-300 p-3" id="history-detail">
+                <div>
 
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

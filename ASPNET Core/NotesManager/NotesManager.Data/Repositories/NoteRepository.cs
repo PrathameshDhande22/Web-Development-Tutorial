@@ -149,7 +149,6 @@ namespace NotesManager.Data.Repositories
         {
             var query = dbContext.NoteHistory
                .Where(nh => nh.NoteId == noteId)
-               .OrderByDescending(nh => nh.CreatedAt)
                .Select(nh => new NoteHistory()
                {
                    Id = nh.Id,
@@ -165,7 +164,7 @@ namespace NotesManager.Data.Repositories
                 CreatedAt = nh.CreatedAt.DateTime,
                 RowNumber = index + 1,
                 Title = nh.NewTitle ?? string.Empty,
-            }).ToListAsync();
+            }).OrderByDescending(h => h.CreatedAt).ToListAsync();
 
             return histories;
         }

@@ -218,7 +218,7 @@ namespace NotesManager.Services.Implementations
                 NoteId = note.Id,
                 Action = action,
                 OldTitle = titleChanged ? oldTitle : null,
-                NewTitle = titleChanged ? note.Title : null,
+                NewTitle = note.Title,
                 OldDescription = descriptionChanged ? oldDescription : null,
                 NewDescripton = descriptionChanged ? note.Description : null,
                 OldStatus = statusChanged ? oldStatus : null,

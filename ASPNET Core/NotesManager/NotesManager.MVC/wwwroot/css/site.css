@@ -100,8 +100,6 @@
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -4672,6 +4670,9 @@
   .max-h-\[70dvh\] {
     max-height: 70dvh;
   }
+  .max-h-\[70vh\] {
+    max-height: 70vh;
+  }
   .min-h-40 {
     min-height: calc(var(--spacing) * 40);
   }
@@ -4943,6 +4944,9 @@
   }
   .overflow-x-auto {
     overflow-x: auto;
+  }
+  .overflow-y-auto {
+    overflow-y: auto;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -5298,6 +5302,9 @@
   }
   .text-center {
     text-align: center;
+  }
+  .text-left {
+    text-align: left;
   }
   .text-right {
     text-align: right;
@@ -5811,6 +5818,9 @@
     }
     .md\:grid-cols-4 {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .md\:grid-cols-\[16rem_minmax\(0\,1fr\)\] {
+      grid-template-columns: 16rem minmax(0,1fr);
     }
     .md\:rounded-none {
       border-radius: 0;
