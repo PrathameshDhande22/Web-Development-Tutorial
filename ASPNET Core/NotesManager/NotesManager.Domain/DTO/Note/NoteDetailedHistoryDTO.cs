@@ -12,5 +12,7 @@ namespace NotesManager.Domain.DTO.Note
         public string? NewDescripton { get; set; }
         public int? OldCategoryId { get; set; }
         public int? NewCategoryId { get; set; }
+        public string? OldCategoryName { get; set; }
+        public string? NewCategoryName { get; set; }
     }
 }

@@ -287,6 +287,10 @@ namespace NotesManager.Services.Implementations
                 logger.LogInformation("No history found for NoteHistory with Id={Id}", id);
                 return null;
             }
+            
+            // Get the row number for this history item
+            int rowNumber = await noteRepository.GetHistoryRowNumberAsync(id);
+            
             return new NoteDetailedHistoryDTO()
             {
                 Id = history.Id,
@@ -299,7 +303,10 @@ namespace NotesManager.Services.Implementations
                 OldCategoryId = history.OldCategoryId,
                 OldDescription = history.OldDescription,
                 OldStatus = history.OldStatus,
-                OldTitle = history.OldTitle
+                OldTitle = history.OldTitle,
+                OldCategoryName = history.OldCategory?.Name,
+                NewCategoryName = history.NewCategory?.Name,
+                RowNumber = rowNumber
             };
         }
         #endregion
