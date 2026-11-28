@@ -13,7 +13,6 @@ using NotesManager.Services;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace NotesManager.MVC.Controllers
 {

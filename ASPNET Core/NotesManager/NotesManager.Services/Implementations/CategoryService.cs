@@ -29,9 +29,9 @@ namespace NotesManager.Services.Implementations
             this.UnitOfWork = unitOfWork;
         }
 
-        public Task<bool> CategoryExists(string name)
+        public Task<bool> CategoryExists(string name, int? IdToIgnore = null)
         {
-            return _categoryRepository.CategoryExists(name);
+            return _categoryRepository.CategoryExists(name, IdToIgnore);
         }
 
         public async Task<CategoryDTO> CreateAsync(CreateCategory category)
@@ -106,6 +106,37 @@ namespace NotesManager.Services.Implementations
                 return ServiceResult<bool>.Ok(true, "Category deleted successfully");
             }
             return ServiceResult<bool>.Error("Failed to delete category");
+        }
+
+        public async Task<ServiceResult<bool>> UpdateCategoryAsync(UpdateCategory category)
+        {
+            // Check if the Category Exists
+            _logger.LogInformation("Fetching the Details regarding the Category Id={Id}", category.Id);
+            Category? categoryFetched = await _categoryRepository.GetAsync(category.Id);
+            if (categoryFetched == null)
+            {
+                _logger.LogInformation("No Category found with these Id={Id}. Hence unable to update", category.Id);
+                return ServiceResult<bool>.Fail("No Category found with these id");
+            }
+
+            // Check if the provided name already exists on the Category
+            bool nameAlreadyExists = await _categoryRepository.CategoryExists(category.Name, category.Id);
+            if (nameAlreadyExists)
+            {
+                _logger.LogInformation("Category for id={Id} Updating, provided Name={name} already exists", category.Id, category.Name);
+                return ServiceResult<bool>.Fail("Category with these name already exists");
+            }
+
+            _logger.LogInformation("Updating the Category for Id={id}", category.Id);
+            int updateRowcount = await _categoryRepository.UpdateAsync(category.Id, category.Name, category.Color);
+            if (updateRowcount == 1)
+            {
+                _logger.LogInformation("Updated the Category Name and Color for Id={Id}", category.Id);
+                return ServiceResult<bool>.Ok(true, "Category updated Successfully");
+            }
+
+            _logger.LogWarning("While updating the Category the expected Row count should be 1 but recieved {Count} for CategoryId={Id}", updateRowcount, category.Id);
+            return ServiceResult<bool>.Error("Error occured when updating the category");
         }
     }
 }

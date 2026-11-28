@@ -32,9 +32,9 @@ namespace NotesManager.Data.Repositories
         /// </summary>
         /// <param name="Name">Name of the category to check</param>
         /// <returns><see cref="true"/> if the category exists otherwise false</returns>
-        public Task<bool> CategoryExists(string Name)
+        public Task<bool> CategoryExists(string Name, int? IdToIgnore = null)
         {
-            return dbContext.Category.Where(c => c.Name.Contains(Name) && c.DeletedAt == null).AnyAsync();
+            return dbContext.Category.Where(c => c.Name.Contains(Name) && c.DeletedAt == null && (!IdToIgnore.HasValue || c.Id != IdToIgnore.Value)).AnyAsync();
         }
 
         /// <summary>
@@ -90,6 +90,23 @@ namespace NotesManager.Data.Repositories
         {
             return dbContext.Notes
                 .AnyAsync(n => n.CategoryId == categoryId);
+        }
+
+        public Task<int> UpdateAsync(int categoryId, string Name, string Color)
+        {
+            return dbContext.Category
+                .Where(c => c.Id == categoryId)
+                .ExecuteUpdateAsync(setters =>
+                {
+                    setters.SetProperty(p => p.Name, Name);
+                    setters.SetProperty(p => p.Color, Color);
+                    setters.SetProperty(p => p.UpdatedAt, DateTimeOffset.UtcNow);
+                });
+        }
+
+        public Task<Category?> GetAsync(int categoryId)
+        {
+            return dbContext.Category.AsNoTracking().FirstOrDefaultAsync(c => c.Id == categoryId);
         }
     }
 }

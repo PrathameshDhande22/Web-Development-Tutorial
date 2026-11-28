@@ -8,7 +8,7 @@ namespace NotesManager.Domain.Models.Category
     {
         [Required(ErrorMessage = "Category Name is required")]
         [StringLength(60, ErrorMessage = "Name must be 60 characters only")]
-        [Remote("IsCategoryAvailable", "Admin")] // Adding the Remote validation
+        [Remote("IsCategoryAvailable", "Admin", AdditionalFields = "Id")] // Adding the Remote validation
         [Display(Name = "Name")] // Setting the Display Name
         public string Name { get; set; } = string.Empty;
 

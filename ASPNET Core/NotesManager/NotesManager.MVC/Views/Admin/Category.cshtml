@@ -69,7 +69,11 @@
                             <td class="text-xs text-gray-400">@categorynotes.CreatedAt.DateTime.ToString("MMM d, yyyy")</td>
                             <td class="text-right">
                                 <!--Action Buttons-->
-                                <button class="btn btn-xs btn-ghost" type="button" role="dialog">
+                                <button class="btn btn-xs btn-ghost edit-category" type="button" role="dialog"
+                                        data-id="@categorynotes.Id"
+                                        data-name="@categorynotes.Name"
+                                        data-color="@categorynotes.Color"
+                                        aria-label="Edit @categorynotes.Name">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M5 12.24L.5 13.5L1.76 9L10 .8a1 1 0 0 1 1.43 0l1.77 1.78a1.001 1.001 0 0 1 0 1.42z" /></svg>
                                 </button>
                                 <button class="btn btn-xs btn-ghost delete-category hover:text-error" type="button" role="alertdialog"
@@ -87,6 +91,9 @@
         </div>
     </div>
 </div>
+
+<!--Partial View Rendering for the Update Category-->
+<partial name="_EditCategoryDialog" model="new UpdateCategory()" />
 
 <!--Delete Category Dialog-->
 <dialog id="delete_category_dialog" class="modal" data-url="@Url.Action("Category", "Admin")">

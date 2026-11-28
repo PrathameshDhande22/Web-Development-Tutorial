@@ -92,11 +92,11 @@ namespace NotesManager.MVC.Controllers
 
         // Action method for Remote validation
         [HttpGet, HttpPost]
-        public async Task<JsonResult> IsCategoryAvailable(string Name)
+        public async Task<JsonResult> IsCategoryAvailable(string Name, int? Id = null)
         {
             try
             {
-                bool categoryExists = await categoryService.CategoryExists(Name);
+                bool categoryExists = await categoryService.CategoryExists(Name, Id);
                 // Return true for Remote validation Success
                 return Json(categoryExists ? "The category with this name already exists" : true);
             }
@@ -125,6 +125,21 @@ namespace NotesManager.MVC.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, results);
             }
             return BadRequest(results);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateCategory(UpdateCategory category)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Invalid Category Details";
+                return RedirectToAction(nameof(Category));
+            }
+            ServiceResult<bool> results = await categoryService.UpdateCategoryAsync(category);
+
+            TempData[results.Success ? "Success" : "Error"] = results.Success ? "Category updated successfully" : "Failed to update the category";
+            return RedirectToAction(nameof(Category));
         }
         #endregion
     }

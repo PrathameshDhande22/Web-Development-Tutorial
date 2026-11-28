@@ -4,8 +4,30 @@ $(function () {
     let $confirmDelete = $("#confirm-delete-category");
     let $confirmLoading = $confirmDelete.find(".loading");
 
+    let $editForm = $("#edit-category-form");
+
     // Category id selected for deleting
     let deleteCategoryId;
+
+    //#region Edit Category
+    // Edit button click handling
+    $(".edit-category").on("click", function () {
+        // Fill the category details in the form
+        $("#edit-id").val($(this).data("id"));
+        $("#edit-name").val($(this).data("name"));
+        $editForm.find(`input[name="Color"][value="${$(this).data("color")}"]`).prop("checked", true);
+
+        // Remove the validation errors of the previously edited category
+        $editForm.validate().resetForm();
+
+        edit_category_dialog.showModal();
+    })
+
+    // Cancel button handling
+    $("#edit-category-cancel").on("click", function () {
+        edit_category_dialog.close();
+    })
+    //#endregion
 
     //#region Delete Category
     // Delete button click handling
