@@ -192,6 +192,21 @@ namespace NotesManager.Data.Repositories
                 .FirstOrDefaultAsync();
         }
 
+        /// <summary>
+        /// Gets all the histories of the note from the first one till the provided history, oldest first.
+        /// </summary>
+        /// <param name="history">History till which the histories are needed</param>
+        /// <returns>List of histories ordered from oldest to newest</returns>
+        public Task<List<NoteHistory>> GetHistoriesTillAsync(NoteHistory history)
+        {
+            return dbContext.NoteHistory
+                .AsNoTracking()
+                .Where(nh => nh.NoteId == history.NoteId && nh.CreatedAt <= history.CreatedAt)
+                .OrderBy(nh => nh.CreatedAt)
+                .ThenBy(nh => nh.Id)
+                .ToListAsync();
+        }
+
         public Task<NoteHistory?> GetDetailNoteHistory(int id)
         {
             return dbContext.NoteHistory

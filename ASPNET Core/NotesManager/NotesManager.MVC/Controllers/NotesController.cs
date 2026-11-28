@@ -419,8 +419,7 @@ namespace NotesManager.MVC.Controllers
             });
         }
 
-        // Partial view for the history detail. The version number is sent from the history list
-        [HttpGet]
+        [HttpGet] // Partial view for the History Detail
         public async Task<IActionResult> HistoryDetail(int id, int rowNumber, bool isCurrent = false)
         {
             NoteDetailedHistoryDTO? historydetail = await noteService.GetHistoryById(id);
@@ -433,5 +432,39 @@ namespace NotesManager.MVC.Controllers
             ViewData["IsCurrent"] = isCurrent;
             return PartialView(historydetail);
         }
+
+        [HttpPost]
+        [ServiceFilter<ApiExceptionFilter>]
+        public async Task<IActionResult> RestoreVersion(int id, [FromQuery] int historyid)
+        {
+            ServiceResult<NoteHistoryDTO> result = await noteService.RestoreNoteFromHistoryAsync(id, historyid);
+
+            // Something went wrong on the server side
+            if (result.ErrorOccured)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = result.Message,
+                    success = result.Success
+                });
+            }
+
+            if (!result.Success)
+            {
+                return BadRequest(new
+                {
+                    message = result.Message,
+                    success = result.Success
+                });
+            }
+
+            return Ok(new
+            {
+                message = result.Message,
+                success = result.Success,
+                data = result.Data
+            });
+        }
+
     }
 }
