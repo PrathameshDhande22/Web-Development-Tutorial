@@ -86,6 +86,7 @@ namespace NotesManager.Data.Repositories
             var query = dbContext.Notes
                         .AsNoTracking()
                         .AsSplitQuery();
+
             if (propertyInclude != null)
             {
                 if (propertyInclude.IncludeCategory)
@@ -94,7 +95,7 @@ namespace NotesManager.Data.Repositories
                 }
                 if (propertyInclude.IncludeNoteHistory)
                 {
-                    query = query.Include(n => n.History);
+                    query = query.Include(n => n.History.OrderByDescending(h => h.CreatedAt).Take(1));
                 }
                 if (propertyInclude.IncludeAttachments)
                 {
@@ -149,6 +150,7 @@ namespace NotesManager.Data.Repositories
         {
             var query = dbContext.NoteHistory
                .Where(nh => nh.NoteId == noteId)
+               .OrderBy(nh => nh.CreatedAt)
                .Select(nh => new NoteHistory()
                {
                    Id = nh.Id,
@@ -167,6 +169,27 @@ namespace NotesManager.Data.Repositories
             }).OrderByDescending(h => h.CreatedAt).ToListAsync();
 
             return histories;
+        }
+
+        /// <summary>
+        /// Gets the latest history of the note. The row number of the latest history is the total number of histories.
+        /// </summary>
+        /// <param name="noteId">Id of the note</param>
+        /// <returns>The latest history with the row number, or null when the note has no history</returns>
+        public Task<NoteHistoryDTO?> GetLatestHistoryAsync(int noteId)
+        {
+            return dbContext.NoteHistory
+                .Where(nh => nh.NoteId == noteId)
+                .OrderByDescending(nh => nh.CreatedAt)
+                .Select(nh => new NoteHistoryDTO()
+                {
+                    Id = nh.Id,
+                    ActionName = nh.Action,
+                    CreatedAt = nh.CreatedAt.DateTime,
+                    Title = nh.NewTitle ?? string.Empty,
+                    RowNumber = dbContext.NoteHistory.Count(h => h.NoteId == noteId)
+                })
+                .FirstOrDefaultAsync();
         }
 
         public Task<NoteHistory?> GetDetailNoteHistory(int id)

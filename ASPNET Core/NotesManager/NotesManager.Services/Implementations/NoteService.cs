@@ -33,11 +33,14 @@ namespace NotesManager.Services.Implementations
         {
             try
             {
-                Note? note = await noteRepository.GetById(Id, new Data.PropertyInclude { IncludeAttachments = true, IncludeCategory = true, IncludeNoteHistory = true });
+                Note? note = await noteRepository.GetById(Id, new Data.PropertyInclude { IncludeAttachments = true, IncludeCategory = true });
                 if (note == null)
                 {
                     return null;
                 }
+
+                // Latest history with the correct version number
+                NoteHistoryDTO? currentHistory = await noteRepository.GetLatestHistoryAsync(Id);
 
                 return new NoteDTO()
                 {
@@ -63,7 +66,8 @@ namespace NotesManager.Services.Implementations
                         FilePath = a.FilePath,
                         CreatedAt = a.CreatedAt.DateTime,
                         AttachMentType = a.Extension
-                    }).ToList()
+                    }).ToList(),
+                    CurrentHistory = currentHistory
                 };
             }
             catch (Exception ex)
@@ -287,7 +291,7 @@ namespace NotesManager.Services.Implementations
                 logger.LogInformation("No history found for NoteHistory with Id={Id}", id);
                 return null;
             }
-            
+
             return new NoteDetailedHistoryDTO()
             {
                 Id = history.Id,
