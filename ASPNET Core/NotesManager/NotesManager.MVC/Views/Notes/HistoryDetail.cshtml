@@ -1,130 +1,149 @@
 @model NoteDetailedHistoryDTO
 
-<!-- Version Header -->
-<div class="mb-2">
-    <span class="font-semibold">@Model.Version • @Model.ActionName</span>
-</div>
+@{
+    bool isCreated = Model.ActionName == "Created";
+    bool isStatusChange = Model.ActionName.StartsWith("Status");
+    bool titleChanged = !isCreated && Model.OldTitle != null;
+    bool categoryChanged = !isCreated && Model.OldCategoryId != null;
+    bool descriptionChanged = Model.NewDescripton != null;
+    bool isCurrent = ViewData["IsCurrent"] as bool? ?? false;
+}
 
-<!-- Date, Status, and Category -->
-<div class="mb-4 text-sm text-gray-500">
-    @if (Model.ActionName != "Created")
+@functions {
+    // Splits the description into lines
+    private string[] GetLines(string? text)
     {
-        <span>Edited • </span>
-    }
-    <span>@Model.CreatedAt.ToString("MMM dd, yyyy, hh:mm tt")</span>
-
-    @if (Model.NewStatus.HasValue)
-    {
-        <span> • @Model.NewStatus</span>
+        return (text ?? string.Empty).Replace("\r", "").Split('\n');
     }
 
-    @if (!string.IsNullOrEmpty(Model.NewCategoryName))
+    // Returns the lines with the sign: "-" removed, "+" added and " " not changed
+    private List<(string sign, string text)> GetDescriptionChanges(string? oldText, string? newText)
     {
-        <span> • @Model.NewCategoryName</span>
+        string[] oldLines = GetLines(oldText);
+        string[] newLines = GetLines(newText);
+
+        List<(string sign, string text)> changes = oldLines
+            .Where(line => !newLines.Contains(line))
+            .Select(line => ("-", line))
+            .ToList();
+
+        changes.AddRange(newLines.Select(line => (oldLines.Contains(line) ? " " : "+", line)));
+        return changes;
     }
-</div>
 
-<!-- Tabs and Controls -->
-<div class="relative mb-4">
-    <div class="mt-2 flex items-center gap-2 md:absolute md:top-0 md:right-0 md:mt-0">
-        <button class="btn btn-sm btn-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z" />
-            </svg>
-            Restore this version
-        </button>
-    </div>
-</div>
-
-<!-- Tab Content - Changes -->
-<div id="changes-tab" class="tab-content">
-    @if (!string.IsNullOrEmpty(Model.OldTitle) || !string.IsNullOrEmpty(Model.NewTitle))
+    // Background color of the line based on the sign
+    private string GetLineClass(string sign)
     {
-        <div class="mb-2 flex items-center gap-2">
-            <span class="font-semibold">Title</span>
-            <span class="flex-1 truncate text-gray-600">@Model.NewTitle</span>
-            <span class="text-gray-400">→ Update</span>
-        </div>
-
-        @if (!string.IsNullOrEmpty(Model.OldTitle) && Model.OldTitle != Model.NewTitle)
+        return sign switch
         {
-            <div class="mb-1 rounded bg-red-50 p-2">
-                <span class="text-red-600">- @Model.OldTitle</span>
-            </div>
-            <div class="rounded bg-green-50 p-2">
-                <span class="text-green-600">+ @Model.NewTitle</span>
-            </div>
-        }
-        else if (!string.IsNullOrEmpty(Model.NewTitle))
-        {
-            <div class="rounded bg-green-50 p-2">
-                <span class="text-green-600">+ @Model.NewTitle</span>
-            </div>
-        }
+            "+" => "bg-green-50 dark:bg-green-500/10",
+            "-" => "bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400",
+            _ => ""
+        };
     }
+}
 
-    @if (Model.OldStatus.HasValue && Model.NewStatus.HasValue && Model.OldStatus != Model.NewStatus)
-    {
-        <div class="mt-4 mb-2 flex items-center gap-2">
-            <span class="font-semibold">Status</span>
-            <span class="flex-1 truncate text-gray-600">@Model.NewStatus</span>
-            <span class="text-gray-400">→ Update</span>
+<div>
+    <!--History Detail Header-->
+    <div class="flex flex-col gap-3 border-b border-gray-300 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-gray-700">
+        <div class="min-w-0">
+            <h2 class="truncate font-semibold">@Model.Version · @(Model.NewTitle ?? Model.ActionName)</h2>
+            <span class="text-sm text-gray-400">
+                @Model.ActionName · @Model.CreatedAt.ToString("dd MMM yyyy, hh:mm tt")
+                @if (Model.NewCategoryName != null)
+                {
+                    <span>· @Model.NewCategoryName</span>
+                }
+                @if (Model.NewStatus.HasValue)
+                {
+                    <span>· @CategoryConstants.StatusMapping[Model.NewStatus.Value].label</span>
+                }
+            </span>
         </div>
-
-        <div class="mb-1 rounded bg-red-50 p-2">
-            <span class="text-red-600">- @Model.OldStatus</span>
-        </div>
-        <div class="rounded bg-green-50 p-2">
-            <span class="text-green-600">+ @Model.NewStatus</span>
-        </div>
-    }
-
-    @if (Model.OldCategoryId.HasValue && Model.NewCategoryId.HasValue && Model.OldCategoryId != Model.NewCategoryId)
-    {
-        <div class="mt-4 mb-2 flex items-center gap-2">
-            <span class="font-semibold">Category</span>
-            <span class="flex-1 truncate text-gray-600">@Model.NewCategoryName</span>
-            <span class="text-gray-400">→ Update</span>
-        </div>
-
-        <div class="mb-1 rounded bg-red-50 p-2">
-            <span class="text-red-600">- @Model.OldCategoryName</span>
-        </div>
-        <div class="rounded bg-green-50 p-2">
-            <span class="text-green-600">+ @Model.NewCategoryName</span>
-        </div>
-    }
-
-    @if ((!string.IsNullOrEmpty(Model.OldDescription) && !string.IsNullOrEmpty(Model.NewDescripton) && Model.OldDescription != Model.NewDescripton) ||
-            (!string.IsNullOrEmpty(Model.NewDescripton) && string.IsNullOrEmpty(Model.OldDescription)))
-    {
-        <div class="mt-4 mb-2 flex items-center gap-2">
-            <span class="font-semibold">Description</span>
-            <span class="text-gray-400">→ Update</span>
-        </div>
-
-        @if (!string.IsNullOrEmpty(Model.OldDescription))
+        <!--Restore Current Version-->
+        @if (!isCurrent)
         {
-            <div class="mb-1 rounded bg-red-50 p-2">
-                <span class="text-red-600">- @Model.OldDescription</span>
-            </div>
-        }
-        <div class="rounded bg-green-50 p-2">
-            <span class="text-green-600">+ @Model.NewDescripton</span>
-        </div>
-    }
-</div>
-
-<!-- Tab Content - Content -->
-<div id="content-tab" class="tab-content hidden">
-    <div class="rounded-lg border border-gray-200 p-3">
-        @if (!string.IsNullOrEmpty(Model.NewDescripton))
-        {
-            <div class="whitespace-pre-wrap">@Model.NewDescripton</div>
-        }
-        else
-        {
-            <div class="text-gray-400">No content available</div>
+            <button type="button" id="restore-version" class="btn btn-sm btn-primary self-start sm:self-auto" data-id="@Model.Id" data-row-number="@Model.RowNumber">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+                Restore this version
+            </button>
         }
     </div>
+
+    @if (isCreated)
+    {
+        <!--Created Version-->
+        <p class="p-4 text-sm text-gray-500">First recorded version: everything was added.</p>
+        <div class="pb-2 font-mono text-sm">
+            @foreach (string line in GetLines(Model.NewDescripton))
+            {
+                <div class="bg-green-50 px-4 wrap-break-word whitespace-pre-wrap dark:bg-green-500/10"><span class="mr-2 text-gray-400 select-none">+</span>@line</div>
+            }
+        </div>
+    }
+    else if (isStatusChange)
+    {
+        <!--Status Changed Version-->
+        <div class="flex flex-wrap items-center gap-3 p-4 text-sm">
+            <span class="text-gray-500">Status changed</span>
+            @if (Model.OldStatus.HasValue)
+            {
+                <status-badge status="@Model.OldStatus.Value" />
+            }
+            <span class="text-gray-400">→</span>
+            @if (Model.NewStatus.HasValue)
+            {
+                <status-badge status="@Model.NewStatus.Value" />
+            }
+        </div>
+    }
+    else
+    {
+        <!--Edited Version-->
+        <p class="p-4 text-sm text-gray-500">Changes made in this version.</p>
+        <dl class="space-y-3 px-4 pb-4 text-sm">
+            @if (titleChanged)
+            {
+                <div class="grid gap-1 sm:grid-cols-[8rem_minmax(0,1fr)]">
+                    <dt class="text-gray-500">Title</dt>
+                    <dd class="min-w-0">
+                        <span class="text-red-600 line-through dark:text-red-400">@Model.OldTitle</span>
+                        <span class="text-gray-400">→</span>
+                        <span class="text-green-700 dark:text-green-400">@Model.NewTitle</span>
+                    </dd>
+                </div>
+            }
+            @if (categoryChanged)
+            {
+                <div class="grid gap-1 sm:grid-cols-[8rem_minmax(0,1fr)]">
+                    <dt class="text-gray-500">Category</dt>
+                    <dd>
+                        <span class="text-red-600 line-through dark:text-red-400">@Model.OldCategoryName</span>
+                        <span class="text-gray-400">→</span>
+                        <span class="text-green-700 dark:text-green-400">@Model.NewCategoryName</span>
+                    </dd>
+                </div>
+            }
+            @if (Model.OldStatus.HasValue && Model.NewStatus.HasValue)
+            {
+                <div class="grid gap-1 sm:grid-cols-[8rem_minmax(0,1fr)]">
+                    <dt class="text-gray-500">Status</dt>
+                    <dd class="flex items-center gap-2">
+                        <status-badge status="@Model.OldStatus.Value" />
+                        <span class="text-gray-400">→</span>
+                        <status-badge status="@Model.NewStatus.Value" />
+                    </dd>
+                </div>
+            }
+        </dl>
+        @if (descriptionChanged)
+        {
+            <div class="border-t border-gray-300 py-2 font-mono text-sm dark:border-gray-700">
+                @foreach (var change in GetDescriptionChanges(Model.OldDescription, Model.NewDescripton))
+                {
+                    <div class="px-4 wrap-break-word whitespace-pre-wrap @GetLineClass(change.sign)"><span class="mr-2 text-gray-400 select-none">@change.sign</span>@change.text</div>
+                }
+            </div>
+        }
+    }
 </div>

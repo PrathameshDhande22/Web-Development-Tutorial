@@ -14,6 +14,8 @@ namespace NotesManager.Services.Interfaces
         public Task<List<CategoryNotesDTO>> GetCategoriesNotesAsync();
         public Task<CategoryDTO> CreateAsync(CreateCategory category);
 
-        public Task<bool> CategoryExists(string name);
+        public Task<bool> CategoryExists(string name,int? IdToIgnore);
+        public Task<ServiceResult<bool>> DeleteCategoryAsync(int categoryid);
+        public Task<ServiceResult<bool>> UpdateCategoryAsync(UpdateCategory category);
     }
 }

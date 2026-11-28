@@ -21,7 +21,10 @@ namespace NotesManager.Data.Repositories
         /// <returns>List of <see cref="Category"/>.</returns>
         public Task<List<Category>> GetAll()
         {
-            return dbContext.Category.AsNoTracking().ToListAsync();
+            return dbContext.Category
+                .AsNoTracking()
+                .Where(c => c.DeletedAt == null)
+                .ToListAsync();
         }
 
         /// <summary>
@@ -29,9 +32,9 @@ namespace NotesManager.Data.Repositories
         /// </summary>
         /// <param name="Name">Name of the category to check</param>
         /// <returns><see cref="true"/> if the category exists otherwise false</returns>
-        public Task<bool> CategoryExists(string Name)
+        public Task<bool> CategoryExists(string Name, int? IdToIgnore = null)
         {
-            return dbContext.Category.Where(c => c.Name.Contains(Name)).AnyAsync();
+            return dbContext.Category.Where(c => c.Name.Contains(Name) && c.DeletedAt == null && (!IdToIgnore.HasValue || c.Id != IdToIgnore.Value)).AnyAsync();
         }
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace NotesManager.Data.Repositories
         {
             var categories = dbContext.Category
                              .AsNoTracking()
+                             .Where(c => c.DeletedAt == null)
                              .Select(c => new CategoryNotesDTO()
                              {
                                  Id = c.Id,
@@ -70,6 +74,39 @@ namespace NotesManager.Data.Repositories
 
             await dbContext.Category.AddAsync(newCategory);
             return newCategory;
+        }
+
+        public Task<int> DeleteAsync(int categoryId)
+        {
+            return dbContext.Category
+                  .Where(c => c.Id == categoryId)
+                  .ExecuteUpdateAsync(setters =>
+                  {
+                      setters.SetProperty(p => p.DeletedAt, DateTimeOffset.UtcNow);
+                  });
+        }
+
+        public Task<bool> NotesExistsForCategory(int categoryId)
+        {
+            return dbContext.Notes
+                .AnyAsync(n => n.CategoryId == categoryId);
+        }
+
+        public Task<int> UpdateAsync(int categoryId, string Name, string Color)
+        {
+            return dbContext.Category
+                .Where(c => c.Id == categoryId)
+                .ExecuteUpdateAsync(setters =>
+                {
+                    setters.SetProperty(p => p.Name, Name);
+                    setters.SetProperty(p => p.Color, Color);
+                    setters.SetProperty(p => p.UpdatedAt, DateTimeOffset.UtcNow);
+                });
+        }
+
+        public Task<Category?> GetAsync(int categoryId)
+        {
+            return dbContext.Category.AsNoTracking().FirstOrDefaultAsync(c => c.Id == categoryId);
         }
     }
 }

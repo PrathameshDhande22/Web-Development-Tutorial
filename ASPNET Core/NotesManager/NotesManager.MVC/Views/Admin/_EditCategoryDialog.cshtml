@@ -1,0 +1,40 @@
+@model UpdateCategory
+
+<!--Edit Category Dialog-->
+<dialog id="edit_category_dialog" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-semibold">Edit category</h3>
+        <form id="edit-category-form" asp-action="UpdateCategory" asp-controller="Admin" method="post" class="mt-4 space-y-4">
+            <input type="hidden" asp-for="Id" id="edit-id" />
+            <!--Name-->
+            <div class="flex flex-col gap-2">
+                <label for="edit-name" class="text-sm font-medium text-stone-500 dark:text-gray-300">
+                    @Html.DisplayNameFor(m => m.Name)
+                </label>
+                <input type="text" asp-for="Name" id="edit-name" class="input w-full" />
+                <span asp-validation-for="Name" class="text-sm text-error"></span>
+            </div>
+            <!--Colour-->
+            <div class="flex flex-col gap-2">
+                <span class="text-sm font-medium text-stone-500 dark:text-gray-300">
+                    @Html.DisplayNameFor(m => m.Color)
+                </span>
+                <div class="flex flex-wrap gap-3">
+                    @foreach (string color in CategoryConstants.Colors)
+                    {
+                        <label class="bg-@(color)-100 relative flex size-8 cursor-pointer items-center justify-center rounded-full has-checked:ring-@(color)-500 has-checked:ring-2">
+                            <input asp-for="Color" type="radio" value="@color" id="edit-color-@color" class="peer sr-only" />
+                            <span class="bg-@(color)-500 size-4 rounded-full"></span>
+                        </label>
+                    }
+                </div>
+                <span asp-validation-for="Color" class="text-sm text-error"></span>
+            </div>
+            <!--Actions-->
+            <div class="modal-action">
+                <button type="button" id="edit-category-cancel" class="btn btn-ghost">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</dialog>

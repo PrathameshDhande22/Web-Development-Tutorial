@@ -144,6 +144,17 @@
                                 <dd class="col-span-2">@Model.UpdatedAt.Value.LocalDateTime.ToString("MMM dd, yyyy, hh:mm tt")</dd>
                             </div>
                         }
+                        @if (Model.CurrentHistory != null)
+                        {
+                            <div class="grid grid-cols-3 items-center gap-3">
+                                <dt class="text-gray-500 dark:text-gray-400">Version</dt>
+                                <dd class="col-span-2">
+                                    <a class="link underline" asp-action="History" asp-controller="Notes" asp-route-id="@Model.Id">
+                                        @Model.CurrentHistory.Version
+                                    </a>
+                                </dd>
+                            </div>
+                        }
                     </dl>
                 </section>
                 <!--Note Attachments-->

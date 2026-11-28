@@ -31,7 +31,7 @@
                 <div class="">
                     <label class="text-sm font-medium text-stone-500 dark:text-gray-300">
                         <!--Display Name Html Helper-->
-                        @Html.DisplayNameFor(m=>m.Color)
+                        @Html.DisplayNameFor(m => m.Color)
                     </label>
                     <div class="mt-2 flex flex-wrap gap-3">
                         @foreach (string color in CategoryConstants.Colors)
@@ -62,15 +62,25 @@
                     @foreach (CategoryNotesDTO categorynotes in ViewBag.Categories)
                     {
                         <tr id="category-@categorynotes.Id" class="category-table-row">
-                            <td class="text-xs">@categorynotes.Name</td>
+                            <td class="text-xs">
+                                <category category-name="@categorynotes.Name" color="@categorynotes.Color" class="inline-block" />
+                            </td>
                             <td class="text-right text-xs">@categorynotes.NotesCount</td>
                             <td class="text-xs text-gray-400">@categorynotes.CreatedAt.DateTime.ToString("MMM d, yyyy")</td>
                             <td class="text-right">
                                 <!--Action Buttons-->
-                                <button class="btn btn-xs btn-ghost" type="button" role="dialog">
+                                <button class="btn btn-xs btn-ghost edit-category" type="button" role="dialog"
+                                        data-id="@categorynotes.Id"
+                                        data-name="@categorynotes.Name"
+                                        data-color="@categorynotes.Color"
+                                        aria-label="Edit @categorynotes.Name">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M5 12.24L.5 13.5L1.76 9L10 .8a1 1 0 0 1 1.43 0l1.77 1.78a1.001 1.001 0 0 1 0 1.42z" /></svg>
                                 </button>
-                                <button class="btn btn-xs btn-ghost" type="button" role="alertdialog">
+                                <button class="btn btn-xs btn-ghost delete-category hover:text-error" type="button" role="alertdialog"
+                                        data-id="@categorynotes.Id"
+                                        data-name="@categorynotes.Name"
+                                        data-notes-count="@categorynotes.NotesCount"
+                                        aria-label="Delete @categorynotes.Name">
                                     <svg class="size-4 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
                                 </button>
                             </td>
@@ -82,7 +92,31 @@
     </div>
 </div>
 
+<!--Partial View Rendering for the Update Category-->
+<partial name="_EditCategoryDialog" model="new UpdateCategory()" />
+
+<!--Delete Category Dialog-->
+<dialog id="delete_category_dialog" class="modal" data-url="@Url.Action("Category", "Admin")">
+    <div class="modal-box">
+        <h3 class="text-lg font-semibold">Delete this category?</h3>
+        <p class="pt-2 text-sm text-gray-400">
+            <span id="delete-category-name" class="font-semibold text-gray-500 dark:text-gray-300"></span> will be permanently deleted. This cannot be undone.
+        </p>
+        <!--Shown only when the category has notes-->
+        <p id="delete-category-notes" class="pt-2 text-sm text-error"></p>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn">Close</button>
+            </form>
+            <button type="button" id="confirm-delete-category" class="btn btn-error bg-red-500 text-white">
+                <span class="loading loading-spinner loading-sm hidden"></span>
+                Delete
+            </button>
+        </div>
+    </div>
+</dialog>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial"></partial>
-    }
+    <script src="~/js/category.js" asp-append-version="true"></script>
+}

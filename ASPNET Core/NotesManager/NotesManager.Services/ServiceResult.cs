@@ -3,6 +3,7 @@
     public class ServiceResult<T>
     {
         public bool Success { get; set; }
+        public bool ErrorOccured { get; set; }
         public string? Message { get; set; } = string.Empty;
         public T? Data { get; set; }
 
@@ -20,6 +21,16 @@
         {
             return new ServiceResult<T>()
             {
+                Message = message,
+                Success = false
+            };
+        }
+
+        public static ServiceResult<T> Error(string message)
+        {
+            return new ServiceResult<T>()
+            {
+                ErrorOccured = true,
                 Message = message,
                 Success = false
             };

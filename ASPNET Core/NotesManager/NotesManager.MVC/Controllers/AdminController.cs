@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.Models.Category;
 using NotesManager.MVC.Filters;
+using NotesManager.Services;
 using NotesManager.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -29,6 +31,8 @@ namespace NotesManager.MVC.Controllers
             return View();
         }
 
+
+        #region Category
         [HttpGet]
         public async Task<IActionResult> Category()
         {
@@ -88,11 +92,11 @@ namespace NotesManager.MVC.Controllers
 
         // Action method for Remote validation
         [HttpGet, HttpPost]
-        public async Task<JsonResult> IsCategoryAvailable(string Name)
+        public async Task<JsonResult> IsCategoryAvailable(string Name, int? Id = null)
         {
             try
             {
-                bool categoryExists = await categoryService.CategoryExists(Name);
+                bool categoryExists = await categoryService.CategoryExists(Name, Id);
                 // Return true for Remote validation Success
                 return Json(categoryExists ? "The category with this name already exists" : true);
             }
@@ -102,6 +106,42 @@ namespace NotesManager.MVC.Controllers
                 return Json(StatusCode(StatusCodes.Status500InternalServerError, ex.Message));
             }
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Category(int id)
+        {
+            ServiceResult<bool> results = await categoryService.DeleteCategoryAsync(id);
+            if (results.Success)
+            {
+                return Ok(new
+                {
+                    message = results.Message,
+                    success = results.Success,
+                    data = results.Data
+                });
+            }
+            else if (results.ErrorOccured)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, results);
+            }
+            return BadRequest(results);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateCategory(UpdateCategory category)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Invalid Category Details";
+                return RedirectToAction(nameof(Category));
+            }
+            ServiceResult<bool> results = await categoryService.UpdateCategoryAsync(category);
+
+            TempData[results.Success ? "Success" : "Error"] = results.Success ? "Category updated successfully" : "Failed to update the category";
+            return RedirectToAction(nameof(Category));
+        }
+        #endregion
     }
 }
 

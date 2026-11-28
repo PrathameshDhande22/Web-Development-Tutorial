@@ -33,11 +33,14 @@ namespace NotesManager.Services.Implementations
         {
             try
             {
-                Note? note = await noteRepository.GetById(Id, new Data.PropertyInclude { IncludeAttachments = true, IncludeCategory = true, IncludeNoteHistory = true });
+                Note? note = await noteRepository.GetById(Id, new Data.PropertyInclude { IncludeAttachments = true, IncludeCategory = true });
                 if (note == null)
                 {
                     return null;
                 }
+
+                // Latest history with the correct version number
+                NoteHistoryDTO? currentHistory = await noteRepository.GetLatestHistoryAsync(Id);
 
                 return new NoteDTO()
                 {
@@ -63,7 +66,8 @@ namespace NotesManager.Services.Implementations
                         FilePath = a.FilePath,
                         CreatedAt = a.CreatedAt.DateTime,
                         AttachMentType = a.Extension
-                    }).ToList()
+                    }).ToList(),
+                    CurrentHistory = currentHistory
                 };
             }
             catch (Exception ex)
@@ -287,10 +291,7 @@ namespace NotesManager.Services.Implementations
                 logger.LogInformation("No history found for NoteHistory with Id={Id}", id);
                 return null;
             }
-            
-            // Get the row number for this history item
-            int rowNumber = await noteRepository.GetHistoryRowNumberAsync(id);
-            
+
             return new NoteDetailedHistoryDTO()
             {
                 Id = history.Id,
@@ -305,9 +306,83 @@ namespace NotesManager.Services.Implementations
                 OldStatus = history.OldStatus,
                 OldTitle = history.OldTitle,
                 OldCategoryName = history.OldCategory?.Name,
-                NewCategoryName = history.NewCategory?.Name,
-                RowNumber = rowNumber
+                NewCategoryName = history.NewCategory?.Name
             };
+        }
+
+        public async Task<ServiceResult<NoteHistoryDTO>> RestoreNoteFromHistoryAsync(int noteId, int historyId)
+        {
+            NoteHistory? noteHistory = await noteRepository.GetDetailNoteHistory(historyId);
+            if (noteHistory == null || noteHistory.NoteId != noteId)
+            {
+                logger.LogError("Tried restoring the history to Note for the NoteId={NoteId} HistoryId={Id}", noteId, historyId);
+                return ServiceResult<NoteHistoryDTO>.Fail("History not found");
+            }
+
+            Note? note = await noteRepository.GetForUpdateAsync(noteHistory.NoteId);
+            if (note == null)
+            {
+                logger.LogError("Note not found for Noteid={Id} while restoring the history but found the NoteHistory with HistoryId={NoteHistoryId}", noteHistory.NoteId, noteHistory.Id);
+                return ServiceResult<NoteHistoryDTO>.Error("Note for provided history id not found");
+            }
+
+            logger.LogInformation("Restoring the note NoteId={NoteId} with History={HistoryId}", noteHistory.NoteId, noteHistory.Id);
+
+            // History stores only the changed fields, so the latest value of each field till these version is the note at that version
+            List<NoteHistory> histories = await noteRepository.GetHistoriesTillAsync(noteHistory);
+            string version = $"v{histories.Count}";
+
+            string restoredTitle = histories.Last(h => h.NewTitle != null).NewTitle!;
+            string? restoredDescription = histories.LastOrDefault(h => h.NewDescripton != null)?.NewDescripton;
+            NoteStatus restoredStatus = histories.Last(h => h.NewStatus != null).NewStatus!.Value;
+            int restoredCategoryId = histories.Last(h => h.NewCategoryId != null).NewCategoryId!.Value;
+
+            // Check what will change
+            bool titleChanged = note.Title != restoredTitle;
+            bool descriptionChanged = note.Description != restoredDescription;
+            bool statusChanged = note.Status != restoredStatus;
+            bool categoryChanged = note.CategoryId != restoredCategoryId;
+
+            if (!titleChanged && !descriptionChanged && !statusChanged && !categoryChanged)
+            {
+                return ServiceResult<NoteHistoryDTO>.Fail($"Note is already same as {version}");
+            }
+
+            // Record the restore as a new history so it can also be undone
+            NoteHistory restoreHistory = new()
+            {
+                NoteId = note.Id,
+                Action = $"Restored {version}",
+                OldTitle = titleChanged ? note.Title : null,
+                NewTitle = restoredTitle,
+                OldDescription = descriptionChanged ? note.Description : null,
+                NewDescripton = descriptionChanged ? restoredDescription : null,
+                OldStatus = statusChanged ? note.Status : null,
+                NewStatus = statusChanged ? restoredStatus : null,
+                OldCategoryId = categoryChanged ? note.CategoryId : null,
+                NewCategoryId = categoryChanged ? restoredCategoryId : null,
+                Note = note
+            };
+
+            // Restore the note
+            note.Title = restoredTitle;
+            note.Description = restoredDescription;
+            note.Status = restoredStatus;
+            note.CategoryId = restoredCategoryId;
+            note.UpdatedAt = DateTime.UtcNow;
+
+            await noteRepository.RecordHistoryAsync(restoreHistory);
+            await unitOfWork.SaveChangesAsync();
+
+            logger.LogInformation("Restored the note NoteId={NoteId} to {Version}", note.Id, version);
+
+            return ServiceResult<NoteHistoryDTO>.Ok(new NoteHistoryDTO()
+            {
+                Id = restoreHistory.Id,
+                ActionName = restoreHistory.Action,
+                CreatedAt = restoreHistory.CreatedAt.DateTime,
+                Title = note.Title
+            }, $"Note restored to {version}");
         }
         #endregion
 

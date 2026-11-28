@@ -8,6 +8,7 @@ namespace NotesManager.Domain.DTO.Note
         public DateTimeOffset? UpdatedAt { get; set; } = null;
         public CategoryDTO Category { get; set; } = null!;
         public List<NoteAttachmentDTO> Attachments { get; set; } = null!;
+        public NoteHistoryDTO? CurrentHistory { get; set; } = null;
         public bool Pinned { get; set; }
     }
 }

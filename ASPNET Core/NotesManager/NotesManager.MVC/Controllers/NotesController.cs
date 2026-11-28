@@ -13,7 +13,6 @@ using NotesManager.Services;
 using NotesManager.Services.Interfaces;
 using System.Net.Mime;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -419,15 +418,52 @@ namespace NotesManager.MVC.Controllers
             });
         }
 
-        [HttpGet]
-        public async Task<IActionResult> HistoryDetail(int id)
+        [HttpGet] // Partial view for the History Detail
+        public async Task<IActionResult> HistoryDetail(int id, int rowNumber, bool isCurrent = false)
         {
             NoteDetailedHistoryDTO? historydetail = await noteService.GetHistoryById(id);
             if (historydetail == null)
             {
                 return NotFound();
             }
+            historydetail.RowNumber = rowNumber;
+
+            ViewData["IsCurrent"] = isCurrent;
             return PartialView(historydetail);
         }
+
+        [HttpPost]
+        [ServiceFilter<ApiExceptionFilter>]
+        public async Task<IActionResult> RestoreVersion(int id, [FromQuery] int historyid)
+        {
+            ServiceResult<NoteHistoryDTO> result = await noteService.RestoreNoteFromHistoryAsync(id, historyid);
+
+            // Something went wrong on the server side
+            if (result.ErrorOccured)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = result.Message,
+                    success = result.Success
+                });
+            }
+
+            if (!result.Success)
+            {
+                return BadRequest(new
+                {
+                    message = result.Message,
+                    success = result.Success
+                });
+            }
+
+            return Ok(new
+            {
+                message = result.Message,
+                success = result.Success,
+                data = result.Data
+            });
+        }
+
     }
 }

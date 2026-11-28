@@ -86,6 +86,7 @@ namespace NotesManager.Data.Repositories
             var query = dbContext.Notes
                         .AsNoTracking()
                         .AsSplitQuery();
+
             if (propertyInclude != null)
             {
                 if (propertyInclude.IncludeCategory)
@@ -94,7 +95,7 @@ namespace NotesManager.Data.Repositories
                 }
                 if (propertyInclude.IncludeNoteHistory)
                 {
-                    query = query.Include(n => n.History);
+                    query = query.Include(n => n.History.OrderByDescending(h => h.CreatedAt).Take(1));
                 }
                 if (propertyInclude.IncludeAttachments)
                 {
@@ -149,6 +150,7 @@ namespace NotesManager.Data.Repositories
         {
             var query = dbContext.NoteHistory
                .Where(nh => nh.NoteId == noteId)
+               .OrderBy(nh => nh.CreatedAt)
                .Select(nh => new NoteHistory()
                {
                    Id = nh.Id,
@@ -169,6 +171,42 @@ namespace NotesManager.Data.Repositories
             return histories;
         }
 
+        /// <summary>
+        /// Gets the latest history of the note. The row number of the latest history is the total number of histories.
+        /// </summary>
+        /// <param name="noteId">Id of the note</param>
+        /// <returns>The latest history with the row number, or null when the note has no history</returns>
+        public Task<NoteHistoryDTO?> GetLatestHistoryAsync(int noteId)
+        {
+            return dbContext.NoteHistory
+                .Where(nh => nh.NoteId == noteId)
+                .OrderByDescending(nh => nh.CreatedAt)
+                .Select(nh => new NoteHistoryDTO()
+                {
+                    Id = nh.Id,
+                    ActionName = nh.Action,
+                    CreatedAt = nh.CreatedAt.DateTime,
+                    Title = nh.NewTitle ?? string.Empty,
+                    RowNumber = dbContext.NoteHistory.Count(h => h.NoteId == noteId)
+                })
+                .FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Gets all the histories of the note from the first one till the provided history, oldest first.
+        /// </summary>
+        /// <param name="history">History till which the histories are needed</param>
+        /// <returns>List of histories ordered from oldest to newest</returns>
+        public Task<List<NoteHistory>> GetHistoriesTillAsync(NoteHistory history)
+        {
+            return dbContext.NoteHistory
+                .AsNoTracking()
+                .Where(nh => nh.NoteId == history.NoteId && nh.CreatedAt <= history.CreatedAt)
+                .OrderBy(nh => nh.CreatedAt)
+                .ThenBy(nh => nh.Id)
+                .ToListAsync();
+        }
+
         public Task<NoteHistory?> GetDetailNoteHistory(int id)
         {
             return dbContext.NoteHistory
@@ -176,24 +214,6 @@ namespace NotesManager.Data.Repositories
                 .Include(nh => nh.OldCategory)
                 .Include(nh => nh.NewCategory)
                 .SingleOrDefaultAsync(nh => nh.Id == id);
-        }
-
-        public async Task<int> GetHistoryRowNumberAsync(int historyId)
-        {
-            var history = await dbContext.NoteHistory
-                .AsNoTracking()
-                .SingleOrDefaultAsync(nh => nh.Id == historyId);
-            
-            if (history == null)
-            {
-                return 0;
-            }
-            
-            // Count histories that are newer or equal to this one
-            return await dbContext.NoteHistory
-                .Where(nh => nh.NoteId == history.NoteId && nh.CreatedAt >= history.CreatedAt)
-                .OrderByDescending(nh => nh.CreatedAt)
-                .CountAsync();
         }
 
         public void AddAttachments(NoteAttachments attachment)
