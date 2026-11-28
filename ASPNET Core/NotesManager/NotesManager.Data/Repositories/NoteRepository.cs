@@ -178,24 +178,6 @@ namespace NotesManager.Data.Repositories
                 .SingleOrDefaultAsync(nh => nh.Id == id);
         }
 
-        public async Task<int> GetHistoryRowNumberAsync(int historyId)
-        {
-            var history = await dbContext.NoteHistory
-                .AsNoTracking()
-                .SingleOrDefaultAsync(nh => nh.Id == historyId);
-            
-            if (history == null)
-            {
-                return 0;
-            }
-            
-            // Count histories that are newer or equal to this one
-            return await dbContext.NoteHistory
-                .Where(nh => nh.NoteId == history.NoteId && nh.CreatedAt >= history.CreatedAt)
-                .OrderByDescending(nh => nh.CreatedAt)
-                .CountAsync();
-        }
-
         public void AddAttachments(NoteAttachments attachment)
         {
             dbContext.NoteAttachments.Add(attachment);

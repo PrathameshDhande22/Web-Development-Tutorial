@@ -419,14 +419,16 @@ namespace NotesManager.MVC.Controllers
             });
         }
 
+        // Partial view for the history detail. The version number is sent from the history list
         [HttpGet]
-        public async Task<IActionResult> HistoryDetail(int id)
+        public async Task<IActionResult> HistoryDetail(int id, int rowNumber)
         {
             NoteDetailedHistoryDTO? historydetail = await noteService.GetHistoryById(id);
             if (historydetail == null)
             {
                 return NotFound();
             }
+            historydetail.RowNumber = rowNumber;
             return PartialView(historydetail);
         }
     }

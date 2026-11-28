@@ -288,9 +288,6 @@ namespace NotesManager.Services.Implementations
                 return null;
             }
             
-            // Get the row number for this history item
-            int rowNumber = await noteRepository.GetHistoryRowNumberAsync(id);
-            
             return new NoteDetailedHistoryDTO()
             {
                 Id = history.Id,
@@ -305,8 +302,7 @@ namespace NotesManager.Services.Implementations
                 OldStatus = history.OldStatus,
                 OldTitle = history.OldTitle,
                 OldCategoryName = history.OldCategory?.Name,
-                NewCategoryName = history.NewCategory?.Name,
-                RowNumber = rowNumber
+                NewCategoryName = history.NewCategory?.Name
             };
         }
         #endregion

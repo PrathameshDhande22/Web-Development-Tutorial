@@ -1,60 +1,55 @@
 $(function () {
-    // Get the first history item ID and load it
-    const firstHistoryId = $('.history-item').first().data('id');
-    if (firstHistoryId) {
-        loadHistoryDetail(firstHistoryId);
-    }
+    // Elements declaration
+    let $historyItems = $(".history-item");
+    let $historyDetail = $("#history-detail");
+    let $historyDetailContent = $("#history-detail-content");
+    let $loading = $("#loading");
 
-    // Set up click handlers for all history items
-    $('.history-item').click(function () {
-        const historyId = $(this).data('id');
-        loadHistoryDetail(historyId);
+    //#region History Detail
+    // Version click handling
+    $historyItems.on("click", function () {
+        // Highlight the selected version
+        $historyItems.removeClass("bg-base-200");
+        $(this).addClass("bg-base-200");
 
-        // Update active state
-        $('.history-item').removeClass('bg-base-200');
-        $(this).addClass('bg-base-200');
-    });
+        loadHistoryDetail($(this).data("id"), $(this).data("row-number"));
+    })
 
-    // Tab switching for history detail (event delegation for dynamically loaded content)
-    $(document).on('click', '.tab', function () {
-        const tabName = $(this).data('tab');
-
-        // Update active tab
-        $(this).closest('.tabs').find('.tab').removeClass('tab-active');
-        $(this).addClass('tab-active');
-
-        // Show selected tab content
-        $(this).closest('.mb-4').siblings('.tab-content').addClass('hidden');
-        $(this).closest('.mb-4').siblings('#' + tabName + '-tab').removeClass('hidden');
-    });
+    // Show the newest version which is on top
+    $historyItems.first().trigger("click");
 
     /**
-     * Loads history detail via AJAX for the given history ID
-     * @param {number} historyId - The ID of the history item to load
+     * Shows or hides the loading of the history detail.
+     * @param {Boolean} enable - Whether to show or hide the loading
      */
-    function loadHistoryDetail(historyId) {
-        // Show loading indicator
-        $('#loading').removeClass('hidden');
-        $('#history-detail-content').html('');
-
-        // Make AJAX call
-        $.ajax({
-            url: '/Notes/HistoryDetail/' + historyId,
-            type: 'GET',
-            success: function (data) {
-                // Hide loading indicator
-                $('#loading').addClass('hidden');
-
-                // Insert the partial view content
-                $('#history-detail-content').html(data);
-            },
-            error: function (xhr, status, error) {
-                $('#loading').addClass('hidden');
-                $('#history-detail-content').html(
-                    '<div class="text-red-500 p-4">Error loading history detail</div>'
-                );
-                console.error('Error loading history detail:', error);
-            }
-        });
+    function showLoading(enable) {
+        $loading.toggleClass("hidden", !enable);
+        $historyDetailContent.toggleClass("hidden", enable);
     }
+
+    /**
+     * Loads the history detail partial view by Ajax Call
+     * @param {Number} historyId - Id of the history
+     * @param {Number} rowNumber - Version number of the history shown in the list
+     */
+    function loadHistoryDetail(historyId, rowNumber) {
+        showLoading(true);
+
+        $.ajax({
+            method: "GET",
+            url: `${$historyDetail.data("url")}/${historyId}`,
+            data: { rowNumber: rowNumber },
+            success: function (response) {
+                $historyDetailContent.html(response);
+            },
+            error: function () {
+                $historyDetailContent.empty();
+                showToast("Unable to load the version details", "error");
+            },
+            complete: function () {
+                showLoading(false);
+            }
+        })
+    }
+    //#endregion
 });
