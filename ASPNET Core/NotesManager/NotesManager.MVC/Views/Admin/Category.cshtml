@@ -62,7 +62,9 @@
                     @foreach (CategoryNotesDTO categorynotes in ViewBag.Categories)
                     {
                         <tr id="category-@categorynotes.Id" class="category-table-row">
-                            <td class="text-xs">@categorynotes.Name</td>
+                            <td class="text-xs">
+                                <category category-name="@categorynotes.Name" color="@categorynotes.Color" class="inline-block" />
+                            </td>
                             <td class="text-right text-xs">@categorynotes.NotesCount</td>
                             <td class="text-xs text-gray-400">@categorynotes.CreatedAt.DateTime.ToString("MMM d, yyyy")</td>
                             <td class="text-right">
