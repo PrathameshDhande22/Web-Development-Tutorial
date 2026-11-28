@@ -5427,7 +5427,7 @@
     --tw-tracking: var(--tracking-wide);
     letter-spacing: var(--tracking-wide);
   }
-  .break-words {
+  .wrap-break-word {
     overflow-wrap: break-word;
   }
   .whitespace-pre-wrap {
@@ -5549,6 +5549,9 @@
   }
   .line-through {
     text-decoration-line: line-through;
+  }
+  .underline {
+    text-decoration-line: underline;
   }
   .opacity-50 {
     opacity: 50%;
@@ -5871,6 +5874,12 @@
     }
   }
   @media (width >= 48rem) {
+    .md\:sticky {
+      position: sticky;
+    }
+    .md\:top-20 {
+      top: calc(var(--spacing) * 20);
+    }
     .md\:block {
       display: block;
     }

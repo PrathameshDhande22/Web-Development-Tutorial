@@ -6,6 +6,7 @@
     bool titleChanged = !isCreated && Model.OldTitle != null;
     bool categoryChanged = !isCreated && Model.OldCategoryId != null;
     bool descriptionChanged = Model.NewDescripton != null;
+    bool isCurrent = ViewData["IsCurrent"] as bool? ?? false;
 }
 
 @functions {
@@ -59,10 +60,14 @@
                 }
             </span>
         </div>
-        <button type="button" id="restore-version" class="btn btn-sm btn-primary self-start sm:self-auto" data-id="@Model.Id">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
-            Restore this version
-        </button>
+        <!--Restore Current Version-->
+        @if (!isCurrent)
+        {
+            <button type="button" id="restore-version" class="btn btn-sm btn-primary self-start sm:self-auto" data-id="@Model.Id">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+                Restore this version
+            </button>
+        }
     </div>
 
     @if (isCreated)

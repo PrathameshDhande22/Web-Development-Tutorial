@@ -27,17 +27,19 @@
         <!--Version List and Detail-->
         <div class="mt-6 grid gap-6 md:grid-cols-[16rem_minmax(0,1fr)]">
             <!--Version List-->
-            <ol class="max-h-[70vh] overflow-y-auto rounded-lg border border-gray-300" id="version-list">
+            <ol class="max-h-[70vh] self-start overflow-y-auto rounded-lg border border-gray-300 md:sticky md:top-20 dark:border-gray-700" id="version-list">
                 @foreach (NoteHistoryDTO history in Model)
                 {
                     <li>
-                        <button type="button" 
-                                class="w-full px-4 py-3 text-left hover:bg-base-200 history-item"
+                        <button type="button"
+                                class="history-item w-full px-4 py-3 text-left hover:bg-base-200"
                                 data-id="@history.Id"
-                                data-row-number="@history.RowNumber">
-                            <div class="flex items-center gap-2">
+                                data-row-number="@history.RowNumber"
+                                data-is-current="@(history == Model.First() ? "true" : "false")">
+                            <div class="flex items-center justify-between gap-2">
                                 <span class="text-gray-400">@history.Version</span>
                                 <span class="flex-1 truncate font-semibold">@history.ActionName</span>
+                                <span class="text-xs">@(history == Model.First() ? "current" : "")</span>
                             </div>
                             <!--History Detail-->
                             <div class="text-sm text-gray-400">
