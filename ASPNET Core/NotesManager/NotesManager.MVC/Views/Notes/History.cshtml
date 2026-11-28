@@ -18,9 +18,9 @@
                 </svg>
             </a>
             <div>
-                <h1 class="text-lg font-semibold">@Model.FirstOrDefault()!.Title</h1>
+                <h1 class="text-lg font-semibold" id="history-title">@Model.FirstOrDefault()!.Title</h1>
                 <span class="inline-block text-sm text-gray-500">
-                    @Model.Count versions | Newest first
+                    <span id="versions-count">@Model.Count</span> versions | Newest first
                 </span>
             </div>
         </div>
@@ -39,7 +39,7 @@
                             <div class="flex items-center justify-between gap-2">
                                 <span class="text-gray-400">@history.Version</span>
                                 <span class="flex-1 truncate font-semibold">@history.ActionName</span>
-                                <span class="text-xs">@(history == Model.First() ? "current" : "")</span>
+                                <span class="text-xs" data-field="current">@(history == Model.First() ? "current" : "")</span>
                             </div>
                             <!--History Detail-->
                             <div class="text-sm text-gray-400">
@@ -49,6 +49,21 @@
                     </li>
                 }
             </ol>
+            <!--History Item Template for the restored version-->
+            <template id="history-item-template">
+                <li>
+                    <button type="button" class="history-item w-full px-4 py-3 text-left hover:bg-base-200">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-gray-400" data-field="version"></span>
+                            <span class="flex-1 truncate font-semibold" data-field="action"></span>
+                            <span class="text-xs" data-field="current"></span>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            <span data-field="created"></span>
+                        </div>
+                    </button>
+                </li>
+            </template>
             <!--History Detail-->
             <div class="min-w-0 self-start overflow-hidden rounded-lg border border-gray-300 dark:border-gray-700" id="history-detail" data-url="@Url.Action("HistoryDetail", "Notes")">
                 <!-- Loading indicator -->
@@ -62,6 +77,25 @@
         </div>
     </div>
 </div>
+
+<!--Restore Version Dialog-->
+<dialog id="restore_version_dialog" class="modal" data-url="@Url.Action("RestoreVersion", "Notes", new { id = noteId })">
+    <div class="modal-box">
+        <h3 class="text-lg font-semibold">Restore version <span id="restore-version-number"></span>?</h3>
+        <p class="pt-2 text-sm text-gray-500 dark:text-gray-400">
+            The note will be updated to match this version. Your current version stays in the history, so nothing is lost.
+        </p>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn btn-ghost">Cancel</button>
+            </form>
+            <button type="button" id="restore-confirm" class="btn btn-primary">Restore</button>
+        </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+    </form>
+</dialog>
 
 @section Scripts {
     <script src="~/js/history.js" asp-append-version="true"></script>
