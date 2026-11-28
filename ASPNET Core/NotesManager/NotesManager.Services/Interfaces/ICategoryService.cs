@@ -15,5 +15,6 @@ namespace NotesManager.Services.Interfaces
         public Task<CategoryDTO> CreateAsync(CreateCategory category);
 
         public Task<bool> CategoryExists(string name);
+        public Task<ServiceResult<bool>> DeleteCategoryAsync(int categoryid);
     }
 }

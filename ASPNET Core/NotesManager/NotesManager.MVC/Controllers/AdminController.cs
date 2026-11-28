@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using NotesManager.Domain.DTO.Category;
 using NotesManager.Domain.Models.Category;
 using NotesManager.MVC.Filters;
+using NotesManager.Services;
 using NotesManager.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace NotesManager.MVC.Controllers
 {
@@ -29,6 +31,8 @@ namespace NotesManager.MVC.Controllers
             return View();
         }
 
+
+        #region Category
         [HttpGet]
         public async Task<IActionResult> Category()
         {
@@ -102,6 +106,27 @@ namespace NotesManager.MVC.Controllers
                 return Json(StatusCode(StatusCodes.Status500InternalServerError, ex.Message));
             }
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Category(int id)
+        {
+            ServiceResult<bool> results = await categoryService.DeleteCategoryAsync(id);
+            if (results.Success)
+            {
+                return Ok(new
+                {
+                    message = results.Message,
+                    success = results.Success,
+                    data = results.Data
+                });
+            }
+            else if (results.ErrorOccured)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, results);
+            }
+            return BadRequest(results);
+        }
+        #endregion
     }
 }
 

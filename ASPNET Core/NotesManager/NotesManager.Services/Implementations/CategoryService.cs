@@ -86,5 +86,26 @@ namespace NotesManager.Services.Implementations
                 throw;
             }
         }
+
+        public async Task<ServiceResult<bool>> DeleteCategoryAsync(int categoryid)
+        {
+            // first check if there are any notes with that category
+            bool notes_exists = await _categoryRepository.NotesExistsForCategory(categoryid);
+            if (notes_exists)
+            {
+                _logger.LogInformation("Notes Exists for Category Id ={categoryId}, These category can't be deleted", categoryid);
+                return ServiceResult<bool>.Fail("Notes exists for these category, can't delete");
+            }
+
+            _logger.LogInformation("Deleting the Category with Id={Id}", categoryid);
+
+            int updated_rows = await _categoryRepository.DeleteAsync(categoryid);
+            _logger.LogInformation("Affected Rows Count {Count}, while deleting the category with id={Id}", updated_rows, categoryid);
+            if (updated_rows == 1)
+            {
+                return ServiceResult<bool>.Ok(true, "Category deleted successfully");
+            }
+            return ServiceResult<bool>.Error("Failed to delete category");
+        }
     }
 }
